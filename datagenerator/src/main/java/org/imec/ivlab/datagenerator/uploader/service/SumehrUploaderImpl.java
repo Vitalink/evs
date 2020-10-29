@@ -166,7 +166,7 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
 
         try {
             refExtractor.extractEVSRefs(sumehrListInVault);
-            SumehrList sumehrList = KmehrMatcher.lookupEVSRefsInVault(sumehrListToRemove, sumehrListInVault);
+            SumehrList sumehrList = KmehrMatcher.ensureEVSRefsMatchWithVault(sumehrListToRemove, sumehrListInVault);
             sumehrService.revokeTransactions(patient, sumehrList);
         } catch (Exception e) {
             throw new UploaderException(e);

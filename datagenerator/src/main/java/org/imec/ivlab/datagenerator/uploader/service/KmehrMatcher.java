@@ -3,6 +3,7 @@ package org.imec.ivlab.datagenerator.uploader.service;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHR;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHRschemes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
+import java.util.stream.Collectors;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -78,7 +79,7 @@ public class KmehrMatcher {
      * @param vaultList
      * @throws NoMatchingEvsRefException
      */
-    public static <T extends ListOfIdentifiables> T lookupEVSRefsInVault(T listWithRefsToFind, T vaultList) throws NoMatchingEvsRefException {
+    public static <T extends ListOfIdentifiables> T ensureEVSRefsMatchWithVault(T listWithRefsToFind, T vaultList) throws NoMatchingEvsRefException {
 
         if (listWithRefsToFind == null || CollectionsUtil.emptyOrNull(listWithRefsToFind.getIdentifiables())) {
             return listWithRefsToFind;
@@ -152,9 +153,48 @@ public class KmehrMatcher {
 
     }
 
+    public static MSEntryList createMSEntryListForSpecificUpdates(MSEntryList uploadList, MSEntryList vaultList) {
 
+        if (uploadList == null || CollectionsUtil.emptyOrNull(uploadList.getMsEntries())) {
+            return new MSEntryList();
+        }
 
-    public static MSEntryList createMSEntryListForUpdate(MSEntryList uploadList, MSEntryList vaultList) {
+        MSEntryList newList = SerializationUtils.clone(vaultList);
+
+        for (MSEntry msEntryInVault : newList.getMsEntries().stream().filter(Objects::nonNull).collect(Collectors.toList())) {
+            MSEntry msEntryLocalVersion = getEntryByReference(uploadList, msEntryInVault.getReference());
+            // in vault and in upload list
+            if (msEntryLocalVersion != null) {
+                // in vault and in upload list, check if the entry was modified locally
+                if (equal(msEntryLocalVersion, msEntryInVault)) {
+                    LOG.info("MS entry " + msEntryInVault.getReference().getFormatted() + " will not be updated");
+                } else {
+                    LOG.info("MS entry " + msEntryInVault.getReference().getFormatted() + " will be UPDATED");
+
+                    applyVaultEntryPropertiesToLocalEntry(msEntryInVault, msEntryLocalVersion);
+                }
+            } else {
+                    LOG.info("MS entry " + msEntryInVault.getReference().getFormatted() + " will not be updated");
+            }
+        }
+
+        return newList;
+
+    }
+
+    private static void applyVaultEntryPropertiesToLocalEntry(MSEntry msEntryInVault, MSEntry msEntryLocalVersion) {
+        List<IDKMEHR> localIdMseTransactionVault = IDKmehrUtil.getIDKmehrs(msEntryInVault.getMseTransaction().getIds(), IDKMEHRschemes.LOCAL);
+        MSEntry msEntryNewVersion = SerializationUtils.clone(msEntryLocalVersion);
+
+        updateLocalIdInMSEntryList(msEntryNewVersion, localIdMseTransactionVault);
+        updateDateTimeInMSEntry(msEntryNewVersion);
+
+        msEntryInVault.setReference(msEntryNewVersion.getReference());
+        msEntryInVault.setMseTransaction(msEntryNewVersion.getMseTransaction());
+        msEntryInVault.setTsTransactions(msEntryNewVersion.getTsTransactions());
+    }
+
+    public static MSEntryList createMSEntryListForSchemeUpdate(MSEntryList uploadList, MSEntryList vaultList) {
 
         if (uploadList == null || CollectionsUtil.emptyOrNull(uploadList.getMsEntries())) {
             return new MSEntryList();
@@ -192,15 +232,7 @@ public class KmehrMatcher {
             } else {
                 LOG.info("MS entry " + msEntryInVault.getReference().getFormatted() + " will be UPDATED");
 
-                List<IDKMEHR> localIdMseTransactionVault = IDKmehrUtil.getIDKmehrs(msEntryInVault.getMseTransaction().getIds(), IDKMEHRschemes.LOCAL);
-                MSEntry msEntryNewVersion = SerializationUtils.clone(msEntryLocalVersion);
-
-                updateLocalIdInMSEntryList(msEntryNewVersion, localIdMseTransactionVault);
-                updateDateTimeInMSEntry(msEntryNewVersion);
-
-                msEntryInVault.setReference(msEntryNewVersion.getReference());
-                msEntryInVault.setMseTransaction(msEntryNewVersion.getMseTransaction());
-                msEntryInVault.setTsTransactions(msEntryNewVersion.getTsTransactions());
+                applyVaultEntryPropertiesToLocalEntry(msEntryInVault, msEntryLocalVersion);
 
             }
 

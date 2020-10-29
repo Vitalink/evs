@@ -60,6 +60,9 @@ public class MSQueueConfig implements QueueConfig<MSInstruction> {
             case REMOVE_REF:
                 msUploader.removeREF(instruction.getPatient(), msEntryList, instruction.getActorID());
                 break;
+            case UPDATE_REF:
+                msUploader.updateREF(instruction.getPatient(), msEntryList, instruction.getActorID());
+                break;
             case UPDATE_SCHEME_REF:
                 msUploader.updateschemeREF(instruction.getPatient(), msEntryList, instruction.getActorID());
                 break;

@@ -178,6 +178,35 @@ public class MSUploaderImpl implements Uploader, MSUploader {
 
     }
 
+    public void updateREF(Patient patient, MSEntryList msEntryList, String actorId) throws VitalinkException, UploaderException {
+
+        msDao.authenticate(readAuthenticationConfig(actorId));
+
+        try {
+            KmehrHelper.removeLocalIds(msEntryList);
+            refExtractor.extractEVSRefs(msEntryList);
+            refExtractor.validateEVSRefUniqueness(msEntryList);
+            refExtractor.validatePresenceEVSRefs(msEntryList);
+        } catch (MultipleEVSRefsInTransactionFoundException | IdenticalEVSRefsFoundException | MissingEVSRefException e) {
+            throw new UploaderException(e);
+        }
+
+        MSEntryList msEntryListVault = msDao.getMedicationScheme(patient);
+        try {
+            refExtractor.extractEVSRefs(msEntryListVault);
+            KmehrMatcher.ensureEVSRefsMatchWithVault(msEntryList, msEntryListVault);
+        } catch (MultipleEVSRefsInTransactionFoundException | NoMatchingEvsRefException e) {
+            throw new UploaderException(e);
+        }
+
+        Kmehrmessage kmehrmessageTemplate = getKmehrmessageTemplate(patient);
+        applyShiftAction(shiftAction, kmehrmessageTemplate, msEntryList);
+        MSEntryList msEntrylistForPut = KmehrMatcher.createMSEntryListForSpecificUpdates(msEntryList, msEntryListVault);
+
+        msDao.putMedicationScheme(patient, kmehrmessageTemplate, msEntrylistForPut);
+
+    }
+
     @Override
     public void updateschemeREF(Patient patient, MSEntryList msEntryList, String actorId) throws VitalinkException, UploaderException {
 
@@ -203,7 +232,7 @@ public class MSUploaderImpl implements Uploader, MSUploader {
         // apply shift action to all msEntries from the input, which will then be compared with the ones in the vault
         applyShiftAction(shiftAction, kmehrmessageTemplate, msEntryList);
 
-        MSEntryList msEntrylistForPut = KmehrMatcher.createMSEntryListForUpdate(msEntryList, msEntryListVault);
+        MSEntryList msEntrylistForPut = KmehrMatcher.createMSEntryListForSchemeUpdate(msEntryList, msEntryListVault);
 
 
         msDao.putMedicationScheme(patient, kmehrmessageTemplate, msEntrylistForPut);

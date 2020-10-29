@@ -7,6 +7,7 @@ public enum MSAction implements Action{
     GENERATE_REF("generateREF"),
     REMOVE_REF("removeREF"),
     EXPORT("export"),
+    UPDATE_REF("updateREF"),
     UPDATE_SCHEME_REF("updateschemeREF");
 
     private String value;
