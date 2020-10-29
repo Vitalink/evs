@@ -162,8 +162,8 @@ public class SumehrWriter extends Writer {
 
         tables.add(combineTables(null, new ArrayList<>(), toUnparsedContentTables(Collections.singletonList(sumehr), null)));
 
-        tables.add(combineTables(createTitleTable("Author"), createHcPartyTables(sumehr.getTransactionCommon().getAuthors()), toUnparsedContentTables(sumehr.getTransactionCommon().getAuthors(), "Author")));
-        tables.add(combineTables(createTitleTable("Patient"), personToTable(sumehr.getTransactionCommon().getPerson()), toUnparsedContentTable(sumehr.getTransactionCommon().getPerson(), "Patient")));
+        tables.add(combineTables(createTitleTable("Author"), createHcPartyTables(sumehr.getTransactionCommon().getAuthor()), toUnparsedContentTables(sumehr.getTransactionCommon().getAuthor(), "Author")));
+        tables.add(combineTables(createTitleTable("Patient"), patientToTable(sumehr.getTransactionCommon().getPerson()), toUnparsedContentTable(sumehr.getTransactionCommon().getPerson(), "Patient")));
         Collection<PdfPTable> riskTables = new ArrayList<>();
         riskTables.addAll(createRisksTable(sumehr.getAllergies(), "Allergy"));
         riskTables.addAll(createRisksTable(sumehr.getAdrs(), "Adverse drug reaction"));
@@ -271,7 +271,7 @@ public class SumehrWriter extends Writer {
         List<PdfPTable> tables = new ArrayList<>();
 
         for (ContactPerson contactPerson : contactPersons) {
-            PdfPTable table = personToTable(contactPerson);
+            PdfPTable table = contactPersonToTable(contactPerson);
             addRow(table, toDetailRowIfHasValue("Relationship", contactPerson.getRelation()));
             tables.add(table);
         }

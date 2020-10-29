@@ -17,7 +17,9 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.SerializationUtils;
 import org.imec.ivlab.core.model.internal.parser.sumehr.AbstractPerson;
+import org.imec.ivlab.core.model.internal.parser.sumehr.ContactPerson;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
+import org.imec.ivlab.core.model.internal.parser.sumehr.Patient;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Recipient;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sender;
 import org.imec.ivlab.core.util.CollectionsUtil;
@@ -120,8 +122,8 @@ public class BaseMapper {
       return header;
   }
 
-  protected static List<HcParty> mapTransactionAuthorFields(TransactionType firstTransaction) {
-      return Optional.ofNullable(firstTransaction.getAuthor())
+  protected static List<HcParty> mapHcPartyFields(AuthorType authorType) {
+      return Optional.ofNullable(authorType)
           .map(AuthorType::getHcparties)
           .orElse(Collections.emptyList())
           .stream()
@@ -139,7 +141,20 @@ public class BaseMapper {
       clearCds(firstTransaction);
   }
 
-  public static <T extends AbstractPerson> T toPerson(PersonType personType, T person) {
+  public static ContactPerson toContactPerson(PersonType personType) {
+    ContactPerson contactPerson = new ContactPerson();
+    toPerson(personType, contactPerson);
+    return contactPerson;
+  }
+
+  public static Patient toPatient(PersonType personType) {
+    Patient patient = new Patient();
+    toPerson(personType, patient);
+    patient.setRecordDateTime(DateUtils.toLocalDateTime(personType.getRecorddatetime()));
+    return patient;
+  }
+
+  private static <T extends AbstractPerson> T toPerson(PersonType personType, T person) {
 
       if (personType == null) {
           return null;
@@ -148,7 +163,6 @@ public class BaseMapper {
       PersonType clone = SerializationUtils.clone(personType);
 
     clone.setRecorddatetime(null);
-    /// TODO: 23/08/2020 map recorddatetime
 
     person.setIds(personType.getIds());
       clearIds(clone);

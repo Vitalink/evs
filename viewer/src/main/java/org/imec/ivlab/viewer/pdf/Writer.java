@@ -30,7 +30,9 @@ import javax.xml.transform.TransformerException;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 import org.imec.ivlab.core.model.internal.parser.sumehr.AbstractPerson;
+import org.imec.ivlab.core.model.internal.parser.sumehr.ContactPerson;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
+import org.imec.ivlab.core.model.internal.parser.sumehr.Patient;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.StringUtils;
 import org.imec.ivlab.core.util.XmlFormatterUtil;
@@ -86,7 +88,18 @@ public abstract class Writer {
         return table;
     }
 
-    protected PdfPTable personToTable(AbstractPerson person) {
+    protected PdfPTable contactPersonToTable(ContactPerson person) {
+        return personToTable(person);
+    }
+
+    protected PdfPTable patientToTable(Patient patient) {
+        PdfPTable table = personToTable(patient);
+        addRow(table, toDetailRowIfHasValue("Record date time", Translator.formatAsDateTime(patient.getRecordDateTime())));
+        return table;
+    }
+
+
+    private PdfPTable personToTable(AbstractPerson person) {
 
         PdfPTable table = initializeDetailTable();
         addRow(table, createDetailHeader(StringUtils.joinFields(StringUtils.joinWith(" ", person.getFirstnames().toArray()), person.getFamilyname(), " ")));

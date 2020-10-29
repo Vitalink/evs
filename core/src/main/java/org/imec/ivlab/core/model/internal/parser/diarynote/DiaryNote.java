@@ -1,5 +1,6 @@
 package org.imec.ivlab.core.model.internal.parser.diarynote;
 
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
 import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
@@ -14,6 +15,7 @@ public class DiaryNote extends ParsedKmehrItem {
     private List<TextWithLayoutType> textWithLayoutTypes;
     private List<LnkType> linkTypes;
     private List<String> cdDiaryValues;
+    private List<CDTRANSACTION> cdLocalEntries;
 
     @Override
     public Set<String> ignoredNodeNames() {
@@ -53,5 +55,13 @@ public class DiaryNote extends ParsedKmehrItem {
 
     public void setCdDiaryValues(List<String> cdDiaryValues) {
         this.cdDiaryValues = cdDiaryValues;
+    }
+
+    public List<CDTRANSACTION> getCdLocalEntries() {
+        return cdLocalEntries;
+    }
+
+    public void setCdLocalEntries(List<CDTRANSACTION> cdLocalEntries) {
+        this.cdLocalEntries = cdLocalEntries;
     }
 }

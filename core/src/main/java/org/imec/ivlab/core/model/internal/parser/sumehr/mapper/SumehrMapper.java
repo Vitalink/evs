@@ -57,13 +57,13 @@ public class SumehrMapper extends BaseMapper {
         markKmehrLevelFieldsAsProcessed(cloneKmehr);
         entry.setHeader(mapHeaderFields(cloneKmehr.getHeader()));
         markKmehrHeaderLevelFieldsAsProcessed(cloneKmehr.getHeader());
-        entry.getTransactionCommon().setPerson(toPerson(folderType.getPatient(), new Patient()));
+        entry.getTransactionCommon().setPerson(toPatient(folderType.getPatient()));
         markFolderLevelFieldsAsProcessed(cloneFolder);
 
         entry.getTransactionCommon().setDate(DateUtils.toLocalDate(firstTransaction.getDate()));
         entry.getTransactionCommon().setTime(DateUtils.toLocalTime(firstTransaction.getTime()));
 
-        entry.getTransactionCommon().setAuthors(mapTransactionAuthorFields(firstTransaction));
+        entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.setHealthCareElements(toHealthCareElements(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.HEALTHCAREELEMENT)));
         entry.setSocialRisks(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.SOCIALRISK)));
         entry.setRisks(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.RISK)));
@@ -108,7 +108,7 @@ public class SumehrMapper extends BaseMapper {
             List<PersonType> personTypes = ItemUtil.collectPersonTypes(item);
             if (CollectionsUtil.notEmptyOrNull(personTypes)) {
                 for (PersonType personType : personTypes) {
-                    ContactPerson contactPerson = toPerson(personType, new ContactPerson());
+                    ContactPerson contactPerson = toContactPerson(personType);
                     List<CDITEM> cdItems = CDItemUtil.getCDItems(item.getCds(), CDITEMschemes.CD_CONTACT_PERSON);
                     if (CollectionsUtil.notEmptyOrNull(cdItems)) {
                         contactPerson.setRelation(cdItems.get(0).getValue());

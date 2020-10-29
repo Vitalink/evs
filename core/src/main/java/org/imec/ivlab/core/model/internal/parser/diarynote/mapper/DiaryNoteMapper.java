@@ -15,7 +15,6 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.model.internal.parser.common.BaseMapper;
 import org.imec.ivlab.core.model.internal.parser.diarynote.DiaryNote;
-import org.imec.ivlab.core.model.internal.parser.sumehr.Patient;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.DateUtils;
 
@@ -39,14 +38,15 @@ public class DiaryNoteMapper extends BaseMapper {
         entry.setHeader(mapHeaderFields(cloneKmehr.getHeader()));
         markKmehrHeaderLevelFieldsAsProcessed(cloneKmehr.getHeader());
         entry.setCdDiaryValues(getCdDiaryValues(firstTransaction));
-        entry.getTransactionCommon().setPerson(toPerson(folderType.getPatient(), new Patient()));
+        entry.setCdLocalEntries(getCdLocalEntries(firstTransaction));
+        entry.getTransactionCommon().setPerson(toPatient(folderType.getPatient()));
         markFolderLevelFieldsAsProcessed(cloneFolder);
 
         entry.getTransactionCommon().setDate(DateUtils.toLocalDate(firstTransaction.getDate()));
         entry.getTransactionCommon().setTime(DateUtils.toLocalTime(firstTransaction.getTime()));
-        entry.getTransactionCommon().setAuthors(mapTransactionAuthorFields(firstTransaction));
-        // TODO: 23/08/2020 map redactor authors
-        // TODO: 23/08/2020 map transaction recorddatetime
+        entry.getTransactionCommon().setRecordDateTime(DateUtils.toLocalDateTime(firstTransaction.getRecorddatetime()));
+        entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
+        entry.getTransactionCommon().setRedactor(mapHcPartyFields(firstTransaction.getRedactor()));
         entry.setTextTypes(getTextAndRemoveFromTransaction(firstTransaction));
         entry.setTextWithLayoutTypes(getTextWithLayoutAndRemoveFromTransaction(firstTransaction));
         entry.setLinkTypes(getLinksAndRemoveFromTransaction(firstTransaction));
@@ -62,6 +62,10 @@ public class DiaryNoteMapper extends BaseMapper {
             .stream()
             .map(CDTRANSACTION::getValue)
             .collect(Collectors.toList());
+    }
+
+    private static List<CDTRANSACTION> getCdLocalEntries(TransactionType firstTransaction) {
+        return filterCdsForScheme(firstTransaction.getCds(), CDTRANSACTIONschemes.LOCAL);
     }
 
     private static List<CDTRANSACTION> filterCdsForScheme(List<CDTRANSACTION> cdtransactions, CDTRANSACTIONschemes cdtransactioNschemesFilter) {

@@ -10,11 +10,14 @@ import static org.imec.ivlab.viewer.pdf.SumehrTableFormatter.getUnparsedtitlePhr
 import static org.imec.ivlab.viewer.pdf.Translator.formatAsDate;
 import static org.imec.ivlab.viewer.pdf.Translator.formatAsDateTime;
 
+import com.itextpdf.text.BadElementException;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Image;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -179,11 +182,17 @@ public class TableHelper {
       return null;
     }
 
+    if (value instanceof byte[]) {
+      return createDetailRow(key, (byte[]) value);
+    }
+
     String valueString;
     if (value instanceof LocalDate) {
       valueString = formatAsDate((LocalDate) value);
     } else if (value instanceof LocalDateTime) {
       valueString = formatAsDateTime((LocalDateTime) value);
+    } else if (value instanceof Integer) {
+      valueString = String.valueOf( value);
     } else if (value instanceof Boolean) {
       valueString = ((Boolean) value) != null ? ((Boolean) value).toString() : null;
     } else {
@@ -244,6 +253,23 @@ public class TableHelper {
     cells.add(cell);
     cell = SumehrTableFormatter.getValueCell();
     cell.setPhrase(getDefaultPhrase(StringUtils.nullToString(value)));
+    cell.setColspan(70);
+    cells.add(cell);
+    return cells;
+  }
+
+  public static List<PdfPCell> createDetailRow(String key, byte[] value) {
+    List<PdfPCell> cells = new ArrayList<>();
+    PdfPCell cell = SumehrTableFormatter.getKeyCell();
+    cell.setPhrase(getDefaultPhrase(StringUtils.nullToString(key)));
+    cell.setColspan(30);
+    cells.add(cell);
+    cell = SumehrTableFormatter.getValueCell();
+    try {
+      cell.setImage(Image.getInstance(value));
+    } catch (BadElementException | IOException e) {
+      cell.setPhrase(getDefaultPhrase("Failed to render image"));
+    }
     cell.setColspan(70);
     cells.add(cell);
     return cells;

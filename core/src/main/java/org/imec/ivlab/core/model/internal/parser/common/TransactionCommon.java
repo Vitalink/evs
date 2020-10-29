@@ -1,6 +1,7 @@
 package org.imec.ivlab.core.model.internal.parser.common;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +12,9 @@ public class TransactionCommon {
 
   private LocalDate date;
   private LocalTime time;
-  private List<HcParty> authors = new ArrayList<>();
+  private LocalDateTime recordDateTime;
+  private List<HcParty> author = new ArrayList<>();
+  private List<HcParty> redactor = new ArrayList<>();
   private Patient person;
 
   public LocalDate getDate() {
@@ -30,12 +33,12 @@ public class TransactionCommon {
     this.time = time;
   }
 
-  public List<HcParty> getAuthors() {
-    return authors;
+  public List<HcParty> getAuthor() {
+    return author;
   }
 
-  public void setAuthors(List<HcParty> authors) {
-    this.authors = authors;
+  public void setAuthor(List<HcParty> author) {
+    this.author = author;
   }
 
 
@@ -47,4 +50,19 @@ public class TransactionCommon {
     this.person = person;
   }
 
+  public List<HcParty> getRedactor() {
+    return redactor;
+  }
+
+  public void setRedactor(List<HcParty> redactor) {
+    this.redactor = redactor;
+  }
+
+  public LocalDateTime getRecordDateTime() {
+    return recordDateTime;
+  }
+
+  public void setRecordDateTime(LocalDateTime recordDateTime) {
+    this.recordDateTime = recordDateTime;
+  }
 }
