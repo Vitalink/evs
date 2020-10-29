@@ -1,0 +1,2176 @@
+<?xml version="1.0" encoding="UTF-8"?><kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20161201</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">1990001916.2018041091404829031</id>
+        <date>2018-04-19</date>
+        <time>14:31:19</time>
+        <sender>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                <cd S="CD-HCPARTY" SV="1.7">hub</cd>
+                <name>VITALINK</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                <id S="INSS" SV="1.0">75041414469</id>
+                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+                <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
+                <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
+                <firstname>Veerle</firstname>
+                <familyname>Moermans</familyname>
+                <address>
+                    <cd S="CD-ADDRESS" SV="1.0"/>
+                    <nis>24062</nis>
+                </address>
+            </hcparty>
+            <hcparty>
+                <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_2264d708-0d49-4aca-96f0-f7acb32cf5c2</id>
+                <cd S="CD-HCPARTY" SV="1.1">APPLICATION</cd>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+        <patient>
+            <id S="ID-PATIENT" SV="1.0">92061925582</id>
+            <firstname>Benjamin</firstname>
+            <familyname>Van Rietvelde</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+        </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme</id>
+            <cd S="CD-TRANSACTION" SV="1.0">medicationscheme</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                    <cd S="CD-HCPARTY" SV="1.7">hub</cd>
+                    <name>VITALINK</name>
+                </hcparty>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <version>69</version>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">2</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/96091/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2329969</intendedcd>
+                        <intendedname>Aspirine 500 mg (36 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:100===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">3</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/96091/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2329969</intendedcd>
+                        <intendedname>Aspirine 500 mg (36 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-09</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='2']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">4</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/96091/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2329969</intendedcd>
+                        <intendedname>Aspirine 500 mg (36 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-11</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-12</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='2']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">5</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/96091/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2329969</intendedcd>
+                        <intendedname>Aspirine 500 mg (36 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-14</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-15</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='2']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">6</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/88532/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1365543</intendedcd>
+                        <intendedname>Asaflow 80 mg (56 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:101===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">7</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/88532/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1365543</intendedcd>
+                        <intendedname>Asaflow 80 mg (56 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='6']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">8</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/88532/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1365543</intendedcd>
+                        <intendedname>Asaflow 80 mg (56 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-12</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-15</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='6']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">9</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/00988/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2621936</intendedcd>
+                        <intendedname>Cardio Aspirine 100 mg (84 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:102===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">10</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/00988/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2621936</intendedcd>
+                        <intendedname>Cardio Aspirine 100 mg (84 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='9']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">11</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/00988/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2621936</intendedcd>
+                        <intendedname>Cardio Aspirine 100 mg (84 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-09</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-12</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='9']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">12</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/52021/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1690262</intendedcd>
+                        <intendedname>Aspirine 100 mg (30 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:103===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">13</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/52021/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1690262</intendedcd>
+                        <intendedname>Aspirine 100 mg (30 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='12']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">14</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/52021/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1690262</intendedcd>
+                        <intendedname>Aspirine 100 mg (30 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='12']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">15</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/28422/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3040532</intendedcd>
+                        <intendedname>ASA EG 100 mg (168 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:104===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">16</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/28422/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3040532</intendedcd>
+                        <intendedname>ASA EG 100 mg (168 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='15']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">17</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/28422/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3040532</intendedcd>
+                        <intendedname>ASA EG 100 mg (168 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-10</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='15']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">18</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/81479/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3150158</intendedcd>
+                        <intendedname>Aspirine Fasttabs 500 mg (20 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:105===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">19</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/81479/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3150158</intendedcd>
+                        <intendedname>Aspirine Fasttabs 500 mg (20 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='18']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">20</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/81479/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3150158</intendedcd>
+                        <intendedname>Aspirine Fasttabs 500 mg (20 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-09</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='18']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">21</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/94347/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2605335</intendedcd>
+                        <intendedname>Cardio Aspirine 100 mg (56 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:106===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">22</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/94347/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2605335</intendedcd>
+                        <intendedname>Cardio Aspirine 100 mg (56 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-09</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='21']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">23</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/94347/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2605335</intendedcd>
+                        <intendedname>Cardio Aspirine 100 mg (56 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-11</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-12</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='21']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">24</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/94347/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Definitieve TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2605335</intendedcd>
+                        <intendedname>Cardio Aspirine 100 mg (56 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-14</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">stopped</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='21']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">25</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/36018/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3001898</intendedcd>
+                        <intendedname>Alka-Seltzer 324 mg (20 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:107===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">26</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/36018/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3001898</intendedcd>
+                        <intendedname>Alka-Seltzer 324 mg (20 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='25']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">27</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/36018/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Definitieve TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">3001898</intendedcd>
+                        <intendedname>Alka-Seltzer 324 mg (20 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-12</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">stopped</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='25']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">28</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/69293/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1112481</intendedcd>
+                        <intendedname>Cardegic 160 mg (30 zakjes)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:108===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">29</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/69293/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Definitieve TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1112481</intendedcd>
+                        <intendedname>Cardegic 160 mg (30 zakjes)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-11</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">stopped</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='28']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">30</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/69293/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">1112481</intendedcd>
+                        <intendedname>Cardegic 160 mg (30 zakjes)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='28']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">31</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/02021/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2962975</intendedcd>
+                        <intendedname>Aspirine Caffeïne 650 mg / 65 mg (30 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:109===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">32</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/02021/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2962975</intendedcd>
+                        <intendedname>Aspirine Caffeïne 650 mg / 65 mg (30 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='31']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">33</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/02021/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Definitieve TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2962975</intendedcd>
+                        <intendedname>Aspirine Caffeïne 650 mg / 65 mg (30 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">stopped</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='31']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">34</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/77209/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">0102566</intendedcd>
+                        <intendedname>Aspirine C 400 mg / 240 mg (20 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:110===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">35</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/77209/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Tijdelijke TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">0102566</intendedcd>
+                        <intendedname>Aspirine C 400 mg / 240 mg (20 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-08</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-11</date>
+                </endmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">suspended</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='34']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">36</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/77209/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Definitieve TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">0102566</intendedcd>
+                        <intendedname>Aspirine C 400 mg / 240 mg (20 bruistabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-07</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">stopped</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='34']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">37</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/12704/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2542462</intendedcd>
+                        <intendedname>Asaflow 80 mg (112 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:111===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">38</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/12704/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Definitieve TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2542462</intendedcd>
+                        <intendedname>Asaflow 80 mg (112 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-13</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">stopped</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='37']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">39</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/12704/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Definitieve TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2542462</intendedcd>
+                        <intendedname>Asaflow 80 mg (112 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-11</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">stopped</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='37']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">40</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/95912/1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.11">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.11">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2542488</intendedcd>
+                        <intendedname>Asaflow 80 mg (168 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-05</date>
+                </beginmoment>
+                <endmoment>
+                    <date>2030-04-17</date>
+                </endmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.1">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+                <route>
+                    <cd S="CD-DRUG-ROUTE" SV="2.0">00060</cd>
+                </route>
+                <instructionforpatient L="nl">===EVSREF:112===</instructionforpatient>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">41</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/95912/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Definitieve TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2542488</intendedcd>
+                        <intendedname>Asaflow 80 mg (168 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-11</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">stopped</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='40']"/>
+            </item>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">42</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/92061925582/medication-scheme/95912/1</id>
+            <cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</cd>
+            <date>2018-04-19</date>
+            <time>14:31:17</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="INSS" SV="1.0">75041414469</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>VEERLE</firstname>
+                    <familyname>MOERMANS</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">transactionreason</cd>
+                <content>
+                    <text L="nl">Definitieve TS</text>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2542488</intendedcd>
+                        <intendedname>Asaflow 80 mg (168 tabletten)</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2030-04-11</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.3">stopped</cd>
+                </lifecycle>
+                <lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='40']"/>
+            </item>
+        </transaction>
+    </folder>
+</kmehrmessage>

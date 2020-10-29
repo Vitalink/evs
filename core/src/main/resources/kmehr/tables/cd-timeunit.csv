@@ -1,0 +1,11 @@
+Code;"Meaning English";"Meaning Dutch";"Meaning French";"Meaning German";SNOMED-CT
+a;Year;jaar;année;Jahre;
+mo;Month;maand;mois;monat;
+wk;Week;week;semaine;woche;
+d;Day;dag;jour;tag;
+hr;Hour;uur;heure;uhr;
+min;Minute;minuut;minute;minut;
+s;Second;seconde;seconde;sekunde;
+ms;Millisecond;milliseconde;milliseconde;millisekunde;
+us;Microsecond;microseconde;microseconde;microsekunde;
+ns;Nanosecond;nanoseconde;nanoseconde;nanosekunde;

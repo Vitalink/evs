@@ -1,0 +1,8 @@
+<patient>
+    <id>93051822361</id>
+    <firstName>Example Patient Firstname</firstName>
+    <lastName>Example Patient Lastname</lastName>
+    <gender>female</gender>
+    <birthDate>1993-05-18</birthDate>
+    <usualLanguage>nl-BE</usualLanguage>
+</patient>

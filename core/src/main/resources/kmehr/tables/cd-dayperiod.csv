@@ -1,0 +1,20 @@
+Code;"Meaning English";"Meaning Dutch";"Meaning French";"Meaning German";SNOMED-CT
+morning;morning;;;;
+afternoon;afternoon;;;;
+evening;evening;;;;
+night;night;;;;
+beforelunch;"before lunch (from lat. ante cibus diurnus)";;;;
+beforebreakfast;"before breakfast (from lat. ante cibus matutinus)";;;;
+beforedinner;"before dinner (from lat. ante cibus vespertinus)";;;;
+thehourofsleep;"the hour of sleep (e.g., H18-22)";;;;
+betweenmeals;"between meals (from lat. inter cibus)";;;;
+betweenlunchanddinner;"between lunch and dinner";;;;
+betweenbreakfastandlunch;"between breakfast and lunch";;;;
+betweendinnerandsleep;"between dinner and the hour of sleep";;;;
+aftermeal;"after meal (from lat. post cibus)";;;;
+afterlunch;"after lunch (from lat. post cibus diurnus)";;;;
+afterbreakfast;"after breakfast (from lat. post cibus matutinus)";;;;
+afterdinner;"after dinner (from lat. post cibus vespertinus)";;;;
+duringbreakfast;"during breakfast";;;;
+duringlunch;"during lunch";;;;
+duringdinner;"during dinner";;;;

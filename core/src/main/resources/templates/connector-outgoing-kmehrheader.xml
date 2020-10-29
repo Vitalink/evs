@@ -1,0 +1,20 @@
+<header  xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1">
+    <standard>
+        <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+    </standard>
+    <id S="ID-KMEHR" SV="1.0">17113669004.20171121095742806</id>
+    <date>${date_today}</date>
+    <time>${time_now}</time>
+    <sender>
+        <hcparty>
+            <cd S="CD-HCPARTY" SV="1.2">application</cd>
+            <name>EVS</name>
+        </hcparty>
+    </sender>
+    <recipient>
+        <hcparty>
+            <cd S="CD-HCPARTY" SV="1.2">application</cd>
+            <name>Vitalink</name>
+        </hcparty>
+    </recipient>
+</header>

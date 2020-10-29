@@ -1,0 +1,140 @@
+<izpack:installation version="5.0"
+                     xmlns:izpack="http://izpack.org/schema/installation"
+                     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                     xsi:schemaLocation="http://izpack.org/schema/installation http://izpack.org/schema/5.0/izpack-installation-5.0.xsd">
+
+    <info>
+        <appname>EVS ${project.version}</appname>
+        <appversion>${project.version}</appversion>
+        <appsubpath>EVS</appsubpath>
+        <javaversion>1.8</javaversion>
+        <writeinstallationinformation>false</writeinstallationinformation>
+        <readinstallationinformation>false</readinstallationinformation>
+        <uninstaller write="no"/>
+    </info>
+
+    <dynamicvariables>
+        <variable name="install.directoryname.evs" value=""/>
+        <variable name="install.path.evs" value="${INSTALL_PATH}${FILE_SEPARATOR}${install.directoryname.evs}"/>
+    </dynamicvariables>
+
+    <variables>
+        <variable name="TargetPanel.dir.windows" value="${ENV[SystemDrive]}\"/>
+        <variable name="TargetPanel.dir.unix" value="/usr/local/myapp"/>
+    </variables>
+
+    <conditions>
+
+        <condition type="exists" id="conditionvalidator.install.path.exists">
+            <file>${INSTALL_PATH}</file>
+        </condition>
+
+        <condition type="variable" id="migrationchosen">
+            <name>migrate.or.replace.choice</name>
+            <value>migrate</value>
+        </condition>
+        <condition type="exists" id="completeInstallPathEvsExists">
+            <file>${install.path.evs}</file>
+        </condition>
+        <condition type="and" id="migrationchosenAndCompleteInstallPathEvsExists"> <!-- Since the EVS Install path/directoryname can change after choosing for a migration
+        , we could end up with a migration type in a new folder where there's nothing to migrate. Therefore we check here that both the EVS path exists and a migration was chosen -->
+            <condition type="ref" refid="migrationchosen" />
+            <condition type="ref" refid="completeInstallPathEvsExists" />
+        </condition>
+    </conditions>
+
+    <locale>
+        <langpack iso3="eng"/>
+    </locale>
+
+    <guiprefs width="800" height="600" resizable="no">
+        <splash>images/peas_load.gif</splash>
+        <!--<laf name="substance">-->
+            <!--<os family="windows" />-->
+            <!--<os family="unix" />-->
+            <!--<param name="variant" value="mist-silver" />-->
+        <!--</laf>-->
+        <!--<laf name="substance">-->
+            <!--<os family="mac" />-->
+            <!--<param name="variant" value="mist-aqua" />-->
+        <!--</laf>-->
+        <modifier key="useHeadingPanel" value="yes" />
+        <modifier key="showDebugWindow" value="true"/>
+    </guiprefs>
+
+
+
+    <panels>
+        <panel classname="TargetPanel">
+            <!-- The ConditionValidator evaluates all conditions which ID start with "conditionvalidator". -->
+            <validator classname="com.izforge.izpack.installer.validator.ConditionValidator"/>
+            <configuration>
+                <!-- Don't show warning if target directory already exists -->
+                <ShowExistingDirectoryWarning>false</ShowExistingDirectoryWarning>
+                <ShowCreateDirectoryMessage>true</ShowCreateDirectoryMessage>
+            </configuration>
+        </panel>
+        <panel classname="UserInputPanel" id="install.directoryname.panel"/>
+        <panel classname="UserInputPanel" id="migrate.or.replace.panel"/>
+        <!--<panel classname="PacksPanel"/>-->
+        <panel classname="InstallPanel"/>
+        <panel classname="SimpleFinishPanel"/>
+    </panels>
+
+    <packs>
+
+        <pack name="EVS - new installation" condition="!migrationchosenAndCompleteInstallPathEvsExists" required="true" hidden="false">
+
+            <description>The files needed for EVS - replace</description>
+
+            <fileset dir="EVS" targetdir="${install.path.evs}" override="true"/>
+
+            <updatecheck>
+                <include name="${install.directoryname.evs}/**"/>
+            </updatecheck>
+
+        </pack>
+
+        <pack name="EVS - migration" condition="migrationchosenAndCompleteInstallPathEvsExists" required="true" hidden="false">
+
+            <description>The files needed for EVS - migration</description>
+
+            <fileset dir="EVS" targetdir="${install.path.evs}" override="true">
+                <exclude name="config" />
+                <exclude name="exe" />
+            </fileset>
+
+            <!-- configuration files -->
+            <fileset dir="EVS" targetdir="${install.path.evs}" override="true" overrideRenameTo="*.old">
+                <include name="config/**" />
+            </fileset>
+
+            <!-- exe folder, override everything except files directly under exe. So subfolder of exe will not be overridden without backup -->
+            <fileset dir="EVS" targetdir="${install.path.evs}" override="true">
+                <exclude name="exe/*" />
+            </fileset>
+            <!-- exe folder, override with rename, for files directly under exe -->
+            <fileset dir="EVS" targetdir="${install.path.evs}" override="true" overrideRenameTo="*.old">
+                <include name="exe/*" />
+            </fileset>
+
+            <updatecheck>
+                <include name="${install.directoryname.evs}/**"/>
+                <exclude name="${install.directoryname.evs}/config/**"/>
+                <exclude name="${install.directoryname.evs}/exe/**"/>
+                <exclude name="${install.directoryname.evs}/logs/**"/>
+            </updatecheck>
+
+        </pack>
+
+    </packs>
+
+    <resources>
+        <res id="userInputSpec.xml" src="userInputSpec.xml" parse="yes" type="xml"/>
+        <res id="CustomLangPack.xml_eng" src="i18n/customLangPack.xml_eng"/>
+    </resources>
+
+    <!--<logging>-->
+        <!--<log-file pattern="evs-installation.log" append="true" level="FINEST" />-->
+    <!--</logging>-->
+</izpack:installation>

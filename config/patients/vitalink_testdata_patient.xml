@@ -1,0 +1,7 @@
+<patient>
+    <id>82121210976</id>
+    <firstName>firstname</firstName>
+    <lastName>lastname</lastName>
+    <gender>male</gender>
+    <birthDate>1982-12-12</birthDate>
+</patient>

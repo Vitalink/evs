@@ -1,0 +1,43 @@
+<authenticationConfiguration>
+    <type>fallBack</type>
+    <mainCertificateLocation>../config/certificates/SSIN=54110117041 20170906-192526.acc-p12</mainCertificateLocation>
+    <ssin>54110117041</ssin>
+    <nihii11>44918819428</nihii11>
+    <firstName>Anne-Marie Nelly</firstName>
+    <lastName>Potargent</lastName>
+    <mainCertificatePassword>meds2017</mainCertificatePassword>
+    <samlAttribute>
+        <namespace>urn:be:fgov:identification-namespace</namespace>
+        <key>urn:be:fgov:ehealth:1.0:certificateholder:person:ssin</key>
+        <value>54110117041</value>
+    </samlAttribute>
+    <samlAttribute>
+        <namespace>urn:be:fgov:identification-namespace</namespace>
+        <key>urn:be:fgov:person:ssin</key>
+        <value>54110117041</value>
+    </samlAttribute>
+    <samlDesignator>
+        <namespace>urn:be:fgov:identification-namespace</namespace>
+        <key>urn:be:fgov:ehealth:1.0:certificateholder:person:ssin</key>
+    </samlDesignator>
+    <samlDesignator>
+        <namespace>urn:be:fgov:identification-namespace</namespace>
+        <key>urn:be:fgov:person:ssin</key>
+    </samlDesignator>
+    <samlDesignator>
+        <namespace>urn:be:fgov:certified-namespace:ehealth</namespace>
+        <key>urn:be:fgov:person:ssin:nurse:boolean</key>
+    </samlDesignator>
+    <samlDesignator>
+        <namespace>urn:be:fgov:certified-namespace:ehealth</namespace>
+        <key>urn:be:fgov:person:ssin:ehealth:1.0:nurse:nihii11</key>
+    </samlDesignator>
+    <samlDesignator>
+        <namespace>urn:be:fgov:certified-namespace:ehealth</namespace>
+        <key>urn:be:fgov:person:ssin:ehealth:1.0:givenname</key>
+    </samlDesignator>
+    <samlDesignator>
+        <namespace>urn:be:fgov:certified-namespace:ehealth</namespace>
+        <key>urn:be:fgov:person:ssin:ehealth:1.0:surname</key>
+    </samlDesignator>
+</authenticationConfiguration>

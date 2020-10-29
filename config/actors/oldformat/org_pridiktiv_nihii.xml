@@ -1,0 +1,43 @@
+<authenticationConfiguration>
+    <evs>
+        <type>fallback</type>
+        <certificates>
+            <certificate>
+                <type>identification</type>
+                <path>../config/certificates/NIHII-RETIREMENT=73528077 20171226-155213.acc-p12</path>
+                <password>gSt2BZ!seNlP</password>
+            </certificate>
+        </certificates>
+    </evs>
+    <ehealth>
+        <entry>user.inss=${user.nihii}</entry>
+        <entry>user.nihii=73528077</entry>
+        <entry>user.firstname=imec firstname</entry>
+        <entry>user.lastname=imec lastname</entry>
+        <entry>careprovider.inss=${user.inss}</entry>
+        <entry>careprovider.nihii=${user.nihii}</entry>
+        <entry>careprovider.firstname=${user.firstname}</entry>
+        <entry>careprovider.lastname=${user.lastname}</entry>
+        <entry>main.kmehr.quality=identifier</entry>
+        <entry>kmehr.default.hcpartylist=identifier</entry>
+        <entry>kmehr.hubservicev3.hcpartylist=identifier,software</entry>
+        <entry>kmehr.hubservicev3.identifier.id.inss.value=${user.inss}</entry>
+        <entry>kmehr.hubservicev3.identifier.id.inss.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.identifier.id.idhcparty.value=${user.nihii}</entry>
+        <entry>kmehr.hubservicev3.identifier.id.idhcparty.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.identifier.cd.cdhcparty.value=persphysician</entry>
+        <entry>kmehr.hubservicev3.identifier.cd.cdhcparty.sv=1.1</entry>
+        <entry>kmehr.hubservicev3.identifier.firstname=${user.firstname}</entry>
+        <entry>kmehr.hubservicev3.identifier.lastname=${user.lastname}</entry>
+        <entry>kmehr.hubservicev3.identifier.address.cd.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.identifier.address.cd.value=</entry>
+        <entry>kmehr.hubservicev3.identifier.address.cd.schemes=cdaddress</entry>
+        <entry>kmehr.hubservicev3.identifier.address.nis=24062</entry>
+        <entry>sessionmanager.samlattribute.1=urn:be:fgov:identificationnamespace,urn:be:fgov:ehealth:1.0:retirement:nihii-number,${user.nihii}</entry>
+        <entry>sessionmanager.samlattribute.2=urn:be:fgov:identificationnamespace,urn:be:fgov:ehealth:1.0:certificateholder:retirement:nihii-number,${user.nihii}</entry>
+        <entry>sessionmanager.samlattributedesignator.1=urn:be:fgov:identificationnamespace,urn:be:fgov:ehealth:1.0:certificateholder:retirement:nihii-number</entry>
+        <entry>sessionmanager.samlattributedesignator.2=urn:be:fgov:identificationnamespace,urn:be:fgov:ehealth:1.0:retirement:nihii-number</entry>
+        <entry>sessionmanager.samlattributedesignator.3=urn:be:fgov:certifiednamespace:ehealth,urn:be:fgov:ehealth:1.0:certificateholder:retirement:nihii-number:recognisedretirement:boolean</entry>
+        <entry>sessionmanager.samlattributedesignator.4=urn:be:fgov:certified-namespace:ehealth,urn:be:fgov:ehealth:1.0:retirement:nihii-number:recognisedretirement:nihii11</entry>
+    </ehealth>
+</authenticationConfiguration>

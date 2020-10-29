@@ -1,0 +1,3 @@
+<langpack>
+    <str id="conditionvalidator.install.path.exists.error.message" txt="The chosen installatin path does not exist"/>
+</langpack>

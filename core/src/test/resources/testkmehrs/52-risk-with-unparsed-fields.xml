@@ -1,0 +1,16 @@
+<item>
+    <id S="ID-KMEHR" SV="1.0">3</id>
+    <cd S="CD-ITEM" SV="1.0">healthcareelement</cd>
+    <content>
+        <cd S="CD-CLINICAL" SV="1.0">10015202</cd>
+        <cd S="ICPC" SV="2" DN="Ziekte van Hodgkin/non-Hodgkin lymfoom" L="nl">B72</cd>
+        <cd S="ICD" SV="10" DN="Folliculair non-Hodgkin-lymfoom, niet gespecificeerd" L="nl">C82.9</cd>
+    </content>
+    <content>
+        <text L="nl">Brill-Symmers</text>
+    </content>
+    <lifecycle>
+        <cd S="CD-LIFECYCLE" SV="1.0">inactive</cd>
+    </lifecycle>
+    <instructionforpatient>this text will remain unparsed</instructionforpatient>
+</item>

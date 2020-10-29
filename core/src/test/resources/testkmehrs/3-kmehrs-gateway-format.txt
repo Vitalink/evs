@@ -1,0 +1,936 @@
+<!-- schema with 2 MSE transactions -->
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <SOAP-ENV:Header xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"/>
+ <soap:Body>
+  <ns3:GetTransactionSetResponse xmlns="http://www.ehealth.fgov.be/hubservices/core/v3" xmlns:ns10="urn:be:fgov:ehealth:metahub:protocol:v2" xmlns:ns2="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns3="http://www.ehealth.fgov.be/hubservices/protocol/v3" xmlns:ns4="urn:be:fgov:ehealth:metahub:core:v2" xmlns:ns5="http://www.w3.org/2001/04/xmlenc#" xmlns:ns6="http://www.w3.org/2000/09/xmldsig#" xmlns:ns7="urn:be:fgov:ehealth:safe:internal:v3" xmlns:ns8="urn:be:fgov:ehealth:safe:common:decryptor:v3" xmlns:ns9="urn:be:fgov:ehealth:safe:common:v3">
+   <response>
+    <id S="ID-KMEHR" SV="1.0">286f4192-e3f9-4560-af0b-2ee689d76f43</id>
+    <author>
+     <ns2:hcparty>
+      <ns2:id S="ID-HCPARTY" SV="1.0">1990001916</ns2:id>
+      <ns2:cd S="CD-HCPARTY" SV="1.0">hub</ns2:cd>
+      <ns2:name>VITALINK</ns2:name>
+     </ns2:hcparty>
+    </author>
+    <date>2017-11-29</date>
+    <time>09:44:20</time>
+    <request>
+     <id S="ID-KMEHR" SV="1.0">11425214001.11425214</id>
+     <author>
+      <ns2:hcparty>
+       <ns2:id S="ID-HCPARTY" SV="1.0">11425214001</ns2:id>
+       <ns2:id S="INSS" SV="1.0">83051839468</ns2:id>
+       <ns2:id S="ID-ENCRYPTION-ACTOR" SV="1.0">11425214</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">persphysician</ns2:cd>
+       <ns2:cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</ns2:cd>
+       <ns2:firstname>Katrien</ns2:firstname>
+       <ns2:familyname>Van Gucht</ns2:familyname>
+       <ns2:address>
+        <ns2:cd S="CD-ADDRESS" SV="1.0"/>
+        <ns2:nis>24062</ns2:nis>
+       </ns2:address>
+      </ns2:hcparty>
+      <ns2:hcparty>
+       <ns2:id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_cdcacef3-6944-48b7-bbd7-c9edf5b2c8ca</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">APPLICATION</ns2:cd>
+      </ns2:hcparty>
+     </author>
+     <date>2017-11-29</date>
+     <time>09:44:05</time>
+    </request>
+   </response>
+   <acknowledge>
+    <iscomplete>true</iscomplete>
+    <error>
+     <ns2:cd S="LOCAL" SL="vitalinkstatuscode" SV="1.0">200</ns2:cd>
+     <ns2:description L="en">The request was successfully completed.</ns2:description>
+    </error>
+   </acknowledge>
+   <kmehrmessage>
+    <ns2:header>
+     <ns2:standard>
+      <ns2:cd S="CD-STANDARD" SV="1.4">20161201</ns2:cd>
+     </ns2:standard>
+     <ns2:id S="ID-KMEHR" SV="1.0">1990001916.2017113330911322044</ns2:id>
+     <ns2:date>2017-11-29</ns2:date>
+     <ns2:time>09:44:24</ns2:time>
+     <ns2:sender>
+      <ns2:hcparty>
+       <ns2:id S="ID-HCPARTY" SV="1.0">1990001916</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.7">hub</ns2:cd>
+       <ns2:name>VITALINK</ns2:name>
+      </ns2:hcparty>
+     </ns2:sender>
+     <ns2:recipient>
+      <ns2:hcparty>
+       <ns2:id S="ID-HCPARTY" SV="1.0">11425214001</ns2:id>
+       <ns2:id S="INSS" SV="1.0">83051839468</ns2:id>
+       <ns2:id S="ID-ENCRYPTION-ACTOR" SV="1.0">11425214</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">persphysician</ns2:cd>
+       <ns2:cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</ns2:cd>
+       <ns2:firstname>Katrien</ns2:firstname>
+       <ns2:familyname>Van Gucht</ns2:familyname>
+       <ns2:address>
+        <ns2:cd S="CD-ADDRESS" SV="1.0"/>
+        <ns2:nis>24062</ns2:nis>
+       </ns2:address>
+      </ns2:hcparty>
+      <ns2:hcparty>
+       <ns2:id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_cdcacef3-6944-48b7-bbd7-c9edf5b2c8ca</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">APPLICATION</ns2:cd>
+      </ns2:hcparty>
+     </ns2:recipient>
+    </ns2:header>
+    <ns4:folder xmlns:ns10="urn:be:fgov:ehealth:safe:common:v3" xmlns:ns11="urn:be:fgov:ehealth:safe:common:decryptor:v3" xmlns:ns12="urn:be:fgov:ehealth:safe:internal:v3" xmlns:ns13="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns14="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:ns15="urn:be:fgov:ehealth:aa:complextype:v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#" xmlns:ns4="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns5="urn:be:fgov:ehealth:metahub:core:v2" xmlns:ns6="urn:be:fgov:ehealth:safe:common:v2" xmlns:ns7="urn:be:fgov:ehealth:safe:common:decryptor:v2" xmlns:ns8="urn:be:fgov:ehealth:safe:common:v1" xmlns:ns9="urn:be:fgov:ehealth:consultRN:1_0:protocol">
+    <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+    <ns4:patient>
+        <ns4:id S="ID-PATIENT" SV="1.0">84072536717</ns4:id>
+        <ns4:firstname>Steven</ns4:firstname>
+        <ns4:familyname>Machtelinckx</ns4:familyname>
+        <ns4:sex>
+            <ns4:cd S="CD-SEX" SV="1.0">male</ns4:cd>
+        </ns4:sex>
+    </ns4:patient>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.0">medicationscheme</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:42:57</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">1990001916</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.7">hub</ns4:cd>
+                <ns4:name>VITALINK</ns4:name>
+            </ns4:hcparty>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>true</ns4:iscomplete>
+        <ns4:isvalidated>true</ns4:isvalidated>
+        <ns4:version>2730</ns4:version>
+    </ns4:transaction>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme/98775/1</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:04:03</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">17892144001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">75041414469</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>VEERLE</ns4:firstname>
+                <ns4:familyname>MOERMANS</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>true</ns4:iscomplete>
+        <ns4:isvalidated>true</ns4:isvalidated>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">adaptationflag</ns4:cd>
+                <ns4:cd S="CD-MS-ADAPTATION" SV="1.0">medication</ns4:cd>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">medication</ns4:cd>
+            <ns4:content>
+                <ns4:medicinalproduct>
+                    <ns4:intendedcd S="CD-DRUG-CNK" SV="1.0">0044560</ns4:intendedcd>
+                    <ns4:deliveredcd S="CD-DRUG-CNK" SV="1.0">0044560</ns4:deliveredcd>
+                    <ns4:intendedname>DAFALGAN  500MG</ns4:intendedname>
+                    <ns4:deliveredname>DAFALGAN  500MG</ns4:deliveredname>
+                </ns4:medicinalproduct>
+            </ns4:content>
+            <ns4:beginmoment>
+                <ns4:date>2017-10-31</ns4:date>
+            </ns4:beginmoment>
+            <ns4:temporality>
+                <ns4:cd S="CD-TEMPORALITY" SV="1.0">chronic</ns4:cd>
+            </ns4:temporality>
+            <ns4:frequency>
+                <ns4:periodicity>
+                    <ns4:cd S="CD-PERIODICITY" SV="1.0">D</ns4:cd>
+                </ns4:periodicity>
+            </ns4:frequency>
+            <ns4:regimen>
+                <ns4:daynumber>1</ns4:daynumber>
+                <ns4:daytime>
+                    <ns4:dayperiod>
+                        <ns4:cd S="CD-DAYPERIOD" SV="1.0">betweenbreakfastandlunch</ns4:cd>
+                    </ns4:dayperiod>
+                </ns4:daytime>
+                <ns4:quantity>
+                    <ns4:decimal>1</ns4:decimal>
+                </ns4:quantity>
+                <ns4:daynumber>1</ns4:daynumber>
+                <ns4:daytime>
+                    <ns4:dayperiod>
+                        <ns4:cd S="CD-DAYPERIOD" SV="1.0">afterdinner</ns4:cd>
+                    </ns4:dayperiod>
+                </ns4:daytime>
+                <ns4:quantity>
+                    <ns4:decimal>1</ns4:decimal>
+                </ns4:quantity>
+            </ns4:regimen>
+        </ns4:item>
+    </ns4:transaction>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">3</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme/09801/1</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:38:17</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>false</ns4:iscomplete>
+        <ns4:isvalidated>false</ns4:isvalidated>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">adaptationflag</ns4:cd>
+                <ns4:cd S="CD-MS-ADAPTATION" SV="1.0">medication</ns4:cd>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">medication</ns4:cd>
+            <ns4:content>
+                <ns4:medicinalproduct>
+                    <ns4:intendedcd S="CD-DRUG-CNK" SV="1.0">2329969</ns4:intendedcd>
+                    <ns4:deliveredcd S="CD-DRUG-CNK" SV="2010-07">2408359</ns4:deliveredcd>
+                    <ns4:intendedname>Aspirine 500 mg (36 bruistabletten)</ns4:intendedname>
+                    <ns4:deliveredname>Algisite M wiek 5 x (2 x 30 cm)</ns4:deliveredname>
+                </ns4:medicinalproduct>
+            </ns4:content>
+            <ns4:beginmoment>
+                <ns4:date>2020-12-31</ns4:date>
+            </ns4:beginmoment>
+            <ns4:temporality>
+                <ns4:cd S="CD-TEMPORALITY" SV="1.0">chronic</ns4:cd>
+            </ns4:temporality>
+            <ns4:frequency>
+                <ns4:periodicity>
+                    <ns4:cd S="CD-PERIODICITY" SV="1.0">D</ns4:cd>
+                </ns4:periodicity>
+            </ns4:frequency>
+            <ns4:regimen>
+                <ns4:daytime>
+                    <ns4:dayperiod>
+                        <ns4:cd S="CD-DAYPERIOD" SV="1.0">morning</ns4:cd>
+                    </ns4:dayperiod>
+                </ns4:daytime>
+                <ns4:quantity>
+                    <ns4:decimal>1</ns4:decimal>
+                    <ns4:unit>
+                        <ns4:cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00001</ns4:cd>
+                    </ns4:unit>
+                </ns4:quantity>
+            </ns4:regimen>
+            <ns4:route>
+                <ns4:cd S="CD-DRUG-ROUTE" SV="2.0">00060</ns4:cd>
+            </ns4:route>
+            <ns4:instructionforpatient L="nl">101</ns4:instructionforpatient>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">3</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">medicationuse</ns4:cd>
+            </ns4:content>
+            <ns4:content>
+                <ns4:text L="nl">1/Dagelijks</ns4:text>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">7</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">endcondition</ns4:cd>
+            </ns4:content>
+            <ns4:content>
+                <ns4:text L="nl">stoppen bij irritatie 101</ns4:text>
+            </ns4:content>
+        </ns4:item>
+    </ns4:transaction>
+</ns4:folder>
+   </kmehrmessage>
+  </ns3:GetTransactionSetResponse>
+ </soap:Body>
+</soap:Envelope>
+
+
+
+<!-- schema with 2 MSE transactions and 1 TS transaction -->
+
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <SOAP-ENV:Header xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"/>
+ <soap:Body>
+  <ns3:GetTransactionSetResponse xmlns="http://www.ehealth.fgov.be/hubservices/core/v3" xmlns:ns10="urn:be:fgov:ehealth:metahub:protocol:v2" xmlns:ns2="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns3="http://www.ehealth.fgov.be/hubservices/protocol/v3" xmlns:ns4="urn:be:fgov:ehealth:metahub:core:v2" xmlns:ns5="http://www.w3.org/2001/04/xmlenc#" xmlns:ns6="http://www.w3.org/2000/09/xmldsig#" xmlns:ns7="urn:be:fgov:ehealth:safe:internal:v3" xmlns:ns8="urn:be:fgov:ehealth:safe:common:decryptor:v3" xmlns:ns9="urn:be:fgov:ehealth:safe:common:v3">
+   <response>
+    <id S="ID-KMEHR" SV="1.0">286f4192-e3f9-4560-af0b-2ee689d76f43</id>
+    <author>
+     <ns2:hcparty>
+      <ns2:id S="ID-HCPARTY" SV="1.0">1990001916</ns2:id>
+      <ns2:cd S="CD-HCPARTY" SV="1.0">hub</ns2:cd>
+      <ns2:name>VITALINK</ns2:name>
+     </ns2:hcparty>
+    </author>
+    <date>2017-11-29</date>
+    <time>09:44:20</time>
+    <request>
+     <id S="ID-KMEHR" SV="1.0">11425214001.11425214</id>
+     <author>
+      <ns2:hcparty>
+       <ns2:id S="ID-HCPARTY" SV="1.0">11425214001</ns2:id>
+       <ns2:id S="INSS" SV="1.0">83051839468</ns2:id>
+       <ns2:id S="ID-ENCRYPTION-ACTOR" SV="1.0">11425214</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">persphysician</ns2:cd>
+       <ns2:cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</ns2:cd>
+       <ns2:firstname>Katrien</ns2:firstname>
+       <ns2:familyname>Van Gucht</ns2:familyname>
+       <ns2:address>
+        <ns2:cd S="CD-ADDRESS" SV="1.0"/>
+        <ns2:nis>24062</ns2:nis>
+       </ns2:address>
+      </ns2:hcparty>
+      <ns2:hcparty>
+       <ns2:id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_cdcacef3-6944-48b7-bbd7-c9edf5b2c8ca</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">APPLICATION</ns2:cd>
+      </ns2:hcparty>
+     </author>
+     <date>2017-11-29</date>
+     <time>09:44:05</time>
+    </request>
+   </response>
+   <acknowledge>
+    <iscomplete>true</iscomplete>
+    <error>
+     <ns2:cd S="LOCAL" SL="vitalinkstatuscode" SV="1.0">200</ns2:cd>
+     <ns2:description L="en">The request was successfully completed.</ns2:description>
+    </error>
+   </acknowledge>
+   <kmehrmessage>
+    <ns2:header>
+     <ns2:standard>
+      <ns2:cd S="CD-STANDARD" SV="1.4">20161201</ns2:cd>
+     </ns2:standard>
+     <ns2:id S="ID-KMEHR" SV="1.0">1990001916.2017113330911322044</ns2:id>
+     <ns2:date>2017-11-29</ns2:date>
+     <ns2:time>09:44:24</ns2:time>
+     <ns2:sender>
+      <ns2:hcparty>
+       <ns2:id S="ID-HCPARTY" SV="1.0">1990001916</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.7">hub</ns2:cd>
+       <ns2:name>VITALINK</ns2:name>
+      </ns2:hcparty>
+     </ns2:sender>
+     <ns2:recipient>
+      <ns2:hcparty>
+       <ns2:id S="ID-HCPARTY" SV="1.0">11425214001</ns2:id>
+       <ns2:id S="INSS" SV="1.0">83051839468</ns2:id>
+       <ns2:id S="ID-ENCRYPTION-ACTOR" SV="1.0">11425214</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">persphysician</ns2:cd>
+       <ns2:cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</ns2:cd>
+       <ns2:firstname>Katrien</ns2:firstname>
+       <ns2:familyname>Van Gucht</ns2:familyname>
+       <ns2:address>
+        <ns2:cd S="CD-ADDRESS" SV="1.0"/>
+        <ns2:nis>24062</ns2:nis>
+       </ns2:address>
+      </ns2:hcparty>
+      <ns2:hcparty>
+       <ns2:id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_cdcacef3-6944-48b7-bbd7-c9edf5b2c8ca</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">APPLICATION</ns2:cd>
+      </ns2:hcparty>
+     </ns2:recipient>
+    </ns2:header>
+    <ns4:folder xmlns:ns10="urn:be:fgov:ehealth:safe:common:v3" xmlns:ns11="urn:be:fgov:ehealth:safe:common:decryptor:v3" xmlns:ns12="urn:be:fgov:ehealth:safe:internal:v3" xmlns:ns13="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns14="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:ns15="urn:be:fgov:ehealth:aa:complextype:v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#" xmlns:ns4="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns5="urn:be:fgov:ehealth:metahub:core:v2" xmlns:ns6="urn:be:fgov:ehealth:safe:common:v2" xmlns:ns7="urn:be:fgov:ehealth:safe:common:decryptor:v2" xmlns:ns8="urn:be:fgov:ehealth:safe:common:v1" xmlns:ns9="urn:be:fgov:ehealth:consultRN:1_0:protocol">
+    <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+    <ns4:patient>
+        <ns4:id S="ID-PATIENT" SV="1.0">84072536717</ns4:id>
+        <ns4:firstname>Steven</ns4:firstname>
+        <ns4:familyname>Machtelinckx</ns4:familyname>
+        <ns4:sex>
+            <ns4:cd S="CD-SEX" SV="1.0">male</ns4:cd>
+        </ns4:sex>
+    </ns4:patient>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.0">medicationscheme</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:42:57</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">1990001916</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.7">hub</ns4:cd>
+                <ns4:name>VITALINK</ns4:name>
+            </ns4:hcparty>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>true</ns4:iscomplete>
+        <ns4:isvalidated>true</ns4:isvalidated>
+        <ns4:version>2730</ns4:version>
+    </ns4:transaction>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme/42996/1</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:38:17</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>false</ns4:iscomplete>
+        <ns4:isvalidated>false</ns4:isvalidated>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">adaptationflag</ns4:cd>
+                <ns4:cd S="CD-MS-ADAPTATION" SV="1.0">medication</ns4:cd>
+                <ns4:cd S="CD-MS-ADAPTATION" SV="1.0">posology</ns4:cd>
+                <ns4:cd S="CD-MS-ADAPTATION" SV="1.0">treatmentsuspension</ns4:cd>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">medication</ns4:cd>
+            <ns4:content>
+                <ns4:medicinalproduct>
+                    <ns4:intendedcd S="CD-DRUG-CNK" SV="1.0">2542462</ns4:intendedcd>
+                    <ns4:deliveredcd S="CD-DRUG-CNK" SV="2010-07">55822</ns4:deliveredcd>
+                    <ns4:intendedname>Asaflow 80 mg (112 tabletten)n)</ns4:intendedname>
+                    <ns4:deliveredname>Marcaine inj. oploss. epidur./p.neur. [flac., locoregionale infiltr.] 5 x 20 ml 5 mg / 1 ml</ns4:deliveredname>
+                </ns4:medicinalproduct>
+            </ns4:content>
+            <ns4:beginmoment>
+                <ns4:date>2020-01-01</ns4:date>
+            </ns4:beginmoment>
+            <ns4:temporality>
+                <ns4:cd S="CD-TEMPORALITY" SV="1.0">chronic</ns4:cd>
+            </ns4:temporality>
+            <ns4:frequency>
+                <ns4:periodicity>
+                    <ns4:cd S="CD-PERIODICITY" SV="1.0">J</ns4:cd>
+                </ns4:periodicity>
+            </ns4:frequency>
+            <ns4:regimen>
+                <ns4:date>2020-01-05</ns4:date>
+                <ns4:daytime>
+                    <ns4:dayperiod>
+                        <ns4:cd S="CD-DAYPERIOD" SV="1.0">morning</ns4:cd>
+                    </ns4:dayperiod>
+                </ns4:daytime>
+                <ns4:quantity>
+                    <ns4:decimal>300</ns4:decimal>
+                    <ns4:unit>
+                        <ns4:cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00012</ns4:cd>
+                    </ns4:unit>
+                </ns4:quantity>
+            </ns4:regimen>
+            <ns4:route>
+                <ns4:cd S="CD-DRUG-ROUTE" SV="2.0">00060</ns4:cd>
+            </ns4:route>
+            <ns4:instructionforpatient L="nl">112</ns4:instructionforpatient>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">3</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">medicationuse</ns4:cd>
+            </ns4:content>
+            <ns4:content>
+                <ns4:text L="nl">365/Jaarlijks</ns4:text>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">10</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">origin</ns4:cd>
+                <ns4:cd S="CD-MS-ORIGIN" SV="1.0">recorded</ns4:cd>
+            </ns4:content>
+        </ns4:item>
+    </ns4:transaction>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">3</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme/42996/1</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:38:17</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>true</ns4:iscomplete>
+        <ns4:isvalidated>true</ns4:isvalidated>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">transactionreason</ns4:cd>
+            <ns4:content>
+                <ns4:text L="nl">Wegens interactie met andere medicatie. tijdelijk.</ns4:text>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">medication</ns4:cd>
+            <ns4:content>
+                <ns4:medicinalproduct>
+                    <ns4:intendedcd S="CD-DRUG-CNK" SV="1.0">2542462</ns4:intendedcd>
+                    <ns4:deliveredcd S="CD-DRUG-CNK" SV="2010-07">55822</ns4:deliveredcd>
+                    <ns4:intendedname>Asaflow 80 mg (112 tabletten)n)</ns4:intendedname>
+                    <ns4:deliveredname>Marcaine inj. oploss. epidur./p.neur. [flac., locoregionale infiltr.] 5 x 20 ml 5 mg / 1 ml</ns4:deliveredname>
+                </ns4:medicinalproduct>
+            </ns4:content>
+            <ns4:beginmoment>
+                <ns4:date>2020-06-01</ns4:date>
+            </ns4:beginmoment>
+            <ns4:endmoment>
+                <ns4:date>2021-12-31</ns4:date>
+            </ns4:endmoment>
+            <ns4:lifecycle>
+                <ns4:cd S="CD-LIFECYCLE" SV="1.3">suspended</ns4:cd>
+            </ns4:lifecycle>
+            <ns4:lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='2']"/>
+        </ns4:item>
+    </ns4:transaction>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">4</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme/85832/1</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:38:17</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>false</ns4:iscomplete>
+        <ns4:isvalidated>false</ns4:isvalidated>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">adaptationflag</ns4:cd>
+                <ns4:cd S="CD-MS-ADAPTATION" SV="1.0">medication</ns4:cd>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">medication</ns4:cd>
+            <ns4:content>
+                <ns4:medicinalproduct>
+                    <ns4:intendedcd S="CD-DRUG-CNK" SV="1.0">2542488</ns4:intendedcd>
+                    <ns4:deliveredcd S="CD-DRUG-CNK" SV="2010-07">3211927</ns4:deliveredcd>
+                    <ns4:intendedname>Asaflow 80 mg (168 tabletten)</ns4:intendedname>
+                    <ns4:deliveredname>Mometasone EG nas. spray susp. 1 x 140 dos. 50 ????g / 1 dos.</ns4:deliveredname>
+                </ns4:medicinalproduct>
+            </ns4:content>
+            <ns4:beginmoment>
+                <ns4:date>2020-01-01</ns4:date>
+            </ns4:beginmoment>
+            <ns4:temporality>
+                <ns4:cd S="CD-TEMPORALITY" SV="1.0">chronic</ns4:cd>
+            </ns4:temporality>
+            <ns4:frequency>
+                <ns4:periodicity>
+                    <ns4:cd S="CD-PERIODICITY" SV="1.0">JD</ns4:cd>
+                </ns4:periodicity>
+            </ns4:frequency>
+            <ns4:regimen>
+                <ns4:date>2020-03-15</ns4:date>
+                <ns4:daytime>
+                    <ns4:dayperiod>
+                        <ns4:cd S="CD-DAYPERIOD" SV="1.0">betweendinnerandsleep</ns4:cd>
+                    </ns4:dayperiod>
+                </ns4:daytime>
+                <ns4:quantity>
+                    <ns4:decimal>303</ns4:decimal>
+                    <ns4:unit>
+                        <ns4:cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00013</ns4:cd>
+                    </ns4:unit>
+                </ns4:quantity>
+                <ns4:date>2022-05-25</ns4:date>
+                <ns4:daytime>
+                    <ns4:dayperiod>
+                        <ns4:cd S="CD-DAYPERIOD" SV="1.0">betweendinnerandsleep</ns4:cd>
+                    </ns4:dayperiod>
+                </ns4:daytime>
+                <ns4:quantity>
+                    <ns4:decimal>304</ns4:decimal>
+                    <ns4:unit>
+                        <ns4:cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00013</ns4:cd>
+                    </ns4:unit>
+                </ns4:quantity>
+            </ns4:regimen>
+            <ns4:route>
+                <ns4:cd S="CD-DRUG-ROUTE" SV="2.0">00060</ns4:cd>
+            </ns4:route>
+            <ns4:instructionforpatient L="nl">113</ns4:instructionforpatient>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">3</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">medicationuse</ns4:cd>
+            </ns4:content>
+            <ns4:content>
+                <ns4:text L="nl">1095/Om de 3 jaar</ns4:text>
+            </ns4:content>
+        </ns4:item>
+    </ns4:transaction>
+</ns4:folder>
+   </kmehrmessage>
+  </ns3:GetTransactionSetResponse>
+ </soap:Body>
+</soap:Envelope>
+
+
+<!-- schema with 1 MSE transaction and 2 TS transactions -->
+
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+ <SOAP-ENV:Header xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/"/>
+ <soap:Body>
+  <ns3:GetTransactionSetResponse xmlns="http://www.ehealth.fgov.be/hubservices/core/v3" xmlns:ns10="urn:be:fgov:ehealth:metahub:protocol:v2" xmlns:ns2="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns3="http://www.ehealth.fgov.be/hubservices/protocol/v3" xmlns:ns4="urn:be:fgov:ehealth:metahub:core:v2" xmlns:ns5="http://www.w3.org/2001/04/xmlenc#" xmlns:ns6="http://www.w3.org/2000/09/xmldsig#" xmlns:ns7="urn:be:fgov:ehealth:safe:internal:v3" xmlns:ns8="urn:be:fgov:ehealth:safe:common:decryptor:v3" xmlns:ns9="urn:be:fgov:ehealth:safe:common:v3">
+   <response>
+    <id S="ID-KMEHR" SV="1.0">286f4192-e3f9-4560-af0b-2ee689d76f43</id>
+    <author>
+     <ns2:hcparty>
+      <ns2:id S="ID-HCPARTY" SV="1.0">1990001916</ns2:id>
+      <ns2:cd S="CD-HCPARTY" SV="1.0">hub</ns2:cd>
+      <ns2:name>VITALINK</ns2:name>
+     </ns2:hcparty>
+    </author>
+    <date>2017-11-29</date>
+    <time>09:44:20</time>
+    <request>
+     <id S="ID-KMEHR" SV="1.0">11425214001.11425214</id>
+     <author>
+      <ns2:hcparty>
+       <ns2:id S="ID-HCPARTY" SV="1.0">11425214001</ns2:id>
+       <ns2:id S="INSS" SV="1.0">83051839468</ns2:id>
+       <ns2:id S="ID-ENCRYPTION-ACTOR" SV="1.0">11425214</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">persphysician</ns2:cd>
+       <ns2:cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</ns2:cd>
+       <ns2:firstname>Katrien</ns2:firstname>
+       <ns2:familyname>Van Gucht</ns2:familyname>
+       <ns2:address>
+        <ns2:cd S="CD-ADDRESS" SV="1.0"/>
+        <ns2:nis>24062</ns2:nis>
+       </ns2:address>
+      </ns2:hcparty>
+      <ns2:hcparty>
+       <ns2:id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_cdcacef3-6944-48b7-bbd7-c9edf5b2c8ca</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">APPLICATION</ns2:cd>
+      </ns2:hcparty>
+     </author>
+     <date>2017-11-29</date>
+     <time>09:44:05</time>
+    </request>
+   </response>
+   <acknowledge>
+    <iscomplete>true</iscomplete>
+    <error>
+     <ns2:cd S="LOCAL" SL="vitalinkstatuscode" SV="1.0">200</ns2:cd>
+     <ns2:description L="en">The request was successfully completed.</ns2:description>
+    </error>
+   </acknowledge>
+   <kmehrmessage>
+    <ns2:header>
+     <ns2:standard>
+      <ns2:cd S="CD-STANDARD" SV="1.4">20161201</ns2:cd>
+     </ns2:standard>
+     <ns2:id S="ID-KMEHR" SV="1.0">1990001916.2017113330911322044</ns2:id>
+     <ns2:date>2017-11-29</ns2:date>
+     <ns2:time>09:44:24</ns2:time>
+     <ns2:sender>
+      <ns2:hcparty>
+       <ns2:id S="ID-HCPARTY" SV="1.0">1990001916</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.7">hub</ns2:cd>
+       <ns2:name>VITALINK</ns2:name>
+      </ns2:hcparty>
+     </ns2:sender>
+     <ns2:recipient>
+      <ns2:hcparty>
+       <ns2:id S="ID-HCPARTY" SV="1.0">11425214001</ns2:id>
+       <ns2:id S="INSS" SV="1.0">83051839468</ns2:id>
+       <ns2:id S="ID-ENCRYPTION-ACTOR" SV="1.0">11425214</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">persphysician</ns2:cd>
+       <ns2:cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</ns2:cd>
+       <ns2:firstname>Katrien</ns2:firstname>
+       <ns2:familyname>Van Gucht</ns2:familyname>
+       <ns2:address>
+        <ns2:cd S="CD-ADDRESS" SV="1.0"/>
+        <ns2:nis>24062</ns2:nis>
+       </ns2:address>
+      </ns2:hcparty>
+      <ns2:hcparty>
+       <ns2:id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_cdcacef3-6944-48b7-bbd7-c9edf5b2c8ca</ns2:id>
+       <ns2:cd S="CD-HCPARTY" SV="1.1">APPLICATION</ns2:cd>
+      </ns2:hcparty>
+     </ns2:recipient>
+    </ns2:header>
+    <ns4:folder xmlns:ns10="urn:be:fgov:ehealth:safe:common:v3" xmlns:ns11="urn:be:fgov:ehealth:safe:common:decryptor:v3" xmlns:ns12="urn:be:fgov:ehealth:safe:internal:v3" xmlns:ns13="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns14="urn:oasis:names:tc:SAML:2.0:protocol" xmlns:ns15="urn:be:fgov:ehealth:aa:complextype:v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#" xmlns:ns4="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns5="urn:be:fgov:ehealth:metahub:core:v2" xmlns:ns6="urn:be:fgov:ehealth:safe:common:v2" xmlns:ns7="urn:be:fgov:ehealth:safe:common:decryptor:v2" xmlns:ns8="urn:be:fgov:ehealth:safe:common:v1" xmlns:ns9="urn:be:fgov:ehealth:consultRN:1_0:protocol">
+    <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+    <ns4:patient>
+        <ns4:id S="ID-PATIENT" SV="1.0">84072536717</ns4:id>
+        <ns4:firstname>Steven</ns4:firstname>
+        <ns4:familyname>Machtelinckx</ns4:familyname>
+        <ns4:sex>
+            <ns4:cd S="CD-SEX" SV="1.0">male</ns4:cd>
+        </ns4:sex>
+    </ns4:patient>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.0">medicationscheme</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:42:57</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">1990001916</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.7">hub</ns4:cd>
+                <ns4:name>VITALINK</ns4:name>
+            </ns4:hcparty>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>true</ns4:iscomplete>
+        <ns4:isvalidated>true</ns4:isvalidated>
+        <ns4:version>2730</ns4:version>
+    </ns4:transaction>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme/33292/1</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:42:50</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>true</ns4:iscomplete>
+        <ns4:isvalidated>false</ns4:isvalidated>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">adaptationflag</ns4:cd>
+                <ns4:cd S="CD-MS-ADAPTATION" SV="1.0">medication</ns4:cd>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">medication</ns4:cd>
+            <ns4:content>
+                <ns4:medicinalproduct>
+                    <ns4:intendedcd S="CD-DRUG-CNK" SV="1.0">2677243</ns4:intendedcd>
+                    <ns4:intendedname>Lemsip 500 mg (10 zakjes)</ns4:intendedname>
+                </ns4:medicinalproduct>
+            </ns4:content>
+            <ns4:beginmoment>
+                <ns4:date>2020-01-01</ns4:date>
+            </ns4:beginmoment>
+            <ns4:temporality>
+                <ns4:cd S="CD-TEMPORALITY" SV="1.0">chronic</ns4:cd>
+            </ns4:temporality>
+            <ns4:frequency>
+                <ns4:periodicity>
+                    <ns4:cd S="CD-PERIODICITY" SV="1.0">UZ</ns4:cd>
+                </ns4:periodicity>
+            </ns4:frequency>
+            <ns4:regimen>
+                <ns4:daytime>
+                    <ns4:dayperiod>
+                        <ns4:cd S="CD-DAYPERIOD" SV="1.0">morning</ns4:cd>
+                    </ns4:dayperiod>
+                </ns4:daytime>
+                <ns4:quantity>
+                    <ns4:decimal>1</ns4:decimal>
+                    <ns4:unit>
+                        <ns4:cd S="CD-ADMINISTRATIONUNIT" SV="1.0">mg-ml</ns4:cd>
+                    </ns4:unit>
+                </ns4:quantity>
+            </ns4:regimen>
+            <ns4:route>
+                <ns4:cd S="CD-DRUG-ROUTE" SV="2.0">00060</ns4:cd>
+            </ns4:route>
+            <ns4:instructionforpatient L="nl">139</ns4:instructionforpatient>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">3</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">medicationuse</ns4:cd>
+            </ns4:content>
+            <ns4:content>
+                <ns4:text L="nl">1/Om de 6 uren</ns4:text>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">6</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">begincondition</ns4:cd>
+            </ns4:content>
+            <ns4:content>
+                <ns4:text L="nl">innemen bij rugpijn 139</ns4:text>
+            </ns4:content>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">7</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">healthcareelement</ns4:cd>
+            <ns4:content>
+                <ns4:cd S="CD-ITEM-MS" SV="1.0">endcondition</ns4:cd>
+            </ns4:content>
+            <ns4:content>
+                <ns4:text L="nl">stoppen bij irritatie 139</ns4:text>
+            </ns4:content>
+        </ns4:item>
+    </ns4:transaction>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">3</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme/20681/1</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:42:50</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>true</ns4:iscomplete>
+        <ns4:isvalidated>true</ns4:isvalidated>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">medication</ns4:cd>
+            <ns4:content>
+                <ns4:medicinalproduct>
+                    <ns4:intendedcd S="CD-DRUG-CNK" SV="1.0">3142288</ns4:intendedcd>
+                    <ns4:intendedname>Dafalgan Instant Vanille / Aardbei 500 mg (20 zakjes)</ns4:intendedname>
+                </ns4:medicinalproduct>
+            </ns4:content>
+            <ns4:beginmoment>
+                <ns4:date>2020-06-01</ns4:date>
+            </ns4:beginmoment>
+            <ns4:endmoment>
+                <ns4:date>2021-12-31</ns4:date>
+            </ns4:endmoment>
+            <ns4:lifecycle>
+                <ns4:cd S="CD-LIFECYCLE" SV="1.3">suspended</ns4:cd>
+            </ns4:lifecycle>
+            <ns4:lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='2']"/>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">transactionreason</ns4:cd>
+            <ns4:content>
+                <ns4:text L="nl">Wegens interactie met andere medicatie. tijdelijk. 1</ns4:text>
+            </ns4:content>
+        </ns4:item>
+    </ns4:transaction>
+    <ns4:transaction>
+        <ns4:id S="ID-KMEHR" SV="1.0">4</ns4:id>
+        <ns4:id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/medication-scheme/20681/1</ns4:id>
+        <ns4:cd S="CD-TRANSACTION" SV="1.3">treatmentsuspension</ns4:cd>
+        <ns4:date>2017-11-29</ns4:date>
+        <ns4:time>09:42:50</ns4:time>
+        <ns4:author>
+            <ns4:hcparty>
+                <ns4:id S="ID-HCPARTY" SV="1.0">11425214001</ns4:id>
+                <ns4:id S="INSS" SV="1.0">83051839468</ns4:id>
+                <ns4:cd S="CD-HCPARTY" SV="1.0">persphysician</ns4:cd>
+                <ns4:firstname>KATRIEN VAN</ns4:firstname>
+                <ns4:familyname>GUCHT</ns4:familyname>
+            </ns4:hcparty>
+        </ns4:author>
+        <ns4:iscomplete>true</ns4:iscomplete>
+        <ns4:isvalidated>true</ns4:isvalidated>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">1</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">medication</ns4:cd>
+            <ns4:content>
+                <ns4:medicinalproduct>
+                    <ns4:intendedcd S="CD-DRUG-CNK" SV="1.0">3142288</ns4:intendedcd>
+                    <ns4:intendedname>Dafalgan Instant Vanille / Aardbei 500 mg (20 zakjes)</ns4:intendedname>
+                </ns4:medicinalproduct>
+            </ns4:content>
+            <ns4:beginmoment>
+                <ns4:date>2020-06-01</ns4:date>
+            </ns4:beginmoment>
+            <ns4:endmoment>
+                <ns4:date>2021-12-31</ns4:date>
+            </ns4:endmoment>
+            <ns4:lifecycle>
+                <ns4:cd S="CD-LIFECYCLE" SV="1.3">suspended</ns4:cd>
+            </ns4:lifecycle>
+            <ns4:lnk TYPE="isplannedfor" URL="//transaction[id[@S='ID-KMEHR']='2']"/>
+        </ns4:item>
+        <ns4:item>
+            <ns4:id S="ID-KMEHR" SV="1.0">2</ns4:id>
+            <ns4:cd S="CD-ITEM" SV="1.4">transactionreason</ns4:cd>
+            <ns4:content>
+                <ns4:text L="nl">Wegens interactie met andere medicatie. tijdelijk. 2</ns4:text>
+            </ns4:content>
+        </ns4:item>
+    </ns4:transaction>
+</ns4:folder>
+   </kmehrmessage>
+  </ns3:GetTransactionSetResponse>
+ </soap:Body>
+</soap:Envelope>
+

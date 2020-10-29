@@ -1,0 +1,35 @@
+<authenticationConfiguration>
+	<type>fallBack</type>
+	<mainCertificateLocation>../config/certificates/CBE=0123456749 20171016-095847.acc-p12</mainCertificateLocation>
+	<nihii11>75012375001</nihii11>
+	<ssin>83051839468</ssin>
+	<firstName>Katrien</firstName>
+	<lastName>Van Gucht</lastName>
+	<mainCertificatePassword>meds2017</mainCertificatePassword>
+	<samlAttribute>
+		<namespace>urn:be:fgov:identification-namespace</namespace>
+		<key>urn:be:fgov:ehealth:1.0:certificateholder:enterprise:cbe-number</key>
+		<value>0123456749</value>
+	</samlAttribute>
+	<samlAttribute>
+		<namespace>urn:be:fgov:identification-namespace</namespace>
+		<key>urn:be:fgov:kbo-bce:organization:cbe-number</key>
+		<value>0123456749</value>
+	</samlAttribute>
+	<samlDesignator>
+		<namespace>urn:be:fgov:identification-namespace</namespace>
+		<key>urn:be:fgov:ehealth:1.0:certificateholder:enterprise:cbe-number</key>
+	</samlDesignator>
+	<samlDesignator>
+		<namespace>urn:be:fgov:identification-namespace</namespace>
+		<key>urn:be:fgov:kbo-bce:organization:cbe-number</key>
+	</samlDesignator>
+	<samlDesignator>
+		<namespace>urn:be:fgov:certified-namespace:ehealth</namespace>
+		<key>urn:be:fgov:kbo-bce:organization:cbe-number:ehealth:1.0:wvg:vazg:residentialcarecenter:boolean</key>
+	</samlDesignator>
+	<!--<samlDesignator>-->
+		<!--<namespace>urn:be:fgov:certified-namespace:ehealth</namespace>-->
+		<!--<key>urn:be:fgov:ehealth:1.0:retirement:nihii-number:recognisedretirement:nihii11</key>-->
+	<!--</samlDesignator>-->
+</authenticationConfiguration>

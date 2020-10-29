@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.imec.ivlab.ehealth.kmehr</groupId>
+  <artifactId>kmehr-model-1.22</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20180420095006</lastUpdated>
+  </versioning>
+</metadata>

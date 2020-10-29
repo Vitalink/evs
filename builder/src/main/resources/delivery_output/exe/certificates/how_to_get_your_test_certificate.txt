@@ -1,0 +1,13 @@
+Add test certificates to be able to use your own test actor within EVS.
+
+A. If you don't have your individual/organisational eHealth certificate:
+
+1. Visit: https://www.ehealth.fgov.be/ehealthplatform/nl/de-acceptatieomgeving-van-het-ehealth-platform.
+2. Follow the 3 steps at the bottom of the page for requesting the certificates.
+3. Go to instruction B in this document.
+
+B. If you allready have your individual/organisational p12 eHealth certificate:
+
+1. Visit: http://wiki.ivlab.ilabt.imec.be/display/VLMS/EVS_3.x.y_Manual#EVS_3.x.y_Manual-Configuration.
+2. Find chapter 'Configuration/How to add an actor'.
+3. Execute the steps needed to install your new actor and certificate as well as a test patient.

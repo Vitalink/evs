@@ -1,0 +1,66 @@
+<authenticationConfiguration>
+    <evs>
+        <type>fallback</type>
+        <certificates>
+            <certificate>
+                <type>identification</type>
+                <path>..\config\certificates\SSIN=81032425568 20200818-165834.acc-p12</path>
+                <password>meds2020</password>
+            </certificate>
+            <certificate>
+                <type>holderofkey</type>
+                <path>..\config\certificates\NIHII-PHARMACY=40833535 20190826-103901.acc-p12</path>
+                <password>meds2019</password>
+            </certificate>
+        </certificates>
+    </evs>
+    <ehealth>
+        <entry>user.inss=81032425568</entry>
+        <entry>user.nihii=26935316</entry>
+        <entry>user.firstname=Bert</entry>
+        <entry>user.lastname=Peters</entry>
+        <entry>careprovider.inss=${careprovider.nihii}</entry>
+        <entry>careprovider.nihii=40833535</entry>
+        <entry>careprovider.firstname=${user.firstname}</entry>
+        <entry>careprovider.lastname=${user.lastname}</entry>
+        <entry>main.kmehr.quality=orgpharmacy</entry>
+        <entry>kmehr.default.hcpartylist=identifier</entry>
+        <entry>kmehr.hubservicev3.hcpartylist=identifier,pharmacyholder,software</entry>
+        <entry>kmehr.hubservicev3.identifier.id.idhcparty.value=${careprovider.nihii}</entry>
+        <entry>kmehr.hubservicev3.identifier.id.idhcparty.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.identifier.cd.cdhcparty.value=orgpharmacy</entry>
+        <entry>kmehr.hubservicev3.identifier.cd.cdhcparty.sv=1.1</entry>
+        <entry>kmehr.hubservicev3.identifier.id.idencryptionkey=false</entry>
+        <entry>kmehr.hubservicev3.identifier.id.idencryptionkey.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.identifier.name=${careprovider.firstname} ${careprovider.lastname}</entry>
+        <entry>kmehr.hubservicev3.identifier.address.cd.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.identifier.address.cd.value=</entry>
+        <entry>kmehr.hubservicev3.identifier.address.cd.schemes=cdaddress</entry>
+        <entry>kmehr.hubservicev3.identifier.address.nis=24062</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.id.inss.value=${user.inss}</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.id.inss.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.id.idhcparty.value=${user.nihii}</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.id.idhcparty.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.cd.cdhcparty.value=perspharmacist</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.cd.cdhcparty.sv=1.1</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.firstname=${user.firstname}</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.lastname=${user.lastname}</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.address.cd.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.address.cd.value=</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.address.cd.schemes=cdaddress</entry>
+        <entry>kmehr.hubservicev3.pharmacyholder.address.nis=24062</entry>
+        <entry>sessionmanager.samlattribute.1=urn:be:fgov:identification-namespace,urn:be:fgov:ehealth:1.0:certificateholder:person:ssin,${user.inss}</entry>
+        <entry>sessionmanager.samlattribute.2=urn:be:fgov:identification-namespace,urn:be:fgov:ehealth:1.0:pharmacy:nihii-number,${careprovider.inss}</entry>
+        <entry>sessionmanager.samlattribute.3=urn:be:fgov:identification-namespace,urn:be:fgov:person:ssin,${user.inss}</entry>
+        <entry>sessionmanager.samlattribute.4=urn:be:fgov:identification-namespace,urn:be:fgov:person:ssin:ehealth:1.0:pharmacy-holder,${user.inss}</entry>
+        <entry>sessionmanager.samlattributedesignator.1=urn:be:fgov:identification-namespace,urn:be:fgov:ehealth:1.0:certificateholder:person:ssin</entry>
+        <entry>sessionmanager.samlattributedesignator.2=urn:be:fgov:identification-namespace,urn:be:fgov:ehealth:1.0:pharmacy:nihii-number</entry>
+        <entry>sessionmanager.samlattributedesignator.3=urn:be:fgov:certified-namespace:ehealth,urn:be:fgov:ehealth:1.0:pharmacy:nihii-number:recognisedpharmacy:boolean</entry>
+        <entry>sessionmanager.samlattributedesignator.4=urn:be:fgov:identification-namespace,urn:be:fgov:person:ssin</entry>
+        <entry>sessionmanager.samlattributedesignator.5=urn:be:fgov:identification-namespace,urn:be:fgov:person:ssin:ehealth:1.0:pharmacy-holder</entry>
+        <entry>sessionmanager.samlattributedesignator.6=urn:be:fgov:certified-namespace:ehealth,urn:be:fgov:person:ssin:ehealth:1.0:pharmacy-holder:certified:nihii11</entry>
+        <entry>sessionmanager.samlattributedesignator.7=urn:be:fgov:certified-namespace:ehealth,urn:be:fgov:ehealth:1.0:pharmacy:nihii-number:person:ssin:ehealth:1.0:pharmacy-holder:boolean</entry>
+        <entry>sessionmanager.samlattributedesignator.8=urn:be:fgov:certified-namespace:ehealth,urn:be:fgov:person:ssin:ehealth:1.0:givenname</entry>
+        <entry>sessionmanager.samlattributedesignator.9=urn:be:fgov:certified-namespace:ehealth,urn:be:fgov:person:ssin:ehealth:1.0:surname</entry>
+    </ehealth>
+</authenticationConfiguration>
