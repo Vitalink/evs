@@ -268,8 +268,9 @@ public class DiaryNoteWriter extends Writer {
             .stream()
             .map(this::parseTextWithLayoutContent)
             .filter(Objects::nonNull)
+            .map(this::removeXmlTags)
             .collect(Collectors.toList());
-        int textlength = contents.stream().map(this::removeXmlTags).map(String::length).mapToInt(Integer::intValue).sum();
+        int textlength = contents.stream().map(String::length).mapToInt(Integer::intValue).sum();
         addRow(table, createTextLengthDetailRow(textlength));
         addRow(table, createDetailRow("Content value", String.join("", contents)));
 
