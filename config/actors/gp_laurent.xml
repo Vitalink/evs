@@ -4,8 +4,8 @@
         <certificates>
             <certificate>
                 <type>identification</type>
-                <path>..\config\certificates\SSIN=94010337066 20191017-135822.acc-p12</path>
-                <password>meds2019</password>
+                <path>..\config\certificates\SSIN=94010337066 20201002-102810.acc-p12</path>
+                <password>meds2020</password>
             </certificate>
         </certificates>
     </evs>
