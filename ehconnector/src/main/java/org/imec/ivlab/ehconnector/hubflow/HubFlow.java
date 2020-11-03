@@ -76,6 +76,7 @@ public class HubFlow {
 
         LOG.debug("Started putTransaction");
 
+        generateHeaderSender(kmehrMessage);
         generateFirstTransactionAuthorBasedOnCertificate(kmehrMessage);
         PutTransactionResponse putTransactionResponse = hubService.putTransaction(kmehrMessage);
 
@@ -98,6 +99,7 @@ public class HubFlow {
         TransactionBaseType transactionBaseType = helper.createTransactionBaseType(idKmehr, null);
         PatientIdType patientIdType = helper.createPatientIdType(patientId);
 
+        generateHeaderSender(kmehrMessage);
         generateFirstTransactionAuthorBasedOnCertificate(kmehrMessage);
         RevokeTransactionResponse revokeTransactionResponse = hubService.revokeTransaction(patientIdType, transactionBaseType);
 
@@ -110,7 +112,7 @@ public class HubFlow {
     private void generateFirstTransactionAuthorBasedOnCertificate(Kmehrmessage kmehrMessage) throws TechnicalConnectorException {
         FolderType folderType = KmehrMessageUtil.getFolderType(kmehrMessage);
         be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType firstTransaction = FolderUtil.getFirstTransaction(folderType);
-        AuthorUtil.regenerateAuthorBasedOnCertificate(firstTransaction);
+        AuthorUtil.regenerateTransactionAuthorBasedOnCertificate(firstTransaction);
     }
 
     private IDKMEHR getFirstLocalIdKmehrWithSL(List<IDKMEHR> idkmehrs) {
@@ -175,9 +177,10 @@ public class HubFlow {
 
     }
 
-    public PutTransactionSetResponse putTransactionSet(String patientId, TransactionType transactionType, Kmehrmessage kmehrMessage) throws VitalinkException, GatewaySpecificErrorException {
+    public PutTransactionSetResponse putTransactionSet(String patientId, TransactionType transactionType, Kmehrmessage kmehrMessage) throws VitalinkException, GatewaySpecificErrorException, TechnicalConnectorException {
 
-        addHubAuthor(patientId, transactionType, kmehrMessage);
+        generateHeaderSender(kmehrMessage);
+        addHubAuthorToMSTransaction(patientId, transactionType, kmehrMessage);
 
         LOG.debug("Started putTransactionSet");
 
@@ -190,7 +193,11 @@ public class HubFlow {
         }
     }
 
-    private void addHubAuthor(String patientId, TransactionType transactionType, Kmehrmessage kmehrMessage) throws VitalinkException, GatewaySpecificErrorException {
+    private void generateHeaderSender(Kmehrmessage kmehrmessage) throws TechnicalConnectorException {
+        AuthorUtil.regenerateSenderAuthorBasedOnCertificate(kmehrmessage.getHeader());
+    }
+
+    private void addHubAuthorToMSTransaction(String patientId, TransactionType transactionType, Kmehrmessage kmehrMessage) throws VitalinkException, GatewaySpecificErrorException {
         HcpartyType hubAuthor = findHubAuthor(patientId, transactionType);
         if (hubAuthor != null) {
             FolderType folder = KmehrMessageUtil.getFolderType(kmehrMessage);

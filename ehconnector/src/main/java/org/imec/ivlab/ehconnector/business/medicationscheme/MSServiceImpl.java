@@ -1,6 +1,6 @@
 package org.imec.ivlab.ehconnector.business.medicationscheme;
 
-import static org.imec.ivlab.ehconnector.hub.util.AuthorUtil.regenerateAuthorBasedOnCertificate;
+import static org.imec.ivlab.ehconnector.hub.util.AuthorUtil.regenerateTransactionAuthorBasedOnCertificate;
 
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.GetLatestUpdateResponse;
@@ -104,7 +104,7 @@ public class MSServiceImpl extends AbstractService implements MSService {
         FolderType folderType = KmehrMessageUtil.getFolderType(kmehrmessage);
         be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType transactionMS = FolderUtil.getTransaction(folderType, CDTRANSACTIONvalues.MEDICATIONSCHEME);
 
-        regenerateAuthorBasedOnCertificate(transactionMS);
+        regenerateTransactionAuthorBasedOnCertificate(transactionMS);
 
     }
 
