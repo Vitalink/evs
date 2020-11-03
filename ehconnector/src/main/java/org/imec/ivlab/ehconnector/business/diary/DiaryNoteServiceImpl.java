@@ -91,7 +91,9 @@ public class DiaryNoteServiceImpl extends AbstractService implements DiaryNoteSe
         }
 
         for (GetTransactionResponse getTransactionResponse : getTransactionResponses) {
-            kmehrmessages.add(getTransactionResponse.getKmehrmessage());
+            if (getTransactionResponse != null) {
+                kmehrmessages.add(getTransactionResponse.getKmehrmessage());
+            }
         }
 
         return kmehrmessages;
@@ -100,6 +102,9 @@ public class DiaryNoteServiceImpl extends AbstractService implements DiaryNoteSe
 
 
     private Kmehrmessage diaryNoteToKmehr(Patient patient, DiaryNote diaryNote) throws VitalinkException {
+        if (diaryNote == null) {
+            throw new RuntimeException("No diarynote provided!");
+        }
         FolderType folderType = KmehrMessageUtil.getFolderType(diaryNote.getKmehrMessage());
         Kmehrmessage template = getKmehrmessageTemplate(patient, folderType);
         return template;

@@ -80,7 +80,7 @@ public abstract class AbstractRefExtractor implements RefExtractor {
         Set<EVSREF> usedRefs = new HashSet<>();
 
         for (Identifiable identifiable : listOfIdentifiables.getIdentifiables()) {
-            if (identifiable.getReference() != null) {
+            if (identifiable != null && identifiable.getReference() != null) {
 
                 if (usedRefs.contains(identifiable.getReference())) {
                     throw new IdenticalEVSRefsFoundException("Identical EVS reference found across different transactions: " + identifiable.getReference().getFormatted());
@@ -101,7 +101,7 @@ public abstract class AbstractRefExtractor implements RefExtractor {
         }
 
         for (Identifiable identifiable : listOfIdentifiables.getIdentifiables()) {
-            if (identifiable.getReference() != null) {
+            if (identifiable != null && identifiable.getReference() != null) {
                 usedRefs.add(identifiable.getReference());
             }
         }
@@ -121,7 +121,7 @@ public abstract class AbstractRefExtractor implements RefExtractor {
         usedRefs.addAll(getEVSRefsInList(listOfIdentifiablesWithAlreadyTakenRefs));
 
         for (Identifiable identifiable : listOfIdentifiables.getIdentifiables()) {
-            if (identifiable.getReference() == null) {
+            if (identifiable != null && identifiable.getReference() == null) {
                 EVSREF newReference = createUniqueEVSRef(usedRefs);
                 LOG.info("Created EVS reference " + newReference + " for transaction with id: " + getTransactionId(identifiable.getIdentifiableTransaction()));
                 putEvsReference(identifiable, newReference);

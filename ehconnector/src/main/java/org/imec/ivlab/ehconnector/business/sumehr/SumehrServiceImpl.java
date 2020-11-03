@@ -100,6 +100,9 @@ public class SumehrServiceImpl extends AbstractService implements SumehrService 
 
 
     private Kmehrmessage sumehrToKmehr(Patient patient, Sumehr sumehr) throws VitalinkException {
+        if (sumehr == null) {
+            throw new RuntimeException("No sumehr provided!");
+        }
         FolderType folderType = KmehrMessageUtil.getFolderType(sumehr.getKmehrMessage());
         Kmehrmessage template = getKmehrmessageTemplate(patient, folderType);
         return template;
