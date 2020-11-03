@@ -1,6 +1,7 @@
 package org.imec.ivlab.ehconnector.business.medicationscheme;
 
-import be.ehealth.business.kmehrcommons.HcPartyUtil;
+import static org.imec.ivlab.ehconnector.hub.util.AuthorUtil.regenerateAuthorBasedOnCertificate;
+
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.GetLatestUpdateResponse;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionListResponse;
@@ -10,14 +11,11 @@ import be.fgov.ehealth.hubservices.core.v3.TransactionSummaryType;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONvalues;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHR;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHRschemes;
-import be.fgov.ehealth.standards.kmehr.schema.v1.AuthorType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
-import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.imec.ivlab.core.config.EVSConfig;
@@ -25,7 +23,6 @@ import org.imec.ivlab.core.config.EVSProperties;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.kmehr.KmehrHelper;
 import org.imec.ivlab.core.kmehr.model.util.FolderUtil;
-import org.imec.ivlab.core.kmehr.model.util.HCPartyUtil;
 import org.imec.ivlab.core.kmehr.model.util.IDKmehrUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.model.upload.TransactionType;
@@ -49,7 +46,6 @@ public class MSServiceImpl extends AbstractService implements MSService {
     private final static Logger log = Logger.getLogger(MSServiceImpl.class);
 
     private static final TransactionType TRANSACTION_TYPE = TransactionType.MEDICATION_SCHEME;
-    private static final String CONNECTOR_PROJECT_NAME = "hubservicev3";
     private HubFlow hubFlow = new HubFlow();
 
     public MSServiceImpl() throws VitalinkException {
@@ -108,22 +104,8 @@ public class MSServiceImpl extends AbstractService implements MSService {
         FolderType folderType = KmehrMessageUtil.getFolderType(kmehrmessage);
         be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType transactionMS = FolderUtil.getTransaction(folderType, CDTRANSACTIONvalues.MEDICATIONSCHEME);
 
-        transactionMS.getAuthor().getHcparties().clear();
+        regenerateAuthorBasedOnCertificate(transactionMS);
 
-        AuthorType author = HcPartyUtil.createAuthor(CONNECTOR_PROJECT_NAME);
-        removeApplicationHcParties(author);
-
-        transactionMS.setAuthor(author);
-
-    }
-
-    private void removeApplicationHcParties(AuthorType author) {
-        List<HcpartyType> nonApplicationHcParties = author.getHcparties().stream()
-            .filter(hcpartyType -> !HCPartyUtil.isApplicationHcParty(hcpartyType))
-            .collect(Collectors.toList());
-
-        author.getHcparties().clear();
-        author.getHcparties().addAll(nonApplicationHcParties);
     }
 
     private Kmehrmessage fillSchemeVersion(Patient patient, Kmehrmessage kmehrmessageTemplate) throws Exception {

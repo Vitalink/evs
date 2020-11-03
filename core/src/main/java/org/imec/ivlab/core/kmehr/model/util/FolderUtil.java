@@ -89,4 +89,20 @@ public class FolderUtil {
 
     }
 
+    public static TransactionType getFirstTransaction(FolderType folderType) {
+
+        List<TransactionType> transactions = folderType.getTransactions();
+
+        if (CollectionUtils.isEmpty(transactions)) {
+            throw new DataNotFoundException("Missing transaction!");
+        }
+
+        if (CollectionUtils.size(transactions) > 1) {
+            throw new MultipleEntitiesFoundException("Multiple transactions found. Expected only one!");
+        }
+
+        return transactions.get(0);
+
+    }
+
 }

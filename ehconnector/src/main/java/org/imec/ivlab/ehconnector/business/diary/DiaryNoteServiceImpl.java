@@ -1,5 +1,6 @@
 package org.imec.ivlab.ehconnector.business.diary;
 
+import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionResponse;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
@@ -57,7 +58,7 @@ public class DiaryNoteServiceImpl extends AbstractService implements DiaryNoteSe
         for (DiaryNote diaryNote : diaryNoteList.getList()) {
             try {
                 hubFlow.putTransaction(diaryNoteToKmehr(patient, diaryNote));
-            } catch (GatewaySpecificErrorException e) {
+            } catch (GatewaySpecificErrorException | TechnicalConnectorException e) {
                 throw new VitalinkException(e);
             }
         }
@@ -74,7 +75,7 @@ public class DiaryNoteServiceImpl extends AbstractService implements DiaryNoteSe
         for (DiaryNote diaryNote : diaryNoteList.getList()) {
             try {
                 hubFlow.revokeTransaction(patient.getId(), diaryNoteToKmehr(patient, diaryNote));
-            } catch (GatewaySpecificErrorException e) {
+            } catch (GatewaySpecificErrorException | TechnicalConnectorException e) {
                 throw new VitalinkException(e);
             }
         }

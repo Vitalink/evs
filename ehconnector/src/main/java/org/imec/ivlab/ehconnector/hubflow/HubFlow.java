@@ -1,5 +1,6 @@
 package org.imec.ivlab.ehconnector.hubflow;
 
+import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.FolderTypeUnbounded;
 import be.fgov.ehealth.hubservices.core.v3.GetLatestUpdateResponse;
 import be.fgov.ehealth.hubservices.core.v3.GetPatientAuditTrailResponse;
@@ -49,6 +50,7 @@ import org.imec.ivlab.ehconnector.hub.exception.incurable.NoDataIsAvailableForPr
 import org.imec.ivlab.ehconnector.hub.exception.incurable.NoNodeFoundMatchingTheURI;
 import org.imec.ivlab.ehconnector.hub.exception.incurable.SubjectWithSSINUnknownException;
 import org.imec.ivlab.ehconnector.hub.exception.incurable.TransactionNotFoundException;
+import org.imec.ivlab.ehconnector.hub.util.AuthorUtil;
 import org.imec.ivlab.ehconnector.util.TransactionHelper;
 
 public class HubFlow {
@@ -70,10 +72,11 @@ public class HubFlow {
     }
 
 
-    public PutTransactionResponse putTransaction(Kmehrmessage kmehrMessage) throws VitalinkException, GatewaySpecificErrorException {
+    public PutTransactionResponse putTransaction(Kmehrmessage kmehrMessage) throws VitalinkException, GatewaySpecificErrorException, TechnicalConnectorException {
 
         LOG.debug("Started putTransaction");
 
+        generateFirstTransactionAuthorBasedOnCertificate(kmehrMessage);
         PutTransactionResponse putTransactionResponse = hubService.putTransaction(kmehrMessage);
 
         LOG.debug("Completed putTransaction");
@@ -82,7 +85,7 @@ public class HubFlow {
 
     }
 
-    public RevokeTransactionResponse revokeTransaction(String patientId, Kmehrmessage kmehrMessage) throws VitalinkException, GatewaySpecificErrorException {
+    public RevokeTransactionResponse revokeTransaction(String patientId, Kmehrmessage kmehrMessage) throws VitalinkException, GatewaySpecificErrorException, TechnicalConnectorException {
 
         LOG.debug("Started revokeTransaction");
 
@@ -95,12 +98,19 @@ public class HubFlow {
         TransactionBaseType transactionBaseType = helper.createTransactionBaseType(idKmehr, null);
         PatientIdType patientIdType = helper.createPatientIdType(patientId);
 
+        generateFirstTransactionAuthorBasedOnCertificate(kmehrMessage);
         RevokeTransactionResponse revokeTransactionResponse = hubService.revokeTransaction(patientIdType, transactionBaseType);
 
         LOG.debug("Completed revokeTransaction");
 
         return revokeTransactionResponse;
 
+    }
+
+    private void generateFirstTransactionAuthorBasedOnCertificate(Kmehrmessage kmehrMessage) throws TechnicalConnectorException {
+        FolderType folderType = KmehrMessageUtil.getFolderType(kmehrMessage);
+        be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType firstTransaction = FolderUtil.getFirstTransaction(folderType);
+        AuthorUtil.regenerateAuthorBasedOnCertificate(firstTransaction);
     }
 
     private IDKMEHR getFirstLocalIdKmehrWithSL(List<IDKMEHR> idkmehrs) {

@@ -1,5 +1,6 @@
 package org.imec.ivlab.ehconnector.business.sumehr;
 
+import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionResponse;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
@@ -55,7 +56,7 @@ public class SumehrServiceImpl extends AbstractService implements SumehrService 
         for (Sumehr sumehr : sumehrList.getList()) {
             try {
                 hubFlow.putTransaction(sumehrToKmehr(patient, sumehr));
-            } catch (GatewaySpecificErrorException e) {
+            } catch (GatewaySpecificErrorException | TechnicalConnectorException e) {
                 throw new VitalinkException(e);
             }
         }
@@ -72,7 +73,7 @@ public class SumehrServiceImpl extends AbstractService implements SumehrService 
         for (Sumehr sumehr : sumehrList.getList()) {
             try {
                 hubFlow.revokeTransaction(patient.getId(), sumehrToKmehr(patient, sumehr));
-            } catch (GatewaySpecificErrorException e) {
+            } catch (GatewaySpecificErrorException | TechnicalConnectorException e) {
                 throw new VitalinkException(e);
             }
         }
