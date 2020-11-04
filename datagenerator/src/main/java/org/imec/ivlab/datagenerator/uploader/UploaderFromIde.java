@@ -18,7 +18,7 @@ public class UploaderFromIde {
 
         UploaderArguments arguments = new UploaderArguments();
 
-        arguments.setRootDir(new File("/Users/mxconsultancy/Documents/projects/imec/dev/sources/ivlab-automation-evs/exe/interaction"));
+        arguments.setRootDir(new File("\\WORK\\imec_EVS_installs\\evs_dev\\exe\\interaction"));
         arguments.setExportAfterUpload(true);
 
         arguments.setValidateExportAfterUpload(true);
