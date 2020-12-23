@@ -28,6 +28,9 @@ public class URIBuilder {
         URI uri4 = (URIBuilder.fromString("/subject/84072536717/medication-scheme/new"));
         log.info(uri4);
         log.info(URIWriter.toString(uri4));
+        URI uri5 = (URIBuilder.fromString("/subject/81032425568/vaccination/B1BFB33C7CD24729A866A869F44CA9F8/1"));
+        log.info(uri5);
+        log.info(URIWriter.toString(uri5));
     }
 
     public static URI forTransaction(String subjectID, TransactionType transactionType) {
@@ -41,7 +44,7 @@ public class URIBuilder {
 
     public static URI fromString(String uriString) {
 
-        String patternForExistingOrUpdate = "(\\d{11})\\/([\\w-]+)\\/(\\d{5})(?:\\/(new|\\d{5}))?(?:\\/(\\d+))?";
+        String patternForExistingOrUpdate = "(\\d{11})\\/([\\w-]+)\\/(\\d{5}|[\\d\\w]{32})(?:\\/(new|\\d{5}))?(?:\\/(\\d+))?";
         Pattern r = Pattern.compile(patternForExistingOrUpdate);
         Matcher m = r.matcher(uriString);
 
