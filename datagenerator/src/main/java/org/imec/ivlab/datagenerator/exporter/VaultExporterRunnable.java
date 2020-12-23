@@ -27,6 +27,7 @@ import org.imec.ivlab.datagenerator.exporter.export.ExportResult;
 import org.imec.ivlab.datagenerator.exporter.export.impl.DiaryNoteExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.MedicationExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.SumehrExporter;
+import org.imec.ivlab.datagenerator.exporter.export.impl.VaccinationExporter;
 import org.imec.ivlab.datagenerator.exporter.monitor.Monitor;
 import org.imec.ivlab.datagenerator.exporter.monitor.MonitorInstruction;
 import org.imec.ivlab.datagenerator.util.kmehrmodifier.VersionWriter;
@@ -127,8 +128,9 @@ public class VaultExporterRunnable implements Runnable {
 
                 if (TransactionType.VACCINATIONS.equals(monitorInstruction.getTransactionType())) {
 
-                    MedicationExporter medicationExporter = new MedicationExporter();
-                    medicationExporter.exportTransactionSet(exportInstruction.getTransactionType(), monitorInstruction.getPatient(), exportInstruction.getActorKey(), outputDirectory, null, null);
+                    VaccinationExporter vaccinationExporter = new VaccinationExporter();
+                    vaccinationExporter.exportTransactions(exportInstruction.getTransactionType(), monitorInstruction.getPatient(), exportInstruction.getActorKey(), outputDirectory, null, null);
+
                 }
 
                 if (TransactionType.SUMEHR.equals(monitorInstruction.getTransactionType())) {
