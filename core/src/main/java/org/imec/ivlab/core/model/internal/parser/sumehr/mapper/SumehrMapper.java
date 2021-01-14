@@ -14,13 +14,21 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.PersonType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang3.SerializationUtils;
 import org.imec.ivlab.core.kmehr.mapper.KmehrMapper;
 import org.imec.ivlab.core.kmehr.model.util.CDContentUtil;
 import org.imec.ivlab.core.kmehr.model.util.CDItemUtil;
 import org.imec.ivlab.core.kmehr.model.util.ItemUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
+import org.imec.ivlab.core.model.evsref.EVSREF;
+import org.imec.ivlab.core.model.evsref.extractor.impl.SumehrEVSRefExtractor;
 import org.imec.ivlab.core.model.internal.mapper.medication.mapper.MedicationMapper;
 import org.imec.ivlab.core.model.internal.parser.common.BaseMapper;
 import org.imec.ivlab.core.model.internal.parser.ItemParsedItem;
@@ -32,11 +40,16 @@ import org.imec.ivlab.core.model.internal.parser.sumehr.PatientWill;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Risk;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sumehr;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Vaccination;
+import org.imec.ivlab.core.model.internal.parser.sumehr.Problem;
+import org.imec.ivlab.core.model.internal.parser.sumehr.Treatment;
+import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInTransactionFoundException;
+import org.imec.ivlab.core.model.upload.sumehrlist.SumehrList;
+import org.imec.ivlab.core.model.upload.sumehrlist.SumehrListExtractor;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.StringUtils;
 
-
+@Log4j
 public class SumehrMapper extends BaseMapper {
 
     public static Sumehr kmehrToSumehr(Kmehrmessage kmehrmessage) {
@@ -64,6 +77,8 @@ public class SumehrMapper extends BaseMapper {
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.setHealthCareElements(toHealthCareElements(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.HEALTHCAREELEMENT)));
         entry.setSocialRisks(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.SOCIALRISK)));
+        entry.setProblems(toProblems(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.PROBLEM)));
+        entry.setTreatments(toTreatments(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.TREATMENT)));
         entry.setRisks(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.RISK)));
         entry.setAllergies(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.ALLERGY)));
         entry.setAdrs(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.ADR)));
@@ -74,10 +89,28 @@ public class SumehrMapper extends BaseMapper {
         entry.setGmdManagers(collectHCPartyTypes(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.GMDMANAGER)));
         entry.setMedicationEntries(toMedicationItems(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.MEDICATION)));
         markTransactionAsProcessed(firstTransaction);
+        entry.setEvsRef(getEvsRef(kmehrmessage));
 
         entry.setUnparsed(cloneKmehr);
 
         return entry;
+    }
+
+    private static String getEvsRef(Kmehrmessage kmehrmessage) {
+        try {
+            SumehrList sumehrList = SumehrListExtractor.getSumehrList(Collections.singletonList(kmehrmessage));
+            new SumehrEVSRefExtractor().extractEVSRefs(sumehrList);
+            return sumehrList
+                .getList()
+                .stream()
+                .findFirst()
+                .map(org.imec.ivlab.core.model.upload.sumehrlist.Sumehr::getReference)
+                .map(EVSREF::getFormatted)
+                .orElse(null);
+        } catch (MultipleEVSRefsInTransactionFoundException e) {
+            log.error("Found multiple EVS refs in sumehr! Will treat this as NO EVS refs.");
+            return null;
+        }
     }
 
     private static List<MedicationEntrySumehr> toMedicationItems(List<ItemType> itemTypes) {
@@ -189,6 +222,15 @@ public class SumehrMapper extends BaseMapper {
         return risks;
     }
 
+
+    private static List<Treatment> toTreatments(List<ItemType> items) {
+        return Optional.ofNullable(items).orElse(Collections.emptyList()).stream().map(SumehrMapper::toTreatment).collect(Collectors.toList());
+    }
+
+    private static List<Problem> toProblems(List<ItemType> items) {
+        return Optional.ofNullable(items).orElse(Collections.emptyList()).stream().map(SumehrMapper::toProblem).collect(Collectors.toList());
+    }
+
     public static Risk toRisk(ItemType itemType) {
 
         Risk risk = new Risk();
@@ -214,6 +256,42 @@ public class SumehrMapper extends BaseMapper {
         }
 
         return hce;
+    }
+
+    public static Treatment toTreatment(ItemType itemType) {
+
+        Treatment tm = new Treatment();
+
+        toItem(itemType, tm);
+
+        if (itemType.getBeginmoment() != null) {
+            tm.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            tm.getUnparsed().getBeginmoment().setDate(null);
+        }
+        if (itemType.getEndmoment() != null) {
+            tm.setEndmoment(DateUtils.toLocalDate(itemType.getEndmoment().getDate()));
+            tm.getUnparsed().getEndmoment().setDate(null);
+        }
+
+        return tm;
+    }
+
+    public static Problem toProblem(ItemType itemType) {
+
+        Problem pb = new Problem();
+
+        toItem(itemType, pb);
+
+        if (itemType.getBeginmoment() != null) {
+            pb.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            pb.getUnparsed().getBeginmoment().setDate(null);
+        }
+        if (itemType.getEndmoment() != null) {
+            pb.setEndmoment(DateUtils.toLocalDate(itemType.getEndmoment().getDate()));
+            pb.getUnparsed().getEndmoment().setDate(null);
+        }
+
+        return pb;
     }
 
     public static PatientWill toPatientWill(ItemType itemType) {
@@ -304,6 +382,7 @@ public class SumehrMapper extends BaseMapper {
             clone.getBeginmoment().setDate(null);
         }
 
+        //vaccination.setCommentText(ItemUtil.cp);
         vaccination.setCdcontents(ItemUtil.collectContentTypeCds(itemType));
         clearContentTypeCds(clone);
 

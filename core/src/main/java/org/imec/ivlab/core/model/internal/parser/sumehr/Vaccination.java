@@ -14,6 +14,7 @@ import org.imec.ivlab.core.model.internal.parser.AbstractParsedItem;
 public class Vaccination extends AbstractParsedItem<ItemType> {
 
     private String vaccinatedAgainst;
+    private String text;
     private Identifier identifier;
     private LocalDate applicationDate;
     private List<TextType> textTypes;
@@ -49,10 +50,8 @@ public class Vaccination extends AbstractParsedItem<ItemType> {
         this.cdcontents = cdcontents;
     }
 
-    public String getVaccinatedAgainst() {
-        return vaccinatedAgainst;
-    }
-
+    public String getVaccinatedAgainst() { return vaccinatedAgainst; }
+    
     public void setVaccinatedAgainst(String vaccinatedAgainst) {
         this.vaccinatedAgainst = vaccinatedAgainst;
     }

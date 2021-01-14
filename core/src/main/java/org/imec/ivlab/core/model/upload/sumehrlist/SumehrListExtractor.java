@@ -19,7 +19,7 @@ public class SumehrListExtractor {
 
     private final static Logger LOG = Logger.getLogger(SumehrListExtractor.class);
 
-    public static SumehrList getSumehrList(KmehrEntryList kmehrEntryList) throws TransformationException {
+    public static SumehrList getSumehrList(KmehrEntryList kmehrEntryList) {
 
         SumehrList sumehrList = new SumehrList();
 
@@ -28,7 +28,12 @@ public class SumehrListExtractor {
         }
 
         for (KmehrEntry kmehrEntry : kmehrEntryList.getKmehrEntries()) {
-            Kmehrmessage kmehrmessage = KmehrMarshaller.fromString(kmehrEntry.getBusinessData().getContent());
+            Kmehrmessage kmehrmessage = null;
+            try {
+                kmehrmessage = KmehrMarshaller.fromString(kmehrEntry.getBusinessData().getContent());
+            } catch (TransformationException e) {
+                throw new RuntimeException(e);
+            }
             if (kmehrEntry != null && kmehrEntry.getBusinessData() != null) {
                 sumehrList.getList().add(getSumehr(kmehrmessage));
 

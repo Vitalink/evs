@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<kmehrmessage xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xsi:schemaLocation="http://www.ehealth.fgov.be/standards/kmehr/schema/v1 kmehr_elements.xsd">
+  <header>
+    <standard>
+      <cd S="CD-STANDARD" SV="1.0">20100601</cd>
+    </standard>
+    <id S="ID-KMEHR" SV="1.0">14296612004.20060520005759598</id>
+    <date>2019-11-12</date>
+    <time>00:57:59</time>
+    <sender>
+      <hcparty>
+        <id S="ID-HCPARTY" SV="1.0">15690541004</id>
+        <id S="INSS" SV="1.0">81032425568</id>
+        <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+        <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
+        <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
+        <firstname>Bert</firstname>
+        <familyname>Peters</familyname>
+        <address>
+          <cd S="CD-ADDRESS" SV="1.0">home</cd>
+          <country>
+            <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
+          </country>
+          <zip>3210</zip>
+          <city>Linden</city>
+          <street>Wolvendreef</street>
+          <housenumber>2</housenumber>
+        </address>
+      </hcparty>
+    </sender>
+    <recipient>
+      <hcparty>
+        <id S="ID-HCPARTY" SV="1.0">71099812</id>
+        <cd S="CD-HCPARTY" SV="1.0">Zorghospital</cd>
+        <name>Test Hospital</name>
+      </hcparty>
+    </recipient>
+  </header>
+  <folder>
+    <id S="ID-KMEHR" SV="1.0">1</id>
+    <patient>
+      <id S="INSS" SV="1.0">49112002395</id>
+      <firstname>JAN</firstname>
+      <familyname>Demeulder</familyname>
+      <birthdate>
+        <date>1949-11-20</date>
+      </birthdate>
+      <sex>
+        <cd S="CD-SEX" SV="1.0">male</cd>
+      </sex>
+      <address>
+        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+        <country>
+          <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
+        </country>
+        <zip>3000</zip>
+        <city>Leuven</city>
+        <street>Tiensestraat</street>
+        <housenumber>2</housenumber>
+      </address>
+      <telecom>
+        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+        <cd S="CD-TELECOM" SV="1.0">phone</cd>
+        <telecomnumber>016257614</telecomnumber>
+      </telecom>
+      <usuallanguage>nl</usuallanguage>
+    </patient>
+    <transaction>
+      <id S="ID-KMEHR" SV="1.0">1</id>
+      <cd S="CD-TRANSACTION" SV="1.0">sumehr</cd>
+      <date>2006-05-20</date>
+      <time>00:57:59</time>
+      <author>
+        <hcparty>
+          <id S="ID-HCPARTY" SV="1.0">15690541004</id>
+          <id S="INSS" SV="1.0">81032425568</id>
+          <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+          <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
+          <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
+          <firstname>Bert</firstname>
+          <familyname>Peters</familyname>
+          <address>
+            <cd S="CD-ADDRESS" SV="1.0">home</cd>
+            <country>
+              <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
+            </country>
+            <zip>3210</zip>
+            <city>Linden</city>
+            <street>Wolvendreef</street>
+            <housenumber>2</housenumber>
+          </address>
+          <telecom>
+            <cd S="CD-ADDRESS" SV="1.0">home</cd>
+            <cd S="CD-TELECOM" SV="1.0">phone</cd>
+            <telecomnumber>016258814</telecomnumber>
+          </telecom>
+        </hcparty>
+      </author>
+      <iscomplete>true</iscomplete>
+      <isvalidated>true</isvalidated>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+        <cd S="CD-ITEM" SV="1.0">gmdmanager</cd>
+        <content>
+          <hcparty>
+            <id S="ID-HCPARTY" SV="1.0">15690541004</id>
+            <id S="INSS" SV="1.0">81032425568</id>
+            <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+            <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
+            <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
+            <firstname>Bert</firstname>
+            <familyname>Peters</familyname>
+            <address>
+              <cd S="CD-ADDRESS" SV="1.0">home</cd>
+              <country>
+                <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
+              </country>
+              <zip>3210</zip>
+              <city>Linden</city>
+              <street>Wolvendreef</street>
+              <housenumber>2</housenumber>
+            </address>
+            <telecom>
+              <cd S="CD-ADDRESS" SV="1.0">home</cd>
+              <cd S="CD-TELECOM" SV="1.0">phone</cd>
+              <telecomnumber>016258814</telecomnumber>
+            </telecom>
+          </hcparty>
+        </content>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">2</id>
+        <cd S="CD-ITEM" SV="1.0">contactperson</cd>
+        <cd S="CD-CONTACT-PERSON" SV="1.0">mother</cd>
+        <content>
+          <person>
+            <id S="INSS" SV="1.0">62030022135</id>
+            <id S="LOCAL" SL="Sumehr-Love" SV="1.06.02">4275</id>
+            <firstname>An</firstname>
+            <familyname>Debondt</familyname>
+            <sex>
+              <cd S="CD-SEX" SV="1.0">female</cd>
+            </sex>
+            <address>
+              <cd S="CD-ADDRESS" SV="1.0">home</cd>
+              <country>
+                <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
+              </country>
+              <zip>3000</zip>
+              <city>LEUVEN</city>
+              <street>Vlamingenstraat</street>
+              <housenumber>2</housenumber>
+            </address>
+            <telecom>
+              <cd S="CD-ADDRESS" SV="1.0">home</cd>
+              <cd S="CD-TELECOM" SV="1.0">phone</cd>
+              <telecomnumber>016202537</telecomnumber>
+            </telecom>
+          </person>
+        </content>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">3</id>
+        <cd S="CD-ITEM" SV="1.0">socialrisk</cd>
+        <content>
+          <cd S="ICPC" SV="2" DN="Sociaal-cultureel probleem" L="nl">Z04</cd>
+        </content>
+        <content>
+          <text L="nl">Sociaal-cultureel probleem</text>
+          <text L="nl">Ouderlijke woning in overwegend allochtone omgeving</text>
+        </content>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">2</id>
+        <cd S="CD-ITEM" SV="1.9">risk</cd>
+        <content>
+          <cd L="fr" S="ICPC" SV="2">K86</cd>
+          <cd L="fr" S="ICD" SV="10">I10</cd>
+        </content>
+        <content>
+          <text L="nl">Hoge bloeddruk</text>
+        </content>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">28</id>
+        <cd S="CD-ITEM" SV="1.11">problem</cd>
+        <content>
+          <cd S="CD-CLINICAL" SV="1.0">10015202</cd>
+          <cd L="nl" S="ICPC" SV="2">B72</cd>
+          <cd L="nl" S="ICD" SV="10">C82.9</cd>
+        </content>
+        <content>
+          <text L="nl">Brill-Symmers</text>
+        </content>
+        <beginmoment>
+          <date>2015-08-25</date>
+        </beginmoment>
+        <endmoment>
+          <date>2015-08-25</date>
+        </endmoment>
+        <lifecycle>
+          <cd S="CD-LIFECYCLE" SV="1.0">active</cd>
+        </lifecycle>
+        <recorddatetime>2015-12-14T07:03:20+01:00</recorddatetime>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">29</id>
+        <cd S="CD-ITEM" SV="1.6">treatment</cd>
+        <content>
+          <text L="nl">Revalidatie kinesitherapie</text>
+        </content>
+        <beginmoment>
+          <date>2019-10-07</date>
+        </beginmoment>
+        <lifecycle>
+          <cd S="CD-LIFECYCLE" SV="1.0">active</cd>
+        </lifecycle>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">12</id>
+        <cd S="CD-ITEM" SV="1.0">medication</cd>
+        <content>
+          <medicinalproduct>
+            <intendedcd SV="1999" S="CD-DRUG-CNK">0895540</intendedcd>
+            <intendedname>MEDROL COMP 20X32MG</intendedname>
+          </medicinalproduct>
+        </content>
+        <content>
+          <text L='fr'>MEDROL 32MG</text>
+        </content>
+        <beginmoment>
+          <date>2015-01-27</date>
+        </beginmoment>
+        <endmoment>
+          <date>2030-01-01</date>
+        </endmoment>
+        <dayperiod>
+          <cd SV="1.0" S="CD-DAYPERIOD">afterbreakfast</cd>
+        </dayperiod>
+        <posology>
+          <text L="en">0.5 tab</text>
+        </posology>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">16</id>
+        <cd S="CD-ITEM" SV="1.0">vaccine</cd>
+        <content>
+          <medicinalproduct>
+            <intendedcd S="CD-DRUG-CNK" SV="1999">1077593</intendedcd>
+            <intendedname>TEDIVAX PRO ADULTO SER INJ 0,5ML</intendedname>
+          </medicinalproduct>
+        </content>
+        <content>
+          <text L="nl">custom text</text>
+        </content>
+        <content>
+          <cd SV="1.0" S="CD-VACCINEINDICATION">diphteria</cd>
+        </content>
+        <beginmoment>
+          <date>2006-01-17</date>
+        </beginmoment>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">21</id>
+        <cd S="CD-ITEM" SV="1.6">contacthcparty</cd>
+        <content>
+          <hcparty>
+            <id S="ID-HCPARTY" SV="1.0">15690541004</id>
+            <id S="INSS" SV="1.0">81032425568</id>
+            <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+            <firstname>Bert</firstname>
+            <familyname>Peters</familyname>
+            <address>
+              <cd S="CD-ADDRESS" SV="1.0">home</cd>
+              <country>
+                <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
+              </country>
+              <zip>3210</zip>
+              <city>Linden</city>
+              <street>Wolvendreef</street>
+              <housenumber>2</housenumber>
+            </address>
+            <telecom>
+              <cd S="CD-ADDRESS" SV="1.0">home</cd>
+              <cd S="CD-TELECOM" SV="1.0">phone</cd>
+              <telecomnumber>016258814</telecomnumber>
+            </telecom>
+          </hcparty>
+        </content>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">22</id>
+        <cd S="CD-ITEM" SV="1.6">patientwill</cd>
+        <content>
+          <cd S="CD-PATIENTWILL-HOS" SV="1.0">hos0</cd>
+        </content>
+        <recorddatetime>2019-11-12T14:25:10</recorddatetime>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">22</id>
+        <cd S="CD-ITEM" SV="1.6">patientwill</cd>
+        <content>
+          <cd S="CD-PATIENTWILL" SV="1.0">bloodtransfusionrefusal</cd>
+        </content>
+        <recorddatetime>2019-11-12T14:25:10</recorddatetime>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">23</id>
+        <cd S="CD-ITEM" SV="1.0">adr</cd>
+        <content>
+          <cd S="ICPC" SV="2" DN="Zwelling" L="nl">A08</cd>
+        </content>
+        <content>
+          <text L="nl">Anafylaxie penicilline</text>
+        </content>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">24</id>
+        <cd S="CD-ITEM" SV="1.0">allergy</cd>
+        <content>
+          <cd S="ICPC" SV="2" L="nl">Z04</cd>
+        </content>
+        <content>
+          <text L="nl">Penicilline</text>
+        </content>
+      </item>
+      <item>
+        <id S="ID-KMEHR" SV="1.0">26</id>
+        <cd S="CD-ITEM" SV="1.6">patientwill</cd>
+        <content>
+          <cd S="CD-PATIENTWILL-RES" SV="1.0">dnr0</cd>
+        </content>
+        <recorddatetime>2019-11-12T14:25:10</recorddatetime>
+      </item>
+    </transaction>
+  </folder>
+</kmehrmessage>
