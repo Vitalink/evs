@@ -85,6 +85,12 @@
             <groupId>xerces</groupId>
             <artifactId>xercesImpl</artifactId>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>
@@ -156,6 +162,24 @@
                 <version>2.12.0</version>
             </dependency>
 
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>1.18.16</version>
+                <scope>provided</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi</artifactId>
+                <version>${apache.poi.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.poi</groupId>
+                <artifactId>poi-ooxml</artifactId>
+                <version>${apache.poi.version}</version>
+            </dependency>
+
         </dependencies>
 
     </dependencyManagement>
@@ -207,6 +231,7 @@
         <build.install.directory.installer>${build.install.directory.parent}${file.separator}EVS-installer${file.separator}</build.install.directory.installer>
         <build.install.jar.directory>${build.install.directory}${file.separator}system${file.separator}</build.install.jar.directory>
         <build.install.kmehrconfig.directory>${build.install.directory}${file.separator}system${file.separator}kmehr{file.separator}</build.install.kmehrconfig.directory>
+        <apache.poi.version>3.15</apache.poi.version>
     </properties>
 
     <repositories>

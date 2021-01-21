@@ -7,7 +7,6 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENTschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDITEM;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDITEMschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDITEMvalues;
-import be.fgov.ehealth.standards.kmehr.schema.v1.ContentType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
@@ -29,7 +28,6 @@ import org.imec.ivlab.core.model.internal.parser.sumehr.ContactPerson;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HealthCareElement;
 import org.imec.ivlab.core.model.internal.parser.sumehr.MedicationEntrySumehr;
-import org.imec.ivlab.core.model.internal.parser.sumehr.Patient;
 import org.imec.ivlab.core.model.internal.parser.sumehr.PatientWill;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Risk;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sumehr;
@@ -249,7 +247,7 @@ public class SumehrMapper extends BaseMapper {
         clearIds(clone);
         clearCds(clone);
 
-        clearContentTypeMedicationRelatedInfo(clone);
+        clearContentTypeAllMedicationRelatedInfo(clone);
         clearContentTypeTextTypes(clone);
 
         clone.setInstructionforpatient(null);
@@ -315,7 +313,7 @@ public class SumehrMapper extends BaseMapper {
         vaccination.setRecordDateTime(DateUtils.toLocalDateTime(itemType.getRecorddatetime()));
         clone.setRecorddatetime(null);
 
-        clearContentTypeMedicationRelatedInfo(clone);
+        clearContentTypeAllMedicationRelatedInfo(clone);
 
         List<CDCONTENT> cdContents = CDContentUtil.getCDContents(vaccination.getCdcontents(), CDCONTENTschemes.CD_VACCINEINDICATION);
         ArrayList<String> vaccinationNames = new ArrayList<>();
@@ -358,38 +356,6 @@ public class SumehrMapper extends BaseMapper {
 
         item.setUnparsed(clone);
 
-    }
-
-    private static void clearContentTypeTextTypes(ItemType clone) {
-        if (clone.getContents() != null) {
-            for (ContentType contentType : clone.getContents()) {
-                if (contentType == null || contentType.getTexts() == null) {
-                    continue;
-                }
-                contentType.getTexts().clear();
-            }
-        }
-    }
-
-    private static void clearContentTypeCds(ItemType clone) {
-        if (clone.getContents() != null) {
-            for (ContentType contentType : clone.getContents()) {
-                if (contentType.getCds() == null) {
-                    continue;
-                }
-                contentType.getCds().clear();
-            }
-        }
-    }
-
-    private static void clearContentTypeMedicationRelatedInfo(ItemType clone) {
-        if (clone.getContents() != null) {
-            for (ContentType contentType : clone.getContents()) {
-                contentType.setMedicinalproduct(null);
-                contentType.setCompoundprescription(null);
-                contentType.setSubstanceproduct(null);
-            }
-        }
     }
 
     public static List<HealthCareElement> toHealthCareElements(List<ItemType> itemTypes) {

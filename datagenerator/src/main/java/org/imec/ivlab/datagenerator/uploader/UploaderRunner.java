@@ -50,7 +50,8 @@ public class UploaderRunner {
 
         executor.execute(UploadQueueImpl.getInstance());
 
-        ScannedFileHandler scannedFileHandler = new ScannedFileHandlerImpl(arguments.isExportAfterUpload(), arguments.isWriteAsIs(), arguments.isValidateExportAfterUpload(), arguments.isGenerateGlobalMedicationScheme(), arguments.isGenerateDailyMedicationScheme(), arguments.isGenerateSumehrOverview(), arguments.getDailyMedicationSchemeDate(), arguments.getStartTransactionId(), arguments.getShiftAction(), arguments.isGenerateGatewayMedicationScheme(), arguments.isGenerateDiaryNoteVisualization());
+        ScannedFileHandler scannedFileHandler = new ScannedFileHandlerImpl(arguments.isExportAfterUpload(), arguments.isWriteAsIs(), arguments.isValidateExportAfterUpload(), arguments.isGenerateGlobalMedicationScheme(), arguments.isGenerateDailyMedicationScheme(), arguments.isGenerateSumehrOverview(), arguments.getDailyMedicationSchemeDate(), arguments.getStartTransactionId(), arguments.getShiftAction(), arguments.isGenerateGatewayMedicationScheme(), arguments.isGenerateDiaryNoteVisualization(),
+            arguments.isGenerateVaccinationVisualization());
 
         Scanner scanner = new Scanner(arguments.getRootDir(), scannedFileHandler);
         scanner.start();

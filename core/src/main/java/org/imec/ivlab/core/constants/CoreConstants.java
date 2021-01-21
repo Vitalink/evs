@@ -20,5 +20,7 @@ public class CoreConstants {
     public static final String EXPORT_NAME_GLOBALSCHEME = "globalscheme";
     public static final String EXPORT_NAME_SUMEHR_OVERVIEW = "overview";
     public static final String EXPORT_NAME_DIARYNOTE_OVERVIEW = "visualization";
+    public static final String EXPORT_NAME_VACCINATION_OVERVIEW = "visualization";
+    public static final String EXPORT_NAME_VACCINATION_LIST_OVERVIEW = "vaccination-list-visualization";
 
 }

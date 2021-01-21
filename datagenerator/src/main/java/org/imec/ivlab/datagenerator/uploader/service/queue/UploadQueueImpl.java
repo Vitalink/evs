@@ -13,6 +13,7 @@ import org.imec.ivlab.datagenerator.uploader.model.DiaryNoteInstruction;
 import org.imec.ivlab.datagenerator.uploader.model.Instruction;
 import org.imec.ivlab.datagenerator.uploader.model.MSInstruction;
 import org.imec.ivlab.datagenerator.uploader.model.SumehrInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.VaccinationInstruction;
 import org.imec.ivlab.datagenerator.uploader.service.callback.Callback;
 import org.imec.ivlab.datagenerator.uploader.service.queue.config.DiaryNoteQueueConfig;
 import org.imec.ivlab.datagenerator.uploader.service.queue.config.MSQueueConfig;
@@ -23,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+import org.imec.ivlab.datagenerator.uploader.service.queue.config.VaccinationQueueConfig;
 
 public class UploadQueueImpl implements Runnable, UploadQueue {
 
@@ -60,6 +62,8 @@ public class UploadQueueImpl implements Runnable, UploadQueue {
             return SumehrQueueConfig.getInstance();
         } else if (instruction instanceof DiaryNoteInstruction) {
             return DiaryNoteQueueConfig.getInstance();
+        } else if (instruction instanceof VaccinationInstruction) {
+            return VaccinationQueueConfig.getInstance();
         }
 
         throw new RuntimeException("No upload queue configured for instruction: " + instruction.getClass());

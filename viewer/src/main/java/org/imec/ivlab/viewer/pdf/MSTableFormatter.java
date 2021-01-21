@@ -25,6 +25,28 @@ public class MSTableFormatter {
         return cell;
     }
 
+    protected static PdfPCell getLeftAlignedCell() {
+        PdfPCell cell = new PdfPCell();
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setPaddingTop(4f);
+        cell.setPaddingBottom(4f);
+        cell.setPaddingLeft(2f);
+        cell.setPaddingRight(2f);
+        return cell;
+    }
+
+    protected static PdfPCell getRightAlignedCell() {
+        PdfPCell cell = new PdfPCell();
+        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        cell.setPaddingTop(4f);
+        cell.setPaddingBottom(4f);
+        cell.setPaddingLeft(2f);
+        cell.setPaddingRight(2f);
+        return cell;
+    }
+
     protected static PdfPCell getObsoleteMedicationCellNotObsolete() {
         PdfPCell cell = new PdfPCell();
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
@@ -51,6 +73,16 @@ public class MSTableFormatter {
 
     protected static PdfPCell getMedicationHeaderCell() {
         PdfPCell cell = getCenteredCell();
+        cell.setBackgroundColor(IMEC_BLUE_COLOR);
+        cell.setBorderColorLeft(BaseColor.WHITE);
+        cell.setBorderColorRight(BaseColor.WHITE);
+        cell.setBorderColorTop(BaseColor.WHITE);
+        cell.setBorderColorBottom(BaseColor.WHITE);
+        return cell;
+    }
+
+    protected static PdfPCell getHeaderCellLeftAligned() {
+        PdfPCell cell = getLeftAlignedCell();
         cell.setBackgroundColor(IMEC_BLUE_COLOR);
         cell.setBorderColorLeft(BaseColor.WHITE);
         cell.setBorderColorRight(BaseColor.WHITE);

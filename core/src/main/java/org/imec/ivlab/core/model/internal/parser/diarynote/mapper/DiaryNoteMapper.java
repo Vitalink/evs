@@ -27,7 +27,7 @@ public class DiaryNoteMapper extends BaseMapper {
 
         FolderType folderType = KmehrMessageUtil.getFolderType(kmehrmessage);
         if (folderType == null || CollectionsUtil.emptyOrNull(folderType.getTransactions())) {
-            throw new RuntimeException("No transactions provided in folder, cannot start mapping to sumehr model");
+            throw new RuntimeException("No transactions provided in folder, cannot start mapping");
         }
 
         Kmehrmessage cloneKmehr = SerializationUtils.clone(kmehrmessage);

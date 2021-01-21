@@ -3,6 +3,8 @@ package org.imec.ivlab.datagenerator.exporter;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionResponse;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionSetResponse;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -126,11 +128,28 @@ public class VaultExporterRunnable implements Runnable {
 
                 }
 
-                if (TransactionType.VACCINATIONS.equals(monitorInstruction.getTransactionType())) {
+                if (TransactionType.VACCINATION.equals(monitorInstruction.getTransactionType())) {
 
                     VaccinationExporter vaccinationExporter = new VaccinationExporter();
-                    vaccinationExporter.exportTransactions(exportInstruction.getTransactionType(), monitorInstruction.getPatient(), exportInstruction.getActorKey(), outputDirectory, null, null);
+                    List<ExportResult<GetTransactionResponse>> results = vaccinationExporter.exportTransactions(exportInstruction.getTransactionType(), monitorInstruction.getPatient(), exportInstruction.getActorKey(), outputDirectory, null, null);
 
+                    if (exportInstruction.isGenerateVaccinationVisualization() && CollectionsUtil.notEmptyOrNull(results)) {
+                        for (ExportResult<GetTransactionResponse> result : results) {
+                            Kmehrmessage kmehrmessage = result.getResponse() != null ? result.getResponse().getKmehrmessage() : null;
+                            if (kmehrmessage != null) {
+                                SchemeExporter.generateVaccinationVisualization(result.getFile(), kmehrmessage);
+                            }
+                        }
+
+                        List<Kmehrmessage> kmehrmessages = results
+                            .stream()
+                            .map(ExportResult::getResponse)
+                            .map(GetTransactionResponse::getKmehrmessage)
+                            .filter(Objects::nonNull)
+                            .collect(Collectors.toList());
+                        SchemeExporter.generateVaccinationListVisualization(monitorInstruction.getPatient(), outputDirectory, kmehrmessages);
+
+                    }
                 }
 
                 if (TransactionType.SUMEHR.equals(monitorInstruction.getTransactionType())) {

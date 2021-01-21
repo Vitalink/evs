@@ -1,6 +1,7 @@
 package org.imec.ivlab.core.model.internal.parser.common;
 
 import be.fgov.ehealth.standards.kmehr.schema.v1.AuthorType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.ContentType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HeaderType;
@@ -256,6 +257,47 @@ public class BaseMapper {
     header.setSender(null);
     header.setStandard(null);
     header.setUrgency(null);
+  }
+
+  protected static void clearContentTypeTextTypes(ItemType clone) {
+      if (clone.getContents() != null) {
+          for (ContentType contentType : clone.getContents()) {
+              if (contentType == null || contentType.getTexts() == null) {
+                  continue;
+              }
+              contentType.getTexts().clear();
+          }
+      }
+  }
+
+  protected static void clearContentTypeCds(ItemType clone) {
+      if (clone.getContents() != null) {
+          for (ContentType contentType : clone.getContents()) {
+              if (contentType.getCds() == null) {
+                  continue;
+              }
+              contentType.getCds().clear();
+          }
+      }
+  }
+
+  protected static void clearContentTypeAllMedicationRelatedInfo(ItemType clone) {
+      if (clone.getContents() != null) {
+          for (ContentType contentType : clone.getContents()) {
+              contentType.setMedicinalproduct(null);
+              contentType.setCompoundprescription(null);
+              contentType.setSubstanceproduct(null);
+          }
+      }
+  }
+
+  protected static void clearMedicinalProductAndSubstanceProduct(ItemType clone) {
+    if (clone.getContents() != null) {
+      for (ContentType contentType : clone.getContents()) {
+        contentType.setMedicinalproduct(null);
+        contentType.setSubstanceproduct(null);
+      }
+    }
   }
 
 }

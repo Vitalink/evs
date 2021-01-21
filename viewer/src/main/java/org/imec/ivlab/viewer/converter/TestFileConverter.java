@@ -9,10 +9,13 @@ import org.imec.ivlab.core.model.internal.parser.diarynote.DiaryNote;
 import org.imec.ivlab.core.model.internal.parser.diarynote.mapper.DiaryNoteMapper;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sumehr;
 import org.imec.ivlab.core.model.internal.parser.sumehr.mapper.SumehrMapper;
+import org.imec.ivlab.core.model.internal.parser.vaccination.Vaccination;
+import org.imec.ivlab.core.model.internal.parser.vaccination.mapper.VaccinationMapper;
 import org.imec.ivlab.core.model.upload.diarylist.DiaryNoteList;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntryList;
 import org.imec.ivlab.core.model.upload.sumehrlist.SumehrList;
+import org.imec.ivlab.core.model.upload.vaccinationentry.VaccinationList;
 import org.imec.ivlab.core.util.CollectionsUtil;
 
 public class TestFileConverter {
@@ -45,6 +48,20 @@ public class TestFileConverter {
         return diaryNoteList.getList().stream()
             .map(diaryNote -> DiaryNoteMapper.kmehrToDiaryNote(diaryNote.getKmehrMessage()))
             .collect(Collectors.toList());
+
+    }
+
+    public static List<Vaccination> convertTVaccinations(VaccinationList vaccinationList) {
+
+        List<Vaccination> vaccinations = new ArrayList<>();
+
+        if (vaccinationList == null || CollectionsUtil.emptyOrNull(vaccinationList.getList())) {
+            return vaccinations;
+        }
+
+        return vaccinationList.getList().stream()
+                            .map(diaryNote -> VaccinationMapper.kmehrToVaccination(diaryNote.getKmehrMessage()))
+                            .collect(Collectors.toList());
 
     }
 

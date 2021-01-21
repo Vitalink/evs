@@ -26,7 +26,7 @@ public class VaccinationExporter extends AbstractTransactionsExporter {
 
     @Override
     public Writer<GetTransactionResponse> getWriter() {
-        return new TransactionWriter(TransactionType.VACCINATIONS, CDTRANSACTIONvalues.VACCINATION);
+        return new TransactionWriter(TransactionType.VACCINATION, CDTRANSACTIONvalues.VACCINATION);
     }
 
 }

@@ -16,6 +16,7 @@ public class ExportInstruction {
     private boolean generateGatewayMedicationScheme;
     private boolean generateSumehrOverview;
     private boolean generateDiaryNoteVisualization;
+    private boolean generateVaccinationVisualization;
     private LocalDate dailyMedicationSchemeDate;
     private String actorKey;
 
@@ -90,6 +91,14 @@ public class ExportInstruction {
 
     public void setGenerateDiaryNoteVisualization(boolean generateDiaryNoteVisualization) {
         this.generateDiaryNoteVisualization = generateDiaryNoteVisualization;
+    }
+
+    public boolean isGenerateVaccinationVisualization() {
+        return generateVaccinationVisualization;
+    }
+
+    public void setGenerateVaccinationVisualization(boolean generateVaccinationVisualization) {
+        this.generateVaccinationVisualization = generateVaccinationVisualization;
     }
 
     public boolean isGenerateGatewayMedicationScheme() {

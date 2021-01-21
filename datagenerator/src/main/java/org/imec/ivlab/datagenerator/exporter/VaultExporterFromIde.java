@@ -21,7 +21,7 @@ public class VaultExporterFromIde {
 
         VaultExporterArguments arguments = new VaultExporterArguments();
 
-        arguments.setTransactionType(TransactionType.MEDICATION_SCHEME);
+        arguments.setTransactionType(TransactionType.VACCINATION);
 
         List<String> patientIDs = new ArrayList<>();
         patientIDs.add(PatientKey.BERT.getValue());
@@ -38,6 +38,7 @@ public class VaultExporterFromIde {
         arguments.setGenerateDailyMedicationScheme(true);
         arguments.setGenerateSumehrOverview(true);
         arguments.setGenerateDiaryNoteVisualization(true);
+        arguments.setGenerateVaccinationVisualization(true);
         arguments.setGenerateGatewayMedicationScheme(true);
         arguments.setDailyMedicationSchemeDate(LocalDate.now().plusYears(4));
         arguments.setFilterOutTransactionsHavingPatientAccessNo(false);

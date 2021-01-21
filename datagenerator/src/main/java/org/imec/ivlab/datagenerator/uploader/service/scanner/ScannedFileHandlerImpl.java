@@ -22,6 +22,8 @@ import org.imec.ivlab.datagenerator.uploader.model.MSInstruction;
 import org.imec.ivlab.datagenerator.uploader.model.State;
 import org.imec.ivlab.datagenerator.uploader.model.SumehrAction;
 import org.imec.ivlab.datagenerator.uploader.model.SumehrInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.VaccinationAction;
+import org.imec.ivlab.datagenerator.uploader.model.VaccinationInstruction;
 import org.imec.ivlab.datagenerator.uploader.service.callback.impl.ExportVaultCallback;
 import org.imec.ivlab.datagenerator.uploader.service.callback.impl.FileUploadCallback;
 import org.imec.ivlab.datagenerator.uploader.service.callback.impl.VersionCheckCallback;
@@ -49,23 +51,26 @@ public class ScannedFileHandlerImpl implements ScannedFileHandler {
     private boolean generateSumehrOverview;
     private boolean generateGatewayMedicationScheme;
     private boolean generateDiaryNoteVisualization;
+    private boolean generateVaccinationVisualization;
 
     boolean versionChecked = false;
 
-    public ScannedFileHandlerImpl(boolean exportAfterUpload, boolean writeAsIs, boolean validateExportAfterUpload, boolean generateGlobalMedicationScheme, boolean generateDailyMedicationScheme, boolean generateSumehrOverview, LocalDate dailyMedicationSchemeDate, String startTransactionId, ShiftAction shiftAction, boolean generateGatewayMedicationScheme, boolean generateDiaryNoteVisualization) throws VitalinkException {
-        this.generateSumehrOverview          = generateSumehrOverview;
-        this.generateGatewayMedicationScheme = generateGatewayMedicationScheme;
-        this.generateDiaryNoteVisualization  = generateDiaryNoteVisualization;
-        this.uploadQueue                     = UploadQueueImpl.getInstance();
-        this.startTransactionId              = startTransactionId;
-        this.exportAfterUpload               = exportAfterUpload;
-        this.writeAsIs                       = writeAsIs;
-        this.validateExportAfterUpload       = validateExportAfterUpload;
-        this.createGlobalSchemeAfterUpload   = generateGlobalMedicationScheme;
-        this.generateDailyMedicationScheme   = generateDailyMedicationScheme;
-        this.dailyMedicationSchemeDate       = dailyMedicationSchemeDate;
-        this.startTransactionId              = startTransactionId;
-        this.shiftAction                     = shiftAction;
+    public ScannedFileHandlerImpl(boolean exportAfterUpload, boolean writeAsIs, boolean validateExportAfterUpload, boolean generateGlobalMedicationScheme, boolean generateDailyMedicationScheme, boolean generateSumehrOverview,
+        LocalDate dailyMedicationSchemeDate, String startTransactionId, ShiftAction shiftAction, boolean generateGatewayMedicationScheme, boolean generateDiaryNoteVisualization, boolean generateVaccinationVisualization) throws VitalinkException {
+        this.generateSumehrOverview           = generateSumehrOverview;
+        this.generateGatewayMedicationScheme  = generateGatewayMedicationScheme;
+        this.generateDiaryNoteVisualization   = generateDiaryNoteVisualization;
+        this.generateVaccinationVisualization = generateVaccinationVisualization;
+        this.uploadQueue                      = UploadQueueImpl.getInstance();
+        this.startTransactionId               = startTransactionId;
+        this.exportAfterUpload                = exportAfterUpload;
+        this.writeAsIs                        = writeAsIs;
+        this.validateExportAfterUpload        = validateExportAfterUpload;
+        this.createGlobalSchemeAfterUpload    = generateGlobalMedicationScheme;
+        this.generateDailyMedicationScheme    = generateDailyMedicationScheme;
+        this.dailyMedicationSchemeDate        = dailyMedicationSchemeDate;
+        this.startTransactionId               = startTransactionId;
+        this.shiftAction                      = shiftAction;
     }
 
 
@@ -135,9 +140,9 @@ public class ScannedFileHandlerImpl implements ScannedFileHandler {
         instruction.setWriteAsIs(writeAsIs);
 
 
-        if (MSAction.EXPORT.equals(instruction.getAction()) || exportAfterUpload || validateExportAfterUpload || createGlobalSchemeAfterUpload || generateDailyMedicationScheme || generateSumehrOverview) {
+        if (MSAction.EXPORT.equals(instruction.getAction()) || exportAfterUpload || validateExportAfterUpload || createGlobalSchemeAfterUpload || generateDailyMedicationScheme || generateSumehrOverview || generateDiaryNoteVisualization || generateVaccinationVisualization) {
 
-            instruction.getCallbacks().add(new ExportVaultCallback(rootFolder, file, instruction.getTransactionType(), instruction.getAction(), instruction.getPatient(), instruction.getActorID(), validateExportAfterUpload, createGlobalSchemeAfterUpload, generateDailyMedicationScheme, generateSumehrOverview, dailyMedicationSchemeDate, generateGatewayMedicationScheme, generateDiaryNoteVisualization));
+            instruction.getCallbacks().add(new ExportVaultCallback(rootFolder, file, instruction.getTransactionType(), instruction.getAction(), instruction.getPatient(), instruction.getActorID(), validateExportAfterUpload, createGlobalSchemeAfterUpload, generateDailyMedicationScheme, generateSumehrOverview, dailyMedicationSchemeDate, generateGatewayMedicationScheme, generateDiaryNoteVisualization, generateVaccinationVisualization));
 
         }
 
@@ -186,6 +191,8 @@ public class ScannedFileHandlerImpl implements ScannedFileHandler {
                 break;
             case DIARY_NOTE:
                 action = DiaryNoteAction.fromValue(actionName);
+            case VACCINATION:
+                action = VaccinationAction.fromValue(actionName);
                 break;
             default:
                 throw new RuntimeException("No action configured for transaction type: " + transactionType);
@@ -204,6 +211,8 @@ public class ScannedFileHandlerImpl implements ScannedFileHandler {
                 return new SumehrInstruction();
             case DIARY_NOTE:
                 return new DiaryNoteInstruction();
+            case VACCINATION:
+                return new VaccinationInstruction();
             default:
                 throw new RuntimeException("No instruction configured for transaction type: " + transactionType);
         }

@@ -53,6 +53,9 @@ public class VaultExporterArguments {
     @Parameter(names = "-generateDiaryNoteVisualization", description = "Generate a visualization for every diarynote transaction", arity = 1)
     private boolean generateDiaryNoteVisualization;
 
+    @Parameter(names = "-generateVaccinationVisualization", description = "Generate a visualization for every vaccination transaction", arity = 1)
+    private boolean generateVaccinationVisualization;
+
     @Parameter(names = "-generateGatewayMedicationScheme", description = "Generate a gateway medication scheme after export", required = true, arity = 1)
     private boolean generateGatewayMedicationScheme;
 
@@ -151,6 +154,14 @@ public class VaultExporterArguments {
 
     public void setGenerateDiaryNoteVisualization(boolean generateDiaryNoteVisualization) {
         this.generateDiaryNoteVisualization = generateDiaryNoteVisualization;
+    }
+
+    public boolean isGenerateVaccinationVisualization() {
+        return generateVaccinationVisualization;
+    }
+
+    public void setGenerateVaccinationVisualization(boolean generateVaccinationVisualization) {
+        this.generateVaccinationVisualization = generateVaccinationVisualization;
     }
 
     public boolean isGenerateGatewayMedicationScheme() {

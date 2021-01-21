@@ -106,6 +106,7 @@ public class VaultExporterRunner {
             exportInstruction.setTransactionType(arguments.getTransactionType());
             exportInstruction.setGenerateSumehrOverview(arguments.isGenerateSumehrOverview());
             exportInstruction.setGenerateDiaryNoteVisualization(arguments.isGenerateDiaryNoteVisualization());
+            exportInstruction.setGenerateVaccinationVisualization(arguments.isGenerateVaccinationVisualization());
             exportInstruction.setGenerateGatewayMedicationScheme(arguments.isGenerateGatewayMedicationScheme());
 
             executor.execute(new VaultExporterRunnable(monitorInstruction, exportInstruction));

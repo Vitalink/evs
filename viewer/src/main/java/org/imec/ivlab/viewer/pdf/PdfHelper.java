@@ -51,10 +51,10 @@ public class PdfHelper {
 
       manipulatePdf(tempPdfFile.getAbsolutePath(), fileLocation);
 
-      LOG.debug("Wrote sumehr overview to: " + fileLocation);
+      LOG.debug("Wrote pdf to: " + fileLocation);
 
     } catch (Throwable t) {
-      throw new SchemaConversionException("Failed to create sumehr overview", t);
+      throw new SchemaConversionException("Failed to create pdf", t);
     }
   }
 

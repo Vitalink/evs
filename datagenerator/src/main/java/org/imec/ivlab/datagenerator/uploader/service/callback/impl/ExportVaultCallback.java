@@ -6,6 +6,8 @@ import be.fgov.ehealth.hubservices.core.v3.GetTransactionSetResponse;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONvalues;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import org.apache.commons.io.FileExistsException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
@@ -29,6 +31,7 @@ import org.imec.ivlab.datagenerator.exporter.export.ExportResult;
 import org.imec.ivlab.datagenerator.exporter.export.impl.DiaryNoteExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.MedicationExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.SumehrExporter;
+import org.imec.ivlab.datagenerator.exporter.export.impl.VaccinationExporter;
 import org.imec.ivlab.datagenerator.uploader.UploaderHelper;
 import org.imec.ivlab.datagenerator.uploader.exception.CallbackException;
 import org.imec.ivlab.datagenerator.uploader.model.Action;
@@ -67,11 +70,12 @@ public class ExportVaultCallback implements Callback {
     private boolean generateDailyMedicationScheme;
     private boolean generateSumehrOverview;
     private boolean generateDiaryNoteVisualization;
+    private boolean generateVaccinationVisualization;
     private LocalDate dailyMedicationSchemeDate;
     private boolean generateGatewayMedicationScheme;
 
     public ExportVaultCallback(File rootFolder, File uploadFile, TransactionType transactionType, Action action, Patient patient, String actorID, boolean validate, boolean createGlobalSchemeAfterUpload, boolean generateDailyMedicationScheme,
-        boolean generateSumehrOverview, LocalDate dailyMedicationSchemeDate, boolean generateGatewayMedicationScheme, boolean generateDiaryNoteVisualization) {
+        boolean generateSumehrOverview, LocalDate dailyMedicationSchemeDate, boolean generateGatewayMedicationScheme, boolean generateDiaryNoteVisualization, boolean generateVaccinationVisualization) {
         this.rootFolder = rootFolder;
         this.uploadFile = uploadFile;
         this.transactionType = transactionType;
@@ -85,6 +89,7 @@ public class ExportVaultCallback implements Callback {
         this.dailyMedicationSchemeDate = dailyMedicationSchemeDate;
         this.generateGatewayMedicationScheme = generateGatewayMedicationScheme;
         this.generateDiaryNoteVisualization = generateDiaryNoteVisualization;
+        this.generateVaccinationVisualization = generateVaccinationVisualization;
     }
 
     @Override
@@ -166,6 +171,29 @@ public class ExportVaultCallback implements Callback {
                                 SchemeExporter.generateDiaryNoteVisualization(result.getFile(), kmehrmessage);
                             }
                         }
+
+                    }
+                }
+
+                if (TransactionType.VACCINATION.equals(transactionType)) {
+
+                    List<ExportResult<GetTransactionResponse>> exportResults = exportTransaction(exportFile, new VaccinationExporter());
+
+                    if (generateVaccinationVisualization && CollectionsUtil.notEmptyOrNull(exportResults)) {
+                        for (ExportResult<GetTransactionResponse> result : exportResults) {
+                            Kmehrmessage kmehrmessage = result.getResponse() != null ? result.getResponse().getKmehrmessage() : null;
+                            if (kmehrmessage != null) {
+                                SchemeExporter.generateVaccinationVisualization(result.getFile(), kmehrmessage);
+                            }
+                        }
+
+                        List<Kmehrmessage> kmehrmessages = exportResults
+                            .stream()
+                            .map(ExportResult::getResponse)
+                            .map(GetTransactionResponse::getKmehrmessage)
+                            .filter(Objects::nonNull)
+                            .collect(Collectors.toList());
+                        SchemeExporter.generateVaccinationListVisualization(patient, exportFile.getParentFile(), kmehrmessages);
 
                     }
                 }

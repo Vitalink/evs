@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 public enum TransactionType {
 
     MEDICATION_SCHEME("medicationscheme", "m"),
-    VACCINATIONS("vaccination", "v"),
+    VACCINATION("vaccination", "v"),
     SUMEHR("sumehr", "s"),
     POPULATION_BASED_SCREENING("population-based-screening", "p"),
     CHILD_PREVENTION("child-prevention", "c"),
