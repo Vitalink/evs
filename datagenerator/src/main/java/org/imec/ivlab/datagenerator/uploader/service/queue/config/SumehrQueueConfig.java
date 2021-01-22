@@ -1,6 +1,5 @@
 package org.imec.ivlab.datagenerator.uploader.service.queue.config;
 
-import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.core.model.upload.sumehrlist.SumehrList;
@@ -37,11 +36,7 @@ public class SumehrQueueConfig implements QueueConfig<SumehrInstruction> {
     public void callUploadAction(SumehrInstruction instruction, KmehrEntryList kmehrEntryList) throws UploaderException, VitalinkException {
 
         SumehrList sumehrList;
-        try {
-            sumehrList = SumehrListExtractor.getSumehrList(kmehrEntryList);
-        } catch (TransformationException e) {
-            throw new RuntimeException("Failed to interpret file " + instruction.getFile().getAbsolutePath(), e);
-        }
+        sumehrList = SumehrListExtractor.getSumehrList(kmehrEntryList);
 
         switch (instruction.getAction()) {
 
