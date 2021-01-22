@@ -77,17 +77,17 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
     }
 
     @Override
-    public void empty(Patient patient, String actorId) throws VitalinkException, UploaderException {
+    public void empty(Patient patient, String actorId) throws VitalinkException {
 
         sumehrService.authenticate(readAuthenticationConfig(actorId));
 
-        SumehrList sumehrListInVault = sumehrService.getSumehrList(patient);
+        SumehrList sumehrListInVault = sumehrService.getSumehrListOfCurrentActor(patient);
 
         if (CollectionsUtil.emptyOrNull(sumehrListInVault.getList())) {
-            LOG.info("No sumehrs in vault");
+            LOG.info("No sumehrs of the current actor in vault");
             return;
         } else {
-            LOG.info("About to remove " + CollectionsUtil.size(sumehrListInVault.getList()) + " sumehrs from the vault for patientID: " + patient.getId());
+            LOG.info("About to remove " + CollectionsUtil.size(sumehrListInVault.getList()) + " sumehrs from the vault for patientID: " + patient.getId() + " and actor: " + actorId);
         }
 
         sumehrService.revokeTransactions(patient, sumehrListInVault);

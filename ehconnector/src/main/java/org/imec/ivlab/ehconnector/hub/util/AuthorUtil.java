@@ -22,9 +22,14 @@ public class AuthorUtil {
 
   public static void regenerateSenderAuthorBasedOnCertificate(HeaderType headerType) throws TechnicalConnectorException {
     headerType.getSender().getHcparties().clear();
+    List<HcpartyType> authorHcParties = createAuthorPersonHcParties();
+    headerType.getSender().getHcparties().addAll(authorHcParties);
+  }
+
+  public static List<HcpartyType> createAuthorPersonHcParties() throws TechnicalConnectorException {
     List<HcpartyType> authorHcParties = HcPartyUtil.createAuthorHcParties(CONNECTOR_PROJECT_NAME);
     removeApplicationHcParties(authorHcParties);
-    headerType.getSender().getHcparties().addAll(authorHcParties);
+    return authorHcParties;
   }
 
   private static void removeApplicationHcParties(List<HcpartyType> hcparties) {

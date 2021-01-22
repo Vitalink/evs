@@ -50,7 +50,7 @@ public class HCPartyUtil {
      * @param idhcpartYschemesFilter
      * @return
      */
-    public List<IDHCPARTY> getIDHcParties(HcpartyType hcpartyType, IDHCPARTYschemes idhcpartYschemesFilter) {
+    public static List<IDHCPARTY> getIDHcParties(HcpartyType hcpartyType, IDHCPARTYschemes idhcpartYschemesFilter) {
 
         List<IDHCPARTY> idhcparties = new ArrayList<>();
 

@@ -200,14 +200,9 @@ public class Translator {
 
     private static List<String> getHCPartyIds(HcpartyType hcpartyType) {
 
-        HCPartyUtil hcPartyUtil = new HCPartyUtil();
-
-        List<IDHCPARTY> idHcParties = hcPartyUtil.getIDHcParties(hcpartyType, IDHCPARTYschemes.ID_HCPARTY);
+        List<IDHCPARTY> idHcParties = HCPartyUtil.getIDHcParties(hcpartyType, IDHCPARTYschemes.ID_HCPARTY);
 
         List<String> hcPartyIds = new ArrayList<>();
-        if (idHcParties == null) {
-            return null;
-        }
 
         for (IDHCPARTY idhcparty : idHcParties) {
             hcPartyIds.add(idhcparty.getValue());

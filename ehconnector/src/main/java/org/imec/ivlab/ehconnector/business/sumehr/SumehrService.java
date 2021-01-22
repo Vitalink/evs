@@ -9,6 +9,8 @@ public interface SumehrService {
 
     SumehrList getSumehrList(Patient patient) throws VitalinkException;
 
+    SumehrList getSumehrListOfCurrentActor(Patient patient) throws VitalinkException;
+
     void putTransactions(Patient patient, SumehrList sumehrList) throws VitalinkException;
 
     void revokeTransactions(Patient patient, SumehrList sumehrList) throws VitalinkException;

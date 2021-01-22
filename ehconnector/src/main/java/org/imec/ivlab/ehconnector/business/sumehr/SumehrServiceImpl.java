@@ -1,11 +1,21 @@
 package org.imec.ivlab.ehconnector.business.sumehr;
 
+import static org.imec.ivlab.ehconnector.hub.util.AuthorUtil.createAuthorPersonHcParties;
+
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionResponse;
+import be.fgov.ehealth.standards.kmehr.id.v1.IDHCPARTY;
+import be.fgov.ehealth.standards.kmehr.id.v1.IDHCPARTYschemes;
+import be.fgov.ehealth.standards.kmehr.schema.v1.AuthorType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
+import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 import org.apache.log4j.Logger;
 import org.imec.ivlab.core.exceptions.VitalinkException;
+import org.imec.ivlab.core.kmehr.model.util.HCPartyUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.model.upload.TransactionType;
 import org.imec.ivlab.core.model.patient.model.Patient;
@@ -30,7 +40,7 @@ public class SumehrServiceImpl extends AbstractService implements SumehrService 
     private HubFlow hubFlow = new HubFlow();
     private HubHelper hubHelper = new HubHelper();
 
-    public SumehrServiceImpl() throws VitalinkException {
+    public SumehrServiceImpl() {
     }
 
 
@@ -44,6 +54,51 @@ public class SumehrServiceImpl extends AbstractService implements SumehrService 
         } catch (Exception e) {
             throw new VitalinkException(e);
         }
+    }
+
+    @Override
+    public SumehrList getSumehrListOfCurrentActor(Patient patient) throws VitalinkException {
+        List<HcpartyType> authorsOfAction = null;
+        try {
+            authorsOfAction = createAuthorPersonHcParties();
+        } catch (TechnicalConnectorException e) {
+            throw new RuntimeException(e);
+        }
+        return filterByAuthor(getSumehrList(patient), authorsOfAction);
+    }
+
+    private SumehrList filterByAuthor(SumehrList sumehrList, List<HcpartyType> authorsOfAction) {
+        sumehrList.setList(sumehrList.getList().stream().filter(sumehr -> actionAuthorMatchesAuthorOfSumehr(sumehr, authorsOfAction)).collect(Collectors.toList()));
+        return sumehrList;
+    }
+
+    private boolean actionAuthorMatchesAuthorOfSumehr(Sumehr sumehr, List<HcpartyType> authorsOfAction) {
+        AuthorType sumehrAuthor = Optional
+            .ofNullable(sumehr.getIdentifiableTransaction())
+            .map(be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType::getAuthor)
+            .orElse(null);
+
+        if (sumehrAuthor == null || sumehrAuthor.getHcparties() == null || authorsOfAction == null ) {
+            return false;
+        }
+
+        return Stream.concat(
+            authorsOfAction.stream().flatMap(author -> HCPartyUtil.getIDHcParties(author, IDHCPARTYschemes.INSS).stream()),
+            authorsOfAction.stream().flatMap(author -> HCPartyUtil.getIDHcParties(author, IDHCPARTYschemes.ID_HCPARTY).stream())
+        ).allMatch(idhcpartyAction -> containsAnIdenticalId(sumehrAuthor.getHcparties(), idhcpartyAction));
+
+    }
+
+    private boolean containsAnIdenticalId(List<HcpartyType> hcparties, IDHCPARTY idhcpartyAction) {
+        return hcparties
+                    .stream()
+                    .flatMap(hcpartyType -> hcpartyType.getIds().stream())
+                    .anyMatch(
+                        idhcpartySumehr ->
+                            idhcpartySumehr.getS() != null &&
+                            idhcpartySumehr.getS().equals(idhcpartyAction.getS()) &&
+                            idhcpartySumehr.getValue() != null &&
+                            idhcpartySumehr.getValue().equals(idhcpartyAction.getValue()));
     }
 
     @Override
