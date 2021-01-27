@@ -291,10 +291,6 @@ public class SumehrMapper extends BaseMapper {
             pb.getUnparsed().getEndmoment().setDate(null);
         }
 
-        if (itemType.getLifecycle() != null) {
-            pb.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
-        }
-
         return pb;
     }
 
@@ -311,6 +307,14 @@ public class SumehrMapper extends BaseMapper {
 
         patientWill.setTextTypes(ItemUtil.collectContentTypeTextTypes(itemType));
         clearContentTypeTextTypes(clone);
+
+        if (itemType.getBeginmoment() != null) {
+            patientWill.setApplicationDate(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            clone.getBeginmoment().setDate(null);
+        }
+
+        patientWill.setRelevant(itemType.isIsrelevant());
+        clone.setIsrelevant(null);
 
         patientWill.setRecordDateTime(DateUtils.toLocalDateTime(itemType.getRecorddatetime()));
         clone.setRecorddatetime(null);
