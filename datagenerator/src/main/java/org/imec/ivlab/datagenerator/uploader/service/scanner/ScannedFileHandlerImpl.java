@@ -191,6 +191,7 @@ public class ScannedFileHandlerImpl implements ScannedFileHandler {
                 break;
             case DIARY_NOTE:
                 action = DiaryNoteAction.fromValue(actionName);
+                break;
             case VACCINATION:
                 action = VaccinationAction.fromValue(actionName);
                 break;
