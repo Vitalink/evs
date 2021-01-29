@@ -1,10 +1,8 @@
 package org.imec.ivlab.core.model.internal.parser.sumehr;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDLIFECYCLEvalues;
-import org.imec.ivlab.core.model.internal.parser.ItemParsedItem;
-
-
 import java.time.LocalDate;
+import org.imec.ivlab.core.model.internal.parser.ItemParsedItem;
 
 public class Problem extends ItemParsedItem {
 
@@ -24,14 +22,16 @@ public class Problem extends ItemParsedItem {
         return endmoment;
     }
 
+    public void setEndmoment(LocalDate endmoment) {
+        this.endmoment = endmoment;
+    }
+
     public CDLIFECYCLEvalues getLifecycle() {
         return lifecycle;
     }
+
     public void setLifecycle(CDLIFECYCLEvalues lifecycle) {
         this.lifecycle = lifecycle;
-    }
-    public void setEndmoment(LocalDate endmoment) {
-        this.endmoment = endmoment;
     }
 
 }
