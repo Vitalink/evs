@@ -15,9 +15,7 @@ public class PatientWill extends ItemParsedItem {
     private List<TextType> textTypes;
     private List<CDCONTENT> cdcontents = new ArrayList<>();
     private LocalDateTime recordDateTime;
-    private CDLIFECYCLEvalues lifecycle;
     private LocalDate beginmoment;
-    private Boolean isRelevant;
 
     public List<TextType> getTextTypes() {
         return textTypes;
@@ -45,17 +43,6 @@ public class PatientWill extends ItemParsedItem {
 
     public void setBeginmoment(LocalDate beginmoment) {
         this.beginmoment = beginmoment;
-    }
-
-    public void setRelevant(Boolean relevant) {
-        isRelevant = relevant;
-    }
-
-    public CDLIFECYCLEvalues getLifecycle() {
-        return lifecycle;
-    }
-    public void setLifecycle(CDLIFECYCLEvalues lifecycle) {
-        this.lifecycle = lifecycle;
     }
 
     public void setRecordDateTime(LocalDateTime recordDateTime) {
