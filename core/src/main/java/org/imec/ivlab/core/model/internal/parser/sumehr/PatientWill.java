@@ -17,7 +17,6 @@ public class PatientWill extends ItemParsedItem {
     private LocalDateTime recordDateTime;
     private CDLIFECYCLEvalues lifecycle;
     private LocalDate beginmoment;
-    private LocalDate applicationDate;
     private Boolean isRelevant;
 
     public List<TextType> getTextTypes() {
@@ -26,14 +25,6 @@ public class PatientWill extends ItemParsedItem {
 
     public void setTextTypes(List<TextType> textTypes) {
         this.textTypes = textTypes;
-    }
-
-    public LocalDate getApplicationDate() {
-        return applicationDate;
-    }
-
-    public void setApplicationDate(LocalDate applicationDate) {
-        this.applicationDate = applicationDate;
     }
 
     public List<CDCONTENT> getCdcontents() {
