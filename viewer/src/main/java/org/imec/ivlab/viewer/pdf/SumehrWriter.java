@@ -95,7 +95,7 @@ public class SumehrWriter extends Writer {
 
         SumehrWriter sumehrWriter = new SumehrWriter();
         Stream
-            .of("1-sumehr-1dot1-all-parseable", "2-sumehr-1dot1-unparseable-content", "3-sumehr-2dot0")
+            .of("1-sumehr-1dot1-all-parseable", "2-sumehr-1dot1-unparseable-content", "3-sumehr-2dot0", "4-sumehr-2dot0")
             .forEach(filename -> sumehrWriter.createPdf(readTestFile(filename + ".xml").get(0), filename + ".pdf"));
 
     }
