@@ -312,9 +312,12 @@ public class SumehrMapper extends BaseMapper {
         clearContentTypeTextTypes(clone);
 
         if (itemType.getBeginmoment() != null) {
-            patientWill.setApplicationDate(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            patientWill.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
             clone.getBeginmoment().setDate(null);
         }
+
+        patientWill.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
+        clone.setLifecycle(null);
 
         patientWill.setRelevant(itemType.isIsrelevant());
         clone.setIsrelevant(null);
