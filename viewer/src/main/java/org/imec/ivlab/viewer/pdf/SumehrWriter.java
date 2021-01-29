@@ -359,6 +359,11 @@ public class SumehrWriter extends Writer {
 
         addRow(table, toDetailRowIfHasValue("Text", StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(patientWill.getTextTypes()).toArray())));
         addRow(table, toDetailRowIfHasValue("Date of registration", Translator.formatAsDateTime(patientWill.getRecordDateTime())));
+        addRow(table, toDetailRowIfHasValue("Begin", patientWill.getBeginmoment()));
+        addRow(table, toDetailRowIfHasValue("Relevant", patientWill.getRelevant()));
+        if (patientWill.getLifecycle() != null) {
+            addRow(table, toDetailRowIfHasValue("Lifecycle", patientWill.getLifecycle().value()));
+        }
 
         return table;
 
