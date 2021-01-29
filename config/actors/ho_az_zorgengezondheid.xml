@@ -1,0 +1,48 @@
+<authenticationConfiguration>
+    <evs>
+        <type>fallback</type>
+        <certificates>
+            <certificate>
+                <type>identification</type>
+                <path>..\config\certificates\NIHII-HOSPITAL=71054478 20210113-154753.acc-p12</path>
+                <password>zE3xAhH#Nu7$*aVW</password>
+            </certificate>
+        </certificates>
+    </evs>
+    <ehealth>
+        <entry>user.nihii=71054478</entry>
+        <entry>user.name=AZ Zorg en Gezondheid</entry>
+        <entry>careprovider.inss=82083005943</entry>
+        <entry>careprovider.nihii=10030095004</entry>
+        <entry>careprovider.firstname=Wouter</entry>
+        <entry>careprovider.lastname=De Jonghe</entry>
+        <entry>encryption.actor.id=${user.nihii}</entry>
+        <entry>encryption.actor.cd=NIHII_HOSPITAL</entry>
+        <entry>main.kmehr.quality=orghospital</entry>
+        <entry>kmehr.default.hcpartylist=identifier</entry>
+        <entry>kmehr.hubservicev3.hcpartylist=identifier,physician,software</entry>
+        <entry>kmehr.hubservicev3.identifier.id.idhcparty.value=${user.nihii}</entry>
+        <entry>kmehr.hubservicev3.identifier.id.idhcparty.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.identifier.cd.cdhcparty.value=orghospital</entry>
+        <entry>kmehr.hubservicev3.identifier.cd.cdhcparty.sv=1.1</entry>
+        <entry>kmehr.hubservicev3.identifier.name=${user.name}</entry>
+        <entry>kmehr.hubservicev3.physician.id.inss.value=${careprovider.inss}</entry>
+        <entry>kmehr.hubservicev3.physician.id.inss.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.physician.id.idhcparty.value=${careprovider.nihii}</entry>
+        <entry>kmehr.hubservicev3.physician.id.idhcparty.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.physician.cd.cdhcparty.value=persphysician</entry>
+        <entry>kmehr.hubservicev3.physician.cd.cdhcparty.sv=1.1</entry>
+        <entry>kmehr.hubservicev3.physician.firstname=${careprovider.firstname}</entry>
+        <entry>kmehr.hubservicev3.physician.lastname=${careprovider.lastname}</entry>
+        <entry>kmehr.hubservicev3.physician.address.cd.sv=1.0</entry>
+        <entry>kmehr.hubservicev3.physician.address.cd.value=</entry>
+        <entry>kmehr.hubservicev3.physician.address.cd.schemes=cdaddress</entry>
+        <entry>kmehr.hubservicev3.physician.address.nis=24062</entry>
+        <entry>sessionmanager.samlattribute.1=urn:be:fgov:identification-namespace,urn:be:fgov:ehealth:1.0:hospital:nihii-number,${user.nihii}</entry>
+        <entry>sessionmanager.samlattribute.2=urn:be:fgov:identification-namespace,urn:be:fgov:ehealth:1.0:certificateholder:hospital:nihii-number,${user.nihii}</entry>
+        <entry>sessionmanager.samlattributedesignator.1=urn:be:fgov:identification-namespace,urn:be:fgov:ehealth:1.0:certificateholder:hospital:nihii-number</entry>
+        <entry>sessionmanager.samlattributedesignator.2=urn:be:fgov:identification-namespace,urn:be:fgov:ehealth:1.0:hospital:nihii-number</entry>
+        <entry>sessionmanager.samlattributedesignator.3=urn:be:fgov:certified-namespace:ehealth:ehealth,urn:be:fgov:ehealth:1.0:certificateholder:hospital:nihii-number:recognisedhospital:boolean</entry>
+        <entry>sessionmanager.samlattributedesignator.4=urn:be:fgov:certified-namespace:ehealth,urn:be:fgov:ehealth:1.0:hospital:nihii-number:recognisedhospital:nihii11</entry>
+    </ehealth>
+</authenticationConfiguration>

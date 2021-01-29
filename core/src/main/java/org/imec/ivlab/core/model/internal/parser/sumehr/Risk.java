@@ -5,6 +5,7 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDLIFECYCLEvalues;
 import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import org.imec.ivlab.core.model.internal.parser.ItemParsedItem;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,24 @@ public class Risk extends ItemParsedItem {
     private List<CDCONTENT> cdcontents = new ArrayList<>();
     private CDLIFECYCLEvalues lifecycle;
     private Boolean isRelevant;
+    private LocalDate beginmoment;
+    private String relation;
+
+    public String getRelation() {
+        return relation;
+    }
+
+    public void setRelation(String relation) {
+        this.relation = relation;
+    }
+
+    public LocalDate getBeginmoment() {
+        return beginmoment;
+    }
+
+    public void setBeginmoment(LocalDate beginmoment) {
+        this.beginmoment = beginmoment;
+    }
 
     public List<TextType> getTextTypes() {
         return textTypes;

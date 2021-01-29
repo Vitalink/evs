@@ -235,6 +235,7 @@ public class SumehrWriter extends Writer {
             addRow(table, toDetailRowIfHasValue("Lifecycle", vaccination.getLifecycle().value()));
         }
         addRow(table, toDetailRowIfHasValue("Date of registration", Translator.formatAsDateTime(vaccination.getRecordDateTime())));
+        addRow(table, toDetailRowIfHasValue("Relevant", vaccination.getRelevant()));
 
 
         return table;
@@ -335,6 +336,7 @@ public class SumehrWriter extends Writer {
             }
         }
         addRow(table, toDetailRowIfHasValue("Text", StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(risk.getTextTypes()).toArray())));
+        addRow(table, toDetailRowIfHasValue("Begin", risk.getBeginmoment()));
         addRow(table, toDetailRowIfHasValue("Relevant", risk.getRelevant()));
         if (risk.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", risk.getLifecycle().value()));

@@ -16,6 +16,7 @@ public class Vaccination extends AbstractParsedItem<ItemType> {
     private String vaccinatedAgainst;
     private String text;
     private Identifier identifier;
+    private Boolean isRelevant;
     private LocalDate applicationDate;
     private List<TextType> textTypes;
     private List<CDCONTENT> cdcontents = new ArrayList<>();
@@ -70,6 +71,14 @@ public class Vaccination extends AbstractParsedItem<ItemType> {
 
     public void setLifecycle(CDLIFECYCLEvalues lifecycle) {
         this.lifecycle = lifecycle;
+    }
+
+    public Boolean getRelevant() {
+        return isRelevant;
+    }
+
+    public void setRelevant(Boolean relevant) {
+        isRelevant = relevant;
     }
 
     public LocalDateTime getRecordDateTime() {

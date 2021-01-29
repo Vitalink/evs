@@ -237,6 +237,14 @@ public class SumehrMapper extends BaseMapper {
 
         toItem(itemType, risk);
 
+        if (itemType.getBeginmoment() != null) {
+            risk.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            risk.getUnparsed().getBeginmoment().setDate(null);
+        }
+
+        //if (CollectionsUtil.notEmptyOrNull(cdItems)) {
+          //  contactPerson.setRelation(cdItems.get(0).getValue());
+
         return risk;
     }
 
@@ -419,6 +427,9 @@ public class SumehrMapper extends BaseMapper {
 
         vaccination.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
         clone.setLifecycle(null);
+
+        vaccination.setRelevant(itemType.isIsrelevant());
+        clone.setIsrelevant(null);
 
         vaccination.setIdentifier(MedicationMapper.getMedicationIdentifier(itemType.getContents(), itemType.getTexts()));
 
