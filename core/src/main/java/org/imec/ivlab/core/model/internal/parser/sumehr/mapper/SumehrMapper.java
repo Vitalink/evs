@@ -291,6 +291,9 @@ public class SumehrMapper extends BaseMapper {
             pb.getUnparsed().getEndmoment().setDate(null);
         }
 
+        pb.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
+        pb.getUnparsed().setLifecycle(null);
+
         return pb;
     }
 
