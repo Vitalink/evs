@@ -18,8 +18,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import lombok.Getter;
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 import org.apache.commons.lang3.SerializationUtils;
 import org.imec.ivlab.core.kmehr.mapper.KmehrMapper;
@@ -30,18 +28,18 @@ import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.model.evsref.EVSREF;
 import org.imec.ivlab.core.model.evsref.extractor.impl.SumehrEVSRefExtractor;
 import org.imec.ivlab.core.model.internal.mapper.medication.mapper.MedicationMapper;
-import org.imec.ivlab.core.model.internal.parser.common.BaseMapper;
 import org.imec.ivlab.core.model.internal.parser.ItemParsedItem;
+import org.imec.ivlab.core.model.internal.parser.common.BaseMapper;
 import org.imec.ivlab.core.model.internal.parser.sumehr.ContactPerson;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HealthCareElement;
 import org.imec.ivlab.core.model.internal.parser.sumehr.MedicationEntrySumehr;
 import org.imec.ivlab.core.model.internal.parser.sumehr.PatientWill;
+import org.imec.ivlab.core.model.internal.parser.sumehr.Problem;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Risk;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sumehr;
-import org.imec.ivlab.core.model.internal.parser.sumehr.Vaccination;
-import org.imec.ivlab.core.model.internal.parser.sumehr.Problem;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Treatment;
+import org.imec.ivlab.core.model.internal.parser.sumehr.Vaccination;
 import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInTransactionFoundException;
 import org.imec.ivlab.core.model.upload.sumehrlist.SumehrList;
 import org.imec.ivlab.core.model.upload.sumehrlist.SumehrListExtractor;
@@ -242,9 +240,6 @@ public class SumehrMapper extends BaseMapper {
             risk.getUnparsed().getBeginmoment().setDate(null);
         }
 
-        //if (CollectionsUtil.notEmptyOrNull(cdItems)) {
-          //  contactPerson.setRelation(cdItems.get(0).getValue());
-
         return risk;
     }
 
@@ -316,7 +311,7 @@ public class SumehrMapper extends BaseMapper {
         patientWill.setCdcontents(ItemUtil.collectContentTypeCds(itemType));
         clearContentTypeCds(clone);
 
-        patientWill.setTextTypes(ItemUtil.collectContentTypeTextTypes(itemType));
+        patientWill.setContentTextTypes(ItemUtil.collectContentTypeTextTypes(itemType));
         clearContentTypeTextTypes(clone);
 
         if (itemType.getBeginmoment() != null) {
@@ -327,8 +322,11 @@ public class SumehrMapper extends BaseMapper {
         patientWill.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
         clone.setLifecycle(null);
 
-        patientWill.setRelevant(itemType.isIsrelevant());
+        patientWill.setIsRelevant(itemType.isIsrelevant());
         clone.setIsrelevant(null);
+
+        patientWill.setTextTypes(itemType.getTexts());
+        clone.getTexts().clear();
 
         patientWill.setRecordDateTime(DateUtils.toLocalDateTime(itemType.getRecorddatetime()));
         clone.setRecorddatetime(null);
@@ -360,10 +358,10 @@ public class SumehrMapper extends BaseMapper {
             clone.getEndmoment().setDate(null);
         }
         clone.setFrequency(null);
-        if (itemType.getPosology() != null && itemType.getPosology().getText() != null) {
-            clone.setPosology(null);
-        } else {
+        if (itemType.getRegimen() != null) {
             clone.setRegimen(null);
+        } else {
+            clone.setPosology(null);
         }
         if (itemType.getDayperiods() != null) {
             clone.getDayperiods().clear();
@@ -449,14 +447,17 @@ public class SumehrMapper extends BaseMapper {
         item.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
         clone.setLifecycle(null);
 
-        item.setRelevant(itemType.isIsrelevant());
+        item.setIsRelevant(itemType.isIsrelevant());
         clone.setIsrelevant(null);
 
         item.setCdcontents(ItemUtil.collectContentTypeCds(itemType));
         clearContentTypeCds(clone);
 
-        item.setTextTypes(ItemUtil.collectContentTypeTextTypes(itemType));
+        item.setContentTextTypes(ItemUtil.collectContentTypeTextTypes(itemType));
         clearContentTypeTextTypes(clone);
+
+        item.setTextTypes(itemType.getTexts());
+        clone.getTexts().clear();
 
         item.setUnparsed(clone);
 

@@ -1,5 +1,6 @@
 package org.imec.ivlab.core.model.internal.mapper.medication.mapper;
 
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDADMINISTRATIONUNIT;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENT;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENTschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDDRUGCNK;
@@ -10,10 +11,12 @@ import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHR;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHRschemes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.AdministrationquantityType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.AdministrationunitType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ContentType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.DayperiodType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.DurationType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType.Posology.Takes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.MedicinalProductType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.RouteType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
@@ -24,6 +27,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.imec.ivlab.core.exceptions.DataNotFoundException;
@@ -203,12 +207,21 @@ public class MedicationMapper {
 
     private static PosologyOrRegimen getPosologyOrRegimen(ItemType medicationItem) {
 
-        if (medicationItem.getPosology() != null &&medicationItem.getPosology().getText() != null) {
-            Posology posology = new Posology();
-            posology.setText(medicationItem.getPosology().getText().getValue());
-            return posology;
+        if (medicationItem.getPosology() != null && medicationItem.getRegimen() != null) {
+            LOG.error("A medication item has both a posology and a regimen specified. These types cannot be mixed in one medication item! Will pick the Regimen.");
         }
 
+        if (medicationItem.getRegimen() != null) {
+            return mapRegimen(medicationItem);
+        } else if (medicationItem.getPosology() != null) {
+            return mapPosology(medicationItem);
+        } else {
+            return null;
+        }
+
+    }
+
+    private static Regimen mapRegimen(ItemType medicationItem) {
         ItemType.Regimen regimen = medicationItem.getRegimen();
 
         List<org.imec.ivlab.core.kmehr.model.RegimenEntry> regimenEntries = RegimenUtil.getRegimenEntries(regimen);
@@ -260,7 +273,27 @@ public class MedicationMapper {
         }
 
         return regimenOut;
+    }
 
+    private static Posology mapPosology(ItemType medicationItem) {
+        Posology posologyOut = new Posology();
+
+        ItemType.Posology posologyIn = medicationItem.getPosology();
+        posologyOut.setText(Optional.ofNullable(posologyIn.getText()).map(TextType::getValue).orElse(null));
+
+        posologyOut.setPosologyHigh(posologyIn.getHigh());
+        posologyOut.setPosologyLow(posologyIn.getLow());
+
+        posologyOut.setAdministrationUnit(Optional
+            .ofNullable(posologyIn.getUnit())
+            .map(AdministrationunitType::getCd)
+            .map(CDADMINISTRATIONUNIT::getValue)
+            .orElse(null));
+
+        posologyOut.setTakesHigh(Optional.ofNullable(posologyIn.getTakes()).map(Takes::getHigh).orElse(null));
+        posologyOut.setTakesLow(Optional.ofNullable(posologyIn.getTakes()).map(Takes::getLow).orElse(null));
+
+        return posologyOut;
     }
 
     private static List<Suspension> getSuspensions(List<TransactionType> suspensionTransactions) {

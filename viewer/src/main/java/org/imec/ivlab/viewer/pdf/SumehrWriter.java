@@ -24,6 +24,7 @@ import static org.imec.ivlab.viewer.pdf.Translator.translateFrequency;
 import static org.imec.ivlab.viewer.pdf.Translator.translateRoute;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENT;
+import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.pdf.PdfPCell;
@@ -44,7 +45,6 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.imec.ivlab.core.kmehr.model.util.CDContentUtil;
 import org.imec.ivlab.core.kmehr.model.util.TextTypeUtil;
 import org.imec.ivlab.core.model.internal.mapper.medication.Identifier;
-import org.imec.ivlab.core.model.internal.mapper.medication.IndividualDayperiod;
 import org.imec.ivlab.core.model.internal.mapper.medication.Posology;
 import org.imec.ivlab.core.model.internal.mapper.medication.Regimen;
 import org.imec.ivlab.core.model.internal.mapper.medication.RegimenDate;
@@ -95,7 +95,7 @@ public class SumehrWriter extends Writer {
 
         SumehrWriter sumehrWriter = new SumehrWriter();
         Stream
-            .of("1-sumehr-1dot1-all-parseable", "2-sumehr-1dot1-unparseable-content", "3-sumehr-2dot0", "4-sumehr-2dot0")
+            .of("1-sumehr-1dot1-all-parseable", "2-sumehr-1dot1-unparseable-content", "3-sumehr-2dot0", "4-sumehr-2dot0", "5-sumehr-2dot0-risk-text-and-medication")
             .forEach(filename -> sumehrWriter.createPdf(readTestFile(filename + ".xml").get(0), filename + ".pdf"));
 
     }
@@ -222,7 +222,7 @@ public class SumehrWriter extends Writer {
 
         addRow(table, createDetailHeader(vaccination.getVaccinatedAgainst()));
         addRow(table, toDetailRowIfHasValue("Vaccine", identifierIdAndName(vaccination.getIdentifier())));
-        addRow(table, toDetailRowIfHasValue("Text", StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(vaccination.getTextTypes()).toArray())));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(vaccination.getTextTypes())));
 
         if (CollectionsUtil.notEmptyOrNull(vaccination.getCdcontents())) {
             for (CDCONTENT cdcontent : vaccination.getCdcontents()) {
@@ -239,6 +239,11 @@ public class SumehrWriter extends Writer {
 
 
         return table;
+    }
+
+    private String collectText(List<TextType> textTypes) {
+        return StringUtils.joinWith(System.lineSeparator(), TextTypeUtil
+            .toStrings(textTypes).toArray());
     }
 
     private Collection<PdfPTable> createRisksTable(List<Risk> risks, String category) {
@@ -327,7 +332,7 @@ public class SumehrWriter extends Writer {
     private PdfPTable riskToTable(Risk risk, String category) {
 
         PdfPTable table = initializeDetailTable();
-        String title = StringUtils.joinWith(" & ", TextTypeUtil.toStrings(risk.getTextTypes()).toArray());
+        String title = StringUtils.joinWith(" & ", TextTypeUtil.toStrings(risk.getContentTextTypes()).toArray());
         addRow(table, createDetailHeader(StringUtils.joinWith(": ", category, ""), title));
 
         if (CollectionsUtil.notEmptyOrNull(risk.getCdcontents())) {
@@ -335,9 +340,10 @@ public class SumehrWriter extends Writer {
                 addRow(table, cdContentToDetailRow(cdcontent));
             }
         }
-        addRow(table, toDetailRowIfHasValue("Text", StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(risk.getTextTypes()).toArray())));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(risk.getContentTextTypes())));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(risk.getTextTypes())));
         addRow(table, toDetailRowIfHasValue("Begin", risk.getBeginmoment()));
-        addRow(table, toDetailRowIfHasValue("Relevant", risk.getRelevant()));
+        addRow(table, toDetailRowIfHasValue("Relevant", risk.getIsRelevant()));
         if (risk.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", risk.getLifecycle().value()));
         }
@@ -359,10 +365,11 @@ public class SumehrWriter extends Writer {
             }
         }
 
-        addRow(table, toDetailRowIfHasValue("Text", StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(patientWill.getTextTypes()).toArray())));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(patientWill.getContentTextTypes())));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(patientWill.getTextTypes())));
         addRow(table, toDetailRowIfHasValue("Date of registration", Translator.formatAsDateTime(patientWill.getRecordDateTime())));
         addRow(table, toDetailRowIfHasValue("Begin", patientWill.getBeginmoment()));
-        addRow(table, toDetailRowIfHasValue("Relevant", patientWill.getRelevant()));
+        addRow(table, toDetailRowIfHasValue("Relevant", patientWill.getIsRelevant()));
         if (patientWill.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", patientWill.getLifecycle().value()));
         }
@@ -375,7 +382,7 @@ public class SumehrWriter extends Writer {
 
         PdfPTable table = initializeDetailTable();
 
-        String name = StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(treatment.getTextTypes()).toArray());
+        String name = collectText(treatment.getContentTextTypes());
 
         addRow(table, createDetailHeader(name));
 
@@ -388,7 +395,9 @@ public class SumehrWriter extends Writer {
         //addRow(table, toDetailRowIfHasValue("Text", name));
         addRow(table, toDetailRowIfHasValue("Begin", treatment.getBeginmoment()));
         addRow(table, toDetailRowIfHasValue("End", treatment.getEndmoment()));
-        addRow(table, toDetailRowIfHasValue("Relevant", treatment.getRelevant()));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(treatment.getContentTextTypes())));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(treatment.getTextTypes())));
+        addRow(table, toDetailRowIfHasValue("Relevant", treatment.getIsRelevant()));
         if (treatment.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", treatment.getLifecycle().value()));
         }
@@ -399,7 +408,7 @@ public class SumehrWriter extends Writer {
 
         PdfPTable table = initializeDetailTable();
 
-        String name = StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(problem.getTextTypes()).toArray());
+        String name = collectText(problem.getContentTextTypes());
 
         addRow(table, createDetailHeader(name));
 
@@ -412,7 +421,9 @@ public class SumehrWriter extends Writer {
         //addRow(table, toDetailRowIfHasValue("Text", name));
         addRow(table, toDetailRowIfHasValue("Begin", problem.getBeginmoment()));
         addRow(table, toDetailRowIfHasValue("End", problem.getEndmoment()));
-        addRow(table, toDetailRowIfHasValue("Relevant", problem.getRelevant()));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(problem.getContentTextTypes())));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(problem.getTextTypes())));
+        addRow(table, toDetailRowIfHasValue("Relevant", problem.getIsRelevant()));
         if (problem.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", problem.getLifecycle().value()));
         }
@@ -445,11 +456,10 @@ public class SumehrWriter extends Writer {
 
         addRow(table, toDetailRowIfHasValue("Medication", identifierIdAndName(medicationEntrySumehr.getIdentifier())));
 
-        if (CollectionsUtil.notEmptyOrNull(medicationEntrySumehr.getCdcontents())) {
-            for (CDCONTENT cdcontent : medicationEntrySumehr.getCdcontents()) {
-                addRow(table, cdContentToDetailRow(cdcontent));
-            }
-        }
+        Optional
+            .ofNullable(medicationEntrySumehr.getCdcontents())
+            .orElse(Collections.emptyList())
+            .forEach(cdcontent -> addRow(table, cdContentToDetailRow(cdcontent)));
 
         addRow(table, toDetailRowIfHasValue("Begin", medicationEntrySumehr.getBeginDate()));
         addRow(table, toDetailRowIfHasValue("End", medicationEntrySumehr.getEndDate()));
@@ -459,17 +469,21 @@ public class SumehrWriter extends Writer {
         if (medicationEntrySumehr.getDuration() != null) {
             addRow(table, toDetailRowIfHasValue("Duration", StringUtils.joinWith(" ", "(NL)", durationToString(medicationEntrySumehr.getDuration(), medicationEntrySumehr.getBeginDate()))));
         }
-        if (CollectionsUtil.notEmptyOrNull(medicationEntrySumehr.getDayperiods())) {
-            for (IndividualDayperiod dayperiod : medicationEntrySumehr.getDayperiods()) {
-                addRow(table, toDetailRowIfHasValue("Dayperiod", dayperiod.getDayperiod().getValue()));
-            }
 
-        }
+        Optional
+            .ofNullable(medicationEntrySumehr.getDayperiods())
+            .orElse(Collections.emptyList())
+            .forEach(dayperiod -> addRow(table, toDetailRowIfHasValue("Dayperiod", dayperiod.getDayperiod().getValue())));
 
         if (medicationEntrySumehr.getPosologyOrRegimen() instanceof Posology) {
             Posology posology = (Posology) medicationEntrySumehr.getPosologyOrRegimen();
             if (posology != null) {
                 addRow(table, toDetailRowIfHasValue("Posology", posology.getText()));
+                addRow(table, toDetailRowIfHasValue("High", posology.getPosologyHigh()));
+                addRow(table, toDetailRowIfHasValue("Low", posology.getPosologyLow()));
+                addRow(table, toDetailRowIfHasValue("Unit", Translator.translateAdministrationUnit(posology.getAdministrationUnit())));
+                addRow(table, toDetailRowIfHasValue("Takes high", posology.getTakesHigh()));
+                addRow(table, toDetailRowIfHasValue("Takes low", posology.getTakesLow()));
             }
         }
 
@@ -553,7 +567,7 @@ public class SumehrWriter extends Writer {
 
         PdfPTable table = initializeDetailTable();
 
-        String name = StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(healthCareElement.getTextTypes()).toArray());
+        String name = collectText(healthCareElement.getContentTextTypes());
 
         addRow(table, createDetailHeader(name));
 
@@ -565,8 +579,9 @@ public class SumehrWriter extends Writer {
 
         addRow(table, toDetailRowIfHasValue("Begin", healthCareElement.getBeginmoment()));
         addRow(table, toDetailRowIfHasValue("End", healthCareElement.getEndmoment()));
-        addRow(table, toDetailRowIfHasValue("Text", name));
-        addRow(table, toDetailRowIfHasValue("Relevant", healthCareElement.getRelevant()));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(healthCareElement.getContentTextTypes())));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(healthCareElement.getTextTypes())));
+        addRow(table, toDetailRowIfHasValue("Relevant", healthCareElement.getIsRelevant()));
         if (healthCareElement.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", healthCareElement.getLifecycle().value()));
         }

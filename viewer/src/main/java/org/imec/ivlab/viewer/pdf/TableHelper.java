@@ -18,6 +18,8 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -193,6 +195,8 @@ public class TableHelper {
       valueString = formatAsDateTime((LocalDateTime) value);
     } else if (value instanceof Integer) {
       valueString = String.valueOf( value);
+    } else if (value instanceof BigDecimal) {
+      valueString = value.toString();
     } else if (value instanceof Boolean) {
       valueString = ((Boolean) value) != null ? ((Boolean) value).toString() : null;
     } else {

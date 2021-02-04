@@ -9,7 +9,6 @@ public class Treatment extends ItemParsedItem {
 
     private LocalDate beginmoment;
     private LocalDate endmoment;
-    private CDLIFECYCLEvalues lifecycle;
 
     public LocalDate getBeginmoment() {
         return beginmoment;
@@ -22,12 +21,7 @@ public class Treatment extends ItemParsedItem {
     public LocalDate getEndmoment() {
         return endmoment;
     }
-    public CDLIFECYCLEvalues getLifecycle() {
-        return lifecycle;
-    }
-    public void setLifecycle(CDLIFECYCLEvalues lifecycle) {
-        this.lifecycle = lifecycle;
-    }
+    
     public void setEndmoment(LocalDate endmoment) {
         this.endmoment = endmoment;
     }
