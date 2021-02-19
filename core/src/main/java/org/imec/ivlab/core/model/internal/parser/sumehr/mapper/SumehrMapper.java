@@ -1,6 +1,7 @@
 package org.imec.ivlab.core.model.internal.parser.sumehr.mapper;
 
 import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getItemsAndRemoveFromTransaction;
+import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getTextAndRemoveFromTransaction;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENT;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENTschemes;
@@ -86,6 +87,7 @@ public class SumehrMapper extends BaseMapper {
         entry.setContactHCParties(collectHCPartyTypes(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.CONTACTHCPARTY)));
         entry.setGmdManagers(collectHCPartyTypes(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.GMDMANAGER)));
         entry.setMedicationEntries(toMedicationItems(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.MEDICATION)));
+        entry.setTextTypes(getTextAndRemoveFromTransaction(firstTransaction));
         markTransactionAsProcessed(firstTransaction);
         entry.setEvsRef(getEvsRef(kmehrmessage));
 

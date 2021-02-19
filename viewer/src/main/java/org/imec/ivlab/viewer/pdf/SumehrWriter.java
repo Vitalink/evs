@@ -203,6 +203,7 @@ public class SumehrWriter extends Writer {
         tables.add(combineTables(createTitleTable("Problems"), createProblemTables(sumehr.getProblems()), toUnparsedContentTables(sumehr.getProblems(), "Problems")));
         tables.add(combineTables(createTitleTable("Healthcare elements"), createHealthCareTables(sumehr.getHealthCareElements()), toUnparsedContentTables(sumehr.getHealthCareElements(), "Healthcare elements")));
         tables.add(combineTables(createTitleTable("Patient will"), createPatientWillsTable(sumehr.getPatientWills()), toUnparsedContentTables(sumehr.getPatientWills(), "Patient will")));
+        tables.add(combineTables(createTitleTable("Text"), Collections.emptyList(), createTextsTable(sumehr.getTextTypes())));
         tables.add(combineTables(createTitleTable("GMD manager"), createHcPartyTables(sumehr.getGmdManagers()), toUnparsedContentTables(sumehr.getGmdManagers(), "GMD manager")));
         tables.add(combineTables(createTitleTable("Contact - acquaintances"), createContactPersonTables(sumehr.getContactPersons()), toUnparsedContentTables(sumehr.getContactPersons(), "Contact - acquaintances")));
         tables.add(combineTables(createTitleTable("Contact - healthcare parties"), createHcPartyTables(sumehr.getContactHCParties()), toUnparsedContentTables(sumehr.getContactHCParties(), "Contact - healthcare parties")));
@@ -260,6 +261,14 @@ public class SumehrWriter extends Writer {
             .stream()
             .map(this::hcpartyTypeToTable)
             .collect(Collectors.toList());
+    }
+
+    private Collection<PdfPTable> createTextsTable(List<TextType> textTypes) {
+        return Optional.ofNullable(textTypes)
+                       .orElse(Collections.emptyList())
+                       .stream()
+                       .map(this::textTypeToTable)
+                       .collect(Collectors.toList());
     }
 
     private Collection<PdfPTable> createPatientWillsTable(List<PatientWill> patientWills) {
@@ -350,6 +359,12 @@ public class SumehrWriter extends Writer {
 
         return table;
 
+    }
+
+    private PdfPTable textTypeToTable(TextType textType) {
+        PdfPTable table = initializeDetailTable();
+        addRow(table, createDetailRow(textType.getValue()));
+        return table;
     }
 
     private PdfPTable patientWillToTable(PatientWill patientWill) {

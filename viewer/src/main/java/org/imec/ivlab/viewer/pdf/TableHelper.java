@@ -80,7 +80,7 @@ public class TableHelper {
 
   }
 
-  public static PdfPTable combineTables(PdfPTable titleTable, Collection<PdfPTable> contentTables, List<PdfPTable> unparsedContentTable) {
+  public static PdfPTable combineTables(PdfPTable titleTable, Collection<PdfPTable> tablesForDualColumn, Collection<PdfPTable> tablesForSingleColumn) {
 
     PdfPTable table = new PdfPTable(2);
 
@@ -94,16 +94,16 @@ public class TableHelper {
       table.addCell(titleCell);
     }
 
-    if (CollectionsUtil.notEmptyOrNull(contentTables)) {
+    if (CollectionsUtil.notEmptyOrNull(tablesForDualColumn)) {
 
-      for (PdfPTable contentTable : contentTables) {
+      for (PdfPTable contentTable : tablesForDualColumn) {
         PdfPCell contentCell = getCellWithoutBorder();
         contentCell.setColspan(1);
         contentCell.addElement(contentTable);
         table.addCell(contentCell);
       }
 
-      if (CollectionsUtil.size(contentTables) % 2 == 1) {
+      if (CollectionsUtil.size(tablesForDualColumn) % 2 == 1) {
         PdfPCell spacerCell = getCellWithoutBorder();
         spacerCell.setColspan(1);
         spacerCell.addElement(getDefaultPhrase(""));
@@ -113,9 +113,9 @@ public class TableHelper {
 
     }
 
-    if (CollectionsUtil.notEmptyOrNull(unparsedContentTable)) {
+    if (CollectionsUtil.notEmptyOrNull(tablesForSingleColumn)) {
 
-      for (PdfPTable contentTable : unparsedContentTable) {
+      for (PdfPTable contentTable : tablesForSingleColumn) {
         PdfPCell contentCell = getCellWithoutBorder();
         contentCell.setColspan(2);
         contentCell.addElement(contentTable);
@@ -258,6 +258,15 @@ public class TableHelper {
     cell = SumehrTableFormatter.getValueCell();
     cell.setPhrase(getDefaultPhrase(StringUtils.nullToString(value)));
     cell.setColspan(70);
+    cells.add(cell);
+    return cells;
+  }
+
+  public static List<PdfPCell> createDetailRow(String content) {
+    List<PdfPCell> cells = new ArrayList<>();
+    PdfPCell cell = SumehrTableFormatter.getValueCell();
+    cell.setPhrase(getDefaultPhrase(StringUtils.nullToString(content)));
+    cell.setColspan(100);
     cells.add(cell);
     return cells;
   }

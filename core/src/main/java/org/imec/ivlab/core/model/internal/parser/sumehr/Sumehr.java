@@ -1,5 +1,6 @@
 package org.imec.ivlab.core.model.internal.parser.sumehr;
 
+import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +26,7 @@ public class Sumehr extends ParsedKmehrItem {
     private List<Risk> risks = new ArrayList<>();
     private List<Risk> allergies = new ArrayList<>();
     private List<Risk> adrs = new ArrayList<>();
+    private List<TextType> textTypes = new ArrayList<>();
     private String evsRef;
 
     @Override
