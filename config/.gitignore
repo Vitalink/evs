@@ -111,3 +111,5 @@ Temporary Items
 **/*.log*
 logs/
 certificates/
+actors/
+patients/
