@@ -15,6 +15,7 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
@@ -110,13 +111,7 @@ public class MSServiceImpl extends AbstractService implements MSService {
 
     private Kmehrmessage fillSchemeVersion(Patient patient, Kmehrmessage kmehrmessageTemplate) throws Exception {
 
-        String latestVersion = null;
-
-        try {
-            latestVersion = getLatestVersion(patient);
-        } catch (LatestUpdateNotFoundException e) {
-            log.info("No latest update info found for medication scheme. Probably the patient does not have a medication scheme yet.");
-        }
+        String latestVersion = getLatestVersion(patient);
 
         // RSW requires version "0" for initial PutTransactionSetRequest
         // Vitalink works with "" in that case.
@@ -155,16 +150,18 @@ public class MSServiceImpl extends AbstractService implements MSService {
 
     }
 
-
     private String getLatestVersion(Patient patient) throws VitalinkException, GatewaySpecificErrorException {
 
-        GetLatestUpdateResponse latestUpdateResponse = hubFlow.getLatestUpdate(patient.getId(), TRANSACTION_TYPE);
-        List<Latestupdate> latestUpdates = LatestUpdatesUtil.getLatestUpdates(latestUpdateResponse.getLatestupdatelist(), TRANSACTION_TYPE);
-        if (CollectionsUtil.emptyOrNull(latestUpdates)) {
+        GetTransactionSetResponse transactionSet;
+        try {
+            transactionSet = hubFlow.getTransactionSet(patient.getId(), TRANSACTION_TYPE);
+        } catch (TransactionNotFoundException e) {
             return null;
-        } else {
-            return latestUpdates.get(0).getVersion();
         }
+
+        FolderType folderType = KmehrMessageUtil.getFolderType(transactionSet.getKmehrmessage());
+        be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType transaction = FolderUtil.getTransaction(folderType, CDTRANSACTIONvalues.MEDICATIONSCHEME);
+        return transaction.getVersion();
 
     }
 
