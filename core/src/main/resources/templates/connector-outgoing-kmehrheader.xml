@@ -2,7 +2,7 @@
     <standard>
         <cd S="CD-STANDARD" SV="1.4">20120401</cd>
     </standard>
-    <id S="ID-KMEHR" SV="1.0">17113669004.20171121095742806</id>
+    <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
     <date>${date_today}</date>
     <time>${time_now}</time>
     <sender>

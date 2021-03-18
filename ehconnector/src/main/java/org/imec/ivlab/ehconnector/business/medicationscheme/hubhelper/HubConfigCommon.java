@@ -15,9 +15,9 @@ public class HubConfigCommon {
     /*
      * Professional Information. The nihii is found in the session
      */
-    public static final String PROF_NISS = "82051234978";
-    public static final String PROF_FIRSTNAME = "Hannes";
-    public static final String PROF_LASTNAME = "De Clercq";
+    public static final String PROF_NISS = "90010100101";
+    public static final String PROF_FIRSTNAME = "Jane";
+    public static final String PROF_LASTNAME = "Doe";
     public static final String PROF_PROFESSION = CDHCPARTYvalues.PERSPHYSICIAN.value();
 
     public static final String HUB_NAME = "TEST HUB ORG";

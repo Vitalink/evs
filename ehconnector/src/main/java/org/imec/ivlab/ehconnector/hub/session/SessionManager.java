@@ -59,19 +59,6 @@ public class SessionManager {
 
     private static Set<String> USED_PROPERTY_NAMES = new HashSet<>();
 
-    public static void main(String[] args) throws TechnicalConnectorException, VitalinkException {
-
-        HubService actions = new HubService();
-
-        AuthenticationConfig configVeerle = AuthenticationConfigReader.loadByName(AuthenticationConfigReader.GP_PETERS);
-        AuthenticationConfig configKatrien = AuthenticationConfigReader.loadByName(AuthenticationConfigReader.GP_VAN_GUCHT);
-        connectWith(configVeerle);
-        connectWith(configKatrien);
-        connectWith(configVeerle);
-        connectWith(configKatrien);
-
-    }
-
     public static void connectWith(AuthenticationConfig configuration) throws TechnicalConnectorException, InvalidConfigurationException {
 
         log.debug("Starting authentication for configuration: " + configuration.getName());

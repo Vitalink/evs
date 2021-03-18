@@ -6,7 +6,7 @@
     <standard>
       <cd S="CD-STANDARD" SV="1.22">20170901</cd>
     </standard>
-    <id S="ID-KMEHR" SV="1.0">11530231003.201005050930000000</id>
+    <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
     <date>2010-05-05</date>
     <time>09:30:00</time>
     <sender>
@@ -15,16 +15,16 @@
         <name>My Usual System</name>
       </hcparty>
       <hcparty>
-        <id S="ID-HCPARTY" SV="1.0">48909774401</id>
-        <id SV="1.0" S="INSS">49112002395</id>
+        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+        <id SV="1.0" S="INSS">98765432101</id>
         <cd S="CD-HCPARTY" SV="1.10">persnurse</cd>
-        <firstname>Nurse</firstname>
-        <familyname>ForTestingPurpose</familyname>
+        <firstname>John</firstname>
+        <familyname>Doe</familyname>
       </hcparty>
     </sender>
     <recipient>
       <hcparty>
-        <id S="ID-HCPARTY" SV="1.0">1990000035</id>
+        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
         <cd S="CD-HCPARTY" SV="1.10">hub</cd>
         <name>RSW</name>
       </hcparty>
@@ -32,16 +32,15 @@
   </header>
   <folder>
     <id S="ID-KMEHR" SV="1.0">1</id>
-    <patient>
-      <id S="ID-PATIENT" SV="1.0">7031966696</id>
-      <id S="LOCAL" SV="2010-01-03" SL="MyUsualSystem">32190</id>
-      <firstname>Patient</firstname>
-      <familyname>ForTestingPurpose</familyname>
-      <sex>
-        <cd S="CD-SEX" SV="1.1">male</cd>
-      </sex>
-      <usuallanguage>fr</usuallanguage>
-    </patient>
+            <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
     <transaction>
       <id S="ID-KMEHR" SV="1.0">1</id>
       <cd S="CD-TRANSACTION" SV="1.11">diarynote</cd>
@@ -50,11 +49,11 @@
       <time>09:30:00</time>
       <author>
         <hcparty>
-          <id S="ID-HCPARTY" SV="1.0">48909774401</id>
-          <id SV="1.0" S="INSS">49112002395</id>
+          <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+          <id SV="1.0" S="INSS">98765432101</id>
           <cd S="CD-HCPARTY" SV="1.10">persnurse</cd>
-          <firstname>Nurse</firstname>
-          <familyname>ForTestingPurpose</familyname>
+          <firstname>John</firstname>
+          <familyname>Doe</familyname>
         </hcparty>
       </author>
       <iscomplete>true</iscomplete>

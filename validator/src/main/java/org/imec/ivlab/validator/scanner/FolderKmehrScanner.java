@@ -24,8 +24,7 @@ public class FolderKmehrScanner {
 
         FolderKmehrScanner scanner = new FolderKmehrScanner();
 
-//        File rootFolder = new File("/Users/machtst/Dropbox (imec Ghent)/iMinds Health - Team/Health Validation Lab/Lab Operations/Testbatterij Vitalink");
-        File rootFolder = new File("/Users/machtst/Dropbox (imec Ghent)/iMinds Health - Team/Health Validation Lab/Lab Operations/Testbatterij Vitalink/tests/SKT_2017_04");
+        File rootFolder = new File("");
         String[] extensions = new String[] {"txt", "xml"};
         boolean recursive = true;
 

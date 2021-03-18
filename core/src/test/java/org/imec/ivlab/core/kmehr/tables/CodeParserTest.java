@@ -48,7 +48,7 @@ public class CodeParserTest {
                 "          <ns4:cd S=\"CD-TEMPORALITY\">chronic</ns4:cd>\n" +
                 "        </ns4:temporality>" +
                 "        <ns4:cd S=\"CD-ITEM\" L=\"NL\">medication</ns4:cd>" +
-                "        <ns4:cd S=\"CD-HCPARTY\" \n SV=\"1.0\">11425214001</ns4:id>" +
+                "        <ns4:cd S=\"CD-HCPARTY\" \n SV=\"1.0\">12345678901</ns4:id>" +
                 "        </ns4:cd S=\"CD-ITEM-MS\" \n SV=\"1.0\">"  +
                 "<intendedcd S=\"CD-INNCLUSTER\" SV=\"2010-07\">1439561</intendedcd>" +
                 "<deliveredcd S=\"CD-DRUG-CNK\" SV=\"2010-07\">1439562</deliveredcd>" +
@@ -61,7 +61,7 @@ public class CodeParserTest {
         codes.add(new Code("CD-DAYPERIOD", "1.1", null, "duringbreakfast"));
         codes.add(new Code("CD-TEMPORALITY", null, null, "chronic"));
         codes.add(new Code("CD-ITEM", null, "NL", "medication"));
-        codes.add(new Code("CD-HCPARTY", "1.0", null, "11425214001"));
+        codes.add(new Code("CD-HCPARTY", "1.0", null, "12345678901"));
         codes.add(new Code("CD-ITEM-MS", "1.0", null, null));
         codes.add(new Code("CD-INNCLUSTER", "2010-07", null, "1439561"));
         codes.add(new Code("CD-DRUG-CNK", "2010-07", null, "1439562"));

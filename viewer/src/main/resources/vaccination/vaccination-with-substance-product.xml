@@ -3,60 +3,61 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.0">20120701</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">1990001916.2020123580912274031</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <date>2020-12-23</date>
         <time>09:31:28</time>
         <sender>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                 <cd S="CD-HCPARTY" SV="1.12">hub</cd>
                 <name>VITALINK</name>
             </hcparty>
         </sender>
         <recipient>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">15690541004</id>
-                <id S="INSS" SV="1.0">81032425568</id>
-                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">15690541</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
+                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
                 <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
                 <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
-                <firstname>Bert</firstname>
-                <familyname>Peters</familyname>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
                 <address>
                     <cd S="CD-ADDRESS" SV="1.0"/>
                     <nis>24062</nis>
                 </address>
             </hcparty>
             <hcparty>
-                <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_2264d708-0d49-4aca-96f0-f7acb32cf5c2</id>
+                <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">code</id>
                 <cd S="CD-HCPARTY" SV="1.1">APPLICATION</cd>
             </hcparty>
         </recipient>
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">81032425568</id>
-            <firstname>BERT</firstname>
-            <familyname>PETERS</familyname>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
-            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/81032425568/vaccination/1586229FC465486F8C1A90FF7490B6F9/1</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/90010100101/vaccination/1586229FC465486F8C1A90FF7490B6F9/1</id>
             <cd S="CD-TRANSACTION" SV="1.0">vaccination</cd>
             <date>2020-12-11</date>
             <time>00:26:20</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                     <cd S="CD-HCPARTY" SV="1.12">hub</cd>
                     <name>VITALINK</name>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                     <cd S="CD-HCPARTY" SV="1.12">orgpublichealth</cd>
                     <name>VLAAMS AGENTSCHAP ZORG EN GEZONDHEID</name>
                 </hcparty>

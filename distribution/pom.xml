@@ -16,7 +16,6 @@
         <izpack.version>5.1.2</izpack.version>
         <izpack.staging>${project.build.directory}/staging</izpack.staging>
         <!-- SETTING PROPERTY TEMPORARILY for testing-->
-        <!--<build.install.directory>/Users/machtst/imec/automation/EVS installations/3.1.0-for-distribution</build.install.directory>-->
 
         <!-- fix to be able to run the result files under java 9 -->
         <jaxb.version>2.3.0</jaxb.version>

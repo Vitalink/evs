@@ -4,21 +4,21 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">11530231003.201112210907000000</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <date>2011-12-20</date>
         <time>14:35:47</time>
         <sender>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">11530231003</id>
-                <id S="INSS" SV="1.0">49112002395</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
                 <cd S="CD-HCPARTY" SV="1.3">persphysician</cd>
-                <firstname>GP</firstname>
-                <familyname>ForTestingPurpose</familyname>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
             </hcparty>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">11530231003</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                 <cd S="CD-HCPARTY" SV="1.3">orgpublichealth</cd>
-                <name>WitGeleKruis</name>
+                <name>organisationName</name>
             </hcparty>
         </sender>
         <recipient>
@@ -30,17 +30,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">86091415929</id>
-            <firstname>Patient</firstname>
-            <familyname>ForTestingPurpose</familyname>
-            <birthdate>
-                <date>1984-12-31</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -48,16 +46,16 @@
             <time>14:35:47</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">11530231003</id>
-                    <id S="INSS" SV="1.0">49112002395</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.3">persphysician</cd>
-                    <firstname>GP</firstname>
-                    <familyname>ForTestingPurpose</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">11530231003</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                     <cd S="CD-HCPARTY" SV="1.3">orgpublichealth</cd>
-                    <name>WitGeleKruis</name>
+                    <name>organisationName</name>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>

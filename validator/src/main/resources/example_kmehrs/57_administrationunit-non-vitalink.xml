@@ -4,13 +4,13 @@
     <standard>
         <cd S="CD-STANDARD" SV="1.4">20120401</cd>
     </standard>
-    <id S="ID-KMEHR" SV="1.0">17892144001.20171102145602971</id>
+    <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
     <id S="LOCAL" SL="ID-CARECONNECT" SV="1.0">3f75471d-4875-4b24-a202-1279df177f58</id>
     <date>2017-11-02</date>
     <time>14:56:02</time>
     <sender>
         <hcparty>
-            <id S="LOCAL" SV="3.4">8596a68a-e632-4664-b217-6ff75eefd898</id>
+            <id S="LOCAL" SV="3.4">99999999999</id>
             <cd S="CD-HCPARTY" SV="1.2">application</cd>
             <name>CareConnect</name>
         </hcparty>
@@ -24,17 +24,15 @@
 </header>
 <folder>
     <id S="ID-KMEHR" SV="1.0">1</id>
-    <patient>
-        <id S="ID-PATIENT" SV="1.0">72071135503</id>
-        <firstname>Jeroen</firstname>
-        <familyname>Brackez</familyname>
-        <birthdate>
-            <date>1972-07-11Z</date>
-        </birthdate>
-        <sex>
-            <cd S="CD-SEX" SV="1.0">male</cd>
-        </sex>
-    </patient>
+            <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
     <transaction>
         <id S="ID-KMEHR" SV="1.0">1</id>
         <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -42,11 +40,11 @@
         <time>14:56:02</time>
         <author>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                <id S="INSS" SV="1.0">75041414469</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
                 <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                <firstname>Veerle</firstname>
-                <familyname>Moermans</familyname>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
             </hcparty>
         </author>
         <iscomplete>true</iscomplete>

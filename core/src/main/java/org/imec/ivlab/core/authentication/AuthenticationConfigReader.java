@@ -28,15 +28,11 @@ public class AuthenticationConfigReader {
 
     private final static Logger log = Logger.getLogger(AuthenticationConfigReader.class);
 
-    public static final String GP_PETERS = "gp_bpeters";
-    public static final String GP_VAN_GUCHT = "gp_van_gucht";
-    public static final String PH_PETERS = "ph_bp";
-    public static final String HO_PETERS = "ho_bp";
-    public static final String RH_PETERS = "rh_bp";
+    public static final String GP_EXAMPLE = "gp_example";
 
     private static final String CONFIG_EXTENSION = ".xml";
 
-    public static final String DEFAULT_CONFIGURATION = AuthenticationConfigReader.GP_VAN_GUCHT;
+    public static final String DEFAULT_CONFIGURATION = AuthenticationConfigReader.GP_EXAMPLE;
 
     private static Set<String> scanPaths = new HashSet<>();
 
@@ -116,7 +112,7 @@ public class AuthenticationConfigReader {
     }
 
     public static void main(String[] args) throws TechnicalConnectorException {
-        AuthenticationConfig authenticationConfig = AuthenticationConfigReader.loadByName(AuthenticationConfigReader.GP_VAN_GUCHT);
+        AuthenticationConfig authenticationConfig = AuthenticationConfigReader.loadByName(AuthenticationConfigReader.GP_EXAMPLE);
         log.info(authenticationConfig);
     }
 

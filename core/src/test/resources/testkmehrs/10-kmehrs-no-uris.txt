@@ -4,25 +4,25 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">20856384001.201704071033474018</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <date>2017-04-07</date>
         <time>09:33:47</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="1.0" SL="application_ID">phacorilus</id>
+                <id S="LOCAL" SV="1.0" SL="application_ID">applicationName</id>
                 <cd S="CD-HCPARTY" SV="1.1">application</cd>
-                <name>phacorilus</name>
+                <name>applicationName</name>
             </hcparty>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                 <cd S="CD-HCPARTY" SV="1.1">orgpharmacy</cd>
             </hcparty>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                <id S="INSS" SV="1.0">72071135503</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
                 <cd S="CD-HCPARTY" SV="1.1">perspharmacist</cd>
-                <firstname>Jeroen</firstname>
-                <familyname>Brackez</familyname>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
             </hcparty>
         </sender>
         <recipient>
@@ -34,17 +34,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.0">medicationschemeelement</cd>
@@ -52,20 +50,20 @@
             <time>09:33:46</time>
             <author>
                 <hcparty>
-                    <id S="LOCAL" SV="1.0" SL="application_ID">phacorilus</id>
+                    <id S="LOCAL" SV="1.0" SL="application_ID">applicationName</id>
                     <cd S="CD-HCPARTY" SV="1.1">application</cd>
-                    <name>phacorilus</name>
+                    <name>applicationName</name>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                     <cd S="CD-HCPARTY" SV="1.1">orgpharmacy</cd>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.1">perspharmacist</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>false</iscomplete>
@@ -134,13 +132,13 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743102</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -154,17 +152,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -172,11 +168,11 @@
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -245,13 +241,13 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743106</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -265,17 +261,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -283,11 +277,11 @@
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -371,13 +365,13 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743108</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -391,17 +385,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -409,11 +401,11 @@
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -472,13 +464,13 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743109</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -492,17 +484,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -510,11 +500,11 @@
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -573,13 +563,13 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743110</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -593,17 +583,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -611,11 +599,11 @@
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -674,13 +662,13 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743111</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -694,17 +682,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -712,11 +698,11 @@
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -775,13 +761,13 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743112</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -795,17 +781,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -813,11 +797,11 @@
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -876,13 +860,13 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743113</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -896,17 +880,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -914,11 +896,11 @@
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -977,13 +959,13 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531160812723</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>16:08:12</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -997,17 +979,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -1015,11 +995,11 @@
             <time>16:08:12</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>

@@ -109,8 +109,8 @@ public class Monitor {
     public static void main(String[] args) throws ConnectorException, GatewaySpecificErrorException, VitalinkException {
 
         Monitor monitor = new Monitor();
-        String MSversion = monitor.waitForNewSafeContent(new MonitorInstruction(TransactionType.MEDICATION_SCHEME, PatientReader.loadPatientByKey(PatientKey.STEVEN.getValue()), AuthenticationConfigReader.GP_PETERS), "270");
-        String sumehrVersion = monitor.waitForNewSafeContent(new MonitorInstruction(TransactionType.SUMEHR, PatientReader.loadPatientByKey(PatientKey.STEVEN.getValue()), AuthenticationConfigReader.GP_PETERS), "270");
+        String MSversion = monitor.waitForNewSafeContent(new MonitorInstruction(TransactionType.MEDICATION_SCHEME, PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE.getValue()), AuthenticationConfigReader.GP_EXAMPLE), "270");
+        String sumehrVersion = monitor.waitForNewSafeContent(new MonitorInstruction(TransactionType.SUMEHR, PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE.getValue()), AuthenticationConfigReader.GP_EXAMPLE), "270");
         log.info("MS version: " + MSversion);
         log.info("Sumehr version: " + sumehrVersion);
 

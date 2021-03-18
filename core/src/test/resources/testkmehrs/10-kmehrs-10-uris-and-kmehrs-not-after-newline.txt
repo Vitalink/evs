@@ -4,7 +4,7 @@
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/61165/1
+/subject/90010100101/medication-scheme/61165/1
 
 MetaData
 --------------------
@@ -12,18 +12,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=7280
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=3C1C00BA03FF38A8A3D1BA33DA903665022E095E
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -34,25 +34,25 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">20856384001.201704071033474018</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <date>2017-04-07</date>
         <time>09:33:47</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="1.0" SL="application_ID">phacorilus</id>
+                <id S="LOCAL" SV="1.0" SL="application_ID">applicationName</id>
                 <cd S="CD-HCPARTY" SV="1.1">application</cd>
-                <name>phacorilus</name>
+                <name>applicationName</name>
             </hcparty>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                 <cd S="CD-HCPARTY" SV="1.1">orgpharmacy</cd>
             </hcparty>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                <id S="INSS" SV="1.0">72071135503</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
                 <cd S="CD-HCPARTY" SV="1.1">perspharmacist</cd>
-                <firstname>Jeroen</firstname>
-                <familyname>Brackez</familyname>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
             </hcparty>
         </sender>
         <recipient>
@@ -64,17 +64,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.0">medicationschemeelement</cd>
@@ -82,20 +80,20 @@ BusinessData
             <time>09:33:46</time>
             <author>
                 <hcparty>
-                    <id S="LOCAL" SV="1.0" SL="application_ID">phacorilus</id>
+                    <id S="LOCAL" SV="1.0" SL="application_ID">applicationName</id>
                     <cd S="CD-HCPARTY" SV="1.1">application</cd>
-                    <name>phacorilus</name>
+                    <name>applicationName</name>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                     <cd S="CD-HCPARTY" SV="1.1">orgpharmacy</cd>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.1">perspharmacist</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>false</iscomplete>
@@ -160,7 +158,7 @@ BusinessData
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/56301/1
+/subject/90010100101/medication-scheme/56301/1
 
 MetaData
 --------------------
@@ -168,18 +166,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=5932
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=69C7FC07C47C17E8543F791AF86F342CC36072F7
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -190,13 +188,13 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743102</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -210,17 +208,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -228,11 +224,11 @@ BusinessData
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -298,7 +294,7 @@ BusinessData
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/44183/1
+/subject/90010100101/medication-scheme/44183/1
 
 MetaData
 --------------------
@@ -306,18 +302,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=6684
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=7733D47D6A652260D8D8EA74AE25026719D1D2BE
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -328,13 +324,13 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743106</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -348,17 +344,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -366,11 +360,11 @@ BusinessData
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -450,7 +444,7 @@ BusinessData
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/59642/1
+/subject/90010100101/medication-scheme/59642/1
 
 MetaData
 --------------------
@@ -458,18 +452,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=5312
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=2274A7BB844E0264383C45BA429F1BC9F53649D5
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -480,13 +474,13 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743108</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -500,17 +494,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -518,11 +510,11 @@ BusinessData
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -577,7 +569,7 @@ BusinessData
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/54519/1
+/subject/90010100101/medication-scheme/54519/1
 
 MetaData
 --------------------
@@ -585,18 +577,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=5304
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=F8723B6D8F191238294760756ABEBBE5614D6B95
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -607,13 +599,13 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743109</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -627,17 +619,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -645,11 +635,11 @@ BusinessData
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -704,7 +694,7 @@ BusinessData
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/45083/1
+/subject/90010100101/medication-scheme/45083/1
 
 MetaData
 --------------------
@@ -712,18 +702,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=5308
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=DB7E9E025847FB6DEBE8C953DDE228B45CF45878
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -734,13 +724,13 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743110</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -754,17 +744,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -772,11 +760,11 @@ BusinessData
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -831,7 +819,7 @@ BusinessData
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/14385/1
+/subject/90010100101/medication-scheme/14385/1
 
 MetaData
 --------------------
@@ -839,18 +827,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=5296
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=F1824ACDC27519E1B0F4F6A37AD3B2A6E83AFC97
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -861,13 +849,13 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743111</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -881,17 +869,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -899,11 +885,11 @@ BusinessData
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -958,7 +944,7 @@ BusinessData
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/21604/1
+/subject/90010100101/medication-scheme/21604/1
 
 MetaData
 --------------------
@@ -966,18 +952,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=5296
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=348A4F084FB52FBD45F7F2DAD5DCE2FAFCE47FF7
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -988,13 +974,13 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743112</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -1008,17 +994,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -1026,11 +1010,11 @@ BusinessData
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -1085,7 +1069,7 @@ BusinessData
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/93981/1
+/subject/90010100101/medication-scheme/93981/1
 
 MetaData
 --------------------
@@ -1093,18 +1077,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=5300
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=F011EB2E89A160532A2333271793762593C05A14
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -1115,13 +1099,13 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531141743113</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>14:17:43</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -1135,17 +1119,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -1153,11 +1135,11 @@ BusinessData
             <time>14:17:43</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -1212,7 +1194,7 @@ BusinessData
 
 URI
 --------------------
-/subject/72071135503/medication-scheme/48272/1
+/subject/90010100101/medication-scheme/48272/1
 
 MetaData
 --------------------
@@ -1220,18 +1202,18 @@ encryptionFlag=encrypted
 formatCode=KMEHR_20120401
 authorRole=PHARMACIST
 creationTime=2017-06-22T15:59:38+02:00
-patientID=72071135503
-authorInstitutionNIHII=12255751
+patientID=90010100101
+authorInstitutionNIHII=12345678
 authorInstitutionRole=PHARMACIST
 mimeType=text/xml
 languageCode=nl-BE
-authorPersonSSIN=72071135503
-authorPersonFamilyName=BRACKEZ
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
 size=5312
-authorPersonFirstName=JEROEN MAURITS
+authorPersonFirstName=JOHN
 availabilityStatus=active
 validationStatus=validated
-hash=085B3FED25F36862825FFFDAC116E860D7A4ACA1
+hash=abc
 authorPersonRole=PHARMACIST
 
 BusinessData
@@ -1242,13 +1224,13 @@ BusinessData
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20120401</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14844265004.20170531160812723</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
         <date>2017-05-31</date>
         <time>16:08:12</time>
         <sender>
             <hcparty>
-                <id S="LOCAL" SV="3.1">8596a68a-e632-4664-b217-6ff75eefd898</id>
+                <id S="LOCAL" SV="3.1">99999999999</id>
                 <cd S="CD-HCPARTY" SV="1.2">application</cd>
                 <name>CareConnect</name>
             </hcparty>
@@ -1262,17 +1244,15 @@ BusinessData
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">72071135503</id>
-            <firstname>Jeroen</firstname>
-            <familyname>Brackez</familyname>
-            <birthdate>
-                <date>1972-07-11</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
@@ -1280,11 +1260,11 @@ BusinessData
             <time>16:08:12</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">72071135503</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
-                    <firstname>Jeroen</firstname>
-                    <familyname>Brackez</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>

@@ -4,33 +4,33 @@
     <standard>
       <cd S="CD-STANDARD" SV="1.0">20100601</cd>
     </standard>
-    <id S="ID-KMEHR" SV="1.0">14296612004.20060520005759598</id>
+    <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
     <date>2019-11-12</date>
     <time>00:57:59</time>
     <sender>
       <hcparty>
-        <id S="ID-HCPARTY" SV="1.0">15690541004</id>
-        <id S="INSS" SV="1.0">81032425568</id>
-        <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+        <id S="INSS" SV="1.0">98765432101</id>
+        <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
         <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
         <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
-        <firstname>Bert</firstname>
-        <familyname>Peters</familyname>
+        <firstname>John</firstname>
+        <familyname>Doe</familyname>
         <address>
           <cd S="CD-ADDRESS" SV="1.0">home</cd>
           <country>
             <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
           </country>
-          <zip>3210</zip>
-          <city>Linden</city>
-          <street>Wolvendreef</street>
+          <zip>9999</zip>
+          <city>MY CITY</city>
+          <street>My Street</street>
           <housenumber>2</housenumber>
         </address>
       </hcparty>
     </sender>
     <recipient>
       <hcparty>
-        <id S="ID-HCPARTY" SV="1.0">71099812</id>
+        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
         <cd S="CD-HCPARTY" SV="1.0">Zorghospital</cd>
         <name>Test Hospital</name>
       </hcparty>
@@ -38,33 +38,15 @@
   </header>
   <folder>
     <id S="ID-KMEHR" SV="1.0">1</id>
-    <patient>
-      <id S="INSS" SV="1.0">49112002395</id>
-      <firstname>JAN</firstname>
-      <familyname>Demeulder</familyname>
-      <birthdate>
-        <date>1949-11-20</date>
-      </birthdate>
-      <sex>
-        <cd S="CD-SEX" SV="1.0">male</cd>
-      </sex>
-      <address>
-        <cd S="CD-ADDRESS" SV="1.0">home</cd>
-        <country>
-          <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
-        </country>
-        <zip>3000</zip>
-        <city>Leuven</city>
-        <street>Tiensestraat</street>
-        <housenumber>2</housenumber>
-      </address>
-      <telecom>
-        <cd S="CD-ADDRESS" SV="1.0">home</cd>
-        <cd S="CD-TELECOM" SV="1.0">phone</cd>
-        <telecomnumber>016257614</telecomnumber>
-      </telecom>
-      <usuallanguage>nl</usuallanguage>
-    </patient>
+            <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
     <transaction>
       <id S="ID-KMEHR" SV="1.0">1</id>
       <cd S="CD-TRANSACTION" SV="1.0">sumehr</cd>
@@ -72,21 +54,21 @@
       <time>00:57:59</time>
       <author>
         <hcparty>
-          <id S="ID-HCPARTY" SV="1.0">15690541004</id>
-          <id S="INSS" SV="1.0">81032425568</id>
-          <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+          <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+          <id S="INSS" SV="1.0">98765432101</id>
+          <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
           <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
           <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
-          <firstname>Bert</firstname>
-          <familyname>Peters</familyname>
+          <firstname>John</firstname>
+          <familyname>Doe</familyname>
           <address>
             <cd S="CD-ADDRESS" SV="1.0">home</cd>
             <country>
               <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
             </country>
-            <zip>3210</zip>
-            <city>Linden</city>
-            <street>Wolvendreef</street>
+            <zip>9999</zip>
+            <city>MY CITY</city>
+            <street>My Street</street>
             <housenumber>2</housenumber>
           </address>
           <telecom>
@@ -103,21 +85,21 @@
         <cd S="CD-ITEM" SV="1.0">gmdmanager</cd>
         <content>
           <hcparty>
-            <id S="ID-HCPARTY" SV="1.0">15690541004</id>
-            <id S="INSS" SV="1.0">81032425568</id>
-            <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+            <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+            <id S="INSS" SV="1.0">98765432101</id>
+            <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
             <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
             <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
-            <firstname>Bert</firstname>
-            <familyname>Peters</familyname>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <address>
               <cd S="CD-ADDRESS" SV="1.0">home</cd>
               <country>
                 <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
               </country>
-              <zip>3210</zip>
-              <city>Linden</city>
-              <street>Wolvendreef</street>
+              <zip>9999</zip>
+              <city>MY CITY</city>
+              <street>My Street</street>
               <housenumber>2</housenumber>
             </address>
             <telecom>
@@ -134,10 +116,10 @@
         <cd S="CD-CONTACT-PERSON" SV="1.0">mother</cd>
         <content>
           <person>
-            <id S="INSS" SV="1.0">62030022135</id>
+            <id S="INSS" SV="1.0">98765432101</id>
             <id S="LOCAL" SL="Sumehr-Love" SV="1.06.02">4275</id>
-            <firstname>An</firstname>
-            <familyname>Debondt</familyname>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
               <cd S="CD-SEX" SV="1.0">female</cd>
             </sex>
@@ -146,9 +128,9 @@
               <country>
                 <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
               </country>
-              <zip>3000</zip>
-              <city>LEUVEN</city>
-              <street>Vlamingenstraat</street>
+              <zip>9999</zip>
+              <city>MY CITY</city>
+              <street>My Street</street>
               <housenumber>2</housenumber>
             </address>
             <telecom>
@@ -265,19 +247,19 @@
         <cd S="CD-ITEM" SV="1.6">contacthcparty</cd>
         <content>
           <hcparty>
-            <id S="ID-HCPARTY" SV="1.0">15690541004</id>
-            <id S="INSS" SV="1.0">81032425568</id>
+            <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+            <id S="INSS" SV="1.0">98765432101</id>
             <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
-            <firstname>Bert</firstname>
-            <familyname>Peters</familyname>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <address>
               <cd S="CD-ADDRESS" SV="1.0">home</cd>
               <country>
                 <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
               </country>
-              <zip>3210</zip>
-              <city>Linden</city>
-              <street>Wolvendreef</street>
+              <zip>9999</zip>
+              <city>MY CITY</city>
+              <street>My Street</street>
               <housenumber>2</housenumber>
             </address>
             <telecom>

@@ -69,7 +69,7 @@ public class DiaryNoteWriter extends Writer {
     public static void main(String[] args) {
 
         DiaryNoteWriter diaryNoteWriter = new DiaryNoteWriter();
-        Stream.of("diarynote-with-only-text-without-layout", "diarynote-with-only-text-with-layout", "diarynote-example-bert-3", "diarynote-example-rsb-recorddatetime-and-redactor-and-pact", "diarynote-with-redactor", "diarynote-example-bert-3-with-unsupported-cddiarynote-values")
+        Stream.of("diarynote-with-only-text-without-layout", "diarynote-with-only-text-with-layout", "diarynote-example-b-3", "diarynote-example-rsb-recorddatetime-and-redactor-and-pact", "diarynote-with-redactor", "diarynote-example-b-3-with-unsupported-cddiarynote-values")
             .forEach(filename -> diaryNoteWriter.createPdf(readTestFile(filename + ".xml").get(0), filename + ".pdf"));
 
     }

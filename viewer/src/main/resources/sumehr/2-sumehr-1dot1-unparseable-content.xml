@@ -4,18 +4,18 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.0">20100601</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">14296612004.20060520005759598</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <date>2006-05-20</date>
         <time>00:57:59</time>
         <sender>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                <id S="INSS" SV="1.0">75041414469</id>
-                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
+                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
                 <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
                 <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
-                <firstname>Veerle</firstname>
-                <familyname>Moermans</familyname>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
                 <address>
                     <cd S="CD-ADDRESS" SV="1.0"/>
                     <nis>24062</nis>
@@ -24,7 +24,7 @@
         </sender>
         <recipient>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">71099812</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                 <cd S="CD-HCPARTY" SV="1.0">Zorghospital</cd>
                 <name>Test Hospital</name>
             </hcparty>
@@ -32,43 +32,15 @@
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="INSS" SV="1.0">49112002395</id>
-            <firstname>JAN</firstname>
-            <firstname>TOBY</firstname>
-            <familyname>JANSSENS</familyname>
-            <birthdate>
-                <date>1949-11-20</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-            <address>
-                <cd S="CD-ADDRESS" SV="1.0">home</cd>
-                <country>
-                    <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
-                </country>
-                <zip>2000</zip>
-                <city>ANTWERPEN</city>
-                <street>JANSSENS straat</street>
-                <housenumber>1</housenumber>
-            </address>
-            <telecom>
-                <cd S="CD-ADDRESS" SV="1.0">home</cd>
-                <cd S="CD-TELECOM" SV="1.0">phone</cd>
-                <telecomnumber>092536271</telecomnumber>
-            </telecom>
-            <telecom>
-                <cd S="CD-ADDRESS" SV="1.0">home</cd>
-                <cd S="CD-TELECOM" SV="1.0">email</cd>
-                <telecomnumber>janssens.jan@telenet.be</telecomnumber>
-            </telecom>
-            <usuallanguage>nl</usuallanguage>
-            <insurancystatus>
-                <id S="ID-INSURANCE" SV="1.0">perhaps insured</id>
-                <membership>member</membership>
-            </insurancystatus>
-        </patient>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
             <cd S="CD-TRANSACTION" SV="1.0">sumehr</cd>
@@ -76,32 +48,32 @@
             <time>00:57:59</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                     <cd S="CD-HCPARTY" SV="1.7">hub</cd>
                     <name>TEST HUB ORG</name>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">71009938</id>
-                    <id S="ID-ENCRYPTION-ACTOR" SV="1.0">71009938</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
                     <cd S="CD-HCPARTY" SV="1.7">orghospital</cd>
                     <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII-HOSPITAL</cd>
                     <name>GASTHUISZUSTERS ANTWERPEN</name>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">11786785180</id>
-                    <id S="INSS" SV="1.0">74032511225</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
-                    <firstname>Axelleke</firstname>
-                    <familyname>GERON</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                    <id S="INSS" SV="1.0">75041414469</id>
-                    <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
                     <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
                     <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
-                    <firstname>Veerle</firstname>
-                    <familyname>Moermans</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                     <address>
                         <cd S="CD-ADDRESS" SV="1.0"/>
                         <nis>24062</nis>
@@ -109,12 +81,12 @@
                     <telecom>
                         <cd S="CD-ADDRESS" SV="1.0">home</cd>
                         <cd S="CD-TELECOM" SV="1.0">phone</cd>
-                        <telecomnumber>092536271</telecomnumber>
+                        <telecomnumber>111111111</telecomnumber>
                     </telecom>
                     <telecom>
                         <cd S="CD-ADDRESS" SV="1.0">home</cd>
                         <cd S="CD-TELECOM" SV="1.0">phone</cd>
-                        <telecomnumber>092536272</telecomnumber>
+                        <telecomnumber>111111111</telecomnumber>
                     </telecom>
                 </hcparty>
             </author>
@@ -125,13 +97,13 @@
                 <cd S="CD-ITEM" SV="1.0">gmdmanager</cd>
                 <content>
                     <hcparty>
-                        <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                        <id S="INSS" SV="1.0">75041414469</id>
-                        <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+                        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                        <id S="INSS" SV="1.0">98765432101</id>
+                        <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
                         <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
                         <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
-                        <firstname>Veerle</firstname>
-                        <familyname>Moermans</familyname>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
                         <address>
                             <cd S="CD-ADDRESS" SV="1.0"/>
                             <nis>24062</nis>
@@ -139,7 +111,7 @@
                         <telecom>
                             <cd S="CD-ADDRESS" SV="1.0">home</cd>
                             <cd S="CD-TELECOM" SV="1.0">phone</cd>
-                            <telecomnumber>092536271</telecomnumber>
+                            <telecomnumber>111111111</telecomnumber>
                         </telecom>
                     </hcparty>
                 </content>
@@ -797,11 +769,11 @@
                 <cd S="CD-ITEM" SV="1.6">contacthcparty</cd>
                 <content>
                     <hcparty>
-                        <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                        <id S="INSS" SV="1.0">75041414469</id>
+                        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                        <id S="INSS" SV="1.0">98765432101</id>
                         <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
-                        <firstname>VEERLE</firstname>
-                        <familyname>MOERMANS</familyname>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
                         <address>
                             <cd S="CD-ADDRESS" SV="1.0"/>
                             <nis>24062</nis>
@@ -858,11 +830,11 @@
                 <cd S="CD-ITEM" SV="1.6">contacthcparty</cd>
                 <content>
                     <hcparty>
-                        <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-                        <id S="INSS" SV="1.0">75041414469</id>
+                        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                        <id S="INSS" SV="1.0">98765432101</id>
                         <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
-                        <firstname>VEERLE</firstname>
-                        <familyname>MOERMANS</familyname>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
                         <address>
                             <cd S="CD-ADDRESS" SV="1.0"/>
                             <nis>24062</nis>
@@ -882,10 +854,10 @@
                 <cd S="CD-CONTACT-PERSON" SV="1.0">father</cd>
                 <content>
                     <person>
-                        <id S="INSS" SV="1.0">62030022135</id>
+                        <id S="INSS" SV="1.0">98765432101</id>
                         <id S="LOCAL" SL="Sumehr-Love" SV="1.06.02">4275</id>
-                        <firstname>Jean</firstname>
-                        <familyname>Gilgamesh</familyname>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
                         <sex>
                             <cd S="CD-SEX" SV="1.0">male</cd>
                         </sex>
@@ -894,25 +866,25 @@
                             <country>
                                 <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
                             </country>
-                            <zip>6044</zip>
-                            <city>ROUX</city>
-                            <street>Rue du coucou</street>
+                            <zip>9999</zip>
+                            <city>MY CITY</city>
+                            <street>My Street</street>
                             <housenumber>6</housenumber>
                         </address>
                         <telecom>
                             <cd S="CD-ADDRESS" SV="1.0">home</cd>
                             <cd S="CD-TELECOM" SV="1.0">phone</cd>
-                            <telecomnumber>0152222222</telecomnumber>
+                            <telecomnumber>0998888888</telecomnumber>
                         </telecom>
                         <telecom>
                             <cd S="CD-ADDRESS" SV="1.0">home</cd>
                             <cd S="CD-TELECOM" SV="1.0">fax</cd>
-                            <telecomnumber>0152222233</telecomnumber>
+                            <telecomnumber>0997777777</telecomnumber>
                         </telecom>
                         <telecom>
                             <cd S="CD-ADDRESS" SV="1.0">home</cd>
                             <cd S="CD-TELECOM" SV="1.0">email</cd>
-                            <telecomnumber>jean.gilgamesh@xyz.be</telecomnumber>
+                            <telecomnumber>John.Doe@xyz.be</telecomnumber>
                         </telecom>
                     </person>
                 </content>

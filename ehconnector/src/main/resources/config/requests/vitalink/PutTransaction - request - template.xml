@@ -4,16 +4,16 @@
 		<standard>
 			<cd S="CD-STANDARD" SV="1.4">20161201</cd>
 		</standard>
-		<id S="ID-KMEHR" SV="1.0">18334780004.${idToday}093030</id>
+		<id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
 		<date>${today}</date>
 		<time>09:30:30.103+02:00</time>
 		<sender>
 			<hcparty>
-				<id S="ID-HCPARTY" SV="1.0">15690541004</id>
-				<id S="INSS" SV="1.0">81032425568</id>
+				<id S="ID-HCPARTY" SV="1.0">12345678901</id>
+				<id S="INSS" SV="1.0">98765432101</id>
 				<cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
-				<firstname>Bert</firstname>
-				<familyname>Peters</familyname>
+				<firstname>John</firstname>
+				<familyname>Doe</familyname>
 			</hcparty>
 		</sender>
 		<recipient>
@@ -26,14 +26,14 @@
 	</header>
 	<folder>
 		<id S="ID-KMEHR" SV="1.0">1</id>
-		<patient>
-			<id S="INSS" SV="1.0">72071135503</id>
-			<firstname>Jeroen</firstname>
-			<familyname>Brackez</familyname>
-			<sex>
-				<cd S="CD-SEX" SV="1.0">male</cd>
-			</sex><!-- connector Metadata: languageCode [nl-BE, fr-BE, de-BE] -->
-			<usuallanguage>nl-BE</usuallanguage>
-		</patient>
+		        <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
 	</folder>
 </kmehrmessage>

@@ -1,25 +1,25 @@
 <hcparty>
-    <id S="ID-HCPARTY" SV="1.0">17892144001</id>
-    <id S="INSS" SV="1.0">75041414469</id>
-    <id S="ID-ENCRYPTION-ACTOR" SV="1.0">17892144</id>
+    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+    <id S="INSS" SV="1.0">98765432101</id>
+    <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
     <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
     <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
-    <firstname>Veerle</firstname>
-    <familyname>Moermans</familyname>
+    <firstname>John</firstname>
+    <familyname>Doe</familyname>
     <address>
         <cd SV="1.0" S="CD-ADDRESS">work</cd>
         <country>
             <cd SV="1.0" S="CD-FED-COUNTRY">be</cd>
         </country>
-        <zip>5000</zip>
-        <city>Namur</city>
-        <street>Avenue de l'Ange</street>
-        <housenumber>237</housenumber>
+        <zip>9999</zip>
+        <city>MY CITY</city>
+        <street>My Street</street>
+        <housenumber>6</housenumber>
         <postboxnumber>B</postboxnumber>
     </address>
     <telecom>
         <cd S="CD-ADDRESS" SV="1.0">home</cd>
         <cd S="CD-TELECOM" SV="1.0">phone</cd>
-        <telecomnumber>092536271</telecomnumber>
+        <telecomnumber>111111111</telecomnumber>
     </telecom>
 </hcparty>

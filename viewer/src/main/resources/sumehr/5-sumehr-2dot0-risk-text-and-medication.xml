@@ -3,110 +3,75 @@
         <standard>
             <cd S="CD-STANDARD" SV="1.4">20161201</cd>
         </standard>
-        <id S="ID-KMEHR" SV="1.0">1990001916.202101291501311042</id>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
         <date>2021-01-29</date>
         <time>15:42:46</time>
         <sender>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                 <cd S="CD-HCPARTY" SV="1.12">hub</cd>
                 <name>VITALINK</name>
             </hcparty>
         </sender>
         <recipient>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">71054478</id>
-                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">71054478</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
                 <cd S="CD-HCPARTY" SV="1.1">orghospital</cd>
                 <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII-HOSPITAL</cd>
                 <name>AZ Zorg en Gezondheid</name>
             </hcparty>
             <hcparty>
-                <id S="ID-HCPARTY" SV="1.0">10030095004</id>
-                <id S="INSS" SV="1.0">82083005943</id>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
                 <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
-                <firstname>Wouter</firstname>
-                <familyname>De Jonghe</familyname>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
                 <address>
                     <cd S="CD-ADDRESS" SV="1.0"/>
                     <nis>24062</nis>
                 </address>
             </hcparty>
             <hcparty>
-                <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_2264d708-0d49-4aca-96f0-f7acb32cf5c2</id>
+                <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">code</id>
                 <cd S="CD-HCPARTY" SV="1.1">APPLICATION</cd>
             </hcparty>
         </recipient>
     </header>
     <folder>
         <id S="ID-KMEHR" SV="1.0">1</id>
-        <patient>
-            <id S="ID-PATIENT" SV="1.0">84072536717</id>
-            <firstname>Steven</firstname>
-            <familyname>Machtelinckx</familyname>
-            <birthdate>
-                <date>1984-07-25</date>
-            </birthdate>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>
-            <address>
-                <cd S="CD-ADDRESS" SV="1.0">home</cd>
-                <country>
-                    <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
-                </country>
-                <zip>3150</zip>
-                <city>Haacht</city>
-                <street>Wijgmaalsesteenweg(KLF)</street>
-                <housenumber>135</housenumber>
-                <postboxnumber>A</postboxnumber>
-            </address>
-            <address>
-                <cd S="CD-ADDRESS" SV="1.0">work</cd>
-                <country>
-                    <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
-                </country>
-                <zip>3150</zip>
-                <city>Haacht</city>
-                <street>Wijgmaalsesteenweg</street>
-                <housenumber>135</housenumber>
-                <postboxnumber>A</postboxnumber>
-            </address>
-            <telecom>
-                <cd S="CD-ADDRESS" SV="1.0">work</cd>
-                <cd S="CD-TELECOM" SV="1.0">phone</cd>
-                <telecomnumber>0474761881</telecomnumber>
-            </telecom>
-            <telecom>
-                <cd S="CD-ADDRESS" SV="1.0">work</cd>
-                <cd S="CD-TELECOM" SV="1.0">email</cd>
-                <telecomnumber>bert.peters.ext@imec.be</telecomnumber>
-            </telecom>
             <usuallanguage>nl-BE</usuallanguage>
-        </patient>
+       </patient>
         <transaction>
             <id S="ID-KMEHR" SV="1.0">1</id>
-            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/84072536717/sumehr/48533/1</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/90010100101/sumehr/48533/1</id>
             <cd S="CD-TRANSACTION" SV="1.5">sumehr</cd>
             <date>2021-01-29</date>
             <time>14:40:40</time>
             <author>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">1990001916</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                     <cd S="CD-HCPARTY" SV="1.12">hub</cd>
                     <name>VITALINK</name>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">71054478</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                     <cd S="CD-HCPARTY" SV="1.12">orghospital</cd>
                     <name>AZ ZORG EN GEZONDHEID</name>
                 </hcparty>
                 <hcparty>
-                    <id S="ID-HCPARTY" SV="1.0">10030095004</id>
-                    <id S="INSS" SV="1.0">82083005943</id>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
                     <cd S="CD-HCPARTY" SV="1.12">persphysician</cd>
-                    <firstname>Wouter</firstname>
-                    <familyname>De Jonghe</familyname>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
                 </hcparty>
             </author>
             <iscomplete>true</iscomplete>
@@ -221,8 +186,8 @@
                 <content>
                     <person>
                         <id S="LOCAL" SV="1.0">407</id>
-                        <firstname>Sara</firstname>
-                        <familyname>Simons</familyname>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
                         <sex>
                             <cd S="CD-SEX" SV="1.0">unknown</cd>
                         </sex>
@@ -254,8 +219,8 @@
                 <content>
                     <person>
                         <id S="LOCAL" SV="1.0">408</id>
-                        <firstname>bart</firstname>
-                        <familyname>heymans</familyname>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
                         <sex>
                             <cd S="CD-SEX" SV="1.0">unknown</cd>
                         </sex>
@@ -285,10 +250,10 @@
                 <cd S="CD-ITEM" SV="1.6">gmdmanager</cd>
                 <content>
                     <hcparty>
-                        <id S="ID-HCPARTY" SV="1.0">62054165201</id>
+                        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
                         <cd S="CD-HCPARTY" SV="1.6">persphysician</cd>
-                        <firstname>Sara</firstname>
-                        <familyname>Simons</familyname>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
                         <address>
                             <cd S="CD-ADDRESS" SV="1.0">work</cd>
                             <country>

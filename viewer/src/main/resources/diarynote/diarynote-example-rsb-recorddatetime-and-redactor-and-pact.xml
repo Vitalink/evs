@@ -4,70 +4,58 @@
     <standard>
       <cd S="CD-STANDARD" SV="1.20">20161201</cd>
     </standard>
-    <id S="ID-KMEHR" SV="1.0">EHP-1990000035.637334464424716067</id>
+    <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
     <date>2020-08-19</date>
     <time>15:07:22.4716067+02:00</time>
     <sender>
       <hcparty>
-        <id S="ID-HCPARTY" SV="1.0">1990000035</id>
+        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
         <cd S="CD-HCPARTY" SV="1.1">hub</cd>
         <name>Réseau Santé Wallon</name>
       </hcparty>
     </sender>
     <recipient>
       <hcparty>
-        <id S="ID-HCPARTY" SV="1.0">1990000728</id>
-        <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_e80d522a-4c74-48f3-b1c6-ce6a8a12990c</id>
+        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+        <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">code</id>
         <cd S="CD-HCPARTY" SV="1.0">hub</cd>
         <name>RSB</name>
       </hcparty>
       <hcparty>
-        <id S="ID-HCPARTY" SV="1.0">40833535</id>
+        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
         <cd S="CD-HCPARTY" SV="1.1">orgpharmacy</cd>
-        <name>Bert Peters</name>
+        <name>John Peters</name>
         <address>
           <cd S="CD-ADDRESS" SV="1.0">home</cd>
         </address>
       </hcparty>
       <hcparty>
-        <id S="ID-HCPARTY" SV="1.0">26935316</id>
-        <id S="INSS" SV="1.0">81032425568</id>
+        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+        <id S="INSS" SV="1.0">98765432101</id>
         <cd S="CD-HCPARTY" SV="1.1">perspharmacist</cd>
-        <firstname>Bert</firstname>
-        <familyname>Peters</familyname>
+        <firstname>John</firstname>
+        <familyname>Doe</familyname>
         <address>
           <cd S="CD-ADDRESS" SV="1.0">home</cd>
         </address>
       </hcparty>
       <hcparty>
-        <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">ACC_2264d708-0d49-4aca-96f0-f7acb32cf5c2</id>
+        <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">code</id>
         <cd S="CD-HCPARTY" SV="1.1">APPLICATION</cd>
       </hcparty>
     </recipient>
   </header>
   <folder>
     <id S="ID-KMEHR" SV="1.0">1</id>
-    <patient>
-      <id S="INSS" SV="1.0">54080807106</id>
-      <firstname>Lawrence</firstname>
-      <familyname>Cuvelier</familyname>
-      <birthdate>
-        <date>1954-08-08</date>
-      </birthdate>
-      <sex>
-        <cd L="fr" S="CD-SEX" SV="1.0">male</cd>
-      </sex>
-      <address>
-        <cd L="fr" S="CD-ADDRESS" SV="1.0">home</cd>
-        <country>
-          <cd L="fr" S="CD-COUNTRY" SV="1.0">be</cd>
-        </country>
-        <zip>1020</zip>
-        <city>Bruxelles</city>
-        <street>Demeer 18</street>
-      </address>
-      <recorddatetime>2018-11-27T11:21:24.582+01:00</recorddatetime>
-    </patient>
+            <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
     <transaction>
       <id S="LOCAL" SL="RSWID" SV="1.0">2941</id>
       <cd S="CD-TRANSACTION" SV="1.11">diarynote</cd>
@@ -78,24 +66,24 @@
       <time>14:50:04.0000000</time>
       <author>
         <hcparty>
-          <id S="ID-HCPARTY" SV="1.0">1990000035</id>
+          <id S="ID-HCPARTY" SV="1.0">12345678901</id>
           <cd S="CD-HCPARTY" SV="1.1">hub</cd>
           <name>RSW</name>
         </hcparty>
         <hcparty>
-          <id S="INSS" SV="1.0">80010423373</id>
+          <id S="INSS" SV="1.0">98765432101</id>
           <cd L="fr" S="CD-HCPARTY" SV="1.0">persnurse</cd>
-          <firstname>Cédric</firstname>
-          <familyname>REMELS</familyname>
+          <firstname>John</firstname>
+          <familyname>Doe</familyname>
         </hcparty>
       </author>
       <redactor>
         <hcparty>
-          <id S="ID-HCPARTY" SV="1.0">48909774401</id>
-          <id S="INSS" SV="1.0">80010423373</id>
+          <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+          <id S="INSS" SV="1.0">98765432101</id>
           <cd L="fr" S="CD-HCPARTY" SV="1.0">persnurse</cd>
-          <firstname>Cédric</firstname>
-          <familyname>Remels</familyname>
+          <firstname>John</firstname>
+          <familyname>Doe</familyname>
         </hcparty>
       </redactor>
       <iscomplete>true</iscomplete>

@@ -32,8 +32,8 @@ public class HubFlowTestRunner {
         EVSConfig.getInstance().setProperty(EVSProperties.FILTER_OUT_TRANSACTIONS_HAVING_PATIENT_ACCESS_NO, "false");
         HubFlow hubFlow = new HubFlow();
 
-        SessionManager.connectWith(AuthenticationConfigReader.loadByName(AuthenticationConfigReader.HO_PETERS));
-        PatientKey patientKey = PatientKey.BERT;
+        SessionManager.connectWith(AuthenticationConfigReader.loadByName(AuthenticationConfigReader.GP_EXAMPLE));
+        PatientKey patientKey = PatientKey.PATIENT_EXAMPLE;
         GetTransactionSetResponse transactionSetResponse = hubFlow.getTransactionSet(PatientReader.loadPatientByKey(patientKey).getId(), TransactionType.MEDICATION_SCHEME);
         LOG.info(transactionSetResponse);
 
@@ -43,8 +43,8 @@ public class HubFlowTestRunner {
 
         HubFlow hubFlow = new HubFlow();
 
-        SessionManager.connectWith(AuthenticationConfigReader.loadByName(AuthenticationConfigReader.GP_VAN_GUCHT));
-        GetLatestUpdateResponse getLatestUpdateResponse = hubFlow.getLatestUpdate(PatientReader.loadPatientByKey(PatientKey.BERT).getId(), TransactionType.MEDICATION_SCHEME);
+        SessionManager.connectWith(AuthenticationConfigReader.loadByName(AuthenticationConfigReader.GP_EXAMPLE));
+        GetLatestUpdateResponse getLatestUpdateResponse = hubFlow.getLatestUpdate(PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE).getId(), TransactionType.MEDICATION_SCHEME);
         AcknowledgeType acknowledge = getLatestUpdateResponse.getAcknowledge();
 
     }

@@ -2,7 +2,7 @@ package org.imec.ivlab.core.data;
 
 public enum RIZIVData {
 
-    DR_VEEERLE_MOERMANS("17892144001");
+    DR_EXAMPLE("12345678901");
 
     private String value;
 

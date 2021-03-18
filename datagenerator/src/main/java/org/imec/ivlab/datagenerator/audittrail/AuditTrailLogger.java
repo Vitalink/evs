@@ -22,7 +22,7 @@ public class AuditTrailLogger {
 
     public static void main(String[] args) throws GatewaySpecificErrorException, VitalinkException, TechnicalConnectorException {
         AuditTrailLogger auditTrailLogger = new AuditTrailLogger();
-        auditTrailLogger.logPatientAuditTrail(PatientReader.loadPatientByKey(PatientKey.STEVEN), AuthenticationConfigReader.PH_PETERS);
+        auditTrailLogger.logPatientAuditTrail(PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE), AuthenticationConfigReader.GP_EXAMPLE);
     }
 
     public AuditTrailLogger() {

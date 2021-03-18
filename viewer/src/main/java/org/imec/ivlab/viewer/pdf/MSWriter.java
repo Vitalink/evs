@@ -109,7 +109,6 @@ public class MSWriter extends Writer {
     public static void main(String[] args)
             throws SchemaConversionException, TransformationException {
         new MSWriter().createPdf(getTestScheme(), "global-medication-scheme.pdf");
-//        new MSWriter().createPdf(getDailyTestScheme(), "daily-medication-scheme.pdf");
     }
 
     public MSWriter() {
@@ -117,22 +116,8 @@ public class MSWriter extends Writer {
     }
 
     private static AbstractScheme getTestScheme() throws TransformationException {
-//        File inputFile = IOUtils.getResourceAsFile("/100lijnen.txt");
-//        File inputFile = IOUtils.getResourceAsFile("/10lijnen.txt");
-//        File inputFile = IOUtils.getResourceAsFile("/Visualisation-of-specific-times-2.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/split-pagebreak.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/TS-vs-TS_MSE-without-endmoment.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/MSE-vs-TS_MSE-with-endmoment_evsg_formaat.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/MSE-vs-TS_MSE-without-endmoment_evsg_formaat.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/TS-vs-TS_MSE-with-endmoment_evsg_formaat.xml");
         File inputFile = IOUtils.getResourceAsFile("/InvalidTimeunit.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/non-vitalink-and-non-kmehr-administrationunits.txt");
-//        File inputFile = IOUtils.getResourceAsFile("/beginmoment-no-date.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/large-quantities.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/compoundprescription.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/1-kmehr.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/20170908-125324_72071135503_vpk_annemarie_wijzigenID_620_901_Insulatard_size-4.exp");
-//        File inputFile = IOUtils.getResourceAsFile("/20170908-132911_72071135503_dr_veerle_wegstrepenID_630_908_Sedinal_size-6.xml");
+
 
 
         KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
@@ -143,15 +128,15 @@ public class MSWriter extends Writer {
         GlobalScheme scheme = new GlobalScheme();
         scheme.setMedicationEntries(medicationEntries);
 
-        Patient patient = PatientReader.loadPatientByKey(PatientKey.STEVEN.getValue());
+        Patient patient = PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE.getValue());
         scheme.setPatient(patient);
 
         scheme.setVersion("313");
 
         List<HcpartyType> authors = new ArrayList<>();
         HcpartyType author = new HcpartyType();
-        author.setFirstname("Katrien");
-        author.setFamilyname("Van Gucht");
+        author.setFirstname("Jane");
+        author.setFamilyname("DOE");
         authors.add(author);
         scheme.setAuthors(authors);
 
@@ -163,8 +148,6 @@ public class MSWriter extends Writer {
 //        File inputFile = IOUtils.getResourceAsFile("/non-vitalink-and-non-kmehr-administrationunits.txt");
 //        File inputFile = IOUtils.getResourceAsFile("/met-frequency-ondemand.xml");
 //        File inputFile = IOUtils.getResourceAsFile("/medication-weekly-starts-today.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/20170908-125324_72071135503_vpk_annemarie_wijzigenID_620_901_Insulatard_size-4.exp");
-//        File inputFile = IOUtils.getResourceAsFile("/20170908-132911_72071135503_dr_veerle_wegstrepenID_630_908_Sedinal_size-6.xml");
 
         LocalDate schemeDate = LocalDate.of(2018, 9, 11);
 
@@ -180,15 +163,15 @@ public class MSWriter extends Writer {
 
         scheme.setSchemeDate(schemeDate);
 
-        Patient patient = PatientReader.loadPatientByKey(PatientKey.STEVEN.getValue());
+        Patient patient = PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE.getValue());
         scheme.setPatient(patient);
 
         scheme.setVersion("313");
 
         List<HcpartyType> authors = new ArrayList<>();
         HcpartyType author = new HcpartyType();
-        author.setFirstname("Katrien");
-        author.setFamilyname("Van Gucht");
+        author.setFirstname("Jane");
+        author.setFamilyname("DOE");
         authors.add(author);
         scheme.setAuthors(authors);
 

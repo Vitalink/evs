@@ -15,20 +15,20 @@ public class URIBuilder {
 
     @Test
     public void testParseString(){
-        URI uri1 = URIBuilder.fromString("/subject/84072536717/medication-scheme/47190");
+        URI uri1 = URIBuilder.fromString("/subject/90010100101/medication-scheme/47190");
         log.info(uri1);
         log.info(URIWriter.toString(uri1));
-        URI uri2 = (URIBuilder.fromString("/subject/84072536717/medication-scheme/47190/1"));
+        URI uri2 = (URIBuilder.fromString("/subject/90010100101/medication-scheme/47190/1"));
         log.info(uri2);
         log.info(URIWriter.toString(uri2));
         log.info("URI for update: " + URIWriter.toString(URIConverter.convertToUpdate(uri2)));
-        URI uri3 = (URIBuilder.fromString("/subject/84072536717/medication-scheme/47190/new/1"));
+        URI uri3 = (URIBuilder.fromString("/subject/90010100101/medication-scheme/47190/new/1"));
         log.info(uri3);
         log.info(URIWriter.toString(uri3));
-        URI uri4 = (URIBuilder.fromString("/subject/84072536717/medication-scheme/new"));
+        URI uri4 = (URIBuilder.fromString("/subject/90010100101/medication-scheme/new"));
         log.info(uri4);
         log.info(URIWriter.toString(uri4));
-        URI uri5 = (URIBuilder.fromString("/subject/81032425568/vaccination/B1BFB33C7CD24729A866A869F44CA9F8/1"));
+        URI uri5 = (URIBuilder.fromString("/subject/90010100101/vaccination/B1BFB33C7CD24729A866A869F44CA9F8/1"));
         log.info(uri5);
         log.info(URIWriter.toString(uri5));
     }

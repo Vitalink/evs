@@ -1,13 +1,12 @@
 package org.imec.ivlab.datagenerator.uploader;
 
+import java.io.File;
+import java.time.LocalDate;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.model.hub.Hub;
 import org.imec.ivlab.core.model.hub.SearchType;
 import org.imec.ivlab.datagenerator.uploader.dateshift.ShiftAction;
 import org.imec.ivlab.datagenerator.uploader.exception.ScannerException;
-
-import java.io.File;
-import java.time.LocalDate;
 
 public class UploaderFromIde {
 
@@ -18,7 +17,7 @@ public class UploaderFromIde {
 
         UploaderArguments arguments = new UploaderArguments();
 
-        arguments.setRootDir(new File("\\Users\\pertb\\IdeaProjects\\evs_dev\\exe\\interaction"));
+        arguments.setRootDir(new File(""));
         arguments.setExportAfterUpload(true);
 
         arguments.setValidateExportAfterUpload(true);

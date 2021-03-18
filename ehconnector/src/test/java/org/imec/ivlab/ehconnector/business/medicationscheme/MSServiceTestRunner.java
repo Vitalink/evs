@@ -1,5 +1,6 @@
 package org.imec.ivlab.ehconnector.business.medicationscheme;
 
+import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.data.PatientKey;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrExtractor;
@@ -10,9 +11,7 @@ import org.imec.ivlab.core.model.patient.model.Patient;
 import org.imec.ivlab.core.util.IOUtils;
 import org.imec.ivlab.ehconnector.business.HubHelper;
 
-import static org.imec.ivlab.core.authentication.AuthenticationConfigReader.GP_PETERS;
-import static org.imec.ivlab.core.authentication.AuthenticationConfigReader.GP_VAN_GUCHT;
-import static org.imec.ivlab.core.authentication.AuthenticationConfigReader.PH_PETERS;
+import static org.imec.ivlab.core.authentication.AuthenticationConfigReader.GP_EXAMPLE;
 import static org.imec.ivlab.core.authentication.AuthenticationConfigReader.loadByName;
 
 public class MSServiceTestRunner {
@@ -28,9 +27,9 @@ public class MSServiceTestRunner {
 
         String kmehrFileContent = IOUtils.getResourceAsString("/kmehrs/test-put.xml");
 
-        Patient patient = PatientReader.loadPatientByKey(PatientKey.STEVEN);
+        Patient patient = PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE);
 
-        gatewayDAO.authenticate(loadByName(GP_VAN_GUCHT));
+        gatewayDAO.authenticate(loadByName(AuthenticationConfigReader.GP_EXAMPLE));
         KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(kmehrFileContent);
         MSEntryList msEntryList = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
         HubHelper hubHelper = new HubHelper();
@@ -43,8 +42,8 @@ public class MSServiceTestRunner {
 
         MSServiceImpl gatewayDAO = new MSServiceImpl();
 
-        Patient patient = PatientReader.loadPatientByKey(PatientKey.STEVEN);
-        gatewayDAO.authenticate(loadByName(GP_VAN_GUCHT));
+        Patient patient = PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE);
+        gatewayDAO.authenticate(loadByName(AuthenticationConfigReader.GP_EXAMPLE));
         gatewayDAO.getMedicationScheme(patient);
 
 
@@ -56,12 +55,12 @@ public class MSServiceTestRunner {
 
         String kmehrFileContent = IOUtils.getResourceAsString("/kmehrs/example-kmehrs-2-met-suspensions.xml");
 
-        Patient patient = PatientReader.loadPatientByKey(PatientKey.STEVEN);
+        Patient patient = PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE);
 
-        gatewayDAO.authenticate(loadByName(GP_PETERS));
-        gatewayDAO.authenticate(loadByName(PH_PETERS));
-        gatewayDAO.authenticate(loadByName(GP_VAN_GUCHT));
-        gatewayDAO.authenticate(loadByName(GP_PETERS));
+        gatewayDAO.authenticate(loadByName(GP_EXAMPLE));
+        gatewayDAO.authenticate(loadByName(AuthenticationConfigReader.GP_EXAMPLE));
+        gatewayDAO.authenticate(loadByName(AuthenticationConfigReader.GP_EXAMPLE));
+        gatewayDAO.authenticate(loadByName(GP_EXAMPLE));
         KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(kmehrFileContent);
         MSEntryList msEntryList = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
         HubHelper hubHelper = new HubHelper();
@@ -75,11 +74,11 @@ public class MSServiceTestRunner {
 
         MSServiceImpl gatewayDAO = new MSServiceImpl();
 
-        Patient patient = PatientReader.loadPatientByKey(PatientKey.STEVEN);
+        Patient patient = PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE);
 
         String kmehrFileContent = IOUtils.getResourceAsString("/kmehrs/example-kmehrs-2-met-suspensions.xml");
 
-        gatewayDAO.authenticate(loadByName(GP_PETERS));
+        gatewayDAO.authenticate(loadByName(GP_EXAMPLE));
         KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(kmehrFileContent);
         MSEntryList msEntryList = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
         HubHelper hubHelper = new HubHelper();

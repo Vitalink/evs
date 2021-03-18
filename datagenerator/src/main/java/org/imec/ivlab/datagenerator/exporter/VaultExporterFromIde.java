@@ -21,17 +21,14 @@ public class VaultExporterFromIde {
 
         VaultExporterArguments arguments = new VaultExporterArguments();
 
-        arguments.setTransactionType(TransactionType.VACCINATION);
+        arguments.setTransactionType(TransactionType.SUMEHR);
 
         List<String> patientIDs = new ArrayList<>();
-        patientIDs.add(PatientKey.BERT.getValue());
-//        patientIDs.add(PatientKey.JEROEN.getValue());
-//        patientIDs.add(PatientKey.KATRIEN.getValue());
-//        patientIDs.add(PatientKey.BEN.getValue());
-//        patientIDs.add(PatientKey.SABRINA.getValue());
+        patientIDs.add(PatientKey.PATIENT_EXAMPLE.getValue());
+
         arguments.setPatientKeys(patientIDs);
 
-        arguments.setActorKey(AuthenticationConfigReader.GP_PETERS);
+        arguments.setActorKey(AuthenticationConfigReader.GP_EXAMPLE);
 
         arguments.setValidate(true);
         arguments.setGenerateGlobalMedicationScheme(true);
@@ -43,11 +40,11 @@ public class VaultExporterFromIde {
         arguments.setDailyMedicationSchemeDate(LocalDate.now().plusYears(4));
         arguments.setFilterOutTransactionsHavingPatientAccessNo(false);
 
-        arguments.setHub(Hub.RSW);
+        arguments.setHub(Hub.VITALINK);
         arguments.setSearchType(SearchType.LOCAL);
 
 //        arguments.setBreakTheGlassIfTRMissing(true);
-        arguments.setExportDir(new File("\\WORK\\imec\\ivlab-automation-evs\\exe\\exports"));
+        arguments.setExportDir(new File(""));
 
         exporter.start(arguments);
 

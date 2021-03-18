@@ -77,7 +77,7 @@ public class DeanonymizationModifier implements KmehrModification {
             for (IDHCPARTY id : ids) {
 
                 if (id.getS() != null && id.getS().equals(IDHCPARTYschemes.ID_HCPARTY) && isAnonymized(id.getValue())) {
-                    id.setValue(RIZIVData.DR_VEEERLE_MOERMANS.getValue());
+                    id.setValue(RIZIVData.DR_EXAMPLE.getValue());
                     continue;
                 }
 
