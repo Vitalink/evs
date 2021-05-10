@@ -1,0 +1,1319 @@
+********************
+*72071135503*
+********************
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/61165/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=7280
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+    <kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <date>2017-04-07</date>
+        <time>09:33:47</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="1.0" SL="application_ID">applicationName</id>
+                <cd S="CD-HCPARTY" SV="1.1">application</cd>
+                <name>applicationName</name>
+            </hcparty>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <cd S="CD-HCPARTY" SV="1.1">orgpharmacy</cd>
+            </hcparty>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
+                <cd S="CD-HCPARTY" SV="1.1">perspharmacist</cd>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.0">application</cd>
+                <name>VITALINK</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.0">medicationschemeelement</cd>
+            <date>2017-04-07</date>
+            <time>09:33:46</time>
+            <author>
+                <hcparty>
+                    <id S="LOCAL" SV="1.0" SL="application_ID">applicationName</id>
+                    <cd S="CD-HCPARTY" SV="1.1">application</cd>
+                    <name>applicationName</name>
+                </hcparty>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <cd S="CD-HCPARTY" SV="1.1">orgpharmacy</cd>
+                </hcparty>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.1">perspharmacist</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>false</iscomplete>
+            <isvalidated>false</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.0">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">origin</cd>
+                    <cd S="CD-MS-ORIGIN" SV="1.0">regularprocess</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.0">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">posology</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.0">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">2542488</intendedcd>
+                        <deliveredcd S="CD-DRUG-CNK" SV="1.0">2542488</deliveredcd>
+                        <intendedname>ASAFLOW 80MG MAAGSAPRES COMP BLI 168X 80MG</intendedname>
+                        <deliveredname xsi:type="xs:string" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">ASAFLOW 80MG MAAGSAPRES COMP BLI 168X 80MG</deliveredname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-04-07</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.00</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.0">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/56301/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=5932
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+  <kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
+        <date>2017-05-31</date>
+        <time>14:17:43</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="3.1">99999999999</id>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>CareConnect</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>Vitalink</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2017-05-31</date>
+            <time>14:17:43</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="CC-2017-04-20">3080314</intendedcd>
+                        <intendedname>Daflon 450/50 filmomh. tabl. 120x</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-04-28</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringdinner</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/44183/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=6684
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
+        <date>2017-05-31</date>
+        <time>14:17:43</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="3.1">99999999999</id>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>CareConnect</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>Vitalink</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2017-05-31</date>
+            <time>14:17:43</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="juni 2013">0072678</intendedcd>
+                        <intendedname>Prolopa 250 200/50 100 tab</intendedname>
+                    </medicinalproduct>
+                </content>
+                <content>
+                    <cd S="CD-ATC" SV="juni 2013">N04BA02</cd>
+                </content>
+                <beginmoment>
+                    <date>2016-01-27</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00004</cd>
+                        </unit>
+                    </quantity>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringlunch</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00004</cd>
+                        </unit>
+                    </quantity>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringdinner</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00004</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/59642/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=5312
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
+        <date>2017-05-31</date>
+        <time>14:17:43</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="3.1">99999999999</id>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>CareConnect</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>Vitalink</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2017-05-31</date>
+            <time>14:17:43</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="CC-2017-04-20">0856062</intendedcd>
+                        <intendedname>Lanoxin tabl. (deelb.) 60x 0,25mg</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-04-28</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringdinner</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>0.5</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/54519/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=5304
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
+        <date>2017-05-31</date>
+        <time>14:17:43</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="3.1">99999999999</id>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>CareConnect</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>Vitalink</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2017-05-31</date>
+            <time>14:17:43</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="CC-2017-04-20">2739274</intendedcd>
+                        <intendedname>PROMAGNOR CAPS 60X450MG</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-04-28</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00004</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/45083/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=5308
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
+        <date>2017-05-31</date>
+        <time>14:17:43</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="3.1">99999999999</id>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>CareConnect</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>Vitalink</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2017-05-31</date>
+            <time>14:17:43</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="2010-08-10">2076123</intendedcd>
+                        <intendedname>Apocard caps Retard 60x 100mg</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2015-02-05</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00004</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/14385/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=5296
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
+        <date>2017-05-31</date>
+        <time>14:17:43</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="3.1">99999999999</id>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>CareConnect</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>Vitalink</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2017-05-31</date>
+            <time>14:17:43</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="2010-08-10">1390558</intendedcd>
+                        <intendedname>Detrusitol tab 56x 2mg</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2015-02-05</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/21604/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=5296
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
+        <date>2017-05-31</date>
+        <time>14:17:43</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="3.1">99999999999</id>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>CareConnect</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>Vitalink</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2017-05-31</date>
+            <time>14:17:43</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="2010-08-10">1727064</intendedcd>
+                        <intendedname>Teveten tab 98x 600mg</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2014-12-24</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/93981/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=5300
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
+        <date>2017-05-31</date>
+        <time>14:17:43</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="3.1">99999999999</id>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>CareConnect</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>Vitalink</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2017-05-31</date>
+            <time>14:17:43</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="2010-08-10">2993368</intendedcd>
+                        <intendedname>Lorazepam EG tab 60x 2,5mg</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2014-12-24</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">thehourofsleep</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.0</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+
+URI
+--------------------
+/subject/90010100101/medication-scheme/48272/1
+
+MetaData
+--------------------
+encryptionFlag=encrypted
+formatCode=KMEHR_20120401
+authorRole=PHARMACIST
+creationTime=2017-06-22T15:59:38+02:00
+patientID=90010100101
+authorInstitutionNIHII=12345678
+authorInstitutionRole=PHARMACIST
+mimeType=text/xml
+languageCode=nl-BE
+authorPersonSSIN=90010100101
+authorPersonFamilyName=DOE
+size=5312
+authorPersonFirstName=JOHN
+availabilityStatus=active
+validationStatus=validated
+hash=abc
+authorPersonRole=PHARMACIST
+
+BusinessData
+--------------------
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20120401</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <id S="LOCAL" SV="1.0" SL="ID-CARECONNECT">___LOCAL___</id>
+        <date>2017-05-31</date>
+        <time>16:08:12</time>
+        <sender>
+            <hcparty>
+                <id S="LOCAL" SV="3.1">99999999999</id>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>CareConnect</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <cd S="CD-HCPARTY" SV="1.2">application</cd>
+                <name>Vitalink</name>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-TRANSACTION" SV="1.4">medicationschemeelement</cd>
+            <date>2017-05-31</date>
+            <time>16:08:12</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.2">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="CC-2017-04-20">1414309</intendedcd>
+                        <intendedname>Burinex tabl. (deelb.) 30x 1mg</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-04-28</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1.5</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.2">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+    <Signature xsi:nil="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"/>
+</kmehrmessage>
+
+

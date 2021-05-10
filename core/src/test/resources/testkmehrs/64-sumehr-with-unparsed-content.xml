@@ -1,0 +1,561 @@
+<folder>
+    <id S="ID-KMEHR" SV="1.0">1</id>
+            <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+    <transaction>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+        <cd S="CD-TRANSACTION" SV="1.0">sumehr</cd>
+        <date>2006-05-20</date>
+        <time>00:57:59</time>
+        <author>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
+                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
+                <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
+                <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
+                <address>
+                    <cd S="CD-ADDRESS" SV="1.0"/>
+                    <nis>24062</nis>
+                </address>
+                <telecom>
+                    <cd S="CD-ADDRESS" SV="1.0">home</cd>
+                    <cd S="CD-TELECOM" SV="1.0">phone</cd>
+                    <telecomnumber>111111111</telecomnumber>
+                </telecom>
+            </hcparty>
+        </author>
+        <iscomplete>true</iscomplete>
+        <isvalidated>true</isvalidated>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-ITEM" SV="1.0">gmdmanager</cd>
+            <content>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
+                    <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
+                    <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                    <address>
+                        <cd SV="1.0" S="CD-ADDRESS">work</cd>
+                        <country>
+                            <cd SV="1.0" S="CD-FED-COUNTRY">be</cd>
+                        </country>
+                        <zip>9999</zip>
+                        <city>MY CITY</city>
+                        <street>My Street</street>
+                        <housenumber>6</housenumber>
+                        <postboxnumber>B</postboxnumber>
+                    </address>
+                    <telecom>
+                        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+                        <cd S="CD-TELECOM" SV="1.0">phone</cd>
+                        <telecomnumber>111111111</telecomnumber>
+                    </telecom>
+                </hcparty>
+            </content>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <cd S="CD-ITEM" SV="1.0">encounternumber</cd>
+            <content>
+            </content>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">2</id>
+            <cd S="CD-ITEM" SV="1.0">contactperson</cd>
+            <cd S="CD-CONTACT-PERSON" SV="1.0">father</cd>
+            <content>
+                <person>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <id S="LOCAL" SL="Sumehr-Love" SV="1.06.02">4275</id>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                    <sex>
+                        <cd S="CD-SEX" SV="1.0">male</cd>
+                    </sex>
+                    <address>
+                        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+                        <country>
+                            <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
+                        </country>
+                        <zip>9999</zip>
+                        <city>MY CITY</city>
+                        <street>My Street</street>
+                        <housenumber>6</housenumber>
+                    </address>
+                    <telecom>
+                        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+                        <cd S="CD-TELECOM" SV="1.0">phone</cd>
+                        <telecomnumber>0998888888</telecomnumber>
+                    </telecom>
+                    <telecom>
+                        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+                        <cd S="CD-TELECOM" SV="1.0">fax</cd>
+                        <telecomnumber>0997777777</telecomnumber>
+                    </telecom>
+                    <telecom>
+                        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+                        <cd S="CD-TELECOM" SV="1.0">email</cd>
+                        <telecomnumber>John.Doe@xyz.be</telecomnumber>
+                    </telecom>
+                </person>
+            </content>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">3</id>
+            <cd S="CD-ITEM" SV="1.0">healthcareelement</cd>
+            <content>
+                <cd S="CD-CLINICAL" SV="1.0">10015202</cd>
+                <cd S="ICPC" SV="2" DN="Ziekte van Hodgkin/non-Hodgkin lymfoom" L="nl">B72</cd>
+                <cd S="ICD" SV="10" DN="Folliculair non-Hodgkin-lymfoom, niet gespecificeerd" L="nl">C82.9</cd>
+            </content>
+            <content>
+                <text L="nl">Brill-Symmers</text>
+            </content>
+            <beginmoment>
+                <date>1980-05-12</date>
+            </beginmoment>
+            <endmoment>
+                <date>1985-12-31</date>
+            </endmoment>
+            <lifecycle>
+                <cd S="CD-LIFECYCLE" SV="1.0">inactive</cd>
+            </lifecycle>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">4</id>
+            <cd S="CD-ITEM" SV="1.0">healthcareelement</cd>
+            <content>
+                <cd S="CD-CLINICAL" SV="1.0">10056897</cd>
+                <cd S="ICPC" SV="2" DN="Ziekte van Hodgkin/non-Hodgkin lymfoom" L="nl">B72</cd>
+                <cd S="ICD" SV="10" DN="Lymfosarcoom" L="nl">C85.0</cd>
+            </content>
+            <content>
+                <text L="nl">lymfosarcoom</text>
+            </content>
+            <beginmoment>
+                <date>1992-01-27</date>
+            </beginmoment>
+            <lifecycle>
+                <cd SV="1.0" S="CD-LIFECYCLE">active</cd>
+            </lifecycle>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">5</id>
+            <cd S="CD-ITEM" SV="1.0">healthcareelement</cd>
+            <content>
+                <cd S="CD-CLINICAL" SV="1.0">10008140</cd>
+                <cd S="ICPC" SV="2" DN="Andere ziekte luchtwegen" L="nl">R99</cd>
+                <cd S="ICD" SV="10" DN="Adult respiratory distress syndrome" L="nl">J80</cd>
+            </content>
+            <content>
+                <text L="nl">ards</text>
+            </content>
+            <beginmoment>
+                <date>2001-08-17</date>
+            </beginmoment>
+            <lifecycle>
+                <cd SV="1.0" S="CD-LIFECYCLE">active</cd>
+            </lifecycle>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">6</id>
+            <cd S="CD-ITEM" SV="1.0">healthcareelement</cd>
+            <content>
+                <cd S="CD-CLINICAL" SV="1.0">10032626</cd>
+                <cd S="ICPC" SV="2" DN="Hartritmestoornis nao" L="nl">K80</cd>
+                <cd S="ICD" SV="10" DN="Overige gespecificeerde hartritmestoornissen" L="nl">I49.8</cd>
+            </content>
+            <content>
+                <text L="nl">hart fibrilleren</text>
+            </content>
+            <beginmoment>
+                <date>2000-01-01</date>
+            </beginmoment>
+            <lifecycle>
+                <cd SV="1.0" S="CD-LIFECYCLE">active</cd>
+            </lifecycle>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">7</id>
+            <cd S="CD-ITEM" SV="1.0">healthcareelement</cd>
+            <content>
+                <cd S="CD-CLINICAL" SV="1.0">10115629</cd>
+                <cd S="ICPC" SV="2" DN="Decompensatio cordis" L="nl">K77</cd>
+                <cd S="ICD" SV="10" DN="Linker-ventrikeldecompensatie" L="nl">I50.1</cd>
+            </content>
+            <content>
+                <text L="nl">Decompensatie; ventrikel, linker</text>
+            </content>
+            <beginmoment>
+                <date>2006-03-15</date>
+            </beginmoment>
+            <lifecycle>
+                <cd SV="1.0" S="CD-LIFECYCLE">active</cd>
+            </lifecycle>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">8</id>
+            <cd S="CD-ITEM" SV="1.0">healthcareelement</cd>
+            <content>
+                <cd S="CD-CLINICAL" SV="1.0">10044432</cd>
+                <cd S="ICPC" SV="2" DN="Hypothyreoàdie/myxoedeem" L="nl">T86</cd>
+                <cd S="ICD" SV="10" DN="Overige gespecificeerde vormen van hypothyroïdie" L="nl">E03.8</cd>
+            </content>
+            <content>
+                <text L="nl">hypothyroïdie</text>
+            </content>
+            <beginmoment>
+                <date>2006-05-10</date>
+            </beginmoment>
+            <lifecycle>
+                <cd SV="1.0" S="CD-LIFECYCLE">active</cd>
+            </lifecycle>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">9</id>
+            <cd S="CD-ITEM" SV="1.0">medication</cd>
+            <content>
+                <medicinalproduct>
+                    <intendedcd SV="1999" S="CD-DRUG-CNK">0895540</intendedcd>
+                    <intendedname>MEDROL COMP 20X32MG</intendedname>
+                </medicinalproduct>
+            </content>
+            <content>
+                <text L='fr'>MEDROL 32MG</text>
+            </content>
+            <content>
+                <cd S="CD-ATC" SV="1.0">0123</cd>
+            </content>
+            <beginmoment>
+                <date>1992-01-27</date>
+            </beginmoment>
+            <endmoment>
+                <date>2030-01-01</date>
+            </endmoment>
+            <dayperiod>
+                <cd SV="1.0" S="CD-DAYPERIOD">afterbreakfast</cd>
+            </dayperiod>
+            <posology>
+                <text L="en">0.5 tab</text>
+            </posology>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">10</id>
+            <cd S="CD-ITEM" SV="1.0">medication</cd>
+            <content>
+                <medicinalproduct>
+                    <intendedcd S="CD-DRUG-CNK" SV="1999">1467000</intendedcd>
+                    <intendedname>COVERSYL AKTUAPH COMP 30X4MG PIP</intendedname>
+                </medicinalproduct>
+            </content>
+            <content>
+                <text L='fr'>COVERSYL AKTUAPH 4MG</text>
+            </content>
+            <content>
+                <cd S="CD-ATC" SV="1.0">0123</cd>
+            </content>
+            <beginmoment>
+                <date>2001-08-17</date>
+            </beginmoment>
+            <endmoment>
+                <date>2030-01-01</date>
+            </endmoment>
+            <dayperiod>
+                <cd SV="1.0" S="CD-DAYPERIOD">afterbreakfast</cd>
+            </dayperiod>
+            <posology>
+                <text L="en">0.5 tab</text>
+            </posology>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">11</id>
+            <cd S="CD-ITEM" SV="1.0">medication</cd>
+            <content>
+                <medicinalproduct>
+                    <intendedcd S="CD-DRUG-CNK" SV="1999">1741487</intendedcd>
+                    <intendedname>CAMPRAL COMP 168 X 333 MG</intendedname>
+                </medicinalproduct>
+            </content>
+            <content>
+                <text L='fr'>CAMPRAL 333MG</text>
+            </content>
+            <content>
+                <cd S="CD-ATC" SV="1.0">0123</cd>
+            </content>
+            <beginmoment>
+                <date>2002-05-01</date>
+            </beginmoment>
+            <endmoment>
+                <date>2030-01-01</date>
+            </endmoment>
+            <dayperiod>
+                <cd SV="1.0" S="CD-DAYPERIOD">aftermeal</cd>
+            </dayperiod>
+            <posology>
+                <text L="en">2 tabcoated</text>
+            </posology>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">12</id>
+            <cd S="CD-ITEM" SV="1.0">medication</cd>
+            <content>
+                <medicinalproduct>
+                    <intendedcd S="CD-DRUG-CNK" SV="1999">0669127</intendedcd>
+                    <intendedname>ELTHYRONE COMP 100 X 0,025MG</intendedname>
+                </medicinalproduct>
+            </content>
+            <content>
+                <text L='fr'>ELTHYRONE 0,025MG</text>
+            </content>
+            <content>
+                <cd S="CD-ATC" SV="1.0">0123</cd>
+            </content>
+            <beginmoment>
+                <date>2006-05-10</date>
+            </beginmoment>
+            <endmoment>
+                <date>2030-01-01</date>
+            </endmoment>
+            <dayperiod>
+                <cd SV="1.0" S="CD-DAYPERIOD">afterbreakfast</cd>
+            </dayperiod>
+            <posology>
+                <text L="en">0,5 tab</text>
+            </posology>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">13</id>
+            <cd S="CD-ITEM" SV="1.0">vaccine</cd>
+            <content>
+                <medicinalproduct>
+                    <intendedcd S="CD-DRUG-CNK" SV="1999">1077593</intendedcd>
+                    <intendedname>TEDIVAX PRO ADULTO SER INJ 0,5ML</intendedname>
+                </medicinalproduct>
+            </content>
+            <content>
+                <cd SV="1.0" S="CD-VACCINEINDICATION">diphteria</cd>
+            </content>
+            <content>
+                <cd S="CD-ATC" SV="1.0">0123</cd>
+            </content>
+            <beginmoment>
+                <date>2006-01-17</date>
+            </beginmoment>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">14</id>
+            <cd S="CD-ITEM" SV="1.0">vaccine</cd>
+            <content>
+                <medicinalproduct>
+                    <intendedcd S="CD-DRUG-CNK" SV="1999">1077593</intendedcd>
+                    <intendedname>TEDIVAX PRO ADULTO SER INJ 0,5ML</intendedname>
+                </medicinalproduct>
+            </content>
+            <content>
+                <cd SV="1.0" S="CD-VACCINEINDICATION">diphteria</cd>
+            </content>
+            <content>
+                <cd S="CD-ATC" SV="1.0">0123</cd>
+            </content>
+            <beginmoment>
+                <date>2016-01-17</date>
+            </beginmoment>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">15</id>
+            <cd S="CD-ITEM" SV="1.0">vaccine</cd>
+            <content>
+                <medicinalproduct>
+                    <intendedcd S="CD-DRUG-CNK" SV="1999">1149939</intendedcd>
+                    <intendedname>HAVRIX 1440 SER INJ IM 1ML</intendedname>
+                </medicinalproduct>
+            </content>
+            <content>
+                <cd SV="1.0" S="CD-VACCINEINDICATION">hepatitisa</cd>
+                <cd SV="1.0" S="CD-VACCINEINDICATION">hepatitisb</cd>
+            </content>
+            <content>
+                <cd S="CD-ATC" SV="1.0">0123</cd>
+            </content>
+            <text L="en">First injection</text>
+            <beginmoment>
+                <date>2006-03-28</date>
+            </beginmoment>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">16</id>
+            <cd S="CD-ITEM" SV="1.0">vaccine</cd>
+            <content>
+                <medicinalproduct>
+                    <intendedcd S="CD-DRUG-CNK" SV="1999">1149939</intendedcd>
+                    <intendedname>HAVRIX 1440 SER INJ IM 1ML</intendedname>
+                </medicinalproduct>
+            </content>
+            <content>
+                <cd SV="1.0" S="CD-VACCINEINDICATION">hepatitisa</cd>
+                <cd SV="1.0" S="CD-VACCINEINDICATION">hepatitisb</cd>
+            </content>
+            <content>
+                <cd S="CD-ATC" SV="1.0">0123</cd>
+            </content>
+            <text L="en">Second injection</text>
+            <beginmoment>
+                <date>2006-04-28</date>
+            </beginmoment>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">17</id>
+            <cd S="CD-ITEM" SV="1.0">vaccine</cd>
+            <content>
+                <medicinalproduct>
+                    <intendedcd S="CD-DRUG-CNK" SV="1999">1149939</intendedcd>
+                    <intendedname>HAVRIX 1440 SER INJ IM 1ML</intendedname>
+                </medicinalproduct>
+            </content>
+            <content>
+                <cd SV="1.0" S="CD-VACCINEINDICATION">hepatitisa</cd>
+                <cd SV="1.0" S="CD-VACCINEINDICATION">hepatitisb</cd>
+            </content>
+            <content>
+                <cd S="CD-ATC" SV="1.0">0123</cd>
+            </content>
+            <text L="en">Third injection</text>
+            <beginmoment>
+                <date>2006-05-10</date>
+            </beginmoment>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">18</id>
+            <cd S="CD-ITEM" SV="1.6">contacthcparty</cd>
+            <content>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                    <address>
+                        <cd SV="1.0" S="CD-ADDRESS">work</cd>
+                        <country>
+                            <cd SV="1.0" S="CD-FED-COUNTRY">be</cd>
+                        </country>
+                        <zip>9999</zip>
+                        <city>MY CITY</city>
+                        <street>My Street</street>
+                        <housenumber>6</housenumber>
+                        <postboxnumber>B</postboxnumber>
+                    </address>
+                    <telecom>
+                        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+                        <cd S="CD-TELECOM" SV="1.0">phone</cd>
+                        <telecomnumber>
+                        </telecomnumber>
+                    </telecom>
+                </hcparty>
+            </content>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">19</id>
+            <cd S="CD-ITEM" SV="1.6">patientwill</cd>
+            <content>
+                <cd S="CD-PATIENTWILL" SV="1.0">bloodtransfusionrefusal</cd>
+            </content>
+            <recorddatetime>2015-05-01T10:01:10</recorddatetime>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">20</id>
+            <cd S="CD-ITEM" SV="1.6">contacthcparty</cd>
+            <content>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                    <address>
+                        <cd SV="1.0" S="CD-ADDRESS">work</cd>
+                        <country>
+                            <cd SV="1.0" S="CD-FED-COUNTRY">be</cd>
+                        </country>
+                        <zip>9999</zip>
+                        <city>MY CITY</city>
+                        <street>My Street</street>
+                        <housenumber>6</housenumber>
+                        <postboxnumber>B</postboxnumber>
+                    </address>
+                    <telecom>
+                        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+                        <cd S="CD-TELECOM" SV="1.0">phone</cd>
+                        <telecomnumber>
+                        </telecomnumber>
+                    </telecom>
+                </hcparty>
+            </content>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">21</id>
+            <cd S="CD-ITEM" SV="1.0">adr</cd>
+            <content>
+                <cd S="ICPC" SV="2" L="nl">Z04</cd>
+            </content>
+            <content>
+                <text L="nl">Sociaal-cultureel probleem</text>
+            </content>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">22</id>
+            <cd S="CD-ITEM" SV="1.0">allergy</cd>
+            <content>
+                <cd S="ICPC" SV="2" L="nl">Z04</cd>
+            </content>
+            <content>
+                <text L="nl">Sociaal-cultureel probleem</text>
+            </content>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">23</id>
+            <cd S="CD-ITEM" SV="1.0">socialrisk</cd>
+            <content>
+                <cd S="ICPC" SV="2" L="nl">Z04</cd>
+            </content>
+            <content>
+                <text L="nl">Sociaal-cultureel probleem</text>
+            </content>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">24</id>
+            <cd S="CD-ITEM" SV="1.0">risk</cd>
+            <content>
+                <cd S="ICPC" SV="2" L="nl">Z08</cd>
+            </content>
+            <content>
+                <text L="nl">Probleem met sociale zekerheid</text>
+            </content>
+        </item>
+        <item>
+            <id S="ID-KMEHR" SV="1.0">25</id>
+            <cd S="CD-ITEM" SV="1.0">risk</cd>
+            <content>
+                <cd S="ICPC" SV="2" L="nl">A73</cd>
+                <cd S="CD-CLINICAL" SV="3.0">10000907</cd>
+            </content>
+            <content>
+                <text L="nl">Chronisch alcoholmisbruik</text>
+            </content>
+        </item>
+    </transaction>
+</folder>

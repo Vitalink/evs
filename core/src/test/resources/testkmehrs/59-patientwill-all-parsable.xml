@@ -1,0 +1,8 @@
+<item>
+    <id S="ID-KMEHR" SV="1.0">19</id>
+    <cd S="CD-ITEM" SV="1.6">patientwill</cd>
+    <content>
+        <cd S="CD-PATIENTWILL" SV="1.0">bloodtransfusionrefusal</cd>
+    </content>
+    <recorddatetime>2015-05-01T10:01:10</recorddatetime>
+</item>

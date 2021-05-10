@@ -1,0 +1,36 @@
+<izpack:userinput version="5.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:izpack="http://izpack.org/schema/userinput" xsi:schemaLocation="http://izpack.org/schema/userinput http://izpack.org/schema/5.0/izpack-userinput-5.0.xsd">
+
+    <panel id="install.directoryname.panel">
+        <field type="staticText" align="left" txt="Please choose the EVS installation folder name" id="install.directoryname.title"/>
+        <field type="space" />
+        <field type="text" align="left" id="install.directoryname.value" variable="install.directoryname.evs">
+            <spec txt="EVS installation folder:" id="text.label" size="15" set="EVS"/>
+            <validator class="com.izforge.izpack.panels.userinput.validator.NotEmptyValidator" txt="An installation folder name must be specified" id="install.directoryname.error.name" />
+            <validator class="com.izforge.izpack.panels.userinput.validator.RegularExpressionValidator"
+                       txt="Invalid directory name!">
+                <param name="pattern" value="^(\w[\w\-. ]*\w)$"/>
+            </validator>
+        </field>
+    </panel>
+
+    <panel id="install.confirmation.before.start.panel">
+        <field type="staticText" align="left" txt="EVS will be installed to ${install.path.evs}" id="migrate.or.replace.title.installationlocation"/>
+    </panel>
+
+    <panel id="migrate.or.replace.panel">
+        <field type="staticText" align="left" txt="EVS will be installed to ${install.path.evs}" id="migrate.or.replace.title.installationlocation"/>
+        <field type="space" />
+        <field type="staticText" align="left" txt="A previous installation exists already at the specified location. Please choose one of the following options." id="migrate.or.replace.title.chooseoption" conditionid="completeInstallPathEvsExists"/>
+        <field type="radio" variable="migrate.or.replace.choice" conditionid="completeInstallPathEvsExists">
+            <spec id="migrate.or.replace.choice">
+                <choice id="migrate.or.replace.choice.1" value="migrate" txt="Migrate existing installation: existing configuration files will be kept"/>
+                <choice id="migrate.or.replace.choice.2" value="replace" txt="Replace existing installation: the previous installation will be completely removed before proceeding with the install"/>
+            </spec>
+        </field>
+    </panel>
+
+    <panel id="migrate.or.replace.debug.panel">
+        <field type="staticText" align="left" txt="Migration or replacing? Chosen option: ${migrate.or.replace.choice}" id="migrate.or.replace.debug.title"/>
+    </panel>
+
+</izpack:userinput>

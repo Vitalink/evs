@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>org.imec.ivlab.ehealth.sam</groupId>
+  <artifactId>sam-model-3.3</artifactId>
+  <versioning>
+    <versions>
+      <version>1.0-SNAPSHOT</version>
+    </versions>
+    <lastUpdated>20180704115852</lastUpdated>
+  </versioning>
+</metadata>

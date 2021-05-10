@@ -1,0 +1,34 @@
+<person>
+    <id S="INSS" SV="1.0">98765432101</id>
+    <id S="LOCAL" SL="Sumehr-Love" SV="1.06.02">4275</id>
+    <firstname>John</firstname>
+    <familyname>Doe</familyname>
+    <sex>
+        <cd S="CD-SEX" SV="1.0">male</cd>
+    </sex>
+    <address>
+        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+        <country>
+            <cd S="CD-FED-COUNTRY" SV="1.0">be</cd>
+        </country>
+        <zip>9999</zip>
+        <city>MY CITY</city>
+        <street>My Street</street>
+        <housenumber>6</housenumber>
+    </address>
+    <telecom>
+        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+        <cd S="CD-TELECOM" SV="1.0">phone</cd>
+        <telecomnumber>0998888888</telecomnumber>
+    </telecom>
+    <telecom>
+        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+        <cd S="CD-TELECOM" SV="1.0">fax</cd>
+        <telecomnumber>0997777777</telecomnumber>
+    </telecom>
+    <telecom>
+        <cd S="CD-ADDRESS" SV="1.0">home</cd>
+        <cd S="CD-TELECOM" SV="1.0">email</cd>
+        <telecomnumber>John.Doe@xyz.be</telecomnumber>
+    </telecom>
+</person>

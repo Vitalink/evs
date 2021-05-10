@@ -1,0 +1,798 @@
+<?xml version="1.0" encoding="UTF-8"?><kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.0">20161201</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <date>2021-01-26</date>
+        <time>15:55:21</time>
+        <sender>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <cd S="CD-HCPARTY" SV="1.12">hub</cd>
+                <name>VITALINK</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
+                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
+                <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
+                <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
+                <address>
+                    <cd S="CD-ADDRESS" SV="1.0"/>
+                    <nis>24062</nis>
+                </address>
+            </hcparty>
+            <hcparty>
+                <id S="LOCAL" SL="endusersoftwareinfo" SV="1.0">code</id>
+                <cd S="CD-HCPARTY" SV="1.1">APPLICATION</cd>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <id S="LOCAL" SV="1.0">8888</id>
+            <id S="LOCAL" SL="vitalinkuri" SV="1.0">/subject/90010100101/sumehr/83517/1</id>
+            <cd S="CD-TRANSACTION" SV="1.5">sumehr</cd>
+            <date>2021-01-26</date>
+            <time>15:53:24</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <cd S="CD-HCPARTY" SV="1.12">hub</cd>
+                    <name>VITALINK</name>
+                </hcparty>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.12">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.6">problem</cd>
+                <content>
+                    <text L="nl">diabetes</text>
+                </content>
+                <content>
+                    <cd S="CD-CLINICAL" SV="1.0">10116023</cd>
+                    <cd S="ICD" SV="10">E14</cd>
+                    <cd S="ICPC" SV="2">T90</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.6">problem</cd>
+                <content>
+                    <text L="nl">depressie</text>
+                </content>
+                <content>
+                    <cd S="CD-CLINICAL" SV="1.0">10025204</cd>
+                    <cd S="ICD" SV="10">F32.9</cd>
+                    <cd S="ICPC" SV="2">P76</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">inactive</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">3</id>
+                <cd S="CD-ITEM" SV="1.6">allergy</cd>
+                <content>
+                    <text L="nl">penicillines</text>
+                    <text L="nl"/>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">4</id>
+                <cd S="CD-ITEM" SV="1.6">adr</cd>
+                <content>
+                    <text L="nl">Dafalgan (Impexeco) bruistabl. (deelb.) Forte 20x 1g</text>
+                    <text L="nl"/>
+                </content>
+                <content>
+                    <cd S="CD-ATC" SV="2">N02BE01</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">5</id>
+                <cd S="CD-ITEM" SV="1.6">socialrisk</cd>
+                <content>
+                    <text L="nl">echtscheidingsprobleem</text>
+                </content>
+                <content>
+                    <cd S="CD-CLINICAL" SV="1.0">10122306</cd>
+                    <cd S="ICD" SV="10">Z63.5</cd>
+                    <cd S="ICPC" SV="2">Z15</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">6</id>
+                <cd S="CD-ITEM" SV="1.6">risk</cd>
+                <content>
+                    <text L="nl">eender wat</text>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">7</id>
+                <cd S="CD-ITEM" SV="1.6">contactperson</cd>
+                <content>
+                    <person>
+                        <id S="LOCAL" SV="1.0">407</id>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
+                        <sex>
+                            <cd S="CD-SEX" SV="1.0">unknown</cd>
+                        </sex>
+                        <address>
+                            <cd S="CD-ADDRESS" SV="1.0">work</cd>
+                            <country>
+                                <cd S="CD-FED-COUNTRY" SV="1.0"/>
+                            </country>
+                            <zip/>
+                            <city/>
+                            <street/>
+                            <housenumber/>
+                            <postboxnumber/>
+                        </address>
+                    </person>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">8</id>
+                <cd S="CD-ITEM" SV="1.6">contactperson</cd>
+                <cd S="CD-CONTACT-PERSON" SV="1.0">neighbour</cd>
+                <content>
+                    <person>
+                        <id S="LOCAL" SV="1.0">408</id>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
+                        <sex>
+                            <cd S="CD-SEX" SV="1.0">unknown</cd>
+                        </sex>
+                        <address>
+                            <cd S="CD-ADDRESS" SV="1.0">home</cd>
+                            <country>
+                                <cd S="CD-FED-COUNTRY" SV="1.0"/>
+                            </country>
+                            <zip/>
+                            <city/>
+                            <street/>
+                            <housenumber/>
+                            <postboxnumber/>
+                        </address>
+                    </person>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">9</id>
+                <cd S="CD-ITEM" SV="1.6">gmdmanager</cd>
+                <content>
+                    <hcparty>
+                        <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                        <cd S="CD-HCPARTY" SV="1.6">persphysician</cd>
+                        <firstname>John</firstname>
+                        <familyname>Doe</familyname>
+                        <address>
+                            <cd S="CD-ADDRESS" SV="1.0">work</cd>
+                            <country>
+                                <cd S="CD-FED-COUNTRY" SV="1.0"/>
+                            </country>
+                            <zip/>
+                            <city/>
+                            <street/>
+                            <housenumber/>
+                            <postboxnumber/>
+                        </address>
+                    </hcparty>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">10</id>
+                <cd S="CD-ITEM" SV="1.6">patientwill</cd>
+                <content>
+                    <cd S="CD-PATIENTWILL-HOS" SV="1.0">hos2</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">11</id>
+                <cd S="CD-ITEM" SV="1.6">patientwill</cd>
+                <content>
+                    <cd S="CD-PATIENTWILL-RES" SV="1.0">dnr2</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">12</id>
+                <cd S="CD-ITEM" SV="1.6">patientwill</cd>
+                <content>
+                    <cd S="CD-PATIENTWILL" SV="1.3">intubationrefusal</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">13</id>
+                <cd S="CD-ITEM" SV="1.6">patientwill</cd>
+                <content>
+                    <cd S="CD-PATIENTWILL" SV="1.3">euthanasiarequest</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">14</id>
+                <cd S="CD-ITEM" SV="1.6">medication</cd>
+                <content>
+                    <text L="en">Durogesic transderm. pleister 10x 50µg/1u</text>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">2218253</intendedcd>
+                        <intendedname>Durogesic transderm. pleister 10x 50µg/1u</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2020-11-18</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <regimen>
+                    <daynumber>1</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">thehourofsleep</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00020</cd>
+                        </unit>
+                    </quantity>
+                    <daynumber>4</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">thehourofsleep</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00020</cd>
+                        </unit>
+                    </quantity>
+                    <daynumber>6</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">thehourofsleep</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00020</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">15</id>
+                <cd S="CD-ITEM" SV="1.6">medication</cd>
+                <content>
+                    <text L="en">Pantomed (PIP) maagsapresist. tabl. 56x 40mg</text>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">2732808</intendedcd>
+                        <intendedname>Pantomed (PIP) maagsapresist. tabl. 56x 40mg</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2020-11-18</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <regimen>
+                    <daynumber>6</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">beforebreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">16</id>
+                <cd S="CD-ITEM" SV="1.6">medication</cd>
+                <content>
+                    <text L="nl">D-Cure harde caps. 4x 25000IE</text>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">3834447</intendedcd>
+                        <intendedname>D-Cure harde caps. 4x 25000IE</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2020-11-18</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">acute</cd>
+                </temporality>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">17</id>
+                <cd S="CD-ITEM" SV="1.6">medication</cd>
+                <content>
+                    <text L="en">Aranesp inj. oploss. i.v./s.c. [voorgev. spuit] 4x 80µg/0,4ml</text>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">2676617</intendedcd>
+                        <intendedname>Aranesp inj. oploss. i.v./s.c. [voorgev. spuit] 4x 80µg/0,4ml</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2020-11-18</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">acute</cd>
+                </temporality>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">18</id>
+                <cd S="CD-ITEM" SV="1.6">medication</cd>
+                <content>
+                    <text L="nl">Laxido oploss. (pdr., zakjes) Natuur 20x</text>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">2563492</intendedcd>
+                        <intendedname>Laxido oploss. (pdr., zakjes) Natuur 20x</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2020-11-18</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">acute</cd>
+                </temporality>
+                <regimen>
+                    <daynumber>1</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00030</cd>
+                        </unit>
+                    </quantity>
+                    <daynumber>3</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00030</cd>
+                        </unit>
+                    </quantity>
+                    <daynumber>9</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00030</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">19</id>
+                <cd S="CD-ITEM" SV="1.6">medication</cd>
+                <content>
+                    <text L="en">Humira inj. oploss. s.c. [voorgev. pen] 6x 40mg/0,4ml</text>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">3603495</intendedcd>
+                        <intendedname>Humira inj. oploss. s.c. [voorgev. pen] 6x 40mg/0,4ml</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2020-11-18</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <regimen>
+                    <daynumber>9</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">morning</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00022</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">20</id>
+                <cd S="CD-ITEM" SV="1.6">medication</cd>
+                <content>
+                    <text L="en">Marcoumar tabl. (deelb. in 4) 25x 3mg</text>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">0119065</intendedcd>
+                        <intendedname>Marcoumar tabl. (deelb. in 4) 25x 3mg</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2020-11-18</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <regimen>
+                    <weekday>
+                        <cd S="CD-WEEKDAY" SV="1.0">monday</cd>
+                    </weekday>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">beforebreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>0.5</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00005</cd>
+                        </unit>
+                    </quantity>
+                    <weekday>
+                        <cd S="CD-WEEKDAY" SV="1.0">thursday</cd>
+                    </weekday>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">beforebreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>0.5</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00005</cd>
+                        </unit>
+                    </quantity>
+                    <weekday>
+                        <cd S="CD-WEEKDAY" SV="1.0">saturday</cd>
+                    </weekday>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">beforebreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>0.5</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00005</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">21</id>
+                <cd S="CD-ITEM" SV="1.6">medication</cd>
+                <content>
+                    <text L="en">Omacor zachte caps. 28x 1g</text>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">2083491</intendedcd>
+                        <intendedname>Omacor zachte caps. 28x 1g</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2020-11-18</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <posology>
+                    <high>1.00000</high>
+                    <unit>
+                        <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00004</cd>
+                    </unit>
+                    <takes>
+                        <high>1</high>
+                    </takes>
+                </posology>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">22</id>
+                <cd S="CD-ITEM" SV="1.6">medication</cd>
+                <content>
+                    <text L="nl">Ferricure 150 mg harde caps. 28x 326mg</text>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">1000215</intendedcd>
+                        <intendedname>Ferricure 150 mg harde caps. 28x 326mg</intendedname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2020-11-18</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <regimen>
+                    <weekday>
+                        <cd S="CD-WEEKDAY" SV="1.0">monday</cd>
+                    </weekday>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00004</cd>
+                        </unit>
+                    </quantity>
+                    <weekday>
+                        <cd S="CD-WEEKDAY" SV="1.0">friday</cd>
+                    </weekday>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.1">duringbreakfast</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                        <unit>
+                            <cd S="CD-ADMINISTRATIONUNIT" SV="1.1">00004</cd>
+                        </unit>
+                    </quantity>
+                </regimen>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">23</id>
+                <cd S="CD-ITEM" SV="1.6">vaccine</cd>
+                <content>
+                    <cd S="CD-VACCINEINDICATION" SV="1.0">seasonalinfluenza</cd>
+                </content>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="20100701">4172672</intendedcd>
+                        <intendedname>Influvac Tetra 2020-2021 inj. susp. i.m./s.c. [voorgev. spuit] 1x0,5ml</intendedname>
+                    </medicinalproduct>
+                </content>
+                <content>
+                    <cd S="CD-ATC" SV="1.2">J07BB02</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">24</id>
+                <cd DN="Heriditary" S="CD-ITEM" SV="1.6">risk</cd>
+                <content>
+                    <text L="nl">colo-rectale kanker</text>
+                </content>
+                <content>
+                    <cd S="CD-CLINICAL" SV="1.0">30000329</cd>
+                    <cd S="ICD" SV="10">C19</cd>
+                    <cd S="ICPC" SV="2">D75</cd>
+                </content>
+                <text L="nl">father</text>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">25</id>
+                <cd S="CD-ITEM" SV="1.6">treatment</cd>
+                <content>
+                    <text L="nl">kinesitherapie</text>
+                </content>
+                <content>
+                    <cd S="CD-CLINICAL" SV="1.0">40001315</cd>
+                    <cd S="ICPC" SV="2">*57.03</cd>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">inactive</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">26</id>
+                <cd S="CD-ITEM" SV="1.6">treatment</cd>
+                <content>
+                    <text L="nl">appendectomie</text>
+                    <text L="nl">test</text>
+                </content>
+                <beginmoment>
+                    <date>2021-01-21</date>
+                </beginmoment>
+                <lifecycle>
+                    <cd S="CD-LIFECYCLE" SV="1.6">active</cd>
+                </lifecycle>
+                <isrelevant>true</isrelevant>
+            </item>
+            <text L="NL">Algemene notitie bij deze sumehr: aangebracht door BP voor test</text>
+        </transaction>
+    </folder>
+</kmehrmessage>

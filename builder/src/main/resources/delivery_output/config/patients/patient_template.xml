@@ -1,0 +1,8 @@
+<patient>
+    <id>90010100101</id>
+    <firstName>John</firstName>
+    <lastName>Doe</lastName>
+    <gender>male</gender>
+    <birthDate>1990-01-01</birthDate>
+    <usualLanguage>nl-BE</usualLanguage>
+</patient>

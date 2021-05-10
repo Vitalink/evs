@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<kmehrmessage xmlns="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns2="http://www.ehealth.fgov.be/standards/kmehr/id/v1" xmlns:ns4="http://www.w3.org/2000/09/xmldsig#" xmlns:ns3="http://www.w3.org/2001/04/xmlenc#">
+    <header>
+        <standard>
+            <cd S="CD-STANDARD" SV="1.4">20161201</cd>
+        </standard>
+        <id S="ID-KMEHR" SV="1.0">99999999.99999999</id>
+        <date>2017-11-29</date>
+        <time>09:44:24+01:00</time>
+        <sender>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <cd S="CD-HCPARTY" SV="1.7">hub</cd>
+                <name>VITALINK</name>
+            </hcparty>
+        </sender>
+        <recipient>
+            <hcparty>
+                <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                <id S="INSS" SV="1.0">98765432101</id>
+                <id S="ID-ENCRYPTION-ACTOR" SV="1.0">99999999</id>
+                <cd S="CD-HCPARTY" SV="1.1">persphysician</cd>
+                <cd S="CD-ENCRYPTION-ACTOR" SV="1.0">NIHII</cd>
+                <firstname>John</firstname>
+                <familyname>Doe</familyname>
+                <address>
+                    <cd S="CD-ADDRESS" SV="1.0"></cd>
+                    <nis>24062</nis>
+                </address>
+            </hcparty>
+            <hcparty>
+                <id S="LOCAL" SV="1.0" SL="endusersoftwareinfo">code</id>
+                <cd S="CD-HCPARTY" SV="1.1">APPLICATION</cd>
+            </hcparty>
+        </recipient>
+    </header>
+    <folder>
+        <id S="ID-KMEHR" SV="1.0">1</id>
+       <patient>
+            <id S="ID-PATIENT" SV="1.0">90010100101</id>
+            <firstname>John</firstname>
+            <familyname>Doe</familyname>
+            <sex>
+                <cd S="CD-SEX" SV="1.0">male</cd>
+            </sex>
+            <usuallanguage>nl-BE</usuallanguage>
+       </patient>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">1</id>
+            <id S="LOCAL" SV="1.0" SL="vitalinkuri">/subject/90010100101/medication-scheme</id>
+            <cd S="CD-TRANSACTION" SV="1.0">medicationscheme</cd>
+            <date>2017-11-29</date>
+            <time>09:42:57+01:00</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <cd S="CD-HCPARTY" SV="1.7">hub</cd>
+                    <name>VITALINK</name>
+                </hcparty>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <version>2730</version>
+        </transaction>
+        <transaction>
+            <id S="ID-KMEHR" SV="1.0">2</id>
+            <id S="LOCAL" SV="1.0" SL="vitalinkuri">/subject/90010100101/medication-scheme/98775/1</id>
+            <cd S="CD-TRANSACTION" SV="1.0">medicationschemeelement</cd>
+            <date>2017-11-29</date>
+            <time>09:04:03+01:00</time>
+            <author>
+                <hcparty>
+                    <id S="ID-HCPARTY" SV="1.0">12345678901</id>
+                    <id S="INSS" SV="1.0">98765432101</id>
+                    <cd S="CD-HCPARTY" SV="1.0">persphysician</cd>
+                    <firstname>John</firstname>
+                    <familyname>Doe</familyname>
+                </hcparty>
+            </author>
+            <iscomplete>true</iscomplete>
+            <isvalidated>true</isvalidated>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">1</id>
+                <cd S="CD-ITEM" SV="1.4">healthcareelement</cd>
+                <content>
+                    <cd S="CD-ITEM-MS" SV="1.0">adaptationflag</cd>
+                    <cd S="CD-MS-ADAPTATION" SV="1.0">medication</cd>
+                </content>
+            </item>
+            <item>
+                <id S="ID-KMEHR" SV="1.0">2</id>
+                <cd S="CD-ITEM" SV="1.4">medication</cd>
+                <content>
+                    <medicinalproduct>
+                        <intendedcd S="CD-DRUG-CNK" SV="1.0">0044560</intendedcd>
+                        <deliveredcd S="CD-DRUG-CNK" SV="1.0">0044560</deliveredcd>
+                        <intendedname>DAFALGAN  500MG</intendedname>
+                        <deliveredname xmlns:ns2="http://www.w3.org/2001/04/xmlenc#" xmlns:ns4="http://www.ehealth.fgov.be/standards/kmehr/schema/v1" xmlns:ns3="http://www.w3.org/2000/09/xmldsig#" xmlns:ns6="urn:be:fgov:ehealth:safe:common:v2" xmlns:ns5="urn:be:fgov:ehealth:metahub:core:v2" xmlns:ns8="urn:be:fgov:ehealth:safe:common:v1" xmlns:ns7="urn:be:fgov:ehealth:safe:common:decryptor:v2" xmlns:ns13="urn:oasis:names:tc:SAML:2.0:assertion" xmlns:ns12="urn:be:fgov:ehealth:safe:internal:v3" xmlns:ns9="urn:be:fgov:ehealth:consultRN:1_0:protocol" xmlns:ns11="urn:be:fgov:ehealth:safe:common:decryptor:v3" xmlns:ns10="urn:be:fgov:ehealth:safe:common:v3" xmlns:ns15="urn:be:fgov:ehealth:aa:complextype:v1" xmlns:ns14="urn:oasis:names:tc:SAML:2.0:protocol">DAFALGAN  500MG</deliveredname>
+                    </medicinalproduct>
+                </content>
+                <beginmoment>
+                    <date>2017-10-31</date>
+                </beginmoment>
+                <temporality>
+                    <cd S="CD-TEMPORALITY" SV="1.0">chronic</cd>
+                </temporality>
+                <frequency>
+                    <periodicity>
+                        <cd S="CD-PERIODICITY" SV="1.0">D</cd>
+                    </periodicity>
+                </frequency>
+                <regimen>
+                    <daynumber>1</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">betweenbreakfastandlunch</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                    </quantity>
+                    <daynumber>1</daynumber>
+                    <daytime>
+                        <dayperiod>
+                            <cd S="CD-DAYPERIOD" SV="1.0">afterdinner</cd>
+                        </dayperiod>
+                    </daytime>
+                    <quantity>
+                        <decimal>1</decimal>
+                    </quantity>
+                </regimen>
+            </item>
+        </transaction>
+    </folder>
+</kmehrmessage>

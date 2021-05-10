@@ -1,0 +1,28 @@
+<item>
+    <id S="ID-KMEHR" SV="1.0">9</id>
+    <cd S="CD-ITEM" SV="1.0">medication</cd>
+    <content>
+        <medicinalproduct>
+            <intendedcd SV="1999" S="CD-DRUG-CNK">0895540</intendedcd>
+            <intendedname>MEDROL COMP 20X32MG</intendedname>
+        </medicinalproduct>
+    </content>
+    <content>
+        <text L='fr'>MEDROL 32MG</text>
+    </content>
+    <content>
+        <cd S="CD-ATC" SV="1.0">0123</cd>
+    </content>
+    <beginmoment>
+        <date>1992-01-27</date>
+    </beginmoment>
+    <endmoment>
+        <date>2030-01-01</date>
+    </endmoment>
+    <dayperiod>
+        <cd SV="1.0" S="CD-DAYPERIOD">afterbreakfast</cd>
+    </dayperiod>
+    <posology>
+        <text L="en">0.5 tab</text>
+    </posology>
+</item>

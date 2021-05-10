@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>be.fgov.ehealth.connector</groupId>
+		<artifactId>connector-business-master</artifactId>
+		<version>3.14.0-beta-0</version>
+	</parent>
+
+	<artifactId>connector-business-testcommons</artifactId>
+	<name>Common test code (business)</name>
+	<description>common test code for business connectors</description>
+	<packaging>jar</packaging>
+
+	<build>
+		<plugins>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-antrun-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>buildDll</id>
+						<phase>package</phase>
+						<configuration>
+							<target>
+								<property name="maven.target.dll.classpath" value="${target.dll.classpath}" />
+								<property name="maven.compileclasspath" refid="maven.compile.classpath" />
+								<property name="maven.runtimeclasspath" refid="maven.runtime.classpath" />
+								<property name="maven.pluginclasspath" refid="maven.plugin.classpath" />
+								<property name="maven.testclasspath" refid="maven.test.classpath" />
+								<property name="maven.projectbasedir" value="${project.build.directory}/../" />
+								<property name="maven.artifactId" value="${project.artifactId}" />
+								<property name="maven.version" value="${project.version}" />
+								<property name="maven.packaging" value="${project.packaging}" />
+								<property name="maven.skip.ikvm" value="${maven.test.skip}" />
+
+								<property name="maven.version.major" value="${parsedVersion.majorVersion}" />
+								<property name="maven.version.minor" value="${parsedVersion.minorVersion}" />
+								<property name="maven.version.patch" value="${parsedVersion.incrementalVersion}" />
+
+								<echoproperties />
+
+								<ant antfile="${basedir}/target/build/build-dll.xml">
+									<target name="generateDLL-test" />
+								</ant>
+
+							</target>
+						</configuration>
+						<goals>
+							<goal>run</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>default testjar [.net]</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>test-jar</goal>
+						</goals>
+						<configuration>
+							<finalName>${project.build.finalName}-net</finalName>
+							<includes>
+								<include>**/*.java</include>
+								<include>**/*.class</include>
+							</includes>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-dependency-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>unpack technical base</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>unpack</goal>
+						</goals>
+						<configuration>
+							<artifactItems>
+								<artifactItem>
+									<groupId>${project.groupId}</groupId>
+									<artifactId>connector-technical-base</artifactId>
+									<version>${version.technical}</version>
+									<classifier>tests</classifier>
+								</artifactItem>
+							</artifactItems>
+							<includes>be/fgov/ehealth/technicalconnector/tests/**/*.java</includes>
+							<outputDirectory>target/generated-test-sources</outputDirectory>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<id>add-test-source</id>
+						<phase>initialize</phase>
+						<goals>
+							<goal>add-test-source</goal>
+						</goals>
+						<configuration>
+							<sources>
+								<source>target/generated-test-sources</source>
+							</sources>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
+	<profiles>
+		<profile>
+			<id>dotnet-integration-test</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.codehaus.mojo</groupId>
+						<artifactId>exec-maven-plugin</artifactId>
+						<version>1.6.0</version>
+						<executions>
+							<execution>
+								<goals>
+									<goal>exec</goal>
+								</goals>
+							</execution>
+						</executions>
+						<configuration>
+							<executable>${nunit3ConsolePath}</executable>
+							<arguments>
+								<argument>
+									${project.parent.basedir}/ehboxv2/connector-business-ehboxv2.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/ehboxv3/connector-business-ehboxv3.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/addressbook/connector-business-addressbook.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/intrahub/connector-business-intrahub.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/therlink/connector-business-therlink.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/wsconsent/connector-business-wsconsent.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/civics/connector-business-civics.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/civicsv2/connector-business-civicsv2.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/dicsv2/connector-business-dicsv2.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/dicsv3/connector-business-dicsv3.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/genericasync/connector-business-genericasync.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/dmg/connector-business-dmg.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/genins/connector-business-genins.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/insurability/connector-business-insurability.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/insurabilityv2/connector-business-insurabilityv2.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/tarification/connector-business-tarification.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/registration/connector-business-registration.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/tarification/connector-business-tarification.csproj
+								</argument>
+								<argument>
+								${project.parent.basedir}/registration/connector-business-registration.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/invoicing/connector-business-invoicing.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/tarification/connector-business-tarification.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/chapter4/connector-business-chapter4.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/mediprima/connector-business-mediprima.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/ssinhistory/connector-business-ssinhistory.csproj
+								</argument>
+								<argument>
+									${project.parent.basedir}/mycarenetattest/connector-business-mycarenetattest.csproj
+								</argument>
+								<argument>nunitOutputPath</argument>
+							</arguments>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+			<properties>
+				<nunit3ConsolePath>nunit3ConsolePath</nunit3ConsolePath>
+				<nunitErrorPath>nunitOutputPath</nunitErrorPath>
+			</properties>
+		</profile>
+	</profiles>
+
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>connector-technical-core</artifactId>
+			<version>${version.technical}</version>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>connector-technical-base</artifactId>
+			<version>${version.technical}</version>
+			<classifier>tests</classifier>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>xmlunit</groupId>
+			<artifactId>xmlunit</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.unitils</groupId>
+			<artifactId>unitils-core</artifactId>
+			<scope>compile</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.nanohttpd</groupId>
+			<artifactId>nanohttpd</artifactId>
+			<scope>compile</scope>
+		</dependency>
+	</dependencies>
+
+
+</project>
