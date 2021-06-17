@@ -270,6 +270,12 @@ public class BaseMapper {
       }
   }
 
+  protected static void clearTextTypes(ItemType clone) {
+    if (clone.getTexts() != null) {
+      clone.getTexts().clear();
+    }
+  }
+
   protected static void clearContentTypeCds(ItemType clone) {
       if (clone.getContents() != null) {
           for (ContentType contentType : clone.getContents()) {

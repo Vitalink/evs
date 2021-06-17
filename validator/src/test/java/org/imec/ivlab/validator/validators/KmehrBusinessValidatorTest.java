@@ -1,8 +1,9 @@
 package org.imec.ivlab.validator.validators;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import matcher.ValidationMatchers;
-import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.kmehr.KmehrMarshaller;
 import org.imec.ivlab.util.TemplateReader;
 import org.imec.ivlab.validator.validators.business.rules.impl.R1001a_MultipleOfDaysAllowedFields;
@@ -53,8 +54,6 @@ import org.imec.ivlab.validator.validators.model.ValidationResult;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-
 @org.testng.annotations.Test
 public class KmehrBusinessValidatorTest {
 
@@ -63,12 +62,7 @@ public class KmehrBusinessValidatorTest {
     private ValidationResult validateTemplate(String templateFileName) {
 
         String kmehrmessageString = TemplateReader.read(templateFileName);
-        Kmehrmessage kmehrmessage;
-        try {
-            kmehrmessage = KmehrMarshaller.fromString(kmehrmessageString);
-        } catch (TransformationException e) {
-            throw new RuntimeException("Failed to interprete kmehrmessage string as kmehrmessage");
-        }
+        Kmehrmessage kmehrmessage = KmehrMarshaller.fromString(kmehrmessageString);
 
         ValidationResult validationResult = validator.validate(kmehrmessage, kmehrmessageString);
         return  validationResult;

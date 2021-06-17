@@ -59,7 +59,7 @@
 
         <dependency>
             <groupId>org.imec.ivlab.ehealth.kmehr</groupId>
-            <artifactId>kmehr-model-1.28</artifactId>
+            <artifactId>kmehr-model-1.34</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
 

@@ -1,13 +1,11 @@
 package org.imec.ivlab.ehconnector.util;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
-import org.imec.ivlab.core.config.EVSConfig;
-import org.imec.ivlab.core.config.EVSProperties;
-import org.imec.ivlab.core.model.upload.TransactionType;
-import org.imec.ivlab.ehconnector.hub.util.TransactionSummaryUtil;
-import org.joda.time.format.DateTimeFormat;
-
+import be.fgov.ehealth.hubservices.core.v3.FolderTypeUnbounded;
+import be.fgov.ehealth.hubservices.core.v3.GetTransactionListResponse;
+import be.fgov.ehealth.hubservices.core.v3.KmehrHeaderGetTransactionList;
+import be.fgov.ehealth.hubservices.core.v3.TransactionSummaryType;
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONschemes;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -15,13 +13,13 @@ import java.util.Objects;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
-
-import be.fgov.ehealth.hubservices.core.v3.FolderTypeUnbounded;
-import be.fgov.ehealth.hubservices.core.v3.GetTransactionListResponse;
-import be.fgov.ehealth.hubservices.core.v3.KmehrHeaderGetTransactionList;
-import be.fgov.ehealth.hubservices.core.v3.TransactionSummaryType;
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONschemes;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
+import org.imec.ivlab.core.config.EVSConfig;
+import org.imec.ivlab.core.config.EVSProperties;
+import org.imec.ivlab.core.model.upload.TransactionType;
+import org.imec.ivlab.ehconnector.hub.util.TransactionSummaryUtil;
+import org.joda.time.format.DateTimeFormat;
 
 public class TransactionHelper {
   private final static Logger LOG = Logger.getLogger(TransactionHelper.class);
@@ -59,7 +57,7 @@ public class TransactionHelper {
     transactionSummaries.forEach(transactionSummaryType -> LOG.info("Found transaction: " + getTransactionDetails(transactionSummaryType)));
 
     Optional<TransactionSummaryType> latestTransaction = transactionSummaries.stream()
-        .filter(hasTransactionCdWithSchemeAndValue(CDTRANSACTIONschemes.CD_TRANSACTION, transactionType.getValue()))
+        .filter(hasTransactionCdWithSchemeAndValue(CDTRANSACTIONschemes.CD_TRANSACTION, transactionType.getTransactionTypeValueForGetTransactionList()))
         .filter(transactionSummaryType -> !mustFilterOutTransactionsWithoutAccess() || hasPatientAccess(transactionSummaryType.getCds()))
         .max(compareByRecordDateTime);
 

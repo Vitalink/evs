@@ -17,7 +17,7 @@ public class LatestUpdatesUtil {
      * @param transactionTypeFilter
      * @return
      */
-    public static List<Latestupdate> getLatestUpdates(LatestUpdateListType latestUpdateListType, TransactionType transactionTypeFilter) {
+    public static List<Latestupdate>    getLatestUpdates(LatestUpdateListType latestUpdateListType, TransactionType transactionTypeFilter) {
 
         List<Latestupdate> latestupdates = new ArrayList<>();
 
@@ -27,7 +27,7 @@ public class LatestUpdatesUtil {
 
         for (Latestupdate latestupdate : latestUpdateListType.getLatestupdates()) {
 
-            if (latestupdate.getCd() != null && StringUtils.equalsIgnoreCase(latestupdate.getCd().getValue(), transactionTypeFilter.getValue())) {
+            if (latestupdate.getCd() != null && StringUtils.equalsIgnoreCase(latestupdate.getCd().getValue(), transactionTypeFilter.getTransactionTypeValueForGetLatestUpdate())) {
                 latestupdates.add(latestupdate);
             }
 

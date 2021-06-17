@@ -34,6 +34,9 @@
             <id S="ID-PATIENT" SV="1.0">90010100101</id>
             <firstname>John</firstname>
             <familyname>Doe</familyname>
+           <birthdate>
+               <year>1972</year>
+           </birthdate>
             <sex>
                 <cd S="CD-SEX" SV="1.0">male</cd>
             </sex>

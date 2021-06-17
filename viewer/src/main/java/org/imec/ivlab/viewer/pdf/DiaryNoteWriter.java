@@ -1,9 +1,5 @@
 package org.imec.ivlab.viewer.pdf;
 
-import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getCenteredCell;
-import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getDefaultPhrase;
-import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getDefaultPhraseBold;
-import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getFrontPageHeaderPhrase;
 import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getTableDefaultFont;
 import static org.imec.ivlab.viewer.pdf.PdfHelper.writeToDocument;
 import static org.imec.ivlab.viewer.pdf.TableHelper.addRow;
@@ -25,14 +21,12 @@ import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.io.File;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -47,13 +41,9 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
-import org.imec.ivlab.core.exceptions.TransformationException;
-import org.imec.ivlab.core.model.internal.parser.ParsedItem;
-import org.imec.ivlab.core.model.internal.parser.common.Header;
 import org.imec.ivlab.core.model.internal.parser.diarynote.DiaryNote;
-import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
-import org.imec.ivlab.core.model.upload.diarylist.DiaryNoteList;
-import org.imec.ivlab.core.model.upload.diarylist.DiaryNoteListExtractor;
+import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
+import org.imec.ivlab.core.model.upload.extractor.DiaryNoteListExtractor;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrExtractor;
 import org.imec.ivlab.core.util.CollectionsUtil;
@@ -82,12 +72,7 @@ public class DiaryNoteWriter extends Writer {
         File inputFile = IOUtils.getResourceAsFile("/diarynote/" + filename);
 
         KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
-        DiaryNoteList diaryNoteList = null;
-        try {
-            diaryNoteList = DiaryNoteListExtractor.getDiaryList(kmehrEntryList);
-        } catch (TransformationException e) {
-            throw new RuntimeException(e);
-        }
+        KmehrWithReferenceList diaryNoteList = new DiaryNoteListExtractor().getKmehrWithReferenceList(kmehrEntryList);
 
         return TestFileConverter.convertToDiaryNotes(diaryNoteList);
     }
@@ -100,48 +85,6 @@ public class DiaryNoteWriter extends Writer {
         List<PdfPTable> detailTables = createSumehrDetailTables(diaryNote);
 
         writeToDocument(fileLocation, generalInfoTable, detailTables);
-    }
-
-
-    private PdfPTable createGeneralInfoTable(String title, Header header) {
-
-        PdfPTable table = new PdfPTable(20);
-        table.setWidthPercentage(95);
-
-        // the cell object
-        PdfPCell cell;
-
-        // title
-        cell = getCenteredCell();
-        cell.setPhrase(getFrontPageHeaderPhrase(title));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(20);
-        cell.setPaddingBottom(30f);
-        table.addCell(cell);
-
-        cell = new PdfPCell(getFrontPageHeaderPhrase(" "));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(14);
-        table.addCell(cell);
-
-        cell = new PdfPCell(getDefaultPhrase("Afdruk op: "));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(3);
-        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-        table.addCell(cell);
-        cell = new PdfPCell(getDefaultPhraseBold(formatAsDateTime(LocalDateTime.of(header.getDate(), header.getTime()))));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(3);
-        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-        table.addCell(cell);
-
-        cell = new PdfPCell(getFrontPageHeaderPhrase(" "));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(20);
-        table.addCell(cell);
-
-        return table;
-
     }
 
     private List<PdfPTable> createSumehrDetailTables(DiaryNote diaryNote) {
@@ -159,12 +102,6 @@ public class DiaryNoteWriter extends Writer {
         tables.add(combineTables(createTitleTable("DiaryNote"), createDiaryNotetables(diaryNote), null));
         return tables;
 
-    }
-
-    private <T extends ParsedItem> List<PdfPTable> toUnparsedContentTable(T parsedItem, String topic) {
-        ArrayList<T> list = new ArrayList<>();
-        list.add(parsedItem);
-        return toUnparsedContentTables(list, topic);
     }
 
     private List<PdfPTable> createDiaryNotetables(DiaryNote diaryNote) {
@@ -357,14 +294,6 @@ public class DiaryNoteWriter extends Writer {
             .orElse(Collections.emptyList())
             .stream()
             .map(this::textWithLayoutToTable)
-            .collect(Collectors.toList());
-    }
-
-    private Collection<PdfPTable> createHcPartyTables(List<HcParty> hcParties) {
-        return Optional.ofNullable(hcParties)
-            .orElse(Collections.emptyList())
-            .stream()
-            .map(this::hcpartyTypeToTable)
             .collect(Collectors.toList());
     }
 

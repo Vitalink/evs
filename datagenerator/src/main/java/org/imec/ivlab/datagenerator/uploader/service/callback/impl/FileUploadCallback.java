@@ -8,7 +8,7 @@ import org.imec.ivlab.core.util.FileUtil;
 import org.imec.ivlab.core.version.LocalVersionReader;
 import org.imec.ivlab.datagenerator.uploader.UploaderHelper;
 import org.imec.ivlab.datagenerator.uploader.exception.CallbackException;
-import org.imec.ivlab.datagenerator.uploader.model.Action;
+import org.imec.ivlab.datagenerator.uploader.model.action.Action;
 import org.imec.ivlab.datagenerator.uploader.service.callback.Callback;
 
 import java.io.File;

@@ -37,7 +37,7 @@ public class URIBuilder {
 
         URI uri = new URI();
         uri.setSubjectId(subjectID);
-        uri.setTransactionType(transactionType.getValue());
+        uri.setTransactionType(transactionType.getTransactionTypeValueForGetTransactionList());
         return uri;
 
     }

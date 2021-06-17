@@ -26,8 +26,10 @@ import org.imec.ivlab.core.version.VersionManager;
 import org.imec.ivlab.datagenerator.SchemeExporter;
 import org.imec.ivlab.datagenerator.exporter.export.ExportInstruction;
 import org.imec.ivlab.datagenerator.exporter.export.ExportResult;
+import org.imec.ivlab.datagenerator.exporter.export.impl.ChildPreventionExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.DiaryNoteExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.MedicationExporter;
+import org.imec.ivlab.datagenerator.exporter.export.impl.PopulationBasedScreeningExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.SumehrExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.VaccinationExporter;
 import org.imec.ivlab.datagenerator.exporter.monitor.Monitor;
@@ -148,6 +150,39 @@ public class VaultExporterRunnable implements Runnable {
                             .filter(Objects::nonNull)
                             .collect(Collectors.toList());
                         SchemeExporter.generateVaccinationListVisualization(monitorInstruction.getPatient(), outputDirectory, kmehrmessages);
+
+                    }
+                }
+
+                if (TransactionType.CHILD_PREVENTION.equals(monitorInstruction.getTransactionType())) {
+
+                    ChildPreventionExporter childPreventionExporter = new ChildPreventionExporter();
+                    List<ExportResult<GetTransactionResponse>> results = childPreventionExporter.exportTransactions(exportInstruction.getTransactionType(), monitorInstruction.getPatient(), exportInstruction.getActorKey(), outputDirectory, null, null);
+
+                    if (exportInstruction.isGenerateChildPreventionVisualization() && CollectionsUtil.notEmptyOrNull(results)) {
+                        for (ExportResult<GetTransactionResponse> result : results) {
+                            Kmehrmessage kmehrmessage = result.getResponse() != null ? result.getResponse().getKmehrmessage() : null;
+                            if (kmehrmessage != null) {
+                                SchemeExporter.generateChildPreventionVisualization(result.getFile(), kmehrmessage);
+                            }
+                        }
+
+                    }
+                }
+
+
+                if (TransactionType.POPULATION_BASED_SCREENING.equals(monitorInstruction.getTransactionType())) {
+
+                    PopulationBasedScreeningExporter childPreventionExporter = new PopulationBasedScreeningExporter();
+                    List<ExportResult<GetTransactionResponse>> results = childPreventionExporter.exportTransactions(exportInstruction.getTransactionType(), monitorInstruction.getPatient(), exportInstruction.getActorKey(), outputDirectory, null, null);
+
+                    if (exportInstruction.isGeneratePopulationBasedScreening() && CollectionsUtil.notEmptyOrNull(results)) {
+                        for (ExportResult<GetTransactionResponse> result : results) {
+                            Kmehrmessage kmehrmessage = result.getResponse() != null ? result.getResponse().getKmehrmessage() : null;
+                            if (kmehrmessage != null) {
+                                SchemeExporter.generatePopulationBasedScreeningVisualization(result.getFile(), kmehrmessage);
+                            }
+                        }
 
                     }
                 }

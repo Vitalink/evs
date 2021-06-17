@@ -10,6 +10,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.AuthorType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -17,20 +19,17 @@ import org.apache.log4j.Logger;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.kmehr.model.util.HCPartyUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
-import org.imec.ivlab.core.model.upload.TransactionType;
 import org.imec.ivlab.core.model.patient.model.Patient;
-import org.imec.ivlab.core.model.upload.sumehrlist.Sumehr;
-import org.imec.ivlab.core.model.upload.sumehrlist.SumehrList;
-import org.imec.ivlab.core.model.upload.sumehrlist.SumehrListExtractor;
+import org.imec.ivlab.core.model.upload.KmehrWithReference;
+import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
+import org.imec.ivlab.core.model.upload.TransactionType;
+import org.imec.ivlab.core.model.upload.extractor.SumehrListExtractor;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.ehconnector.business.AbstractService;
 import org.imec.ivlab.ehconnector.business.HubHelper;
 import org.imec.ivlab.ehconnector.hub.exception.GatewaySpecificErrorException;
 import org.imec.ivlab.ehconnector.hub.exception.incurable.TransactionNotFoundException;
 import org.imec.ivlab.ehconnector.hubflow.HubFlow;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class SumehrServiceImpl extends AbstractService implements SumehrService {
 
@@ -45,34 +44,34 @@ public class SumehrServiceImpl extends AbstractService implements SumehrService 
 
 
     @Override
-    public SumehrList getSumehrList(Patient patient) throws VitalinkException {
+    public KmehrWithReferenceList getKmehrWithReferenceList(Patient patient) throws VitalinkException {
         try {
             List<GetTransactionResponse> individualTransactions = hubFlow.getIndividualTransactions(patient.getId(), TRANSACTION_TYPE);
-            return SumehrListExtractor.getSumehrList(extractKmehrMessagesFromResponses(individualTransactions));
+            return new SumehrListExtractor().getKmehrWithReferenceList(extractKmehrMessagesFromResponses(individualTransactions));
         } catch (TransactionNotFoundException e) {
-            return new SumehrList();
+            return new KmehrWithReferenceList();
         } catch (Exception e) {
             throw new VitalinkException(e);
         }
     }
 
     @Override
-    public SumehrList getSumehrListOfCurrentActor(Patient patient) throws VitalinkException {
+    public KmehrWithReferenceList getKmehrWithReferenceListOfCurrentActor(Patient patient) throws VitalinkException {
         List<HcpartyType> authorsOfAction = null;
         try {
             authorsOfAction = createAuthorPersonHcParties();
         } catch (TechnicalConnectorException e) {
             throw new RuntimeException(e);
         }
-        return filterByAuthor(getSumehrList(patient), authorsOfAction);
+        return filterByAuthor(getKmehrWithReferenceList(patient), authorsOfAction);
     }
 
-    private SumehrList filterByAuthor(SumehrList sumehrList, List<HcpartyType> authorsOfAction) {
+    private KmehrWithReferenceList filterByAuthor(KmehrWithReferenceList sumehrList, List<HcpartyType> authorsOfAction) {
         sumehrList.setList(sumehrList.getList().stream().filter(sumehr -> actionAuthorMatchesAuthorOfSumehr(sumehr, authorsOfAction)).collect(Collectors.toList()));
         return sumehrList;
     }
 
-    private boolean actionAuthorMatchesAuthorOfSumehr(Sumehr sumehr, List<HcpartyType> authorsOfAction) {
+    private boolean actionAuthorMatchesAuthorOfSumehr(KmehrWithReference sumehr, List<HcpartyType> authorsOfAction) {
         AuthorType sumehrAuthor = Optional
             .ofNullable(sumehr.getIdentifiableTransaction())
             .map(be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType::getAuthor)
@@ -102,13 +101,13 @@ public class SumehrServiceImpl extends AbstractService implements SumehrService 
     }
 
     @Override
-    public void putTransactions(Patient patient, SumehrList sumehrList) throws VitalinkException {
+    public void putTransactions(Patient patient, KmehrWithReferenceList sumehrList) throws VitalinkException {
 
         if (CollectionsUtil.emptyOrNull(sumehrList.getList())) {
             return;
         }
 
-        for (Sumehr sumehr : sumehrList.getList()) {
+        for (KmehrWithReference sumehr : sumehrList.getList()) {
             try {
                 hubFlow.putTransaction(sumehrToKmehr(patient, sumehr));
             } catch (GatewaySpecificErrorException | TechnicalConnectorException e) {
@@ -119,13 +118,13 @@ public class SumehrServiceImpl extends AbstractService implements SumehrService 
     }
 
     @Override
-    public void revokeTransactions(Patient patient, SumehrList sumehrList) throws VitalinkException {
+    public void revokeTransactions(Patient patient, KmehrWithReferenceList sumehrList) throws VitalinkException {
 
         if (CollectionsUtil.emptyOrNull(sumehrList.getList())) {
             return;
         }
 
-        for (Sumehr sumehr : sumehrList.getList()) {
+        for (KmehrWithReference sumehr : sumehrList.getList()) {
             try {
                 hubFlow.revokeTransaction(patient.getId(), sumehrToKmehr(patient, sumehr));
             } catch (GatewaySpecificErrorException | TechnicalConnectorException e) {
@@ -154,7 +153,7 @@ public class SumehrServiceImpl extends AbstractService implements SumehrService 
     }
 
 
-    private Kmehrmessage sumehrToKmehr(Patient patient, Sumehr sumehr) throws VitalinkException {
+    private Kmehrmessage sumehrToKmehr(Patient patient, KmehrWithReference sumehr) throws VitalinkException {
         if (sumehr == null) {
             throw new RuntimeException("No sumehr provided!");
         }

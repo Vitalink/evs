@@ -1,9 +1,5 @@
 package org.imec.ivlab.viewer.pdf;
 
-import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getCenteredCell;
-import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getDefaultPhrase;
-import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getDefaultPhraseBold;
-import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getFrontPageHeaderPhrase;
 import static org.imec.ivlab.viewer.pdf.PdfHelper.writeToDocument;
 import static org.imec.ivlab.viewer.pdf.TableHelper.addRow;
 import static org.imec.ivlab.viewer.pdf.TableHelper.combineTables;
@@ -37,21 +33,17 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDUNITschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
 import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.io.File;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.commons.lang3.StringUtils;
@@ -62,10 +54,10 @@ import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
 import org.imec.ivlab.core.model.internal.parser.vaccination.EncounterLocation;
 import org.imec.ivlab.core.model.internal.parser.vaccination.Vaccination;
 import org.imec.ivlab.core.model.internal.parser.vaccination.VaccinationItem;
+import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
+import org.imec.ivlab.core.model.upload.extractor.VaccinationListExtractor;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrExtractor;
-import org.imec.ivlab.core.model.upload.vaccinationentry.VaccinationList;
-import org.imec.ivlab.core.model.upload.vaccinationentry.VaccinationListExtractor;
 import org.imec.ivlab.core.util.IOUtils;
 import org.imec.ivlab.viewer.converter.TestFileConverter;
 
@@ -83,9 +75,9 @@ public class VaccinationWriter extends Writer {
         File inputFile = IOUtils.getResourceAsFile("/vaccination/" + filename);
 
         KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
-        VaccinationList diaryNoteList = VaccinationListExtractor.getVaccinationList(kmehrEntryList);
+        KmehrWithReferenceList diaryNoteList = new VaccinationListExtractor().getKmehrWithReferenceList(kmehrEntryList);
 
-        return TestFileConverter.convertTVaccinations(diaryNoteList);
+        return TestFileConverter.convertToVaccinations(diaryNoteList);
     }
 
     public void createPdf(Vaccination vaccination, String fileLocation) {
@@ -96,48 +88,6 @@ public class VaccinationWriter extends Writer {
         List<PdfPTable> detailTables = createDetailTables(vaccination);
 
         writeToDocument(fileLocation, generalInfoTable, detailTables);
-    }
-
-
-    private PdfPTable createGeneralInfoTable(String title, Header header) {
-
-        PdfPTable table = new PdfPTable(20);
-        table.setWidthPercentage(95);
-
-        // the cell object
-        PdfPCell cell;
-
-        // title
-        cell = getCenteredCell();
-        cell.setPhrase(getFrontPageHeaderPhrase(title));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(20);
-        cell.setPaddingBottom(30f);
-        table.addCell(cell);
-
-        cell = new PdfPCell(getFrontPageHeaderPhrase(" "));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(14);
-        table.addCell(cell);
-
-        cell = new PdfPCell(getDefaultPhrase("Afdruk op: "));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(3);
-        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
-        table.addCell(cell);
-        cell = new PdfPCell(getDefaultPhraseBold(formatAsDateTime(LocalDateTime.of(header.getDate(), header.getTime()))));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(3);
-        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
-        table.addCell(cell);
-
-        cell = new PdfPCell(getFrontPageHeaderPhrase(" "));
-        cell.setBorderColor(BaseColor.WHITE);
-        cell.setColspan(20);
-        table.addCell(cell);
-
-        return table;
-
     }
 
     private List<PdfPTable> createDetailTables(Vaccination vaccination) {
@@ -152,15 +102,15 @@ public class VaccinationWriter extends Writer {
         tables.add(combineTables(createTitleTable("Author"), createHcPartyTables(vaccination.getTransactionCommon().getAuthor()), toUnparsedContentTables(vaccination.getTransactionCommon().getAuthor(), "Author")));
         tables.add(combineTables(createTitleTable("Redactor"), createHcPartyTables(vaccination.getTransactionCommon().getRedactor()), toUnparsedContentTables(vaccination.getTransactionCommon().getRedactor(), "Redactor")));
         tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(vaccination), toUnparsedContentTables(vaccination.getTransactionCommon().getAuthor(), "Author")));
-        tables.add(combineTables(createTitleTable("Transaction details"), createVaccinationTables(vaccination), null));
+        List<PdfPTable> unparsedVaccinationTables = vaccination
+            .getVaccinationItems()
+            .stream()
+            .findFirst()
+            .map(vaccinationItem -> toUnparsedContentTable(vaccinationItem, "Vaccination"))
+            .orElse(Collections.emptyList());
+        tables.add(combineTables(createTitleTable("Transaction details"), createVaccinationTables(vaccination), unparsedVaccinationTables));
         return tables;
 
-    }
-
-    private <T extends ParsedItem> List<PdfPTable> toUnparsedContentTable(T parsedItem, String topic) {
-        ArrayList<T> list = new ArrayList<>();
-        list.add(parsedItem);
-        return toUnparsedContentTables(list, topic);
     }
 
     private List<PdfPTable> createVaccinationTables(Vaccination vaccination) {
@@ -300,14 +250,6 @@ public class VaccinationWriter extends Writer {
         return pdfPCells;
     }
 
-    private String removeXmlTags(String input) {
-        String patternForXmlTags = "<[\\w\\/\\s\\:\\=\\\"\\.]+>";
-        Pattern r = Pattern.compile(patternForXmlTags);
-        Matcher matcher = r.matcher(input);
-
-        return matcher.replaceAll("");
-    }
-
     private Collection<PdfPTable> createLnkTable(List<LnkType> lnkTypes) {
         return Optional.ofNullable(lnkTypes)
                        .orElse(Collections.emptyList())
@@ -321,14 +263,6 @@ public class VaccinationWriter extends Writer {
                        .orElse(Collections.emptyList())
                        .stream()
                        .map(this::textWithoutLayoutToTable)
-                       .collect(Collectors.toList());
-    }
-
-    private Collection<PdfPTable> createHcPartyTables(List<HcParty> hcParties) {
-        return Optional.ofNullable(hcParties)
-                       .orElse(Collections.emptyList())
-                       .stream()
-                       .map(this::hcpartyTypeToTable)
                        .collect(Collectors.toList());
     }
 

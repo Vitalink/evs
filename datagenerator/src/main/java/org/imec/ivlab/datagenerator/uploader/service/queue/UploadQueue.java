@@ -1,6 +1,6 @@
 package org.imec.ivlab.datagenerator.uploader.service.queue;
 
-import org.imec.ivlab.datagenerator.uploader.model.Instruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.Instruction;
 
 public interface UploadQueue {
 

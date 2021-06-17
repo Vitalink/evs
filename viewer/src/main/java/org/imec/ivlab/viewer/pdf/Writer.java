@@ -1,10 +1,16 @@
 package org.imec.ivlab.viewer.pdf;
 
+import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getCenteredCell;
+import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getDefaultPhrase;
+import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getDefaultPhraseBold;
+import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getFrontPageHeaderPhrase;
 import static org.imec.ivlab.viewer.pdf.TableHelper.addRow;
 import static org.imec.ivlab.viewer.pdf.TableHelper.createDetailHeader;
 import static org.imec.ivlab.viewer.pdf.TableHelper.initializeDetailTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowsIfHasValue;
+import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
+import static org.imec.ivlab.viewer.pdf.Translator.formatAsDateTime;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDADDRESS;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDHCPARTY;
@@ -14,10 +20,15 @@ import be.fgov.ehealth.standards.kmehr.id.v1.IDPATIENT;
 import be.fgov.ehealth.standards.kmehr.schema.v1.AddressType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.CountryType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TelecomType;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,6 +40,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
+import org.imec.ivlab.core.model.internal.parser.ParsedItem;
+import org.imec.ivlab.core.model.internal.parser.common.Header;
 import org.imec.ivlab.core.model.internal.parser.sumehr.AbstractPerson;
 import org.imec.ivlab.core.model.internal.parser.sumehr.ContactPerson;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
@@ -285,4 +298,70 @@ public abstract class Writer {
         }
     }
 
+    protected PdfPTable createGeneralInfoTable(String title, Header header) {
+
+        PdfPTable table = new PdfPTable(20);
+        table.setWidthPercentage(95);
+
+        // the cell object
+        PdfPCell cell;
+
+        // title
+        cell = getCenteredCell();
+        cell.setPhrase(getFrontPageHeaderPhrase(title));
+        cell.setBorderColor(BaseColor.WHITE);
+        cell.setColspan(20);
+        cell.setPaddingBottom(30f);
+        table.addCell(cell);
+
+        cell = new PdfPCell(getFrontPageHeaderPhrase(" "));
+        cell.setBorderColor(BaseColor.WHITE);
+        cell.setColspan(14);
+        table.addCell(cell);
+
+        cell = new PdfPCell(getDefaultPhrase("Afdruk op: "));
+        cell.setBorderColor(BaseColor.WHITE);
+        cell.setColspan(3);
+        cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
+        table.addCell(cell);
+        cell = new PdfPCell(getDefaultPhraseBold(formatAsDateTime(LocalDateTime.of(header.getDate(), header.getTime()))));
+        cell.setBorderColor(BaseColor.WHITE);
+        cell.setColspan(3);
+        cell.setHorizontalAlignment(Element.ALIGN_LEFT);
+        table.addCell(cell);
+
+        cell = new PdfPCell(getFrontPageHeaderPhrase(" "));
+        cell.setBorderColor(BaseColor.WHITE);
+        cell.setColspan(20);
+        table.addCell(cell);
+
+        return table;
+
+    }
+
+    protected <T extends ParsedItem> List<PdfPTable> toUnparsedContentTable(T parsedItem, String topic) {
+        if (parsedItem == null) {
+            return Collections.emptyList();
+        } else {
+            return toUnparsedContentTables(Collections.singletonList(parsedItem), topic);
+        }
+    }
+
+    protected Collection<PdfPTable> createHcPartyTables(List<HcParty> hcParties) {
+        return Optional.ofNullable(hcParties)
+                       .orElse(Collections.emptyList())
+                       .stream()
+                       .map(this::hcpartyTypeToTable)
+                       .collect(Collectors.toList());
+    }
 }
+
+
+
+
+
+
+
+
+
+

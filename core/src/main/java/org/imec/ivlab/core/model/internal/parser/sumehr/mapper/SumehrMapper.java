@@ -41,9 +41,10 @@ import org.imec.ivlab.core.model.internal.parser.sumehr.Risk;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sumehr;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Treatment;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Vaccination;
+import org.imec.ivlab.core.model.upload.KmehrWithReference;
+import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
 import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInTransactionFoundException;
-import org.imec.ivlab.core.model.upload.sumehrlist.SumehrList;
-import org.imec.ivlab.core.model.upload.sumehrlist.SumehrListExtractor;
+import org.imec.ivlab.core.model.upload.extractor.SumehrListExtractor;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.StringUtils;
@@ -98,13 +99,13 @@ public class SumehrMapper extends BaseMapper {
 
     private static String getEvsRef(Kmehrmessage kmehrmessage) {
         try {
-            SumehrList sumehrList = SumehrListExtractor.getSumehrList(Collections.singletonList(kmehrmessage));
+            KmehrWithReferenceList sumehrList = new SumehrListExtractor().getKmehrWithReferenceList(Collections.singletonList(kmehrmessage));
             new SumehrEVSRefExtractor().extractEVSRefs(sumehrList);
             return sumehrList
                 .getList()
                 .stream()
                 .findFirst()
-                .map(org.imec.ivlab.core.model.upload.sumehrlist.Sumehr::getReference)
+                .map(KmehrWithReference::getReference)
                 .map(EVSREF::getFormatted)
                 .orElse(null);
         } catch (MultipleEVSRefsInTransactionFoundException e) {
@@ -365,7 +366,8 @@ public class SumehrMapper extends BaseMapper {
         clone.setFrequency(null);
         if (itemType.getRegimen() != null) {
             clone.setRegimen(null);
-        } else {
+        }
+        if (itemType.getPosology() != null) {
             clone.setPosology(null);
         }
         if (itemType.getDayperiods() != null) {

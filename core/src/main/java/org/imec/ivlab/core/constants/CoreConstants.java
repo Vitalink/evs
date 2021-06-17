@@ -21,6 +21,9 @@ public class CoreConstants {
     public static final String EXPORT_NAME_SUMEHR_OVERVIEW = "overview";
     public static final String EXPORT_NAME_DIARYNOTE_OVERVIEW = "visualization";
     public static final String EXPORT_NAME_VACCINATION_OVERVIEW = "visualization";
+    public static final String EXPORT_NAME_POPULATION_BASED_SCREENING_OVERVIEW = "visualization";
+    public static final String EXPORT_NAME_CHILD_PREVENTION_FILE = "visualization";
+    public static final String EXPORT_NAME_CHILD_PREVENTION_FILE_EMBEDDED = "visualization-embedded";
     public static final String EXPORT_NAME_VACCINATION_LIST_OVERVIEW = "vaccination-list-visualization";
 
 }

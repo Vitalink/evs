@@ -3,30 +3,29 @@ package org.imec.ivlab.datagenerator.uploader.service;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHR;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHRschemes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
+import java.util.List;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.authentication.model.AuthenticationConfig;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.kmehr.KmehrHelper;
-import org.imec.ivlab.core.kmehr.model.util.IDKmehrUtil;
-import org.imec.ivlab.core.model.evsref.extractor.impl.SumehrEVSRefExtractor;
 import org.imec.ivlab.core.kmehr.model.localid.LocalIdParser;
 import org.imec.ivlab.core.kmehr.model.localid.URI;
 import org.imec.ivlab.core.kmehr.model.localid.util.URIBuilder;
 import org.imec.ivlab.core.kmehr.model.localid.util.URIConverter;
+import org.imec.ivlab.core.kmehr.model.util.IDKmehrUtil;
+import org.imec.ivlab.core.model.evsref.extractor.impl.SumehrEVSRefExtractor;
+import org.imec.ivlab.core.model.patient.model.Patient;
+import org.imec.ivlab.core.model.upload.KmehrWithReference;
+import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
 import org.imec.ivlab.core.model.upload.msentrylist.exception.IdenticalEVSRefsFoundException;
 import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInTransactionFoundException;
-import org.imec.ivlab.core.model.patient.model.Patient;
-import org.imec.ivlab.core.model.upload.sumehrlist.Sumehr;
-import org.imec.ivlab.core.model.upload.sumehrlist.SumehrList;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.datagenerator.uploader.exception.UploaderException;
 import org.imec.ivlab.ehconnector.business.HubHelper;
 import org.imec.ivlab.ehconnector.business.sumehr.SumehrService;
 import org.imec.ivlab.ehconnector.business.sumehr.SumehrServiceImpl;
-
-import java.util.List;
 
 public class SumehrUploaderImpl implements SumehrUploader, Uploader {
 
@@ -42,7 +41,7 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
     }
 
     @Override
-    public void add(Patient patient, SumehrList sumehrListToAdd, String actorId) throws UploaderException, VitalinkException {
+    public void add(Patient patient, KmehrWithReferenceList sumehrListToAdd, String actorId) throws UploaderException, VitalinkException {
 
         try {
             refExtractor.extractEVSRefs(sumehrListToAdd);
@@ -59,7 +58,7 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
 
         sumehrService.authenticate(readAuthenticationConfig(actorId));
 
-        SumehrList sumehrListInVault = sumehrService.getSumehrList(patient);
+        KmehrWithReferenceList sumehrListInVault = sumehrService.getKmehrWithReferenceList(patient);
 
         try {
             refExtractor.extractEVSRefs(sumehrListInVault);
@@ -81,7 +80,7 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
 
         sumehrService.authenticate(readAuthenticationConfig(actorId));
 
-        SumehrList sumehrListInVault = sumehrService.getSumehrListOfCurrentActor(patient);
+        KmehrWithReferenceList sumehrListInVault = sumehrService.getKmehrWithReferenceListOfCurrentActor(patient);
 
         if (CollectionsUtil.emptyOrNull(sumehrListInVault.getList())) {
             LOG.info("No sumehrs of the current actor in vault");
@@ -95,7 +94,7 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
     }
 
     @Override
-    public void replace(Patient patient, SumehrList sumehrList, String actorId) throws VitalinkException, UploaderException {
+    public void replace(Patient patient, KmehrWithReferenceList sumehrList, String actorId) throws VitalinkException, UploaderException {
 
         empty(patient, actorId);
 
@@ -108,9 +107,9 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
 
         sumehrService.authenticate(readAuthenticationConfig(actorId));
 
-        SumehrList sumehrListVaultBeforeGeneratingRefs = sumehrService.getSumehrList(patient);
-        SumehrList sumehrListVaultWithRefs = SerializationUtils.clone(sumehrListVaultBeforeGeneratingRefs);
-        SumehrList sumehrListVaultWithNewlyGeneratedRefs = SerializationUtils.clone(sumehrListVaultWithRefs);
+        KmehrWithReferenceList sumehrListVaultBeforeGeneratingRefs = sumehrService.getKmehrWithReferenceList(patient);
+        KmehrWithReferenceList sumehrListVaultWithRefs = SerializationUtils.clone(sumehrListVaultBeforeGeneratingRefs);
+        KmehrWithReferenceList sumehrListVaultWithNewlyGeneratedRefs = SerializationUtils.clone(sumehrListVaultWithRefs);
         sumehrListVaultWithNewlyGeneratedRefs.getIdentifiables().clear();
 
         if (CollectionsUtil.emptyOrNull(sumehrListVaultBeforeGeneratingRefs.getList())) {
@@ -128,7 +127,7 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
             if (sumehrListVaultWithRefs != null) {
                 for (int i = 0; i < sumehrListVaultBeforeGeneratingRefs.getIdentifiables().size(); i++) {
                     if (! KmehrMatcher.equal(sumehrListVaultBeforeGeneratingRefs.getIdentifiables().get(i), sumehrListVaultWithRefs.getIdentifiables().get(i))) {
-                        Sumehr sumehr = sumehrListVaultWithRefs.getIdentifiables().get(i);
+                        KmehrWithReference sumehr = sumehrListVaultWithRefs.getIdentifiables().get(i);
                         updateVitalinkURIForUpdate(sumehr.getIdentifiableTransaction());
                         sumehrListVaultWithNewlyGeneratedRefs.getIdentifiables().add(sumehr);
                     }
@@ -144,7 +143,7 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
     }
 
     @Override
-    public void removeREF(Patient patient, SumehrList sumehrListToRemove, String actorId) throws VitalinkException, UploaderException {
+    public void removeREF(Patient patient, KmehrWithReferenceList sumehrListToRemove, String actorId) throws VitalinkException, UploaderException {
 
         sumehrService.authenticate(readAuthenticationConfig(actorId));
 
@@ -162,11 +161,11 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
             throw new UploaderException(e);
         }
 
-        SumehrList sumehrListInVault = sumehrService.getSumehrList(patient);
+        KmehrWithReferenceList sumehrListInVault = sumehrService.getKmehrWithReferenceList(patient);
 
         try {
             refExtractor.extractEVSRefs(sumehrListInVault);
-            SumehrList sumehrList = KmehrMatcher.ensureEVSRefsMatchWithVault(sumehrListToRemove, sumehrListInVault);
+            KmehrWithReferenceList sumehrList = KmehrMatcher.ensureEVSRefsMatchWithVault(sumehrListToRemove, sumehrListInVault);
             sumehrService.revokeTransactions(patient, sumehrList);
         } catch (Exception e) {
             throw new UploaderException(e);
@@ -176,7 +175,7 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
     }
 
     @Override
-    public void updateREF(Patient patient, SumehrList sumehrListToUpdate, String actorId) throws VitalinkException, UploaderException {
+    public void updateREF(Patient patient, KmehrWithReferenceList sumehrListToUpdate, String actorId) throws VitalinkException, UploaderException {
 
         sumehrService.authenticate(readAuthenticationConfig(actorId));
 
@@ -194,13 +193,13 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
             throw new UploaderException(e);
         }
 
-        SumehrList sumehrListInVault = sumehrService.getSumehrList(patient);
+        KmehrWithReferenceList sumehrListInVault = sumehrService.getKmehrWithReferenceList(patient);
 
         try {
 
             refExtractor.extractEVSRefs(sumehrListInVault);
-            SumehrList sumehrList = KmehrMatcher.mergeForUpdate(sumehrListToUpdate, sumehrListInVault);
-            for (Sumehr sumehr : sumehrList.getList()) {
+            KmehrWithReferenceList sumehrList = KmehrMatcher.mergeForUpdate(sumehrListToUpdate, sumehrListInVault);
+            for (KmehrWithReference sumehr : sumehrList.getList()) {
                 updateVitalinkURIForUpdate(sumehr.getIdentifiableTransaction());
             }
 

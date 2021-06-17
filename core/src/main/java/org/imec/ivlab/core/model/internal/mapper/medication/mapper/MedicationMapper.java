@@ -50,7 +50,6 @@ import org.imec.ivlab.core.model.internal.mapper.medication.IndividualDayperiod;
 import org.imec.ivlab.core.model.internal.mapper.medication.MedicationEntry;
 import org.imec.ivlab.core.model.internal.mapper.medication.MedicationEntryBasic;
 import org.imec.ivlab.core.model.internal.mapper.medication.Posology;
-import org.imec.ivlab.core.model.internal.mapper.medication.PosologyOrRegimen;
 import org.imec.ivlab.core.model.internal.mapper.medication.Regimen;
 import org.imec.ivlab.core.model.internal.mapper.medication.RegimenDate;
 import org.imec.ivlab.core.model.internal.mapper.medication.RegimenDaynumber;
@@ -62,6 +61,7 @@ import org.imec.ivlab.core.model.internal.mapper.medication.Route;
 import org.imec.ivlab.core.model.internal.mapper.medication.Suspension;
 import org.imec.ivlab.core.model.internal.mapper.medication.TimeUnit;
 import org.imec.ivlab.core.model.internal.mapper.medication.Weekday;
+import org.imec.ivlab.core.model.internal.parser.sumehr.MedicationEntrySumehr;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.DateUtils;
 
@@ -106,7 +106,19 @@ public class MedicationMapper {
             medicationEntry.setFrequencyCode(FrequencyCode.fromValue(medicationItem.getFrequency().getPeriodicity().getCd().getValue()));
         }
 
-        medicationEntry.setPosologyOrRegimen(getPosologyOrRegimen(medicationItem));
+        Posology posology = mapPosology(medicationItem);
+        Regimen regimen = mapRegimen(medicationItem);
+        if (medicationEntry instanceof MedicationEntrySumehr) {
+            ((MedicationEntrySumehr) medicationEntry).setPosology(posology);
+            ((MedicationEntrySumehr) medicationEntry).setRegimen(regimen);
+        } else if (medicationEntry instanceof MedicationEntry) {
+            if (regimen != null) {
+                ((MedicationEntry) medicationEntry).setPosologyOrRegimen(regimen);
+            } else if (posology != null) {
+                ((MedicationEntry) medicationEntry).setPosologyOrRegimen(posology);
+            }
+        }
+
         if (medicationItem.getTemporality() != null && medicationItem.getTemporality().getCd() != null) {
             medicationEntry.setTemporality(medicationItem.getTemporality().getCd().getValue());
         }
@@ -205,24 +217,12 @@ public class MedicationMapper {
         return dayperiods;
     }
 
-    private static PosologyOrRegimen getPosologyOrRegimen(ItemType medicationItem) {
-
-        if (medicationItem.getPosology() != null && medicationItem.getRegimen() != null) {
-            LOG.error("A medication item has both a posology and a regimen specified. These types cannot be mixed in one medication item! Will pick the Regimen.");
-        }
-
-        if (medicationItem.getRegimen() != null) {
-            return mapRegimen(medicationItem);
-        } else if (medicationItem.getPosology() != null) {
-            return mapPosology(medicationItem);
-        } else {
-            return null;
-        }
-
-    }
-
     private static Regimen mapRegimen(ItemType medicationItem) {
         ItemType.Regimen regimen = medicationItem.getRegimen();
+
+        if (regimen == null) {
+            return null;
+        }
 
         List<org.imec.ivlab.core.kmehr.model.RegimenEntry> regimenEntries = RegimenUtil.getRegimenEntries(regimen);
 
@@ -279,6 +279,9 @@ public class MedicationMapper {
         Posology posologyOut = new Posology();
 
         ItemType.Posology posologyIn = medicationItem.getPosology();
+        if (posologyIn == null) {
+            return null;
+        }
         posologyOut.setText(Optional.ofNullable(posologyIn.getText()).map(TextType::getValue).orElse(null));
 
         posologyOut.setPosologyHigh(posologyIn.getHigh());

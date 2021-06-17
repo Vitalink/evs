@@ -117,9 +117,7 @@ public class MSWriter extends Writer {
     }
 
     private static AbstractScheme getTestScheme() throws TransformationException {
-        File inputFile = IOUtils.getResourceAsFile("/InvalidTimeunit.xml");
-
-
+        File inputFile = IOUtils.getResourceAsFile("/medicationscheme/multiple-medication-entries.xml");
 
         KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
         MSEntryList msEntryList = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);

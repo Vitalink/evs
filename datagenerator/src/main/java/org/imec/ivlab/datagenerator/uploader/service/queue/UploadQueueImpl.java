@@ -1,5 +1,9 @@
 package org.imec.ivlab.datagenerator.uploader.service.queue;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.log4j.Logger;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -9,21 +13,20 @@ import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.ConsoleUtils;
 import org.imec.ivlab.core.version.VersionManager;
 import org.imec.ivlab.datagenerator.uploader.exception.CallbackException;
-import org.imec.ivlab.datagenerator.uploader.model.DiaryNoteInstruction;
-import org.imec.ivlab.datagenerator.uploader.model.Instruction;
-import org.imec.ivlab.datagenerator.uploader.model.MSInstruction;
-import org.imec.ivlab.datagenerator.uploader.model.SumehrInstruction;
-import org.imec.ivlab.datagenerator.uploader.model.VaccinationInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.ChildPreventionInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.DiaryNoteInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.Instruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.MSInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.PopulationBasedScreeningInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.SumehrInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.VaccinationInstruction;
 import org.imec.ivlab.datagenerator.uploader.service.callback.Callback;
+import org.imec.ivlab.datagenerator.uploader.service.queue.config.ChildPreventionQueueConfig;
 import org.imec.ivlab.datagenerator.uploader.service.queue.config.DiaryNoteQueueConfig;
 import org.imec.ivlab.datagenerator.uploader.service.queue.config.MSQueueConfig;
+import org.imec.ivlab.datagenerator.uploader.service.queue.config.PopulationBasedScreeningQueueConfig;
 import org.imec.ivlab.datagenerator.uploader.service.queue.config.QueueConfig;
 import org.imec.ivlab.datagenerator.uploader.service.queue.config.SumehrQueueConfig;
-
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 import org.imec.ivlab.datagenerator.uploader.service.queue.config.VaccinationQueueConfig;
 
 public class UploadQueueImpl implements Runnable, UploadQueue {
@@ -64,6 +67,10 @@ public class UploadQueueImpl implements Runnable, UploadQueue {
             return DiaryNoteQueueConfig.getInstance();
         } else if (instruction instanceof VaccinationInstruction) {
             return VaccinationQueueConfig.getInstance();
+        } else if (instruction instanceof ChildPreventionInstruction) {
+            return ChildPreventionQueueConfig.getInstance();
+        } else if (instruction instanceof PopulationBasedScreeningInstruction) {
+            return PopulationBasedScreeningQueueConfig.getInstance();
         }
 
         throw new RuntimeException("No upload queue configured for instruction: " + instruction.getClass());

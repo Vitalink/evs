@@ -4,7 +4,7 @@ import org.apache.commons.io.FilenameUtils;
 import org.imec.ivlab.core.model.upload.TransactionType;
 import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.FilenameUtil;
-import org.imec.ivlab.datagenerator.uploader.model.Action;
+import org.imec.ivlab.datagenerator.uploader.model.action.Action;
 import org.imec.ivlab.datagenerator.uploader.model.State;
 
 import java.io.File;

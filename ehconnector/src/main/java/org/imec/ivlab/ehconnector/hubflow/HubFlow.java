@@ -279,14 +279,16 @@ public class HubFlow {
     public GetLatestUpdateResponse getLatestUpdate(String patientId, TransactionType transactionType) throws VitalinkException, GatewaySpecificErrorException {
 
 //        LOG.debug("Started getLatestUpdate");
+        String transactiontypeString = transactionType.getTransactionTypeValueForGetLatestUpdate();
+
         try {
-            GetLatestUpdateResponse getLatestUpdateResponse = hubService.getLatestUpdate(helper.createSelectGetLatestUpdateType(patientId, transactionType));
+            GetLatestUpdateResponse getLatestUpdateResponse = hubService.getLatestUpdate(helper.createSelectGetLatestUpdateType(patientId, transactiontypeString));
             if (getLatestUpdateResponse.getLatestupdatelist() == null || CollectionsUtil.emptyOrNull(getLatestUpdateResponse.getLatestupdatelist().getLatestupdates())) {
-                throw new LatestUpdateNotFoundException("No latestupdate found for patient " + patientId + " and transactiontype: " + transactionType.getValue());
+                throw new LatestUpdateNotFoundException("No latestupdate found for patient " + patientId + " and transactiontype: " + transactiontypeString);
             }
             return getLatestUpdateResponse;
         } catch (NoNodeFoundMatchingTheURI | SubjectWithSSINUnknownException e) {
-            throw new LatestUpdateNotFoundException("No latestupdate found for patient " + patientId + " and transactiontype: " + transactionType.getValue());
+            throw new LatestUpdateNotFoundException("No latestupdate found for patient " + patientId + " and transactiontype: " + transactiontypeString);
         }
 
 //        LOG.debug("Completed getLatestUpdate");
@@ -303,12 +305,12 @@ public class HubFlow {
         try {
             GetTransactionListResponse transactionList = hubService.getTransactionList(patientIdType, localSearchType, transactionWithPeriodType);
             if (!TransactionHelper.findLatestTransaction(transactionList, transactionType).isPresent()) {
-                throw new TransactionNotFoundException("No transaction " + transactionType.getValue() + " found for patient " + patientId + " using filters: " + objectsToString(patientId, localSearchType, transactionWithPeriodType));
+                throw new TransactionNotFoundException("No transaction " + transactionType.getTransactionTypeValueForGetTransactionList() + " found for patient " + patientId + " using filters: " + objectsToString(patientId, localSearchType, transactionWithPeriodType));
             }
             return transactionList;
 
         } catch (NoDataIsAvailableForProfileOrCriteria | SubjectWithSSINUnknownException | NoNodeFoundMatchingTheURI e) {
-            throw new TransactionNotFoundException("No transaction " + transactionType.getValue() + " found for patient " + patientId + " using filters: " + objectsToString(patientId, localSearchType, transactionWithPeriodType));
+            throw new TransactionNotFoundException("No transaction " + transactionType.getTransactionTypeValueForGetTransactionList() + " found for patient " + patientId + " using filters: " + objectsToString(patientId, localSearchType, transactionWithPeriodType));
         }
 
 //        LOG.debug("Completed getTransactionList");

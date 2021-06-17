@@ -24,31 +24,18 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENT;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENTschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDDRUGCNK;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDDRUGCNKschemes;
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDINNCLUSTER;
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDLIFECYCLEvalues;
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDLNKvalues;
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDMEDIATYPEvalues;
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDUNIT;
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDUNITschemes;
-import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
-import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
-import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.apache.commons.collections.CollectionUtils;
@@ -56,8 +43,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.imec.ivlab.core.kmehr.model.util.TextTypeUtil;
 import org.imec.ivlab.core.model.internal.parser.vaccination.Vaccination;
 import org.imec.ivlab.core.model.internal.parser.vaccination.VaccinationItem;
+import org.imec.ivlab.core.model.upload.extractor.VaccinationListExtractor;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrExtractor;
-import org.imec.ivlab.core.model.upload.vaccinationentry.VaccinationListExtractor;
 import org.imec.ivlab.core.util.IOUtils;
 import org.imec.ivlab.core.vaccination.VaccinationEnricher;
 import org.imec.ivlab.viewer.converter.TestFileConverter;
@@ -82,8 +69,8 @@ public class VaccinationListWriter extends Writer {
             .map(filename -> "/vaccination/" + filename)
             .map(IOUtils::getResourceAsFile)
             .map(KmehrExtractor::getKmehrEntryList)
-            .map(VaccinationListExtractor::getVaccinationList)
-            .map(TestFileConverter::convertTVaccinations)
+            .map(kmehrEntryList -> new VaccinationListExtractor().getKmehrWithReferenceList(kmehrEntryList))
+            .map(TestFileConverter::convertToVaccinations)
             .flatMap(Collection::stream)
             .collect(Collectors.toList());
     }
@@ -98,11 +85,10 @@ public class VaccinationListWriter extends Writer {
         writeToDocument(fileLocation, generalInfoTable, Collections.singletonList(detailTable));
     }
 
-
-    private PdfPTable createGeneralInfoTable(String title) {
+    protected PdfPTable createGeneralInfoTable(String title) {
 
         PdfPTable table = new PdfPTable(20);
-        table.setWidthPercentage(TABLE_WIDTH_PERCENTAGE);
+        table.setWidthPercentage(VaccinationListWriter.TABLE_WIDTH_PERCENTAGE);
 
         // the cell object
         PdfPCell cell;
@@ -138,7 +124,6 @@ public class VaccinationListWriter extends Writer {
         return table;
 
     }
-
 
     private PdfPTable createDetailTable(List<Vaccination> vaccinations) {
 
@@ -244,29 +229,6 @@ public class VaccinationListWriter extends Writer {
         return table;
     }
 
-    private String getCode(CDDRUGCNK cddrugcnk) {
-        return StringUtils.joinWith(
-            ": ",
-            StringUtils.replace(Optional.ofNullable(cddrugcnk).map(CDDRUGCNK::getS).map(CDDRUGCNKschemes::value).orElse(null), "CD-", "")
-            ,Optional.ofNullable(cddrugcnk).map(CDDRUGCNK::getValue).orElse(null));
-    }
-
-    private PdfPTable createVaccinationDetailsTable(VaccinationItem vaccinationItem) {
-        PdfPTable table = initializeDetailTable();
-        addRow(table, createDetailHeader("Vaccination details"));
-
-        vaccinationItem.getCdcontents().forEach(cdContent -> addRow(table, createCdContentRow(cdContent)));
-
-        addRow(table, toDetailRowIfHasValue("Application date", formatAsDate(vaccinationItem.getBeginMoment())));
-
-        addRow(table, toDetailRowIfHasValue("Lifecycle", Optional.of(vaccinationItem).map(VaccinationItem::getLifecycle).map(CDLIFECYCLEvalues::value).orElse(null)));
-        addRow(table, toDetailRowIfHasValue("Text", StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(vaccinationItem.getTextTypes()).toArray())));
-        addRow(table, toDetailRowIfHasValue("Quantity", Optional.ofNullable(vaccinationItem.getQuantity()).map(BigDecimal::toString).orElse(null)));
-        addRow(table, createQuantityUnitRow(vaccinationItem.getQuantityUnit(), "Unit"));
-        addRow(table, toDetailRowIfHasValue("Batch", vaccinationItem.getBatch()));
-        return table;
-    }
-
     private PdfPCell createHeaderCell(String content, int colspan) {
         PdfPCell cell = getHeaderCellLeftAligned();
         cell.setPhrase(getMedicationHeaderPhrase(content));
@@ -286,37 +248,6 @@ public class VaccinationListWriter extends Writer {
         return cell;
     }
 
-    private List<PdfPCell> createCdContentRow(CDCONTENT cdcontent) {
-        String key = Optional.ofNullable(cdcontent.getS()).map(CDCONTENTschemes::value).orElse(null);
-        String value = cdcontent.getValue();
-        return toDetailRowIfHasValue(key, value);
-    }
-
-    private List<PdfPCell> createQuantityUnitRow(CDUNIT cdunit, String titlePrefix) {
-        Optional<CDUNIT> maybeUnit = Optional.ofNullable(cdunit);
-        String key = StringUtils.joinWith(" ", titlePrefix, maybeUnit.map(CDUNIT::getS).map(CDUNITschemes::value).orElse(null));
-        String value = maybeUnit.map(CDUNIT::getValue).orElse(null);
-        return toDetailRowIfHasValue(key, value);
-    }
-
-    private List<PdfPCell> createProductNameRow(String productName, String title) {
-        String key = title;
-        String value = productName;
-        return toDetailRowIfHasValue(key, value);
-    }
-
-    private List<PdfPCell> createMedicinalProductInnClusterRow(CDINNCLUSTER innCluster, String titlePrefix) {
-        String key = StringUtils.joinWith(" ", titlePrefix, Optional.ofNullable(innCluster.getS()).orElse(null));
-        String value = innCluster.getValue();
-        return toDetailRowIfHasValue(key, value);
-    }
-
-    private List<PdfPCell> createCnkRow(CDDRUGCNK cddrugcnk, String titlePrefix) {
-        String key = StringUtils.joinWith(" ", titlePrefix, Optional.ofNullable(cddrugcnk.getS()).orElse(null));
-        String value = cddrugcnk.getValue();
-        return toDetailRowIfHasValue(key, value);
-    }
-
     protected PdfPTable createTransactionMetadata(Vaccination vaccination) {
 
         PdfPTable table = initializeDetailTable();
@@ -334,61 +265,6 @@ public class VaccinationListWriter extends Writer {
         font.setStyle(Font.NORMAL);
         font.setColor(BaseColor.WHITE);
         return font;
-    }
-
-    private PdfPTable lnkToTable(LnkType lnkType) {
-        PdfPTable table = initializeDetailTable();
-
-        addRow(table, createDetailHeader("Link"));
-        addRow(table, toDetailRowIfHasValue("Type", Optional.ofNullable(lnkType.getTYPE()).map(CDLNKvalues::value).orElse(null)));
-        addRow(table, toDetailRowIfHasValue("Mediatype", Optional.ofNullable(lnkType.getMEDIATYPE()).map(CDMEDIATYPEvalues::value).orElse(null)));
-        addRow(table, toDetailRowIfHasValue("Size", lnkType.getSIZE()));
-        addRow(table, toDetailRowIfHasValue("Url", lnkType.getURL()));
-        addRow(table, toDetailRowIfHasValue("Image", lnkType.getValue()));
-
-        return table;
-    }
-
-    private PdfPTable textWithoutLayoutToTable(TextType textType) {
-        PdfPTable table = initializeDetailTable();
-
-        addRow(table, createDetailHeader("Text without layout"));
-        addRow(table, createDetailRow("L", textType.getL()));
-        addRow(table, createTextLengthDetailRow(StringUtils.length(textType.getValue())));
-        addRow(table, createDetailRow("Content value", textType.getValue()));
-
-        return table;
-    }
-
-    private List<PdfPCell> createTextLengthDetailRow(Integer length) {
-        List<PdfPCell> pdfPCells = toDetailRowIfHasValue("Content length", length);
-        return pdfPCells;
-    }
-
-    private PdfPTable textWithLayoutToTable(TextWithLayoutType textWithLayoutType) {
-        PdfPTable table = initializeDetailTable();
-
-        addRow(table, createDetailHeader("Text with layout"));
-        addRow(table, createDetailRow("L", textWithLayoutType.getL()));
-        List<String> contents = textWithLayoutType.getContent()
-                                                  .stream()
-                                                  .map(this::parseTextWithLayoutContent)
-                                                  .filter(Objects::nonNull)
-                                                  .map(this::removeXmlTags)
-                                                  .collect(Collectors.toList());
-        int textlength = contents.stream().map(String::length).mapToInt(Integer::intValue).sum();
-        addRow(table, createTextLengthDetailRow(textlength));
-        addRow(table, createDetailRow("Content value", String.join("", contents)));
-
-        return table;
-    }
-
-    private String removeXmlTags(String input) {
-        String patternForXmlTags = "<[\\w\\/\\s\\:\\=\\\"\\.]+>";
-        Pattern r = Pattern.compile(patternForXmlTags);
-        Matcher matcher = r.matcher(input);
-
-        return matcher.replaceAll("");
     }
 
 }

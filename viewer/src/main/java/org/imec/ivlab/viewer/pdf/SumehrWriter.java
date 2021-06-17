@@ -53,9 +53,7 @@ import org.imec.ivlab.core.model.internal.mapper.medication.RegimenDayperiod;
 import org.imec.ivlab.core.model.internal.mapper.medication.RegimenEntry;
 import org.imec.ivlab.core.model.internal.mapper.medication.RegimenTime;
 import org.imec.ivlab.core.model.internal.mapper.medication.RegimenWeekday;
-import org.imec.ivlab.core.model.internal.parser.ParsedItem;
 import org.imec.ivlab.core.model.internal.parser.sumehr.ContactPerson;
-import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HealthCareElement;
 import org.imec.ivlab.core.model.internal.parser.sumehr.MedicationEntrySumehr;
 import org.imec.ivlab.core.model.internal.parser.sumehr.PatientWill;
@@ -64,10 +62,10 @@ import org.imec.ivlab.core.model.internal.parser.sumehr.Risk;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sumehr;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Treatment;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Vaccination;
+import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
+import org.imec.ivlab.core.model.upload.extractor.SumehrListExtractor;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrExtractor;
-import org.imec.ivlab.core.model.upload.sumehrlist.SumehrList;
-import org.imec.ivlab.core.model.upload.sumehrlist.SumehrListExtractor;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.IOUtils;
 import org.imec.ivlab.core.util.StringUtils;
@@ -95,7 +93,7 @@ public class SumehrWriter extends Writer {
 
         SumehrWriter sumehrWriter = new SumehrWriter();
         Stream
-            .of("1-sumehr-1dot1-all-parseable", "2-sumehr-1dot1-unparseable-content", "3-sumehr-2dot0", "4-sumehr-2dot0", "5-sumehr-2dot0-risk-text-and-medication")
+            .of("1-sumehr-1dot1-all-parseable", "2-sumehr-1dot1-unparseable-content", "3-sumehr-2dot0", "4-sumehr-2dot0", "5-sumehr-2dot0-risk-text-and-medication", "5-sumehr-2dot0-posology-and-regimen")
             .forEach(filename -> sumehrWriter.createPdf(readTestFile(filename + ".xml").get(0), filename + ".pdf"));
 
     }
@@ -104,7 +102,7 @@ public class SumehrWriter extends Writer {
         File inputFile = IOUtils.getResourceAsFile("/sumehr/" + filename);
 
         KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
-        SumehrList sumehrList = SumehrListExtractor.getSumehrList(kmehrEntryList);
+        KmehrWithReferenceList sumehrList = new SumehrListExtractor().getKmehrWithReferenceList(kmehrEntryList);
 
         return TestFileConverter.convertToSumehrs(sumehrList);
     }
@@ -211,12 +209,6 @@ public class SumehrWriter extends Writer {
 
     }
 
-    private <T extends ParsedItem> List<PdfPTable> toUnparsedContentTable(T parsedItem, String topic) {
-        ArrayList<T> list = new ArrayList<>();
-        list.add(parsedItem);
-        return toUnparsedContentTables(list, topic);
-    }
-
     private PdfPTable vaccinationToTable(Vaccination vaccination) {
 
         PdfPTable table = initializeDetailTable();
@@ -252,14 +244,6 @@ public class SumehrWriter extends Writer {
             .orElse(Collections.emptyList())
             .stream()
             .map(risk -> riskToTable(risk, category))
-            .collect(Collectors.toList());
-    }
-
-    private Collection<PdfPTable> createHcPartyTables(List<HcParty> hcParties) {
-        return Optional.ofNullable(hcParties)
-            .orElse(Collections.emptyList())
-            .stream()
-            .map(this::hcpartyTypeToTable)
             .collect(Collectors.toList());
     }
 
@@ -491,28 +475,24 @@ public class SumehrWriter extends Writer {
             .orElse(Collections.emptyList())
             .forEach(dayperiod -> addRow(table, toDetailRowIfHasValue("Dayperiod", dayperiod.getDayperiod().getValue())));
 
-        if (medicationEntrySumehr.getPosologyOrRegimen() instanceof Posology) {
-            Posology posology = (Posology) medicationEntrySumehr.getPosologyOrRegimen();
-            if (posology != null) {
-                addRow(table, toDetailRowIfHasValue("Posology", posology.getText()));
-                addRow(table, toDetailRowIfHasValue("High", posology.getPosologyHigh()));
-                addRow(table, toDetailRowIfHasValue("Low", posology.getPosologyLow()));
-                addRow(table, toDetailRowIfHasValue("Unit", Translator.translateAdministrationUnit(posology.getAdministrationUnit())));
-                addRow(table, toDetailRowIfHasValue("Takes high", posology.getTakesHigh()));
-                addRow(table, toDetailRowIfHasValue("Takes low", posology.getTakesLow()));
-            }
+        if (medicationEntrySumehr.getPosology() != null) {
+            Posology posology = medicationEntrySumehr.getPosology();
+            addRow(table, toDetailRowIfHasValue("Posology", posology.getText()));
+            addRow(table, toDetailRowIfHasValue("High", posology.getPosologyHigh()));
+            addRow(table, toDetailRowIfHasValue("Low", posology.getPosologyLow()));
+            addRow(table, toDetailRowIfHasValue("Unit", Translator.translateAdministrationUnit(posology.getAdministrationUnit())));
+            addRow(table, toDetailRowIfHasValue("Takes high", posology.getTakesHigh()));
+            addRow(table, toDetailRowIfHasValue("Takes low", posology.getTakesLow()));
         }
 
         if (medicationEntrySumehr.getRoute() != null) {
             addRow(table, toDetailRowIfHasValue("Route", StringUtils.joinWith(" ", "(NL)", translateRoute(medicationEntrySumehr.getRoute()))));
         }
 
-        if (medicationEntrySumehr.getPosologyOrRegimen() instanceof Regimen) {
-            Regimen regimen = (Regimen) medicationEntrySumehr.getPosologyOrRegimen();
-            if (regimen != null) {
-                if (regimen.getAdministrationUnit() != null) {
-                    addRow(table, toDetailRowIfHasValue("Administration unit", StringUtils.joinWith(" ", "(NL)", translateAdministrationUnit(regimen.getAdministrationUnit()))));
-                }
+        if (medicationEntrySumehr.getRegimen() != null) {
+            Regimen regimen = medicationEntrySumehr.getRegimen();
+            if (regimen.getAdministrationUnit() != null) {
+                addRow(table, toDetailRowIfHasValue("Administration unit", StringUtils.joinWith(" ", "(NL)", translateAdministrationUnit(regimen.getAdministrationUnit()))));
             }
             addRow(table, toDetailRowsIfHasValue(getRegimenEntries(regimen.getEntries())));
         }

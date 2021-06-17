@@ -636,10 +636,10 @@ public class HubHelper {
     public TransactionWithPeriodType createTransactionWithPeriodType(org.imec.ivlab.core.model.upload.TransactionType firstTransactionType, org.imec.ivlab.core.model.upload.TransactionType... otherTransactionTypes) {
 
         TransactionWithPeriodType transaction = new TransactionWithPeriodType();
-        transaction.getCds().add(getCdtransaction("1.6", firstTransactionType.getValue()));
+        transaction.getCds().add(getCdtransaction("1.6", firstTransactionType.getTransactionTypeValueForGetTransactionList()));
         if (otherTransactionTypes.length > 0) {
             for (org.imec.ivlab.core.model.upload.TransactionType transactionType : otherTransactionTypes) {
-                transaction.getCds().add(getCdtransaction("1.6", transactionType.getValue()));
+                transaction.getCds().add(getCdtransaction("1.6", transactionType.getTransactionTypeValueForGetTransactionList()));
             }
         }
 //        transaction.setBegindate(new DateTime().minusDays(0));
@@ -687,11 +687,11 @@ public class HubHelper {
         return selectGetLatestUpdateType;
     }
 
-    public SelectGetLatestUpdateType createSelectGetLatestUpdateType(String patientId, org.imec.ivlab.core.model.upload.TransactionType transactionType) {
+    public SelectGetLatestUpdateType createSelectGetLatestUpdateType(String patientId, String transactionType) {
         SelectGetLatestUpdateType selectGetLatestUpdateType = new SelectGetLatestUpdateType();
         Criteria criteria = new Criteria();
         criteria.setPatient(createPatientIdType(patientId));
-        CDTRANSACTION cdtransaction = getCdtransaction("1.4", transactionType.getValue());
+        CDTRANSACTION cdtransaction = getCdtransaction("1.4", transactionType);
         criteria.getCds().add(cdtransaction);
         selectGetLatestUpdateType.getCriterias().add(criteria);
         return selectGetLatestUpdateType;

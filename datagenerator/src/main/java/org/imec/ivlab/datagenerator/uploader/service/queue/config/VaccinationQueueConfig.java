@@ -2,7 +2,7 @@ package org.imec.ivlab.datagenerator.uploader.service.queue.config;
 
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.datagenerator.uploader.exception.UploaderException;
-import org.imec.ivlab.datagenerator.uploader.model.VaccinationInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.VaccinationInstruction;
 
 
 public class VaccinationQueueConfig implements QueueConfig<VaccinationInstruction> {

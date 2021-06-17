@@ -28,13 +28,15 @@ import org.imec.ivlab.core.version.LocalVersionReader;
 import org.imec.ivlab.datagenerator.SchemeExporter;
 import org.imec.ivlab.datagenerator.exporter.export.AbstractTransactionsExporter;
 import org.imec.ivlab.datagenerator.exporter.export.ExportResult;
+import org.imec.ivlab.datagenerator.exporter.export.impl.ChildPreventionExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.DiaryNoteExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.MedicationExporter;
+import org.imec.ivlab.datagenerator.exporter.export.impl.PopulationBasedScreeningExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.SumehrExporter;
 import org.imec.ivlab.datagenerator.exporter.export.impl.VaccinationExporter;
 import org.imec.ivlab.datagenerator.uploader.UploaderHelper;
 import org.imec.ivlab.datagenerator.uploader.exception.CallbackException;
-import org.imec.ivlab.datagenerator.uploader.model.Action;
+import org.imec.ivlab.datagenerator.uploader.model.action.Action;
 import org.imec.ivlab.datagenerator.uploader.service.callback.Callback;
 import org.imec.ivlab.ehconnector.hub.exception.GatewaySpecificErrorException;
 import org.imec.ivlab.ehconnector.hub.exception.incurable.Incurable;
@@ -71,11 +73,14 @@ public class ExportVaultCallback implements Callback {
     private boolean generateSumehrOverview;
     private boolean generateDiaryNoteVisualization;
     private boolean generateVaccinationVisualization;
+    private boolean generateChildPreventionVisualization;
+    private boolean generatePopulationBasedScreeningVisualization;
     private LocalDate dailyMedicationSchemeDate;
     private boolean generateGatewayMedicationScheme;
 
     public ExportVaultCallback(File rootFolder, File uploadFile, TransactionType transactionType, Action action, Patient patient, String actorID, boolean validate, boolean createGlobalSchemeAfterUpload, boolean generateDailyMedicationScheme,
-        boolean generateSumehrOverview, LocalDate dailyMedicationSchemeDate, boolean generateGatewayMedicationScheme, boolean generateDiaryNoteVisualization, boolean generateVaccinationVisualization) {
+        boolean generateSumehrOverview, LocalDate dailyMedicationSchemeDate, boolean generateGatewayMedicationScheme, boolean generateDiaryNoteVisualization, boolean generateVaccinationVisualization, boolean generateChildPreventionVisualization,
+        boolean generatePopulationBasedScreeningVisualization) {
         this.rootFolder = rootFolder;
         this.uploadFile = uploadFile;
         this.transactionType = transactionType;
@@ -90,6 +95,8 @@ public class ExportVaultCallback implements Callback {
         this.generateGatewayMedicationScheme = generateGatewayMedicationScheme;
         this.generateDiaryNoteVisualization = generateDiaryNoteVisualization;
         this.generateVaccinationVisualization = generateVaccinationVisualization;
+        this.generateChildPreventionVisualization = generateChildPreventionVisualization;
+        this.generatePopulationBasedScreeningVisualization = generatePopulationBasedScreeningVisualization;
     }
 
     @Override
@@ -195,6 +202,36 @@ public class ExportVaultCallback implements Callback {
                             .filter(Objects::nonNull)
                             .collect(Collectors.toList());
                         SchemeExporter.generateVaccinationListVisualization(patient, exportFile.getParentFile(), kmehrmessages);
+
+                    }
+                }
+
+                if (TransactionType.CHILD_PREVENTION.equals(transactionType)) {
+
+                    List<ExportResult<GetTransactionResponse>> exportResults = exportTransaction(exportFile, new ChildPreventionExporter());
+
+                    if (generateChildPreventionVisualization && CollectionsUtil.notEmptyOrNull(exportResults)) {
+                        for (ExportResult<GetTransactionResponse> result : exportResults) {
+                            Kmehrmessage kmehrmessage = result.getResponse() != null ? result.getResponse().getKmehrmessage() : null;
+                            if (kmehrmessage != null) {
+                                SchemeExporter.generateChildPreventionVisualization(result.getFile(), kmehrmessage);
+                            }
+                        }
+
+                    }
+                }
+
+                if (TransactionType.POPULATION_BASED_SCREENING.equals(transactionType)) {
+
+                    List<ExportResult<GetTransactionResponse>> exportResults = exportTransaction(exportFile, new PopulationBasedScreeningExporter());
+
+                    if (generatePopulationBasedScreeningVisualization && CollectionsUtil.notEmptyOrNull(exportResults)) {
+                        for (ExportResult<GetTransactionResponse> result : exportResults) {
+                            Kmehrmessage kmehrmessage = result.getResponse() != null ? result.getResponse().getKmehrmessage() : null;
+                            if (kmehrmessage != null) {
+                                SchemeExporter.generatePopulationBasedScreeningVisualization(result.getFile(), kmehrmessage);
+                            }
+                        }
 
                     }
                 }

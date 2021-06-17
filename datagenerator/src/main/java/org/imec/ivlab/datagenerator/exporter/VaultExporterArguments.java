@@ -2,6 +2,8 @@ package org.imec.ivlab.datagenerator.exporter;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
+import lombok.Getter;
+import lombok.Setter;
 import org.imec.ivlab.core.jcommander.HubConverter;
 import org.imec.ivlab.core.jcommander.SearchTypeConverter;
 import org.imec.ivlab.core.model.upload.TransactionType;
@@ -9,7 +11,7 @@ import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.jcommander.LocalDateConverter;
 import org.imec.ivlab.core.jcommander.PathToFileConverter;
 import org.imec.ivlab.core.jcommander.StringListConverter;
-import org.imec.ivlab.core.jcommander.TransactionTypeConverter;
+import org.imec.ivlab.core.jcommander.TransactionTypeFromGetTransactionListValueConverter;
 import org.imec.ivlab.core.model.hub.Hub;
 import org.imec.ivlab.core.model.hub.SearchType;
 
@@ -18,6 +20,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Parameters(separators = "=")
+@Getter
+@Setter
 public class VaultExporterArguments {
 
     @Parameter(names = "-exportDir", description = "The root directory to which to export", required = true, converter = PathToFileConverter.class)
@@ -26,7 +30,7 @@ public class VaultExporterArguments {
     @Parameter(names = "-patients", description = "Comma separated list of patients to export the vault for", required = true, converter = StringListConverter.class)
     private List<String> patientKeys;
 
-    @Parameter(names = "-transactionType", description = "The transaction type of the transactions to export the vault for: medicationscheme or sumehr", required = true, converter = TransactionTypeConverter.class)
+    @Parameter(names = "-transactionType", description = "The transaction type of the transactions to export the vault for: medicationscheme or sumehr", required = true, converter = TransactionTypeFromGetTransactionListValueConverter.class)
     private TransactionType transactionType;
 
     @Parameter(names = "-breakTheGlassIfTRMissing", description = "Break the glass if the Therapeutic Relation is missing", required = false, arity = 1)
@@ -56,6 +60,12 @@ public class VaultExporterArguments {
     @Parameter(names = "-generateVaccinationVisualization", description = "Generate a visualization for every vaccination transaction", arity = 1)
     private boolean generateVaccinationVisualization;
 
+    @Parameter(names = "-generateChildPreventionVisualization", description = "Generate a visualization for every childprevention transaction", arity = 1)
+    private boolean generateChildPreventionVisualization;
+
+    @Parameter(names = "-generatePopulationBasedScreeningVisualization", description = "Generate a visualization for every populationbasedscreening transaction", arity = 1)
+    private boolean generatePopulationBasedScreeningVisualization;
+
     @Parameter(names = "-generateGatewayMedicationScheme", description = "Generate a gateway medication scheme after export", required = true, arity = 1)
     private boolean generateGatewayMedicationScheme;
 
@@ -68,131 +78,4 @@ public class VaultExporterArguments {
     @Parameter(names = "-filterOutTransactionsHavingPatientAccessNo", description = "Do not attempt to get hub transactions that are marked as PatientAccess=no", arity = 1)
     private boolean filterOutTransactionsHavingPatientAccessNo;
 
-    public List<String> getPatientKeys() {
-        return patientKeys;
-    }
-
-    public void setPatientKeys(List<String> patientKeys) {
-        this.patientKeys = patientKeys;
-    }
-
-    public TransactionType getTransactionType() {
-        return transactionType;
-    }
-
-    public void setTransactionType(TransactionType transactionType) {
-        this.transactionType = transactionType;
-    }
-
-    public File getExportDir() {
-        return exportDir;
-    }
-
-    public void setExportDir(File exportDir) {
-        this.exportDir = exportDir;
-    }
-
-    public boolean isBreakTheGlassIfTRMissing() {
-        return breakTheGlassIfTRMissing;
-    }
-
-    public void setBreakTheGlassIfTRMissing(boolean breakTheGlassIfTRMissing) {
-        this.breakTheGlassIfTRMissing = breakTheGlassIfTRMissing;
-    }
-
-    public String getActorKey() {
-        return actorKey;
-    }
-
-    public void setActorKey(String actorKey) {
-        this.actorKey = actorKey;
-    }
-
-    public boolean isValidate() {
-        return validate;
-    }
-
-    public void setValidate(boolean validate) {
-        this.validate = validate;
-    }
-
-    public boolean isGenerateGlobalMedicationScheme() {
-        return generateGlobalMedicationScheme;
-    }
-
-    public void setGenerateGlobalMedicationScheme(boolean generateGlobalMedicationScheme) {
-        this.generateGlobalMedicationScheme = generateGlobalMedicationScheme;
-    }
-
-    public boolean isGenerateDailyMedicationScheme() {
-        return generateDailyMedicationScheme;
-    }
-
-    public void setGenerateDailyMedicationScheme(boolean generateDailyMedicationScheme) {
-        this.generateDailyMedicationScheme = generateDailyMedicationScheme;
-    }
-
-    public LocalDate getDailyMedicationSchemeDate() {
-        return dailyMedicationSchemeDate;
-    }
-
-    public void setDailyMedicationSchemeDate(LocalDate dailyMedicationSchemeDate) {
-        this.dailyMedicationSchemeDate = dailyMedicationSchemeDate;
-    }
-
-    public boolean isGenerateSumehrOverview() {
-        return generateSumehrOverview;
-    }
-
-    public void setGenerateSumehrOverview(boolean generateSumehrOverview) {
-        this.generateSumehrOverview = generateSumehrOverview;
-    }
-
-    public boolean isGenerateDiaryNoteVisualization() {
-        return generateDiaryNoteVisualization;
-    }
-
-    public void setGenerateDiaryNoteVisualization(boolean generateDiaryNoteVisualization) {
-        this.generateDiaryNoteVisualization = generateDiaryNoteVisualization;
-    }
-
-    public boolean isGenerateVaccinationVisualization() {
-        return generateVaccinationVisualization;
-    }
-
-    public void setGenerateVaccinationVisualization(boolean generateVaccinationVisualization) {
-        this.generateVaccinationVisualization = generateVaccinationVisualization;
-    }
-
-    public boolean isGenerateGatewayMedicationScheme() {
-        return generateGatewayMedicationScheme;
-    }
-
-    public void setGenerateGatewayMedicationScheme(boolean generateGatewayMedicationScheme) {
-        this.generateGatewayMedicationScheme = generateGatewayMedicationScheme;
-    }
-
-    public Hub getHub() {
-        return hub;
-    }
-
-    public void setHub(Hub hub) {
-        this.hub = hub;
-    }
-
-    public SearchType getSearchType() {
-        return searchType;
-    }
-
-    public void setSearchType(SearchType searchType) {
-        this.searchType = searchType;
-    }
-
-    public boolean isFilterOutTransactionsHavingPatientAccessNo() {
-        return filterOutTransactionsHavingPatientAccessNo;
-    }
-
-    public void setFilterOutTransactionsHavingPatientAccessNo(boolean filterOutTransactionsHavingPatientAccessNo) {
-        this.filterOutTransactionsHavingPatientAccessNo = filterOutTransactionsHavingPatientAccessNo;
-    }
 }

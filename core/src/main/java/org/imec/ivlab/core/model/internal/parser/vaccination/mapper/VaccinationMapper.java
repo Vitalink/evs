@@ -121,6 +121,7 @@ public class VaccinationMapper extends BaseMapper {
         clearMedicinalProductAndSubstanceProduct(clone);
         clearContentTypeCds(clone);
         clearContentTypeTextTypes(clone);
+        clearTextTypes(clone);
 
         vaccination.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
         clone.setLifecycle(null);
@@ -130,6 +131,8 @@ public class VaccinationMapper extends BaseMapper {
 
         vaccination.setQuantity(Optional.of(itemType).map(ItemType::getQuantity).map(QuantityType::getDecimal).orElse(null));
         vaccination.setQuantityUnit(Optional.of(itemType).map(ItemType::getQuantity).map(QuantityType::getUnit).map(UnitType::getCd).orElse(null));
+
+        clone.setQuantity(null);
 
         vaccination.setUnparsed(clone);
 

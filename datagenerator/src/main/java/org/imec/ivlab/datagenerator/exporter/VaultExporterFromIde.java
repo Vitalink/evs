@@ -36,6 +36,8 @@ public class VaultExporterFromIde {
         arguments.setGenerateSumehrOverview(true);
         arguments.setGenerateDiaryNoteVisualization(true);
         arguments.setGenerateVaccinationVisualization(true);
+        arguments.setGenerateChildPreventionVisualization(true);
+        arguments.setGeneratePopulationBasedScreeningVisualization(true);
         arguments.setGenerateGatewayMedicationScheme(true);
         arguments.setDailyMedicationSchemeDate(LocalDate.now().plusYears(4));
         arguments.setFilterOutTransactionsHavingPatientAccessNo(false);

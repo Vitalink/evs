@@ -1,12 +1,11 @@
 package org.imec.ivlab.datagenerator.uploader.service.queue.config;
 
-import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.exceptions.VitalinkException;
-import org.imec.ivlab.core.model.upload.diarylist.DiaryNoteList;
-import org.imec.ivlab.core.model.upload.diarylist.DiaryNoteListExtractor;
+import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
+import org.imec.ivlab.core.model.upload.extractor.DiaryNoteListExtractor;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.datagenerator.uploader.exception.UploaderException;
-import org.imec.ivlab.datagenerator.uploader.model.DiaryNoteInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.DiaryNoteInstruction;
 import org.imec.ivlab.datagenerator.uploader.service.DiaryNoteUploaderImpl;
 
 
@@ -36,12 +35,7 @@ public class DiaryNoteQueueConfig implements QueueConfig<DiaryNoteInstruction> {
     @Override
     public void callUploadAction(DiaryNoteInstruction instruction, KmehrEntryList kmehrEntryList) throws UploaderException, VitalinkException {
 
-        DiaryNoteList diaryNoteList;
-        try {
-            diaryNoteList = DiaryNoteListExtractor.getDiaryList(kmehrEntryList);
-        } catch (TransformationException e) {
-            throw new RuntimeException("Failed to interpret file " + instruction.getFile().getAbsolutePath(), e);
-        }
+        KmehrWithReferenceList diaryNoteList = new DiaryNoteListExtractor().getKmehrWithReferenceList(kmehrEntryList);
 
         switch (instruction.getAction()) {
 

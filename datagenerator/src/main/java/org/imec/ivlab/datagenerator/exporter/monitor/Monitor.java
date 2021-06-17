@@ -5,13 +5,14 @@ import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.GetLatestUpdateResponse;
 import be.fgov.ehealth.hubservices.core.v3.Latestupdate;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONschemes;
+import java.util.function.Predicate;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.data.PatientKey;
 import org.imec.ivlab.core.exceptions.VitalinkException;
-import org.imec.ivlab.core.model.upload.TransactionType;
 import org.imec.ivlab.core.model.patient.PatientReader;
+import org.imec.ivlab.core.model.upload.TransactionType;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.ehconnector.hub.exception.GatewaySpecificErrorException;
 import org.imec.ivlab.ehconnector.hub.exception.curable.Curable;
@@ -43,17 +44,28 @@ public class Monitor {
             return null;
         }
 
-        for (Latestupdate latestupdate : latestUpdateResponse.getLatestupdatelist().getLatestupdates()) {
-            try {
-                if (latestupdate.getCd() != null && StringUtils.equals(latestupdate.getCd().getS().value(), CDTRANSACTIONschemes.CD_TRANSACTION.value()) &&
-                        StringUtils.equals(latestupdate.getCd().getValue(), transactionType.getValue())) {
-                    return latestupdate.getVersion();
-                }
-            } catch (Exception e) {
-            }
-        }
+        return latestUpdateResponse.getLatestupdatelist().getLatestupdates()
+                            .stream()
+                            .filter(latestUpdate -> latestUpdate.getCd() != null)
+                            .filter(isCdTransaction())
+                            .filter(matchesTransactionType(transactionType))
+                            .map(Latestupdate::getVersion)
+                            .findFirst()
+                            .orElse(null);
 
-        return null;
+    }
+
+    private Predicate<Latestupdate> matchesTransactionType(TransactionType transactionType) {
+        return latestUpdate -> StringUtils.equals(latestUpdate
+            .getCd()
+            .getValue(), transactionType.getTransactionTypeValueForGetLatestUpdate());
+    }
+
+    private Predicate<Latestupdate> isCdTransaction() {
+        return latestUpdate -> StringUtils.equals(latestUpdate
+            .getCd()
+            .getS()
+            .value(), CDTRANSACTIONschemes.CD_TRANSACTION.value());
     }
 
     public String waitForNewSafeContent(MonitorInstruction monitorInstruction, String lastKnownVersion) throws TechnicalConnectorException, GatewaySpecificErrorException, VitalinkException {
@@ -67,7 +79,7 @@ public class Monitor {
                 GetLatestUpdateResponse latestUpdate = hubFlow.getLatestUpdate(monitorInstruction.getPatient().getId(), monitorInstruction.getTransactionType());
 
                 String vaultTransactionVersion = parseVersion(latestUpdate, monitorInstruction.getTransactionType());
-                log.info("Version returned by GetLatestUpdate for " + monitorInstruction.getPatient().inReadableFormat() + " and transactiontype " + monitorInstruction.getTransactionType().getValue() + " is: " + vaultTransactionVersion + ". Last known local version is:" + lastKnownVersion);
+                log.info("Version returned by GetLatestUpdate for " + monitorInstruction.getPatient().inReadableFormat() + " and transactiontype " + monitorInstruction.getTransactionType().getTransactionTypeValueForGetLatestUpdate() + " is: " + vaultTransactionVersion + ". Last known local version is:" + lastKnownVersion);
                 if (!StringUtils.equalsIgnoreCase(vaultTransactionVersion, lastKnownVersion)) {
                     return vaultTransactionVersion;
                 }

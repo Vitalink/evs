@@ -21,7 +21,7 @@ import java.util.List;
 
 public class XsdValidator {
     private static final Logger LOG = Logger.getLogger(XsdValidator.class);
-    private static final String KMEHR_XSD_LOCATION = "kmehr/1_28/ehealth-kmehr/XSD/kmehr_elements-1_28.xsd";
+    private static final String KMEHR_XSD_LOCATION = "kmehr/1_34/ehealth-kmehr/XSD/kmehr_elements-1_34.xsd";
 
     private List<String> ignoreList;
 

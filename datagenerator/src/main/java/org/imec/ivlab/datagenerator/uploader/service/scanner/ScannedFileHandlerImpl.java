@@ -13,17 +13,21 @@ import org.imec.ivlab.datagenerator.uploader.exception.InvalidFolderStructureExc
 import org.imec.ivlab.datagenerator.uploader.exception.InvalidPatientException;
 import org.imec.ivlab.datagenerator.uploader.exception.NoQueueingNeededException;
 import org.imec.ivlab.datagenerator.uploader.model.AbstractInstruction;
-import org.imec.ivlab.datagenerator.uploader.model.Action;
-import org.imec.ivlab.datagenerator.uploader.model.DiaryNoteAction;
-import org.imec.ivlab.datagenerator.uploader.model.DiaryNoteInstruction;
-import org.imec.ivlab.datagenerator.uploader.model.Instruction;
-import org.imec.ivlab.datagenerator.uploader.model.MSAction;
-import org.imec.ivlab.datagenerator.uploader.model.MSInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.action.Action;
+import org.imec.ivlab.datagenerator.uploader.model.action.ChildPreventionAction;
+import org.imec.ivlab.datagenerator.uploader.model.action.PopulationBasedScreeningAction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.ChildPreventionInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.action.DiaryNoteAction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.DiaryNoteInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.Instruction;
+import org.imec.ivlab.datagenerator.uploader.model.action.MSAction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.MSInstruction;
 import org.imec.ivlab.datagenerator.uploader.model.State;
-import org.imec.ivlab.datagenerator.uploader.model.SumehrAction;
-import org.imec.ivlab.datagenerator.uploader.model.SumehrInstruction;
-import org.imec.ivlab.datagenerator.uploader.model.VaccinationAction;
-import org.imec.ivlab.datagenerator.uploader.model.VaccinationInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.action.SumehrAction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.PopulationBasedScreeningInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.SumehrInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.action.VaccinationAction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.VaccinationInstruction;
 import org.imec.ivlab.datagenerator.uploader.service.callback.impl.ExportVaultCallback;
 import org.imec.ivlab.datagenerator.uploader.service.callback.impl.FileUploadCallback;
 import org.imec.ivlab.datagenerator.uploader.service.callback.impl.VersionCheckCallback;
@@ -52,25 +56,30 @@ public class ScannedFileHandlerImpl implements ScannedFileHandler {
     private boolean generateGatewayMedicationScheme;
     private boolean generateDiaryNoteVisualization;
     private boolean generateVaccinationVisualization;
+    private boolean generateChildPreventionVisualization;
+    private boolean generatePopulationBasedScreeningVisualization;
 
     boolean versionChecked = false;
 
     public ScannedFileHandlerImpl(boolean exportAfterUpload, boolean writeAsIs, boolean validateExportAfterUpload, boolean generateGlobalMedicationScheme, boolean generateDailyMedicationScheme, boolean generateSumehrOverview,
-        LocalDate dailyMedicationSchemeDate, String startTransactionId, ShiftAction shiftAction, boolean generateGatewayMedicationScheme, boolean generateDiaryNoteVisualization, boolean generateVaccinationVisualization) throws VitalinkException {
-        this.generateSumehrOverview           = generateSumehrOverview;
-        this.generateGatewayMedicationScheme  = generateGatewayMedicationScheme;
-        this.generateDiaryNoteVisualization   = generateDiaryNoteVisualization;
-        this.generateVaccinationVisualization = generateVaccinationVisualization;
-        this.uploadQueue                      = UploadQueueImpl.getInstance();
-        this.startTransactionId               = startTransactionId;
-        this.exportAfterUpload                = exportAfterUpload;
-        this.writeAsIs                        = writeAsIs;
-        this.validateExportAfterUpload        = validateExportAfterUpload;
-        this.createGlobalSchemeAfterUpload    = generateGlobalMedicationScheme;
-        this.generateDailyMedicationScheme    = generateDailyMedicationScheme;
-        this.dailyMedicationSchemeDate        = dailyMedicationSchemeDate;
-        this.startTransactionId               = startTransactionId;
-        this.shiftAction                      = shiftAction;
+        LocalDate dailyMedicationSchemeDate, String startTransactionId, ShiftAction shiftAction, boolean generateGatewayMedicationScheme, boolean generateDiaryNoteVisualization, boolean generateVaccinationVisualization,
+        boolean generateChildPreventionVisualization, boolean generatePopulationBasedScreeningVisualization) throws VitalinkException {
+        this.generateSumehrOverview                        = generateSumehrOverview;
+        this.generateGatewayMedicationScheme               = generateGatewayMedicationScheme;
+        this.generateDiaryNoteVisualization                = generateDiaryNoteVisualization;
+        this.generateVaccinationVisualization              = generateVaccinationVisualization;
+        this.generateChildPreventionVisualization          = generateChildPreventionVisualization;
+        this.generatePopulationBasedScreeningVisualization = generatePopulationBasedScreeningVisualization;
+        this.uploadQueue                                   = UploadQueueImpl.getInstance();
+        this.startTransactionId                            = startTransactionId;
+        this.exportAfterUpload                             = exportAfterUpload;
+        this.writeAsIs                                     = writeAsIs;
+        this.validateExportAfterUpload                     = validateExportAfterUpload;
+        this.createGlobalSchemeAfterUpload                 = generateGlobalMedicationScheme;
+        this.generateDailyMedicationScheme                 = generateDailyMedicationScheme;
+        this.dailyMedicationSchemeDate                     = dailyMedicationSchemeDate;
+        this.startTransactionId                            = startTransactionId;
+        this.shiftAction                                   = shiftAction;
     }
 
 
@@ -140,9 +149,9 @@ public class ScannedFileHandlerImpl implements ScannedFileHandler {
         instruction.setWriteAsIs(writeAsIs);
 
 
-        if (MSAction.EXPORT.equals(instruction.getAction()) || exportAfterUpload || validateExportAfterUpload || createGlobalSchemeAfterUpload || generateDailyMedicationScheme || generateSumehrOverview || generateDiaryNoteVisualization || generateVaccinationVisualization) {
+        if (MSAction.EXPORT.equals(instruction.getAction()) || exportAfterUpload || validateExportAfterUpload || createGlobalSchemeAfterUpload || generateDailyMedicationScheme || generateSumehrOverview || generateDiaryNoteVisualization || generateVaccinationVisualization || generateChildPreventionVisualization || generatePopulationBasedScreeningVisualization) {
 
-            instruction.getCallbacks().add(new ExportVaultCallback(rootFolder, file, instruction.getTransactionType(), instruction.getAction(), instruction.getPatient(), instruction.getActorID(), validateExportAfterUpload, createGlobalSchemeAfterUpload, generateDailyMedicationScheme, generateSumehrOverview, dailyMedicationSchemeDate, generateGatewayMedicationScheme, generateDiaryNoteVisualization, generateVaccinationVisualization));
+            instruction.getCallbacks().add(new ExportVaultCallback(rootFolder, file, instruction.getTransactionType(), instruction.getAction(), instruction.getPatient(), instruction.getActorID(), validateExportAfterUpload, createGlobalSchemeAfterUpload, generateDailyMedicationScheme, generateSumehrOverview, dailyMedicationSchemeDate, generateGatewayMedicationScheme, generateDiaryNoteVisualization, generateVaccinationVisualization, generateChildPreventionVisualization, generatePopulationBasedScreeningVisualization));
 
         }
 
@@ -195,6 +204,12 @@ public class ScannedFileHandlerImpl implements ScannedFileHandler {
             case VACCINATION:
                 action = VaccinationAction.fromValue(actionName);
                 break;
+            case CHILD_PREVENTION:
+                action = ChildPreventionAction.fromValue(actionName);
+                break;
+            case POPULATION_BASED_SCREENING:
+                action = PopulationBasedScreeningAction.fromValue(actionName);
+                break;
             default:
                 throw new RuntimeException("No action configured for transaction type: " + transactionType);
         }
@@ -214,6 +229,10 @@ public class ScannedFileHandlerImpl implements ScannedFileHandler {
                 return new DiaryNoteInstruction();
             case VACCINATION:
                 return new VaccinationInstruction();
+            case CHILD_PREVENTION:
+                return new ChildPreventionInstruction();
+            case POPULATION_BASED_SCREENING:
+                return new PopulationBasedScreeningInstruction();
             default:
                 throw new RuntimeException("No instruction configured for transaction type: " + transactionType);
         }

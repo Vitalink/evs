@@ -1,11 +1,11 @@
 package org.imec.ivlab.datagenerator.uploader.service.queue.config;
 
 import org.imec.ivlab.core.exceptions.VitalinkException;
+import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
-import org.imec.ivlab.core.model.upload.sumehrlist.SumehrList;
-import org.imec.ivlab.core.model.upload.sumehrlist.SumehrListExtractor;
+import org.imec.ivlab.core.model.upload.extractor.SumehrListExtractor;
 import org.imec.ivlab.datagenerator.uploader.exception.UploaderException;
-import org.imec.ivlab.datagenerator.uploader.model.SumehrInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.SumehrInstruction;
 import org.imec.ivlab.datagenerator.uploader.service.SumehrUploaderImpl;
 
 
@@ -35,8 +35,8 @@ public class SumehrQueueConfig implements QueueConfig<SumehrInstruction> {
     @Override
     public void callUploadAction(SumehrInstruction instruction, KmehrEntryList kmehrEntryList) throws UploaderException, VitalinkException {
 
-        SumehrList sumehrList;
-        sumehrList = SumehrListExtractor.getSumehrList(kmehrEntryList);
+        KmehrWithReferenceList sumehrList;
+        sumehrList = new SumehrListExtractor().getKmehrWithReferenceList(kmehrEntryList);
 
         switch (instruction.getAction()) {
 

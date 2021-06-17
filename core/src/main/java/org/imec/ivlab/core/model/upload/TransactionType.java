@@ -1,32 +1,28 @@
 package org.imec.ivlab.core.model.upload;
 
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.apache.commons.lang.StringUtils;
 
+@AllArgsConstructor
+@Getter
 public enum TransactionType {
 
-    MEDICATION_SCHEME("medicationscheme", "m"),
-    VACCINATION("vaccination", "v"),
-    SUMEHR("sumehr", "s"),
-    POPULATION_BASED_SCREENING("population-based-screening", "p"),
-    CHILD_PREVENTION("child-prevention", "c"),
-    DIARY_NOTE("diarynote", "d");
+    MEDICATION_SCHEME("medicationscheme", "medicationscheme", "m"),
+    VACCINATION("vaccination", "vaccination", "v"),
+    SUMEHR("sumehr", "sumehr", "s"),
+    POPULATION_BASED_SCREENING("population-based-screening","populationbasedscreeningscheme", "p"),
+    CHILD_PREVENTION("child-prevention","childrecord", "c"),
+    DIARY_NOTE("diarynote", "diarynote", "d");
 
-    private String value;
+    private String transactionTypeValueForGetLatestUpdate;
+    private String transactionTypeValueForGetTransactionList;
     private String oneLetterSummary;
 
-    TransactionType(String value, String oneLetterName) {
-        this.value = value;
-        this.oneLetterSummary = oneLetterName;
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public static TransactionType fromValue(String input) {
+    public static TransactionType fromGetTransactionListValue(String input) {
         for (TransactionType transactionType : values()) {
-            if (transactionType.value.equalsIgnoreCase(input)) {
+            if (transactionType.transactionTypeValueForGetTransactionList.equalsIgnoreCase(input)) {
                 return transactionType;
             }
         }
@@ -44,23 +40,10 @@ public enum TransactionType {
         throw new RuntimeException("Couldn't find a transaction type for letter: " + input);
     }
 
-    public String getOneLetterSummary() {
-        return oneLetterSummary;
-    }
-
-    public static String[] getAllValues() {
-        String[] values = new String[TransactionType.values().length];
-        for (int i = 0; i < TransactionType.values().length; i++) {
-            values[i] = TransactionType.values()[i].getValue();
-        }
-        return values;
-    }
-
-
     public static String[] getAllLetters() {
         String[] letters = new String[TransactionType.values().length];
         for (int i = 0; i < TransactionType.values().length; i++) {
-            letters[i] = TransactionType.values()[i].getOneLetterSummary() + " (for " + TransactionType.values()[i].getValue() + ")";
+            letters[i] = TransactionType.values()[i].getOneLetterSummary() + " (for " + TransactionType.values()[i].name() + ")";
         }
         return letters;
     }

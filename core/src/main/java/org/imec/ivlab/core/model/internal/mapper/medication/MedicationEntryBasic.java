@@ -19,7 +19,6 @@ public class MedicationEntryBasic extends AbstractParsedItem<ItemType> implement
     private String compoundPrescription;
 
     private List<IndividualDayperiod> dayperiods;
-    private PosologyOrRegimen posologyOrRegimen;
     private LocalDate beginDate;
     private LocalDate endDate;
 
@@ -61,14 +60,6 @@ public class MedicationEntryBasic extends AbstractParsedItem<ItemType> implement
 
     public void setFrequencyCode(FrequencyCode frequencyCode) {
         this.frequencyCode = frequencyCode;
-    }
-
-    public PosologyOrRegimen getPosologyOrRegimen() {
-        return posologyOrRegimen;
-    }
-
-    public void setPosologyOrRegimen(PosologyOrRegimen posologyOrRegimen) {
-        this.posologyOrRegimen = posologyOrRegimen;
     }
 
     public LocalDate getBeginDate() {

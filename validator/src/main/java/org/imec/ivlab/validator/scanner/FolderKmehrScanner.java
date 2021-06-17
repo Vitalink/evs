@@ -51,12 +51,8 @@ public class FolderKmehrScanner {
             if (CollectionUtils.isNotEmpty(kmehrEntryList.getKmehrEntries())) {
                 log.debug("Found " + CollectionUtils.size(kmehrEntryList.getKmehrEntries()) + " kmehrs");
                 for (BusinessData businessData : kmehrEntryList.getBusinessDataList()) {
-                    try {
-                        Kmehrmessage kmehrmessage = KmehrMarshaller.fromString(businessData.getContent());
-                        kmehrMatches.add(new FileWithKmehrs(file, kmehrmessage));
-                    } catch (TransformationException e) {
-                        log.error(e);
-                    }
+                    Kmehrmessage kmehrmessage = KmehrMarshaller.fromString(businessData.getContent());
+                    kmehrMatches.add(new FileWithKmehrs(file, kmehrmessage));
                 }
 
             }

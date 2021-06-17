@@ -32,15 +32,7 @@ public class KmehrModifier {
 
             KmehrEntry kmehrEntry = kmehrEntryIterator.next();
 
-            Kmehrmessage kmehrMessage;
-
-            try {
-
-                kmehrMessage = KmehrMarshaller.fromString(kmehrEntry.getBusinessData().getContent());
-
-            } catch (TransformationException e) {
-                throw new InvalidKmehrException("Failed to transform kmehr string into Kmehrmessage. ", e);
-            }
+            Kmehrmessage kmehrMessage = KmehrMarshaller.fromString(kmehrEntry.getBusinessData().getContent());
 
             for (KmehrModification kmehrModifier : kmehrModifiers) {
                 kmehrModifier.modify(kmehrMessage);

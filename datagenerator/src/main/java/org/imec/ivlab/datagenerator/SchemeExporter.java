@@ -1,25 +1,36 @@
 package org.imec.ivlab.datagenerator;
 
+import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_CHILD_PREVENTION_FILE;
+import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_CHILD_PREVENTION_FILE_EMBEDDED;
 import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_DAILYSCHEME;
 import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_DIARYNOTE_OVERVIEW;
 import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_GLOBALSCHEME;
+import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_POPULATION_BASED_SCREENING_OVERVIEW;
 import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_SUMEHR_OVERVIEW;
 import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_VACCINATION_LIST_OVERVIEW;
 import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_VACCINATION_OVERVIEW;
 
+import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.imec.ivlab.core.model.internal.mapper.medication.DailyScheme;
 import org.imec.ivlab.core.model.internal.mapper.medication.GlobalScheme;
 import org.imec.ivlab.core.model.internal.mapper.medication.MedicationEntry;
+import org.imec.ivlab.core.model.internal.parser.childprevention.ChildPrevention;
+import org.imec.ivlab.core.model.internal.parser.childprevention.mapper.ChildPreventionMapper;
 import org.imec.ivlab.core.model.internal.parser.diarynote.DiaryNote;
 import org.imec.ivlab.core.model.internal.parser.diarynote.mapper.DiaryNoteMapper;
+import org.imec.ivlab.core.model.internal.parser.populationbasedscreening.PopulationBasedScreening;
+import org.imec.ivlab.core.model.internal.parser.populationbasedscreening.mapper.PopulationBasedScreeningMapper;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sumehr;
 import org.imec.ivlab.core.model.internal.parser.sumehr.mapper.SumehrMapper;
 import org.imec.ivlab.core.model.internal.parser.vaccination.Vaccination;
@@ -38,8 +49,10 @@ import org.imec.ivlab.datagenerator.util.kmehrmodifier.SchemeHelper;
 import org.imec.ivlab.viewer.converter.DailySchemeFilter;
 import org.imec.ivlab.viewer.converter.TestFileConverter;
 import org.imec.ivlab.viewer.converter.exceptions.SchemaConversionException;
+import org.imec.ivlab.viewer.pdf.ChildPreventionWriter;
 import org.imec.ivlab.viewer.pdf.DiaryNoteWriter;
 import org.imec.ivlab.viewer.pdf.MSWriter;
+import org.imec.ivlab.viewer.pdf.PopulationBasedScreeningWriter;
 import org.imec.ivlab.viewer.pdf.SumehrWriter;
 import org.imec.ivlab.viewer.pdf.VaccinationListWriter;
 import org.imec.ivlab.viewer.pdf.VaccinationWriter;
@@ -57,10 +70,7 @@ public class SchemeExporter {
             KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
             MSEntryList MSEntries = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
 
-            File outputFile = new File(inputFile.getAbsolutePath());
-            outputFile = FileUtil.appendTextToFilename(outputFile, "_" + EXPORT_NAME_GLOBALSCHEME);
-            outputFile = FileUtil.getFileWithNewExtension(outputFile, "pdf");
-            outputFile = FilenameUtil.chompIfTooLong(outputFile);
+            File outputFile = makeOutputFile(inputFile, EXPORT_NAME_GLOBALSCHEME);
 
             List<MedicationEntry> medicationEntries = TestFileConverter.convertToMedicationEntries(MSEntries);
 
@@ -89,10 +99,7 @@ public class SchemeExporter {
 
         Sumehr sumehr = SumehrMapper.kmehrToSumehr(kmehrmessage);
 
-        File outputFile = new File(inputFile.getAbsolutePath());
-        outputFile = FileUtil.appendTextToFilename(outputFile, "_" + EXPORT_NAME_SUMEHR_OVERVIEW);
-        outputFile = FileUtil.getFileWithNewExtension(outputFile, "pdf");
-        outputFile = FilenameUtil.chompIfTooLong(outputFile);
+        File outputFile = makeOutputFile(inputFile, EXPORT_NAME_SUMEHR_OVERVIEW);
 
         try {
             sumehrWriter.createPdf(sumehr, outputFile.getAbsolutePath());
@@ -110,10 +117,7 @@ public class SchemeExporter {
 
         DiaryNote diaryNote = DiaryNoteMapper.kmehrToDiaryNote(kmehrmessage);
 
-        File outputFile = new File(inputFile.getAbsolutePath());
-        outputFile = FileUtil.appendTextToFilename(outputFile, "_" + EXPORT_NAME_DIARYNOTE_OVERVIEW);
-        outputFile = FileUtil.getFileWithNewExtension(outputFile, "pdf");
-        outputFile = FilenameUtil.chompIfTooLong(outputFile);
+        File outputFile = makeOutputFile(inputFile, EXPORT_NAME_DIARYNOTE_OVERVIEW);
 
         try {
             diaryNoteWriter.createPdf(diaryNote, outputFile.getAbsolutePath());
@@ -131,10 +135,7 @@ public class SchemeExporter {
 
         Vaccination vaccination = VaccinationMapper.kmehrToVaccination(kmehrmessage);
 
-        File outputFile = new File(inputFile.getAbsolutePath());
-        outputFile = FileUtil.appendTextToFilename(outputFile, "_" + EXPORT_NAME_VACCINATION_OVERVIEW);
-        outputFile = FileUtil.getFileWithNewExtension(outputFile, "pdf");
-        outputFile = FilenameUtil.chompIfTooLong(outputFile);
+        File outputFile = makeOutputFile(inputFile, EXPORT_NAME_VACCINATION_OVERVIEW);
 
         try {
             vaccinationWriter.createPdf(vaccination, outputFile.getAbsolutePath());
@@ -143,6 +144,67 @@ public class SchemeExporter {
         }
 
 
+    }
+
+    public static void generatePopulationBasedScreeningVisualization(File inputFile, Kmehrmessage kmehrmessage) {
+
+        PopulationBasedScreeningWriter populationBasedScreeningWriter = new PopulationBasedScreeningWriter();
+
+        PopulationBasedScreening populationBasedScreening = PopulationBasedScreeningMapper.kmehrToPopulationBasedScreening(kmehrmessage);
+
+        File outputFile = makeOutputFile(inputFile, EXPORT_NAME_POPULATION_BASED_SCREENING_OVERVIEW);
+
+        try {
+            populationBasedScreeningWriter.createPdf(populationBasedScreening, outputFile.getAbsolutePath());
+        } catch (SchemaConversionException e) {
+            log.error("Failed to generate populationBasedScreening visualization", e);
+        }
+
+
+    }
+
+    public static void generateChildPreventionVisualization(File inputFile, Kmehrmessage kmehrmessage) {
+
+
+        ChildPreventionWriter childPreventionWriter = new ChildPreventionWriter();
+
+        ChildPrevention childPrevention = ChildPreventionMapper.kmehrToChildPrevention(kmehrmessage);
+
+        File childPreventionVisualization = makeOutputFile(inputFile, EXPORT_NAME_CHILD_PREVENTION_FILE);
+        File embeddedChildPreventionVisualization = makeOutputFile(inputFile, EXPORT_NAME_CHILD_PREVENTION_FILE_EMBEDDED);
+
+        try {
+            childPreventionWriter.createPdf(childPrevention, childPreventionVisualization.getAbsolutePath());
+        } catch (SchemaConversionException e) {
+            log.error("Failed to generate childPrevention visualization", e);
+        }
+
+        try {
+            Optional<byte[]> maybeContent = Optional
+                .ofNullable(childPrevention.getChildPreventionFile())
+                .map(LnkType::getValue);
+            if (maybeContent.isPresent()) {
+                writeToFile(embeddedChildPreventionVisualization.getAbsolutePath(), maybeContent.get());
+            }
+        } catch (IOException e) {
+            log.error("Failed to generate the embedded childPrevention visualization", e);
+        }
+
+    }
+
+    private static void writeToFile(String fileName, byte[] bytes) throws IOException {
+        try (FileOutputStream fos = new FileOutputStream(fileName)) {
+            fos.write(bytes);
+            fos.flush();
+        }
+    }
+
+    private static File makeOutputFile(File inputFile, String exportName) {
+        File outputFile = new File(inputFile.getAbsolutePath());
+        outputFile = FileUtil.appendTextToFilename(outputFile, "_" + exportName);
+        outputFile = FileUtil.getFileWithNewExtension(outputFile, "pdf");
+        outputFile = FilenameUtil.chompIfTooLong(outputFile);
+        return outputFile;
     }
 
     public static void generateVaccinationListVisualization(Patient patient, File directory, List<Kmehrmessage> kmehrmessages) {
@@ -189,10 +251,7 @@ public class SchemeExporter {
             KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
             MSEntryList MSEntries = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
 
-            File outputFile = new File(inputFile.getAbsolutePath());
-            outputFile = FileUtil.appendTextToFilename(outputFile, "_" + EXPORT_NAME_DAILYSCHEME + "-" + medicationSchemeDate.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
-            outputFile = FileUtil.getFileWithNewExtension(outputFile, "pdf");
-            outputFile = FilenameUtil.chompIfTooLong(outputFile);
+            File outputFile = makeOutputFile(inputFile, EXPORT_NAME_DAILYSCHEME + "-" + medicationSchemeDate.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
 
             List<MedicationEntry> medicationEntries = TestFileConverter.convertToMedicationEntries(MSEntries);
 

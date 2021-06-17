@@ -6,7 +6,7 @@ import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntryList;
 import org.imec.ivlab.core.model.upload.msentrylist.MedicationSchemeExtractor;
 import org.imec.ivlab.datagenerator.uploader.exception.UploaderException;
-import org.imec.ivlab.datagenerator.uploader.model.MSInstruction;
+import org.imec.ivlab.datagenerator.uploader.model.instruction.MSInstruction;
 import org.imec.ivlab.datagenerator.uploader.service.MSUploaderImpl;
 
 

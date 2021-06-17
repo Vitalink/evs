@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import org.apache.commons.lang3.tuple.Pair;
 import org.imec.ivlab.core.model.internal.parser.ParsedItem;
@@ -35,7 +36,7 @@ public class TableHelper {
   public static List<PdfPTable> toUnparsedContentTables(List<? extends ParsedItem> parsedItems, String topic) {
 
     if (CollectionsUtil.emptyOrNull(parsedItems)) {
-      return null;
+      return Collections.emptyList();
     }
 
     List<PdfPTable> tables = new ArrayList<>();
@@ -67,7 +68,7 @@ public class TableHelper {
       tables.add(contentTable);
       return tables;
     } else {
-      return null;
+      return Collections.emptyList();
     }
   }
 

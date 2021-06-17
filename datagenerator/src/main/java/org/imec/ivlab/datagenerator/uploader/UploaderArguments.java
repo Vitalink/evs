@@ -2,6 +2,9 @@ package org.imec.ivlab.datagenerator.uploader;
 
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.imec.ivlab.core.jcommander.HubConverter;
 import org.imec.ivlab.core.jcommander.LocalDateConverter;
 import org.imec.ivlab.core.jcommander.PathToFileConverter;
@@ -14,7 +17,10 @@ import org.imec.ivlab.datagenerator.uploader.dateshift.ShiftActionConverter;
 import java.io.File;
 import java.time.LocalDate;
 
+@ToString
 @Parameters(separators = "=")
+@Getter
+@Setter
 public class UploaderArguments {
 
     @Parameter(names = "-rootDir", description = "The root directory from which to start uploading", required = true, converter = PathToFileConverter.class)
@@ -53,6 +59,12 @@ public class UploaderArguments {
     @Parameter(names = "-generateVaccinationVisualization", description = "Generate a visualization for every vaccination transaction", arity = 1)
     private boolean generateVaccinationVisualization;
 
+    @Parameter(names = "-generateChildPreventionVisualization", description = "Generate a visualization for every childprevention transaction", arity = 1)
+    private boolean generateChildPreventionVisualization;
+
+    @Parameter(names = "-generatePopulationBasedScreeningVisualization", description = "Generate a visualization for every populationbasedscreening transaction", arity = 1)
+    private boolean generatePopulationBasedScreeningVisualization;
+
     @Parameter(names = "-generateGatewayMedicationScheme", description = "Generate a gateway medication scheme", required = true, arity = 1)
     private boolean generateGatewayMedicationScheme;
 
@@ -68,162 +80,4 @@ public class UploaderArguments {
     @Parameter(names = "-filterOutTransactionsHavingPatientAccessNo", description = "Do not attempt to get hub transactions that are marked as PatientAccess=no", arity = 1)
     private boolean filterOutTransactionsHavingPatientAccessNo;
 
-    public File getRootDir() {
-        return rootDir;
-    }
-
-    public void setRootDir(File rootDir) {
-        this.rootDir = rootDir;
-    }
-
-    public boolean isExportAfterUpload() {
-        return exportAfterUpload;
-    }
-
-    public void setExportAfterUpload(boolean exportAfterUpload) {
-        this.exportAfterUpload = exportAfterUpload;
-    }
-
-    public boolean isWriteAsIs() {
-        return writeAsIs;
-    }
-
-    public void setWriteAsIs(boolean writeAsIs) {
-        this.writeAsIs = writeAsIs;
-    }
-
-    public boolean isValidateExportAfterUpload() {
-        return validateExportAfterUpload;
-    }
-
-    public void setValidateExportAfterUpload(boolean validateExportAfterUpload) {
-        this.validateExportAfterUpload = validateExportAfterUpload;
-    }
-
-    public boolean isGenerateGlobalMedicationScheme() {
-        return generateGlobalMedicationScheme;
-    }
-
-    public void setGenerateGlobalMedicationScheme(boolean generateGlobalMedicationScheme) {
-        this.generateGlobalMedicationScheme = generateGlobalMedicationScheme;
-    }
-
-    public boolean isGenerateDailyMedicationScheme() {
-        return generateDailyMedicationScheme;
-    }
-
-    public void setGenerateDailyMedicationScheme(boolean generateDailyMedicationScheme) {
-        this.generateDailyMedicationScheme = generateDailyMedicationScheme;
-    }
-
-    public LocalDate getDailyMedicationSchemeDate() {
-        return dailyMedicationSchemeDate;
-    }
-
-    public void setDailyMedicationSchemeDate(LocalDate dailyMedicationSchemeDate) {
-        this.dailyMedicationSchemeDate = dailyMedicationSchemeDate;
-    }
-
-    public String getStartTransactionId() {
-        return startTransactionId;
-    }
-
-    public void setStartTransactionId(String startTransactionId) {
-        this.startTransactionId = startTransactionId;
-    }
-
-    public ShiftAction getShiftAction() {
-        return shiftAction;
-    }
-
-    public void setShiftAction(ShiftAction shiftAction) {
-        this.shiftAction = shiftAction;
-    }
-
-    public boolean isGenerateGatewayMedicationScheme() {
-        return generateGatewayMedicationScheme;
-    }
-
-    public void setGenerateGatewayMedicationScheme(boolean generateGatewayMedicationScheme) {
-        this.generateGatewayMedicationScheme = generateGatewayMedicationScheme;
-    }
-
-    public Hub getHub() {
-        return hub;
-    }
-
-    public void setHub(Hub hub) {
-        this.hub = hub;
-    }
-
-    public SearchType getSearchType() {
-        return searchType;
-    }
-
-    public void setSearchType(SearchType searchType) {
-        this.searchType = searchType;
-    }
-
-    @Override
-    public String toString() {
-        return "UploaderArguments{" +
-            "rootDir=" + rootDir +
-            ", exportAfterUpload=" + exportAfterUpload +
-            ", validateExportAfterUpload=" + validateExportAfterUpload +
-            ", generateGlobalMedicationScheme=" + generateGlobalMedicationScheme +
-            ", generateDailyMedicationScheme=" + generateDailyMedicationScheme +
-            ", dailyMedicationSchemeDate=" + dailyMedicationSchemeDate +
-            ", writeAsIs=" + writeAsIs +
-            ", startTransactionId='" + startTransactionId + '\'' +
-            ", shiftAction=" + shiftAction +
-            ", generateSumehrOverview=" + generateSumehrOverview +
-            ", generateDiaryNoteVisualization=" + generateDiaryNoteVisualization +
-            ", generateVaccinationVisualization=" + generateVaccinationVisualization +
-            ", generateGatewayMedicationScheme=" + generateGatewayMedicationScheme +
-            ", hub=" + hub +
-            ", searchType=" + searchType +
-            ", autoGenerateMSTransactionAuthor=" + autoGenerateMSTransactionAuthor +
-            ", filterOutTransactionsHavingPatientAccessNo=" + filterOutTransactionsHavingPatientAccessNo +
-            '}';
-    }
-
-    public boolean isGenerateSumehrOverview() {
-        return generateSumehrOverview;
-    }
-
-    public void setGenerateSumehrOverview(boolean generateSumehrOverview) {
-        this.generateSumehrOverview = generateSumehrOverview;
-    }
-
-    public boolean isGenerateDiaryNoteVisualization() {
-        return generateDiaryNoteVisualization;
-    }
-
-    public void setGenerateDiaryNoteVisualization(boolean generateDiaryNoteVisualization) {
-        this.generateDiaryNoteVisualization = generateDiaryNoteVisualization;
-    }
-
-    public boolean isGenerateVaccinationVisualization() {
-        return generateVaccinationVisualization;
-    }
-
-    public void setGenerateVaccinationVisualization(boolean generateVaccinationVisualization) {
-        this.generateVaccinationVisualization = generateVaccinationVisualization;
-    }
-
-    public boolean isAutoGenerateMSTransactionAuthor() {
-        return autoGenerateMSTransactionAuthor;
-    }
-
-    public void setAutoGenerateMSTransactionAuthor(boolean autoGenerateMSTransactionAuthor) {
-        this.autoGenerateMSTransactionAuthor = autoGenerateMSTransactionAuthor;
-    }
-
-    public boolean isFilterOutTransactionsHavingPatientAccessNo() {
-        return filterOutTransactionsHavingPatientAccessNo;
-    }
-
-    public void setFilterOutTransactionsHavingPatientAccessNo(boolean filterOutTransactionsHavingPatientAccessNo) {
-        this.filterOutTransactionsHavingPatientAccessNo = filterOutTransactionsHavingPatientAccessNo;
-    }
 }

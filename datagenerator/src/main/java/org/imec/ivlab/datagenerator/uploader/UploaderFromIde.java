@@ -29,6 +29,8 @@ public class UploaderFromIde {
         arguments.setGenerateSumehrOverview(true);
         arguments.setGenerateDiaryNoteVisualization(true);
         arguments.setGenerateVaccinationVisualization(true);
+        arguments.setGenerateChildPreventionVisualization(true);
+        arguments.setGeneratePopulationBasedScreeningVisualization(true);
         arguments.setDailyMedicationSchemeDate(LocalDate.now().plusYears(5));
         arguments.setAutoGenerateMSTransactionAuthor(true);
         arguments.setFilterOutTransactionsHavingPatientAccessNo(false);
