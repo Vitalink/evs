@@ -329,7 +329,7 @@ public class SumehrMapper extends BaseMapper {
         patientWill.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
         clone.setLifecycle(null);
 
-        patientWill.setIsRelevant(itemType.isIsrelevant());
+        patientWill.setRelevant(itemType.isIsrelevant());
         clone.setIsrelevant(null);
 
         patientWill.setTextTypes(itemType.getTexts());
@@ -414,8 +414,11 @@ public class SumehrMapper extends BaseMapper {
         vaccination.setCdcontents(ItemUtil.collectContentTypeCds(itemType));
         clearContentTypeCds(clone);
 
-        vaccination.setTextTypes(ItemUtil.collectContentTypeTextTypes(itemType));
+        vaccination.setContentTextTypes(ItemUtil.collectContentTypeTextTypes(itemType));
         clearContentTypeTextTypes(clone);
+
+        vaccination.setTextTypes(itemType.getTexts());
+        clearTextTypes(clone);
 
         vaccination.setRecordDateTime(DateUtils.toLocalDateTime(itemType.getRecorddatetime()));
         clone.setRecorddatetime(null);
@@ -455,7 +458,7 @@ public class SumehrMapper extends BaseMapper {
         item.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
         clone.setLifecycle(null);
 
-        item.setIsRelevant(itemType.isIsrelevant());
+        item.setRelevant(itemType.isIsrelevant());
         clone.setIsrelevant(null);
 
         item.setCdcontents(ItemUtil.collectContentTypeCds(itemType));

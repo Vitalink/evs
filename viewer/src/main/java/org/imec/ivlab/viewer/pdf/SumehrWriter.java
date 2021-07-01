@@ -94,7 +94,8 @@ public class SumehrWriter extends Writer {
 
         SumehrWriter sumehrWriter = new SumehrWriter();
         Stream
-            .of("1-sumehr-1dot1-all-parseable", "2-sumehr-1dot1-unparseable-content", "3-sumehr-2dot0", "4-sumehr-2dot0", "5-sumehr-2dot0-risk-text-and-medication", "5-sumehr-2dot0-posology-and-regimen")
+            .of("1-sumehr-1dot1-all-parseable", "2-sumehr-1dot1-unparseable-content", "3-sumehr-2dot0", "4-sumehr-2dot0", "5-sumehr-2dot0-risk-text-and-medication", "5-sumehr-2dot0-posology-and"
+                + "-regimen", "6-sumehr-vaccine-textItem")
             .forEach(filename -> sumehrWriter.createPdf(readTestFile(filename + ".xml").get(0), filename + ".pdf"));
 
     }
@@ -216,6 +217,7 @@ public class SumehrWriter extends Writer {
 
         addRow(table, createDetailHeader(vaccination.getVaccinatedAgainst()));
         addRow(table, toDetailRowIfHasValue("Vaccine", identifierIdAndName(vaccination.getIdentifier())));
+        addRow(table, toDetailRowIfHasValue("Text", collectText(vaccination.getContentTextTypes())));
         addRow(table, toDetailRowIfHasValue("Text", collectText(vaccination.getTextTypes())));
 
         if (CollectionsUtil.notEmptyOrNull(vaccination.getCdcontents())) {
@@ -337,7 +339,7 @@ public class SumehrWriter extends Writer {
         addRow(table, toDetailRowIfHasValue("Text", collectText(risk.getContentTextTypes())));
         addRow(table, toDetailRowIfHasValue("Text", collectText(risk.getTextTypes())));
         addRow(table, toDetailRowIfHasValue("Begin", risk.getBeginmoment()));
-        addRow(table, toDetailRowIfHasValue("Relevant", risk.getIsRelevant()));
+        addRow(table, toDetailRowIfHasValue("Relevant", risk.getRelevant()));
         if (risk.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", risk.getLifecycle().value()));
         }
@@ -369,7 +371,7 @@ public class SumehrWriter extends Writer {
         addRow(table, toDetailRowIfHasValue("Text", collectText(patientWill.getTextTypes())));
         addRow(table, toDetailRowIfHasValue("Date of registration", Translator.formatAsDateTime(patientWill.getRecordDateTime())));
         addRow(table, toDetailRowIfHasValue("Begin", patientWill.getBeginmoment()));
-        addRow(table, toDetailRowIfHasValue("Relevant", patientWill.getIsRelevant()));
+        addRow(table, toDetailRowIfHasValue("Relevant", patientWill.getRelevant()));
         if (patientWill.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", patientWill.getLifecycle().value()));
         }
@@ -397,7 +399,7 @@ public class SumehrWriter extends Writer {
         addRow(table, toDetailRowIfHasValue("End", treatment.getEndmoment()));
         addRow(table, toDetailRowIfHasValue("Text", collectText(treatment.getContentTextTypes())));
         addRow(table, toDetailRowIfHasValue("Text", collectText(treatment.getTextTypes())));
-        addRow(table, toDetailRowIfHasValue("Relevant", treatment.getIsRelevant()));
+        addRow(table, toDetailRowIfHasValue("Relevant", treatment.getRelevant()));
         if (treatment.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", treatment.getLifecycle().value()));
         }
@@ -424,7 +426,7 @@ public class SumehrWriter extends Writer {
         addRow(table, toDetailRowIfHasValue("Text", collectText(problem.getContentTextTypes())));
         addRow(table, toDetailRowIfHasValue("Text", collectText(problem.getTextTypes())));
         addRow(table, toDetailRowIfHasValue("Date of registration", Translator.formatAsDateTime(problem.getRecordDateTime())));
-        addRow(table, toDetailRowIfHasValue("Relevant", problem.getIsRelevant()));
+        addRow(table, toDetailRowIfHasValue("Relevant", problem.getRelevant()));
         if (problem.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", problem.getLifecycle().value()));
         }
@@ -578,7 +580,7 @@ public class SumehrWriter extends Writer {
         addRow(table, toDetailRowIfHasValue("End", healthCareElement.getEndmoment()));
         addRow(table, toDetailRowIfHasValue("Text", collectText(healthCareElement.getContentTextTypes())));
         addRow(table, toDetailRowIfHasValue("Text", collectText(healthCareElement.getTextTypes())));
-        addRow(table, toDetailRowIfHasValue("Relevant", healthCareElement.getIsRelevant()));
+        addRow(table, toDetailRowIfHasValue("Relevant", healthCareElement.getRelevant()));
         if (healthCareElement.getLifecycle() != null) {
             addRow(table, toDetailRowIfHasValue("Lifecycle", healthCareElement.getLifecycle().value()));
         }

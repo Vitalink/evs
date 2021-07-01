@@ -14,7 +14,7 @@ import lombok.Setter;
 public class ItemParsedItem extends AbstractParsedItem<ItemType> {
 
     private CDLIFECYCLEvalues lifecycle;
-    private Boolean isRelevant;
+    private Boolean relevant;
     private List<TextType> contentTextTypes;
     private List<TextType> textTypes;
     private List<CDCONTENT> cdcontents = new ArrayList<>();
