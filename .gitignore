@@ -111,3 +111,4 @@ Temporary Items
 **/*.log*
 logs/
 messages/
+*.pdf
