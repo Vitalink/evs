@@ -9,14 +9,8 @@ import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getLeftAlignedCell;
 import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getMedicationHeaderCell;
 import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getMedicationHeaderPhrase;
 import static org.imec.ivlab.viewer.pdf.PdfHelper.writeToDocument;
-import static org.imec.ivlab.viewer.pdf.TableHelper.addRow;
-import static org.imec.ivlab.viewer.pdf.TableHelper.createDetailHeader;
-import static org.imec.ivlab.viewer.pdf.TableHelper.createDetailRow;
-import static org.imec.ivlab.viewer.pdf.TableHelper.initializeDetailTable;
-import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.Translator.formatAsDate;
 import static org.imec.ivlab.viewer.pdf.Translator.formatAsDateTime;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsTime;
 import static org.imec.ivlab.viewer.pdf.VaccinationHelper.getMedicinalIntendedCnks;
 import static org.imec.ivlab.viewer.pdf.VaccinationHelper.getMedicinalIntendedNames;
 
@@ -246,17 +240,6 @@ public class VaccinationListWriter extends Writer {
         cell.setRowspan(1);
         cell.setBorder(0);
         return cell;
-    }
-
-    protected PdfPTable createTransactionMetadata(Vaccination vaccination) {
-
-        PdfPTable table = initializeDetailTable();
-        addRow(table, createDetailHeader("General information"));
-        addRow(table, createDetailRow("Date", formatAsDate(vaccination.getTransactionCommon().getDate())));
-        addRow(table, createDetailRow("Time", formatAsTime(vaccination.getTransactionCommon().getTime())));
-        addRow(table, toDetailRowIfHasValue("Record date time", formatAsDateTime(vaccination.getTransactionCommon().getRecordDateTime())));
-        return table;
-
     }
 
     protected static Font getValidationAnnotationFont() {

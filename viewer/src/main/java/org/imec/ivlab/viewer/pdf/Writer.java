@@ -6,11 +6,14 @@ import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getDefaultPhraseBold;
 import static org.imec.ivlab.viewer.pdf.MSTableFormatter.getFrontPageHeaderPhrase;
 import static org.imec.ivlab.viewer.pdf.TableHelper.addRow;
 import static org.imec.ivlab.viewer.pdf.TableHelper.createDetailHeader;
+import static org.imec.ivlab.viewer.pdf.TableHelper.createDetailRow;
 import static org.imec.ivlab.viewer.pdf.TableHelper.initializeDetailTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowsIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
+import static org.imec.ivlab.viewer.pdf.Translator.formatAsDate;
 import static org.imec.ivlab.viewer.pdf.Translator.formatAsDateTime;
+import static org.imec.ivlab.viewer.pdf.Translator.formatAsTime;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDADDRESS;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDHCPARTY;
@@ -42,6 +45,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.apache.log4j.Logger;
 import org.imec.ivlab.core.model.internal.parser.ParsedItem;
 import org.imec.ivlab.core.model.internal.parser.common.Header;
+import org.imec.ivlab.core.model.internal.parser.common.TransactionCommon;
 import org.imec.ivlab.core.model.internal.parser.sumehr.AbstractPerson;
 import org.imec.ivlab.core.model.internal.parser.sumehr.ContactPerson;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
@@ -354,6 +358,35 @@ public abstract class Writer {
                        .map(this::hcpartyTypeToTable)
                        .collect(Collectors.toList());
     }
+
+    protected PdfPTable createTransactionMetadata(TransactionCommon transactionCommon) {
+
+        PdfPTable table = initializeDetailTable();
+        addRow(table, createDetailHeader("General information"));
+        addRow(table, createDetailRow("Date", formatAsDate(transactionCommon.getDate())));
+        addRow(table, createDetailRow("Time", formatAsTime(transactionCommon.getTime())));
+        addRow(table, toDetailRowIfHasValue("Record date time", formatAsDateTime(transactionCommon.getRecordDateTime())));
+
+        transactionCommon
+            .getIdkmehrs()
+            .forEach(idkmehr -> {
+                addRow(table, createDetailRow(idkmehr
+                    .getS()
+                    .value(), idkmehr.getValue()));
+            });
+
+        transactionCommon
+            .getCdtransactions()
+            .forEach(cdtransaction -> {
+                addRow(table, createDetailRow(cdtransaction
+                    .getS()
+                    .value(), cdtransaction.getValue()));
+            });
+        return table;
+
+    }
+
+
 }
 
 

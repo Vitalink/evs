@@ -4,14 +4,10 @@ import static org.imec.ivlab.viewer.pdf.PdfHelper.writeToDocument;
 import static org.imec.ivlab.viewer.pdf.TableHelper.addRow;
 import static org.imec.ivlab.viewer.pdf.TableHelper.combineTables;
 import static org.imec.ivlab.viewer.pdf.TableHelper.createDetailHeader;
-import static org.imec.ivlab.viewer.pdf.TableHelper.createDetailRow;
 import static org.imec.ivlab.viewer.pdf.TableHelper.createTitleTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.initializeDetailTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsDate;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsDateTime;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsTime;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDUNIT;
 import be.fgov.ehealth.standards.kmehr.schema.v1.UnitType;
@@ -82,7 +78,7 @@ public class ChildPreventionWriter extends Writer {
         tables.add(combineTables(createTitleTable("Patient"), patientToTable(childPrevention.getTransactionCommon().getPerson()), toUnparsedContentTable(childPrevention.getTransactionCommon().getPerson(), "Patient")));
         tables.add(combineTables(createTitleTable("Author"), createHcPartyTables(childPrevention.getTransactionCommon().getAuthor()), toUnparsedContentTables(childPrevention.getTransactionCommon().getAuthor(), "Author")));
         tables.add(combineTables(createTitleTable("Redactor"), createHcPartyTables(childPrevention.getTransactionCommon().getRedactor()), toUnparsedContentTables(childPrevention.getTransactionCommon().getRedactor(), "Redactor")));
-        tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(childPrevention), toUnparsedContentTables(childPrevention.getTransactionCommon().getAuthor(), "Author")));
+        tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(childPrevention.getTransactionCommon()), toUnparsedContentTables(childPrevention.getTransactionCommon().getAuthor(), "Author")));
         List<PdfPTable> tablesUnparsed = new ArrayList<>();
         tablesUnparsed.addAll(toUnparsedContentTable(childPrevention.getResultHearingScreeningLeft(), "ResultHearingSreeningLeft"));
         tablesUnparsed.addAll(toUnparsedContentTable(childPrevention.getResultHearingScreeningRight(), "ResultHearingSreeningRight"));
@@ -121,17 +117,6 @@ public class ChildPreventionWriter extends Writer {
         } else {
             return StringUtils.joinWith(" ", pregnancyDuration.getValue(), Optional.ofNullable(pregnancyDuration.getUnit()).map(UnitType::getCd).map(CDUNIT::getValue).orElse(null));
         }
-    }
-
-    protected PdfPTable createTransactionMetadata(ChildPrevention childPrevention) {
-
-        PdfPTable table = initializeDetailTable();
-        addRow(table, createDetailHeader("General information"));
-        addRow(table, createDetailRow("Date", formatAsDate(childPrevention.getTransactionCommon().getDate())));
-        addRow(table, createDetailRow("Time", formatAsTime(childPrevention.getTransactionCommon().getTime())));
-        addRow(table, toDetailRowIfHasValue("Record date time", formatAsDateTime(childPrevention.getTransactionCommon().getRecordDateTime())));
-        return table;
-
     }
 
     protected static Font getValidationAnnotationFont() {

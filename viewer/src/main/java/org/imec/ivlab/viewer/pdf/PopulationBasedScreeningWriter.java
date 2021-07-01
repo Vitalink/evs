@@ -4,14 +4,10 @@ import static org.imec.ivlab.viewer.pdf.PdfHelper.writeToDocument;
 import static org.imec.ivlab.viewer.pdf.TableHelper.addRow;
 import static org.imec.ivlab.viewer.pdf.TableHelper.combineTables;
 import static org.imec.ivlab.viewer.pdf.TableHelper.createDetailHeader;
-import static org.imec.ivlab.viewer.pdf.TableHelper.createDetailRow;
 import static org.imec.ivlab.viewer.pdf.TableHelper.createTitleTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.initializeDetailTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsDate;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsDateTime;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsTime;
 
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;
@@ -81,7 +77,7 @@ public class PopulationBasedScreeningWriter extends Writer {
         tables.add(combineTables(createTitleTable("Patient"), patientToTable(populationBasedScreening.getTransactionCommon().getPerson()), toUnparsedContentTable(populationBasedScreening.getTransactionCommon().getPerson(), "Patient")));
         tables.add(combineTables(createTitleTable("Author"), createHcPartyTables(populationBasedScreening.getTransactionCommon().getAuthor()), toUnparsedContentTables(populationBasedScreening.getTransactionCommon().getAuthor(), "Author")));
         tables.add(combineTables(createTitleTable("Redactor"), createHcPartyTables(populationBasedScreening.getTransactionCommon().getRedactor()), toUnparsedContentTables(populationBasedScreening.getTransactionCommon().getRedactor(), "Redactor")));
-        tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(populationBasedScreening), toUnparsedContentTables(populationBasedScreening.getTransactionCommon().getAuthor(), "Author")));
+        tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(populationBasedScreening.getTransactionCommon()), toUnparsedContentTables(populationBasedScreening.getTransactionCommon().getAuthor(), "Author")));
         List<PdfPTable> tablesUnparsed = new ArrayList<>();
         tablesUnparsed.addAll(toUnparsedContentTable(populationBasedScreening.getScreeningYear(), "Screening year"));
         tablesUnparsed.addAll(toUnparsedContentTable(populationBasedScreening.getScreeningType(), "Screening type"));
@@ -127,17 +123,6 @@ public class PopulationBasedScreeningWriter extends Writer {
         List<PdfPTable> tables = new ArrayList<>();
         tables.add(table);
         return tables;
-    }
-
-    protected PdfPTable createTransactionMetadata(PopulationBasedScreening childPrevention) {
-
-        PdfPTable table = initializeDetailTable();
-        addRow(table, createDetailHeader("General information"));
-        addRow(table, createDetailRow("Date", formatAsDate(childPrevention.getTransactionCommon().getDate())));
-        addRow(table, createDetailRow("Time", formatAsTime(childPrevention.getTransactionCommon().getTime())));
-        addRow(table, toDetailRowIfHasValue("Record date time", formatAsDateTime(childPrevention.getTransactionCommon().getRecordDateTime())));
-        return table;
-
     }
 
     protected static Font getValidationAnnotationFont() {

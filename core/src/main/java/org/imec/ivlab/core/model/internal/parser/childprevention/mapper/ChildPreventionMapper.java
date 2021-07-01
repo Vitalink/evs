@@ -13,6 +13,7 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -68,6 +69,7 @@ public class ChildPreventionMapper extends BaseMapper {
         entry.getTransactionCommon().setRecordDateTime(DateUtils.toLocalDateTime(firstTransaction.getRecorddatetime()));
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.getTransactionCommon().setRedactor(mapHcPartyFields(firstTransaction.getRedactor()));
+        entry.getTransactionCommon().setCdtransactions(new ArrayList<>(firstTransaction.getCds()));
 
         entry.setChildPreventionFile(getLinksAndRemoveFromTransaction(firstTransaction).stream().findFirst().orElse(null));
 

@@ -1,13 +1,20 @@
 package org.imec.ivlab.core.model.internal.parser.common;
 
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
+import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHR;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Patient;
 
+@Getter
+@Setter
 public class TransactionCommon {
 
   private LocalDate date;
@@ -16,53 +23,7 @@ public class TransactionCommon {
   private List<HcParty> author = new ArrayList<>();
   private List<HcParty> redactor = new ArrayList<>();
   private Patient person;
+  private List<IDKMEHR> idkmehrs = new ArrayList<>();
+  private List<CDTRANSACTION> cdtransactions = new ArrayList<>();
 
-  public LocalDate getDate() {
-    return date;
-  }
-
-  public void setDate(LocalDate date) {
-    this.date = date;
-  }
-
-  public LocalTime getTime() {
-    return time;
-  }
-
-  public void setTime(LocalTime time) {
-    this.time = time;
-  }
-
-  public List<HcParty> getAuthor() {
-    return author;
-  }
-
-  public void setAuthor(List<HcParty> author) {
-    this.author = author;
-  }
-
-
-  public Patient getPerson() {
-    return person;
-  }
-
-  public void setPerson(Patient person) {
-    this.person = person;
-  }
-
-  public List<HcParty> getRedactor() {
-    return redactor;
-  }
-
-  public void setRedactor(List<HcParty> redactor) {
-    this.redactor = redactor;
-  }
-
-  public LocalDateTime getRecordDateTime() {
-    return recordDateTime;
-  }
-
-  public void setRecordDateTime(LocalDateTime recordDateTime) {
-    this.recordDateTime = recordDateTime;
-  }
 }

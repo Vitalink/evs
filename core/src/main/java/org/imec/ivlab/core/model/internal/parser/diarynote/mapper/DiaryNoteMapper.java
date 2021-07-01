@@ -9,6 +9,7 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONschemes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.SerializationUtils;
@@ -47,6 +48,7 @@ public class DiaryNoteMapper extends BaseMapper {
         entry.getTransactionCommon().setRecordDateTime(DateUtils.toLocalDateTime(firstTransaction.getRecorddatetime()));
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.getTransactionCommon().setRedactor(mapHcPartyFields(firstTransaction.getRedactor()));
+        entry.getTransactionCommon().setCdtransactions(new ArrayList<>(firstTransaction.getCds()));
         entry.setTextTypes(getTextAndRemoveFromTransaction(firstTransaction));
         entry.setTextWithLayoutTypes(getTextWithLayoutAndRemoveFromTransaction(firstTransaction));
         entry.setLinkTypes(getLinksAndRemoveFromTransaction(firstTransaction));

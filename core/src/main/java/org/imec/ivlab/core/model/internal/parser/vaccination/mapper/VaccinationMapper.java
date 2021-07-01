@@ -12,6 +12,7 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.QuantityType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.UnitType;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -54,6 +55,7 @@ public class VaccinationMapper extends BaseMapper {
         entry.getTransactionCommon().setRecordDateTime(DateUtils.toLocalDateTime(firstTransaction.getRecorddatetime()));
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.getTransactionCommon().setRedactor(mapHcPartyFields(firstTransaction.getRedactor()));
+        entry.getTransactionCommon().setCdtransactions(new ArrayList<>(firstTransaction.getCds()));
         entry.setVaccinationItems(toVaccinations(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.VACCINE)));
         entry.setEncounterLocations(toEncounterLocations(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.ENCOUNTERLOCATION)));
         entry.setTextTypes(getTextAndRemoveFromTransaction(firstTransaction));

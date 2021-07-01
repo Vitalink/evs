@@ -73,6 +73,7 @@ public class SumehrMapper extends BaseMapper {
 
         entry.getTransactionCommon().setDate(DateUtils.toLocalDate(firstTransaction.getDate()));
         entry.getTransactionCommon().setTime(DateUtils.toLocalTime(firstTransaction.getTime()));
+        entry.getTransactionCommon().setCdtransactions(new ArrayList<>(firstTransaction.getCds()));
 
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.setHealthCareElements(toHealthCareElements(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.HEALTHCAREELEMENT)));

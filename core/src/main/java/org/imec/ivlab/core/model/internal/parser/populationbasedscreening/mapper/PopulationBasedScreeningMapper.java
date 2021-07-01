@@ -12,6 +12,7 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -76,6 +77,8 @@ public class PopulationBasedScreeningMapper extends BaseMapper {
         entry.getTransactionCommon().setRecordDateTime(DateUtils.toLocalDateTime(firstTransaction.getRecorddatetime()));
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.getTransactionCommon().setRedactor(mapHcPartyFields(firstTransaction.getRedactor()));
+        entry.getTransactionCommon().setIdkmehrs(new ArrayList<>(firstTransaction.getIds()));
+        entry.getTransactionCommon().setCdtransactions(new ArrayList<>(firstTransaction.getCds()));
 
         markTransactionAsProcessed(firstTransaction);
 

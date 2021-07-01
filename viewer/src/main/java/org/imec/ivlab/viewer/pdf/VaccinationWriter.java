@@ -10,8 +10,6 @@ import static org.imec.ivlab.viewer.pdf.TableHelper.initializeDetailTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
 import static org.imec.ivlab.viewer.pdf.Translator.formatAsDate;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsDateTime;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsTime;
 import static org.imec.ivlab.viewer.pdf.VaccinationHelper.getMedicinalDeliveredCnks;
 import static org.imec.ivlab.viewer.pdf.VaccinationHelper.getMedicinalDeliveredNames;
 import static org.imec.ivlab.viewer.pdf.VaccinationHelper.getMedicinalIntendedCnks;
@@ -101,7 +99,7 @@ public class VaccinationWriter extends Writer {
         tables.add(combineTables(createTitleTable("Patient"), patientToTable(vaccination.getTransactionCommon().getPerson()), toUnparsedContentTable(vaccination.getTransactionCommon().getPerson(), "Patient")));
         tables.add(combineTables(createTitleTable("Author"), createHcPartyTables(vaccination.getTransactionCommon().getAuthor()), toUnparsedContentTables(vaccination.getTransactionCommon().getAuthor(), "Author")));
         tables.add(combineTables(createTitleTable("Redactor"), createHcPartyTables(vaccination.getTransactionCommon().getRedactor()), toUnparsedContentTables(vaccination.getTransactionCommon().getRedactor(), "Redactor")));
-        tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(vaccination), toUnparsedContentTables(vaccination.getTransactionCommon().getAuthor(), "Author")));
+        tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(vaccination.getTransactionCommon()), toUnparsedContentTables(vaccination.getTransactionCommon().getAuthor(), "Author")));
         List<PdfPTable> unparsedVaccinationTables = vaccination
             .getVaccinationItems()
             .stream()
@@ -200,17 +198,6 @@ public class VaccinationWriter extends Writer {
         String key = StringUtils.joinWith(" ", titlePrefix, Optional.ofNullable(cddrugcnk.getS()).orElse(null));
         String value = cddrugcnk.getValue();
         return toDetailRowIfHasValue(key, value);
-    }
-
-    protected PdfPTable createTransactionMetadata(Vaccination vaccination) {
-
-        PdfPTable table = initializeDetailTable();
-        addRow(table, createDetailHeader("General information"));
-        addRow(table, createDetailRow("Date", formatAsDate(vaccination.getTransactionCommon().getDate())));
-        addRow(table, createDetailRow("Time", formatAsTime(vaccination.getTransactionCommon().getTime())));
-        addRow(table, toDetailRowIfHasValue("Record date time", formatAsDateTime(vaccination.getTransactionCommon().getRecordDateTime())));
-        return table;
-
     }
 
     protected static Font getValidationAnnotationFont() {
