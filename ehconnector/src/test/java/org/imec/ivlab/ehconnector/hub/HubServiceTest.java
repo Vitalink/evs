@@ -3,14 +3,17 @@ package org.imec.ivlab.ehconnector.hub;
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.Criteria;
 import be.fgov.ehealth.hubservices.core.v3.GetLatestUpdateResponse;
+import be.fgov.ehealth.hubservices.core.v3.GetTransactionListResponse;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionResponse;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionSetResponse;
+import be.fgov.ehealth.hubservices.core.v3.LocalSearchType;
 import be.fgov.ehealth.hubservices.core.v3.PatientIdType;
 import be.fgov.ehealth.hubservices.core.v3.PutTransactionResponse;
 import be.fgov.ehealth.hubservices.core.v3.PutTransactionSetResponse;
 import be.fgov.ehealth.hubservices.core.v3.RevokeTransactionResponse;
 import be.fgov.ehealth.hubservices.core.v3.SelectGetLatestUpdateType;
 import be.fgov.ehealth.hubservices.core.v3.TransactionBaseType;
+import be.fgov.ehealth.hubservices.core.v3.TransactionWithPeriodType;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONschemes;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHR;
@@ -27,8 +30,10 @@ import org.imec.ivlab.core.config.EVSProperties;
 import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.kmehr.KmehrMarshaller;
+import org.imec.ivlab.core.model.upload.TransactionType;
 import org.imec.ivlab.core.util.IOUtils;
 import org.imec.ivlab.core.util.JAXBUtils;
+import org.imec.ivlab.ehconnector.business.HubHelper;
 import org.imec.ivlab.ehconnector.hub.exception.GatewaySpecificErrorException;
 import org.imec.ivlab.ehconnector.hub.exception.incurable.InvalidConfigurationException;
 import org.imec.ivlab.ehconnector.hub.session.SessionManager;
@@ -55,8 +60,10 @@ public class HubServiceTest extends TestCase {
     SelectGetLatestUpdateType selectGetLatestUpdateType = new SelectGetLatestUpdateType();
     Criteria criterium = new Criteria();
     criterium.setPatient(getPatientIdType());
-    CDTRANSACTION cd = getCdtransaction();
-    criterium.getCds().add(cd);
+    criterium.getCds().add(getCdtransaction(TransactionType.MEDICATION_SCHEME));
+    criterium.getCds().add(getCdtransaction(TransactionType.CHILD_PREVENTION));
+    criterium.getCds().add(getCdtransaction(TransactionType.POPULATION_BASED_SCREENING));
+    criterium.getCds().add(getCdtransaction(TransactionType.SUMEHR));
     selectGetLatestUpdateType.getCriterias().add(criterium);
 
     GetLatestUpdateResponse latestUpdateResponse = hubService.getLatestUpdate(selectGetLatestUpdateType);
@@ -70,6 +77,14 @@ public class HubServiceTest extends TestCase {
     transactionBaseType.setId(getIdKmehr(MEDICATION_SCHEME_LOCAL_ID));
     GetTransactionSetResponse transactionSet = hubService.getTransactionSet(getPatientIdType(), transactionBaseType);
     log.info(JAXBUtils.marshal(transactionSet));
+  }
+
+  public void testGetTransactionList() throws VitalinkException, GatewaySpecificErrorException, JAXBException, TechnicalConnectorException {
+    HubService hubService = init(actor);
+
+    TransactionWithPeriodType transactionWithPeriodType = new HubHelper().createTransactionWithPeriodType(TransactionType.MEDICATION_SCHEME, TransactionType.CHILD_PREVENTION, TransactionType.POPULATION_BASED_SCREENING, TransactionType.SUMEHR);
+    GetTransactionListResponse transactionList = hubService.getTransactionList(getPatientIdType(), LocalSearchType.GLOBAL, transactionWithPeriodType);
+    log.info(JAXBUtils.marshal(transactionList));
   }
 
   public void testPutTransactionSet() throws TransformationException, VitalinkException, GatewaySpecificErrorException, JAXBException, TechnicalConnectorException {
@@ -130,11 +145,11 @@ public class HubServiceTest extends TestCase {
     return patientIdType;
   }
 
-  private CDTRANSACTION getCdtransaction() {
+  private CDTRANSACTION getCdtransaction(TransactionType transactionType) {
     CDTRANSACTION cd = new CDTRANSACTION();
     cd.setS(CDTRANSACTIONschemes.CD_TRANSACTION);
     cd.setSV("1.4");
-    cd.setValue("medicationscheme");
+    cd.setValue(transactionType.getTransactionTypeValueForGetLatestUpdate());
     return cd;
   }
 }
