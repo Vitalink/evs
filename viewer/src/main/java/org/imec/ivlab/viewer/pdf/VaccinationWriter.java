@@ -26,6 +26,7 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDINNCLUSTER;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDLIFECYCLEvalues;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDLNKvalues;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDMEDIATYPEvalues;
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDUNIT;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDUNITschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
@@ -200,13 +201,6 @@ public class VaccinationWriter extends Writer {
         return toDetailRowIfHasValue(key, value);
     }
 
-    protected static Font getValidationAnnotationFont() {
-        Font font = new Phrase().getFont();
-        font.setSize(8);
-        font.setStyle(Font.NORMAL);
-        font.setColor(BaseColor.WHITE);
-        return font;
-    }
 
     private PdfPTable lnkToTable(LnkType lnkType) {
         PdfPTable table = initializeDetailTable();
@@ -253,4 +247,8 @@ public class VaccinationWriter extends Writer {
                        .collect(Collectors.toList());
     }
 
+    @Override
+    protected boolean isSupported(CDTRANSACTION cdtransaction) {
+        return true;
+    }
 }

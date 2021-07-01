@@ -18,6 +18,7 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENT;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENTschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDDRUGCNK;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDDRUGCNKschemes;
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Font;
@@ -242,12 +243,8 @@ public class VaccinationListWriter extends Writer {
         return cell;
     }
 
-    protected static Font getValidationAnnotationFont() {
-        Font font = new Phrase().getFont();
-        font.setSize(8);
-        font.setStyle(Font.NORMAL);
-        font.setColor(BaseColor.WHITE);
-        return font;
+    @Override
+    protected boolean isSupported(CDTRANSACTION cdtransaction) {
+        return true;
     }
-
 }

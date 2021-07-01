@@ -24,6 +24,7 @@ import static org.imec.ivlab.viewer.pdf.Translator.translateFrequency;
 import static org.imec.ivlab.viewer.pdf.Translator.translateRoute;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENT;
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
@@ -622,4 +623,8 @@ public class SumehrWriter extends Writer {
         return createDetailRow(key, value);
     }
 
+    @Override
+    protected boolean isSupported(CDTRANSACTION cdtransaction) {
+        return true;
+    }
 }

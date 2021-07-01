@@ -18,13 +18,17 @@ import static org.imec.ivlab.viewer.pdf.Translator.formatAsTime;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDADDRESS;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDHCPARTY;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTELECOM;
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDHCPARTY;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDPATIENT;
 import be.fgov.ehealth.standards.kmehr.schema.v1.AddressType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.CountryType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TelecomType;
 import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
@@ -60,6 +64,8 @@ import org.xml.sax.SAXException;
 public abstract class Writer {
 
     private final static Logger LOG = Logger.getLogger(Writer.class);
+
+    private static final String ANNOTATION_TEXT_NOT_SUPPORTED = "Not supported";
 
     protected static Set<String> idHcPartiesToIgnore = new HashSet<>();
     static {
@@ -378,14 +384,46 @@ public abstract class Writer {
         transactionCommon
             .getCdtransactions()
             .forEach(cdtransaction -> {
-                addRow(table, createDetailRow(cdtransaction
+                addRow(table, createRowWithValidation(cdtransaction
                     .getS()
-                    .value(), cdtransaction.getValue()));
+                    .value(), cdtransaction));
             });
         return table;
 
     }
 
+    protected static Font getValidationAnnotationFont() {
+        Font font = new Phrase().getFont();
+        font.setSize(8);
+        font.setStyle(Font.NORMAL);
+        font.setColor(BaseColor.WHITE);
+        return font;
+    }
+
+    protected abstract boolean isSupported(CDTRANSACTION cdtransaction);
+
+    private List<PdfPCell> createRowWithValidation(String title, CDTRANSACTION cdtransaction) {
+        List<PdfPCell> pdfPCells = toDetailRowIfHasValue(title, cdtransaction.getValue());
+        if (CollectionsUtil.size(pdfPCells) == 2 && !isSupported(cdtransaction)) {
+            annotateCellWithValidationMessage(pdfPCells.get(1), ANNOTATION_TEXT_NOT_SUPPORTED);
+        }
+        return pdfPCells;
+    }
+
+    private void annotateCellWithValidationMessage(PdfPCell pdfPCell, String message) {
+        annotateCell(pdfPCell, message, BaseColor.RED, getValidationAnnotationFont());
+    }
+
+    private void annotateCell(PdfPCell pdfPCell, String annotationText, BaseColor colour, Font font) {
+        if (pdfPCell == null) {
+            return;
+        }
+        Chunk chunkSpace = new Chunk(" ");
+        Chunk chunkAnnotation = new Chunk("[" + annotationText + "]").setBackground(colour);
+        chunkAnnotation.setFont(font);
+        pdfPCell.getPhrase().add(chunkSpace);
+        pdfPCell.getPhrase().add(chunkAnnotation);
+    }
 
 }
 

@@ -9,6 +9,7 @@ import static org.imec.ivlab.viewer.pdf.TableHelper.initializeDetailTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
 
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
@@ -125,12 +126,8 @@ public class PopulationBasedScreeningWriter extends Writer {
         return tables;
     }
 
-    protected static Font getValidationAnnotationFont() {
-        Font font = new Phrase().getFont();
-        font.setSize(8);
-        font.setStyle(Font.NORMAL);
-        font.setColor(BaseColor.WHITE);
-        return font;
+    @Override
+    protected boolean isSupported(CDTRANSACTION cdtransaction) {
+        return true;
     }
-
 }

@@ -35,6 +35,7 @@ import static org.imec.ivlab.viewer.pdf.Translator.translateRoute;
 import static org.imec.ivlab.viewer.pdf.Translator.translateTemporality;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTEMPORALITYvalues;
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.DocumentException;
@@ -1237,4 +1238,8 @@ public class MSWriter extends Writer {
 
     }
 
+    @Override
+    protected boolean isSupported(CDTRANSACTION cdtransaction) {
+        return true;
+    }
 }

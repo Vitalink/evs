@@ -9,6 +9,7 @@ import static org.imec.ivlab.viewer.pdf.TableHelper.initializeDetailTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
 
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDUNIT;
 import be.fgov.ehealth.standards.kmehr.schema.v1.UnitType;
 import com.itextpdf.text.BaseColor;
@@ -119,12 +120,8 @@ public class ChildPreventionWriter extends Writer {
         }
     }
 
-    protected static Font getValidationAnnotationFont() {
-        Font font = new Phrase().getFont();
-        font.setSize(8);
-        font.setStyle(Font.NORMAL);
-        font.setColor(BaseColor.WHITE);
-        return font;
+    @Override
+    protected boolean isSupported(CDTRANSACTION cdtransaction) {
+        return true;
     }
-
 }

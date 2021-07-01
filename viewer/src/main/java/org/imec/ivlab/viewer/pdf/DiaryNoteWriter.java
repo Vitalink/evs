@@ -10,12 +10,10 @@ import static org.imec.ivlab.viewer.pdf.TableHelper.createTitleTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.initializeDetailTable;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsDate;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsDateTime;
-import static org.imec.ivlab.viewer.pdf.Translator.formatAsTime;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDLNKvalues;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDMEDIATYPEvalues;
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
 import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
@@ -57,7 +55,6 @@ public class DiaryNoteWriter extends Writer {
 
     private static final Set<String> VITALINK_SUPPORTED_CD_DIARYNOTE_VALUES = new HashSet<>(Arrays.asList("diabetes", "nutrition", "movement", "medication", "renalinsufficiency", "woundcare"));
     private static final int TEXT_MESSAGE_MAX_LENGTH = 320;
-    private static final String ANNOTATION_TEXT_NOT_SUPPORTED = "Not supported";
     private static final String ANNOTATION_TEXT_TEXT_MESSAGE_TOO_LONG = "Text content exceeds max length of " + TEXT_MESSAGE_MAX_LENGTH + " characters";
 
     public static void main(String[] args) {
@@ -98,7 +95,7 @@ public class DiaryNoteWriter extends Writer {
         tables.add(combineTables(createTitleTable("Patient"), patientToTable(diaryNote.getTransactionCommon().getPerson()), toUnparsedContentTable(diaryNote.getTransactionCommon().getPerson(), "Patient")));
         tables.add(combineTables(createTitleTable("Author"), createHcPartyTables(diaryNote.getTransactionCommon().getAuthor()), toUnparsedContentTables(diaryNote.getTransactionCommon().getAuthor(), "Author")));
         tables.add(combineTables(createTitleTable("Redactor"), createHcPartyTables(diaryNote.getTransactionCommon().getRedactor()), toUnparsedContentTables(diaryNote.getTransactionCommon().getRedactor(), "Redactor")));
-        tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(diaryNote), toUnparsedContentTables(diaryNote.getTransactionCommon().getAuthor(), "Author")));
+        tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(diaryNote.getTransactionCommon()), toUnparsedContentTables(diaryNote.getTransactionCommon().getAuthor(), "Author")));
         tables.add(combineTables(createTitleTable("DiaryNote"), createDiaryNotetables(diaryNote), null));
         return tables;
 
@@ -114,27 +111,9 @@ public class DiaryNoteWriter extends Writer {
         return tables;
     }
 
-    protected PdfPTable createTransactionMetadata(DiaryNote diaryNote) {
-
-        PdfPTable table = initializeDetailTable();
-        addRow(table, createDetailHeader("General information"));
-        Optional.ofNullable(diaryNote.getCdDiaryValues()).orElse(Collections.emptyList())
-            .forEach(cdDiaryValue -> addRow(table, createCdDiaryRow("cd CD-DIARY", cdDiaryValue)));
-        Optional.ofNullable(diaryNote.getCdLocalEntries()).orElse(Collections.emptyList())
-            .forEach(cdtransaction -> addRow(table, toDetailRowIfHasValue("cd LOCAL - " + cdtransaction.getDN(), cdtransaction.getValue())));
-        addRow(table, createDetailRow("Date", formatAsDate(diaryNote.getTransactionCommon().getDate())));
-        addRow(table, createDetailRow("Time", formatAsTime(diaryNote.getTransactionCommon().getTime())));
-        addRow(table, toDetailRowIfHasValue("Record date time", formatAsDateTime(diaryNote.getTransactionCommon().getRecordDateTime())));
-        return table;
-
-    }
-
-    private List<PdfPCell> createCdDiaryRow(String title, String cdDiaryValue) {
-        List<PdfPCell> pdfPCells = toDetailRowIfHasValue(title, cdDiaryValue);
-        if (CollectionsUtil.size(pdfPCells) == 2 && !isSupportedCdDiaryNoteValue(cdDiaryValue)) {
-            annotateCellWithValidationMessage(pdfPCells.get(1), ANNOTATION_TEXT_NOT_SUPPORTED);
-        }
-        return pdfPCells;
+    @Override
+    protected boolean isSupported(CDTRANSACTION cdtransaction) {
+        return cdtransaction.getValue() == null || VITALINK_SUPPORTED_CD_DIARYNOTE_VALUES.contains(StringUtils.lowerCase(cdtransaction.getValue()));
     }
 
     private void annotateCellWithValidationMessage(PdfPCell pdfPCell, String message) {
@@ -152,13 +131,6 @@ public class DiaryNoteWriter extends Writer {
         pdfPCell.getPhrase().add(chunkAnnotation);
     }
 
-    protected static Font getValidationAnnotationFont() {
-        Font font = new Phrase().getFont();
-        font.setSize(8);
-        font.setStyle(Font.NORMAL);
-        font.setColor(BaseColor.WHITE);
-        return font;
-    }
 
     private boolean isSupportedCdDiaryNoteValue(String cdDiaryNoteValue) {
         return cdDiaryNoteValue == null || VITALINK_SUPPORTED_CD_DIARYNOTE_VALUES.contains(StringUtils.lowerCase(cdDiaryNoteValue));
