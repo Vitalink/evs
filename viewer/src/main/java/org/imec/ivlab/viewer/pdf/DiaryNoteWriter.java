@@ -14,6 +14,7 @@ import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDLNKvalues;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDMEDIATYPEvalues;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
+import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
 import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
@@ -113,7 +114,7 @@ public class DiaryNoteWriter extends Writer {
 
     @Override
     protected boolean isSupported(CDTRANSACTION cdtransaction) {
-        return cdtransaction.getValue() == null || VITALINK_SUPPORTED_CD_DIARYNOTE_VALUES.contains(StringUtils.lowerCase(cdtransaction.getValue()));
+        return CDTRANSACTIONschemes.CD_TRANSACTION.equals(cdtransaction.getS()) || cdtransaction.getValue() == null || VITALINK_SUPPORTED_CD_DIARYNOTE_VALUES.contains(StringUtils.lowerCase(cdtransaction.getValue()));
     }
 
     private void annotateCellWithValidationMessage(PdfPCell pdfPCell, String message) {
