@@ -132,11 +132,6 @@ public class DiaryNoteWriter extends Writer {
         pdfPCell.getPhrase().add(chunkAnnotation);
     }
 
-
-    private boolean isSupportedCdDiaryNoteValue(String cdDiaryNoteValue) {
-        return cdDiaryNoteValue == null || VITALINK_SUPPORTED_CD_DIARYNOTE_VALUES.contains(StringUtils.lowerCase(cdDiaryNoteValue));
-    }
-
     private boolean isValidTextualMessage(Integer textLength) {
         return textLength <= TEXT_MESSAGE_MAX_LENGTH;
     }
