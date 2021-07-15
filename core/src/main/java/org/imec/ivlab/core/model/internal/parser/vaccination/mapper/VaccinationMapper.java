@@ -20,6 +20,7 @@ import org.apache.commons.lang3.SerializationUtils;
 import org.imec.ivlab.core.kmehr.mapper.KmehrMapper;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.model.internal.parser.common.BaseMapper;
+import org.imec.ivlab.core.model.internal.parser.vaccination.EncounterLocation;
 import org.imec.ivlab.core.model.internal.parser.vaccination.Vaccination;
 import org.imec.ivlab.core.model.internal.parser.vaccination.VaccinationItem;
 import org.imec.ivlab.core.util.CollectionsUtil;
@@ -54,6 +55,7 @@ public class VaccinationMapper extends BaseMapper {
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.getTransactionCommon().setRedactor(mapHcPartyFields(firstTransaction.getRedactor()));
         entry.setVaccinationItems(toVaccinations(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.VACCINE)));
+        entry.setEncounterLocations(toEncounterLocations(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.ENCOUNTERLOCATION)));
         entry.setTextTypes(getTextAndRemoveFromTransaction(firstTransaction));
         entry.setLinkTypes(getLinksAndRemoveFromTransaction(firstTransaction));
         markTransactionAsProcessed(firstTransaction);
@@ -63,6 +65,15 @@ public class VaccinationMapper extends BaseMapper {
         return entry;
     }
 
+    private static List<EncounterLocation> toEncounterLocations(List<ItemType> itemTypes) {
+        return Optional
+            .ofNullable(itemTypes)
+            .orElse(Collections.emptyList())
+            .stream()
+            .map(VaccinationMapper::toEncounterLocation)
+            .collect(Collectors.toList());
+    }
+
     private static List<VaccinationItem> toVaccinations(List<ItemType> itemTypes) {
         return Optional
             .of(itemTypes)
@@ -70,6 +81,23 @@ public class VaccinationMapper extends BaseMapper {
             .stream()
             .map(VaccinationMapper::toVaccination)
             .collect(Collectors.toList());
+    }
+
+    private static EncounterLocation toEncounterLocation(ItemType itemType) {
+
+        ItemType clone = SerializationUtils.clone(itemType);
+
+        EncounterLocation encounterLocation = new EncounterLocation();
+
+        clearIds(clone);
+        clearCds(clone);
+
+        encounterLocation.setAuthors(mapHcPartyFields(itemType.getAuthor()));
+
+        encounterLocation.setTextTypes(itemType.getTexts());
+        clone.getTexts().clear();
+
+        return encounterLocation;
     }
 
     private static VaccinationItem toVaccination(ItemType itemType) {

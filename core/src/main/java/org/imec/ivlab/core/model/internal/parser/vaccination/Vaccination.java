@@ -16,6 +16,7 @@ public class Vaccination extends ParsedKmehrItem {
     private List<TextType> textTypes;
     private List<LnkType> linkTypes;
     private List<VaccinationItem> vaccinationItems;
+    private List<EncounterLocation> encounterLocations;
 
     @Override
     public Set<String> ignoredNodeNames() {

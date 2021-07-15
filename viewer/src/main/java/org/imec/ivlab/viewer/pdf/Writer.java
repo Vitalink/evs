@@ -77,6 +77,12 @@ public abstract class Writer {
         String title = StringUtils.joinWith(" ", hcParty.getFirstname(), hcParty.getFamilyname(), hcParty.getName());
         addRow(table, createDetailHeader(title));
 
+        addHcPartyDetailRows(hcParty, table);
+
+        return table;
+    }
+
+    protected void addHcPartyDetailRows(HcParty hcParty, PdfPTable table) {
         addRow(table, toDetailRowsIfHasValue(getHcPartyIdentifiers(hcParty.getIds())));
         addRow(table, toDetailRowsIfHasValue(getHcPartyCodes(hcParty.getCds())));
         addRow(table, toDetailRowIfHasValue("First name", hcParty.getFirstname()));
@@ -84,8 +90,6 @@ public abstract class Writer {
         addRow(table, toDetailRowIfHasValue("Name", hcParty.getName()));
         addRow(table, toDetailRowsIfHasValue(getTelecoms(hcParty.getTelecoms())));
         addRow(table, toDetailRowsIfHasValue(getAddresses(hcParty.getAddresses())));
-
-        return table;
     }
 
     protected PdfPTable contactPersonToTable(ContactPerson person) {

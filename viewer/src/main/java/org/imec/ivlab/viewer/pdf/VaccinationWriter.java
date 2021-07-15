@@ -59,6 +59,7 @@ import org.imec.ivlab.core.kmehr.model.util.TextTypeUtil;
 import org.imec.ivlab.core.model.internal.parser.ParsedItem;
 import org.imec.ivlab.core.model.internal.parser.common.Header;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;
+import org.imec.ivlab.core.model.internal.parser.vaccination.EncounterLocation;
 import org.imec.ivlab.core.model.internal.parser.vaccination.Vaccination;
 import org.imec.ivlab.core.model.internal.parser.vaccination.VaccinationItem;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
@@ -73,7 +74,7 @@ public class VaccinationWriter extends Writer {
     public static void main(String[] args) {
 
         VaccinationWriter vaccinationWriter = new VaccinationWriter();
-        Stream.of("vaccination-with-medicinal-product", "vaccination-with-cdatc-and-batch", "vaccination-no-quantity", "vaccination-with-substance-product", "vaccination-with-unparsable-content")
+        Stream.of("vaccination-with-medicinal-product", "vaccination-with-cdatc-and-batch", "vaccination-no-quantity", "vaccination-with-substance-product", "vaccination-with-unparsable-content", "vaccination-with-encounterlocation")
               .forEach(filename -> vaccinationWriter.createPdf(readTestFile(filename + ".xml").get(0), filename + ".pdf"));
 
     }
@@ -151,7 +152,7 @@ public class VaccinationWriter extends Writer {
         tables.add(combineTables(createTitleTable("Author"), createHcPartyTables(vaccination.getTransactionCommon().getAuthor()), toUnparsedContentTables(vaccination.getTransactionCommon().getAuthor(), "Author")));
         tables.add(combineTables(createTitleTable("Redactor"), createHcPartyTables(vaccination.getTransactionCommon().getRedactor()), toUnparsedContentTables(vaccination.getTransactionCommon().getRedactor(), "Redactor")));
         tables.add(combineTables(createTitleTable("Transaction metadata"), createTransactionMetadata(vaccination), toUnparsedContentTables(vaccination.getTransactionCommon().getAuthor(), "Author")));
-        tables.add(combineTables(createTitleTable("Vaccination"), createVaccinationTables(vaccination), null));
+        tables.add(combineTables(createTitleTable("Transaction details"), createVaccinationTables(vaccination), null));
         return tables;
 
     }
@@ -168,13 +169,26 @@ public class VaccinationWriter extends Writer {
         tables.addAll(createLnkTable(vaccination.getLinkTypes()));
         tables.addAll(createTextWithoutLayoutTable(vaccination.getTextTypes()));
         vaccination.getVaccinationItems().forEach(vaccinationItem -> tables.add(createVaccinationDetailsTable(vaccinationItem)));
+        vaccination.getEncounterLocations().forEach(encounterLocation -> tables.add(createEncounterLocationTable(encounterLocation)));
 
         return tables;
     }
 
+    private PdfPTable createEncounterLocationTable(EncounterLocation encounterLocation) {
+        PdfPTable table = initializeDetailTable();
+
+        addRow(table, createDetailHeader("Encounter location"));
+
+        addRow(table, toDetailRowIfHasValue("Text", StringUtils.joinWith(System.lineSeparator(), TextTypeUtil.toStrings(encounterLocation.getTextTypes()).toArray())));
+
+        encounterLocation.getAuthors().forEach(hcParty -> addHcPartyDetailRows(hcParty, table));
+
+        return table;
+    }
+
     private PdfPTable createVaccinationDetailsTable(VaccinationItem vaccinationItem) {
         PdfPTable table = initializeDetailTable();
-        addRow(table, createDetailHeader("Vaccination details"));
+        addRow(table, createDetailHeader("Vaccination"));
 
         List<CDDRUGCNK> intendedMedicinalCnks = getMedicinalIntendedCnks(vaccinationItem);
         List<String> intendedMedicinalNames = getMedicinalIntendedNames(vaccinationItem);
