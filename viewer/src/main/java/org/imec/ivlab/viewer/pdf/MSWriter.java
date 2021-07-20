@@ -59,6 +59,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import org.apache.commons.lang3.StringUtils;
@@ -238,7 +239,7 @@ public class MSWriter extends Writer {
         cell.setHorizontalAlignment(Element.ALIGN_RIGHT);
         cell.setColspan(3);
         table.addCell(cell);
-        cell = new PdfPCell(getDefaultPhraseBold(scheme.getVersion()));
+        cell = new PdfPCell(getDefaultPhraseBold(Optional.ofNullable(scheme.getVersion()).orElse("0")));
         cell.setBorderColor(BaseColor.WHITE);
         cell.setHorizontalAlignment(Element.ALIGN_LEFT);
         cell.setColspan(3);
