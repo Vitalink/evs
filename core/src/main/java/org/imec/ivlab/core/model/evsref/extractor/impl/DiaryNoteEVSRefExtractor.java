@@ -32,6 +32,7 @@ public class DiaryNoteEVSRefExtractor extends AbstractRefExtractor {
         } else {
             TextWithLayoutType textWithLayoutType = new TextWithLayoutType();
             textWithLayoutType.setL("nl");
+            textWithLayoutType.getContent().add(evsref.getFormatted());
             identifiable.getIdentifiableTransaction().getHeadingsAndItemsAndTexts().add(textWithLayoutType);
         }
 
