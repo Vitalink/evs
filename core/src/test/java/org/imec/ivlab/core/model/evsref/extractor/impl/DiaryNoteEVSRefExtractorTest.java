@@ -7,19 +7,24 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
-import java.io.Serializable;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 import junit.framework.TestCase;
+import lombok.extern.log4j.Log4j;
+import org.apache.commons.lang3.StringUtils;
+import org.imec.ivlab.core.TestResourceReader;
+import org.imec.ivlab.core.kmehr.KmehrMarshaller;
+import org.imec.ivlab.core.kmehr.model.util.FolderUtil;
+import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.evsref.EVSREF;
 import org.imec.ivlab.core.model.upload.KmehrWithReference;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 @Test
+@Log4j
 public class DiaryNoteEVSRefExtractorTest extends TestCase {
 
   private EVSREF evsref = new EVSREF("TESTREF");
@@ -54,25 +59,56 @@ public class DiaryNoteEVSRefExtractorTest extends TestCase {
   }
 
   @Test
-  public void addEvsRefToExistingTextWithLayoutIfExists() {
-    TextWithLayoutType textWithLayoutType = new TextWithLayoutType();
-    textWithLayoutType.getContent().add("existing");
-    textWithLayoutType.getContent().add("content");
-    kmehr.getIdentifiableTransaction().getHeadingsAndItemsAndTexts().add(textWithLayoutType);
+  public void addEvsRefToStrikedTextifOnlyStrikedTextExists() {
 
-    new DiaryNoteEVSRefExtractor().putEvsReference(kmehr, evsref);
+    Kmehrmessage kmehrmessage = readTemplate("100-diarynote-everything-striked.xml");
+    TransactionType firstTransaction = getTransactionType(kmehrmessage);
+    List<TextWithLayoutType> textWithLayoutTypes = TransactionUtil.getTextWithLayout(firstTransaction);
 
-    List<TextWithLayoutType> textWithLayoutTypes = TransactionUtil.getTextWithLayout(kmehr.getIdentifiableTransaction());
-    assertThat(textWithLayoutTypes).isNotEmpty();
-    List<Object> contentList = textWithLayoutTypes
-        .get(0)
-        .getContent();
-    assertThat(contentList).hasSize(3);
-    assertThat(contentList.get(0)).isEqualTo("existing");
-    assertThat(contentList.get(1)).isEqualTo("content");
-    assertThat(contentList.get(2)).isEqualTo(evsref.getFormatted());
+    assertThat(getNonEmptyContent(textWithLayoutTypes)).hasSize(1);
+
+    new DiaryNoteEVSRefExtractor().putEvsReference( new KmehrWithReference(kmehrmessage),evsref);
+
+    assertThat(getNonEmptyContent(textWithLayoutTypes)).hasSize(1);
+
   }
 
+  @Test
+  public void addEvsRefAtTheEndStrikedTextifNotOnlyStrikedTextExists() {
+
+    Kmehrmessage kmehrmessage = readTemplate("101-diarynote-almost-everything-striked.xml");
+    TransactionType firstTransaction = getTransactionType(kmehrmessage);
+    List<TextWithLayoutType> textWithLayoutTypes = TransactionUtil.getTextWithLayout(firstTransaction);
+    assertThat(textWithLayoutTypes).isNotEmpty();
+
+    assertThat(getNonEmptyContent(textWithLayoutTypes)).hasSize(2);
+
+    new DiaryNoteEVSRefExtractor().putEvsReference( new KmehrWithReference(kmehrmessage),evsref);
+
+    assertThat(getNonEmptyContent(textWithLayoutTypes)).hasSize(3);
+
+  }
+
+  private List<Object> getNonEmptyContent(List<TextWithLayoutType> textWithLayoutTypes) {
+    return textWithLayoutTypes
+        .get(0)
+        .getContent()
+        .stream()
+        .filter(content -> StringUtils.trimToNull(content.toString()) != null)
+        .collect(Collectors.toList());
+  }
+
+
+  private TransactionType getTransactionType(Kmehrmessage kmehrmessage) {
+    FolderType folderType = KmehrMessageUtil.getFolderType(kmehrmessage);
+    TransactionType firstTransaction = FolderUtil.getFirstTransaction(folderType);
+    return firstTransaction;
+  }
+
+  private Kmehrmessage readTemplate(String templateName) {
+    String kmehrText = TestResourceReader.read(templateName);
+    return KmehrMarshaller.fromString(kmehrText);
+  }
 
   private KmehrWithReference initKmehr() {
     Kmehrmessage kmehrMessage = getEmptyKmehr();
