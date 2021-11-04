@@ -39,6 +39,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.imec.ivlab.core.model.internal.parser.diarynote.DiaryNote;
 import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
@@ -61,7 +62,7 @@ public class DiaryNoteWriter extends Writer {
     public static void main(String[] args) {
 
         DiaryNoteWriter diaryNoteWriter = new DiaryNoteWriter();
-        Stream.of("diarynote-with-only-text-without-layout", "diarynote-with-only-text-with-layout", "diarynote-example-b-3", "diarynote-example-rsb-recorddatetime-and-redactor-and-pact", "diarynote-with-redactor", "diarynote-example-b-3-with-unsupported-cddiarynote-values", "diarynote-with-layout-and-strikethrough")
+        Stream.of("diarynote-with-only-text-without-layout", "diarynote-with-only-text-with-layout", "diarynote-example-b-3", "diarynote-example-rsb-recorddatetime-and-redactor-and-pact", "diarynote-with-redactor", "diarynote-example-b-3-with-unsupported-cddiarynote-values", "diarynote-with-layout-and-strikethrough", "diarynote-with-layout-and-strikethrough2")
             .forEach(filename -> diaryNoteWriter.createPdf(readTestFile(filename + ".xml").get(0), filename + ".pdf"));
 
     }
@@ -189,6 +190,7 @@ public class DiaryNoteWriter extends Writer {
                 .map(this::parseTextWithLayoutContent)
                 .filter(Objects::nonNull)
                 .map(this::toText)
+                .flatMap(Collection::stream)
                 .map(this::removeXmlTags)
                 .map(this::toChunk)
                 .collect(Collectors.toList());
@@ -217,15 +219,53 @@ public class DiaryNoteWriter extends Writer {
         return font;
     }
 
-    private Text toText(String inputString) {
+    private List<Text> toText(String inputString) {
+        List<Text> texts = new ArrayList<>();
+
+        while (findMatch(inputString).isPresent()) {
+            Match match = findMatch(inputString).get();
+            registerBeforeMatchAsPlainText(inputString, texts, match);
+            registerMatchAsStrikeThroughText(texts, match);
+            inputString = everythingBehindMatch(inputString, match);
+        }
+        if (!inputString.isEmpty()) {
+            registerRemainingAsPlainText(inputString, texts);
+        }
+        return texts;
+    }
+
+    private String everythingBehindMatch(String inputString, Match match) {
+        return inputString.substring(match.positionEnd);
+    }
+
+    private boolean registerRemainingAsPlainText(String inputString, List<Text> texts) {
+        return texts.add(new PlainText(inputString));
+    }
+
+    private boolean registerMatchAsStrikeThroughText(List<Text> texts, Match match) {
+        return texts.add(new StrikeThroughText(match.value));
+    }
+
+    private boolean registerBeforeMatchAsPlainText(String inputString, List<Text> texts, Match match) {
+        return texts.add(new PlainText(inputString.substring(0, match.positionStart)));
+    }
+
+    private Optional<Match> findMatch(String inputString) {
         String strikeXmlTagsPattern = "<(s|del|strike)(?:>|\\s[^>]+>).*?<\\/\\1>";
         Pattern r = Pattern.compile(strikeXmlTagsPattern, Pattern.DOTALL);
         Matcher matcher = r.matcher(inputString);
         if (matcher.find()) {
-            return new StrikeThroughText(inputString);
+            return Optional.of(new Match(matcher.start(), matcher.end(), matcher.group(0)));
         } else {
-            return new PlainText(inputString);
+            return Optional.empty();
         }
+    }
+
+    @AllArgsConstructor
+    private class Match {
+        private int positionStart;
+        private int positionEnd;
+        private String value;
     }
 
     private String removeXmlTags(String input) {
