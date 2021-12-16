@@ -66,9 +66,9 @@ public class DiaryNoteWriter extends Writer {
     private static final int TEXT_MESSAGE_MAX_LENGTH = 320;
     private static final BigDecimal ATTACHMENT_MAX_SIZE_IN_MB = BigDecimal.valueOf(20);
     private static final List<String> PARTS_OF_VALID_MEDIA_TYPE_NAMES = Arrays.asList("dicom", "g3fax", "gif", "jpg", "jpeg", "png", "tiff");
-    private static final String ANNOTATION_TEXT_TEXT_MESSAGE_TOO_LONG = "Text content exceeds max length of " + TEXT_MESSAGE_MAX_LENGTH + " characters";
-    private static final String ANNOTATION_TEXT_TEXT_ATTACHMENT_TOO_LARGE = "Attachment size exceeds limit of " + ATTACHMENT_MAX_SIZE_IN_MB + " MB";
-    private static final String ANNOTATION_TEXT_INVALID_MEDIA_TYPE = String.format("Mediatype is unsupported. Supported mediatypes: %s", StringUtils.joinWith(", ", PARTS_OF_VALID_MEDIA_TYPE_NAMES.toArray()));
+    private static final String MESSAGE_TEXT_CONTENT_TOO_LONG = "Text content exceeds max length of " + TEXT_MESSAGE_MAX_LENGTH + " characters";
+    private static final String MESSAGE_ATTACHMENT_TOO_LARGE = "Attachment size exceeds limit of " + ATTACHMENT_MAX_SIZE_IN_MB + " MB";
+    private static final String MESSAGE_MEDIA_TYPE_INVALID = String.format("Mediatype is invalid. Valid mediatypes: %s", StringUtils.joinWith(", ", PARTS_OF_VALID_MEDIA_TYPE_NAMES.toArray()));
 
     public static void main(String[] args) {
 
@@ -169,7 +169,7 @@ public class DiaryNoteWriter extends Writer {
         if (mediaType != null) {
             List<PdfPCell> pdfPCells = toDetailRowIfHasValue("Actual mediatype", mediaType);
             if (CollectionsUtil.size(pdfPCells) == 2 && !isValidMediaType(mediaType)) {
-                annotateCellWithValidationMessage(pdfPCells.get(1), ANNOTATION_TEXT_INVALID_MEDIA_TYPE);
+                annotateCellWithValidationMessage(pdfPCells.get(1), MESSAGE_MEDIA_TYPE_INVALID);
             }
             return pdfPCells;
         } else {
@@ -198,7 +198,7 @@ public class DiaryNoteWriter extends Writer {
         if (size != null) {
             List<PdfPCell> pdfPCells = toDetailRowIfHasValue("Actual size", humanReadableByteCountSI(content.length));
             if (CollectionsUtil.size(pdfPCells) == 2 && size.compareTo(ATTACHMENT_MAX_SIZE_IN_MB) >= 0) {
-                annotateCellWithValidationMessage(pdfPCells.get(1), ANNOTATION_TEXT_TEXT_ATTACHMENT_TOO_LARGE);
+                annotateCellWithValidationMessage(pdfPCells.get(1), MESSAGE_ATTACHMENT_TOO_LARGE);
             }
             return pdfPCells;
         } else {
@@ -243,7 +243,7 @@ public class DiaryNoteWriter extends Writer {
     private List<PdfPCell> createTextLengthDetailRow(Integer length) {
         List<PdfPCell> pdfPCells = toDetailRowIfHasValue("Content length", length);
         if (CollectionsUtil.size(pdfPCells) == 2 && !isValidTextualMessage(length)) {
-            annotateCellWithValidationMessage(pdfPCells.get(1), ANNOTATION_TEXT_TEXT_MESSAGE_TOO_LONG);
+            annotateCellWithValidationMessage(pdfPCells.get(1), MESSAGE_TEXT_CONTENT_TOO_LONG);
         }
         return pdfPCells;
     }
