@@ -25,7 +25,9 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.text.CharacterIterator;
@@ -45,6 +47,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.tika.Tika;
 import org.imec.ivlab.core.model.internal.parser.diarynote.DiaryNote;
 import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
 import org.imec.ivlab.core.model.upload.extractor.DiaryNoteListExtractor;
@@ -62,8 +65,10 @@ public class DiaryNoteWriter extends Writer {
     private static final Set<String> VITALINK_SUPPORTED_CD_DIARYNOTE_VALUES = new HashSet<>(Arrays.asList("diabetes", "nutrition", "movement", "medication", "renalinsufficiency", "woundcare"));
     private static final int TEXT_MESSAGE_MAX_LENGTH = 320;
     private static final BigDecimal ATTACHMENT_MAX_SIZE_IN_MB = BigDecimal.valueOf(20);
+    private static final List<String> PARTS_OF_VALID_MEDIA_TYPE_NAMES = Arrays.asList("dicom", "g3fax", "gif", "jpg", "jpeg", "png", "tiff");
     private static final String ANNOTATION_TEXT_TEXT_MESSAGE_TOO_LONG = "Text content exceeds max length of " + TEXT_MESSAGE_MAX_LENGTH + " characters";
     private static final String ANNOTATION_TEXT_TEXT_ATTACHMENT_TOO_LARGE = "Attachment size exceeds limit of " + ATTACHMENT_MAX_SIZE_IN_MB + " MB";
+    private static final String ANNOTATION_TEXT_INVALID_MEDIA_TYPE = String.format("Mediatype is unsupported. Supported mediatypes: %s", StringUtils.joinWith(", ", PARTS_OF_VALID_MEDIA_TYPE_NAMES.toArray()));
 
     public static void main(String[] args) {
 
@@ -149,12 +154,43 @@ public class DiaryNoteWriter extends Writer {
         addRow(table, createDetailHeader("Link"));
         addRow(table, toDetailRowIfHasValue("Type", Optional.ofNullable(lnkType.getTYPE()).map(CDLNKvalues::value).orElse(null)));
         addRow(table, toDetailRowIfHasValue("Mediatype", Optional.ofNullable(lnkType.getMEDIATYPE()).map(CDMEDIATYPEvalues::value).orElse(null)));
+        addRow(table, createMediaTypeRow(lnkType.getValue()));
         addRow(table, toDetailRowIfHasValue("Size", lnkType.getSIZE()));
         addRow(table, createContentSizeRow(lnkType.getValue()));
         addRow(table, toDetailRowIfHasValue("Url", lnkType.getURL()));
         addRow(table, toDetailRowIfHasValue("Image", lnkType.getValue()));
 
         return table;
+    }
+
+    private List<PdfPCell> createMediaTypeRow(byte[] content) {
+        String mediaType = deriveMediatype(content);
+
+        if (mediaType != null) {
+            List<PdfPCell> pdfPCells = toDetailRowIfHasValue("Actual mediatype", mediaType);
+            if (CollectionsUtil.size(pdfPCells) == 2 && !isValidMediaType(mediaType)) {
+                annotateCellWithValidationMessage(pdfPCells.get(1), ANNOTATION_TEXT_INVALID_MEDIA_TYPE);
+            }
+            return pdfPCells;
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    private boolean isValidMediaType(String mediaType) {
+        return PARTS_OF_VALID_MEDIA_TYPE_NAMES
+            .stream().anyMatch(partOfValidMediaTypeName -> StringUtils.containsIgnoreCase(mediaType, partOfValidMediaTypeName));
+    }
+
+    private String deriveMediatype(byte[] content) {
+        Tika tika = new Tika();
+        String mediaType = null;
+        try {
+            mediaType = tika.detect(new ByteArrayInputStream(content));
+            return mediaType;
+        } catch (IOException e) {
+            return null;
+        }
     }
 
     private List<PdfPCell> createContentSizeRow(byte[] content) {
