@@ -1,6 +1,7 @@
 package org.imec.ivlab.core.model.internal.parser;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.util.JAXBUtils;
 import org.imec.ivlab.core.util.XmlModifier;
 import org.xml.sax.SAXException;
@@ -13,7 +14,7 @@ import java.util.Set;
 
 public class ParseHelper {
 
-    private final static Logger LOG = Logger.getLogger(ParseHelper.class);
+    private final static Logger LOG = LogManager.getLogger(ParseHelper.class);
 
     public static String objectToSimplifiedXml(Object object, String rootelement, Set<String> ignoredNodeNames) {
         if (object == null) {

@@ -1,7 +1,8 @@
 package org.imec.ivlab.datagenerator.uploader.service.scanner;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.model.upload.TransactionType;
 import org.imec.ivlab.core.model.patient.PatientReader;
@@ -39,7 +40,7 @@ import java.time.LocalDate;
 
 public class ScannedFileHandlerImpl implements ScannedFileHandler {
 
-    private final static Logger log = Logger.getLogger(ScannedFileHandlerImpl.class);
+    private final static Logger log = LogManager.getLogger(ScannedFileHandlerImpl.class);
 
     private final static int ROOTFOLDER_HIERARCHY_LEVELS = 6;
 

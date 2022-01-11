@@ -1,7 +1,8 @@
 package org.imec.ivlab.datagenerator.uploader.service.callback.impl;
 
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.model.upload.TransactionType;
 import org.imec.ivlab.core.model.patient.model.Patient;
 import org.imec.ivlab.core.util.FileUtil;
@@ -16,7 +17,7 @@ import java.io.IOException;
 
 public class FileUploadCallback implements Callback {
 
-    private final static Logger log = Logger.getLogger(FileUploadCallback.class);
+    private final static Logger log = LogManager.getLogger(FileUploadCallback.class);
 
     private File rootFolder;
     private File uploadFile;

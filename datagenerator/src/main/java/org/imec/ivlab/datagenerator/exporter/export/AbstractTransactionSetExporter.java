@@ -12,7 +12,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.kmehr.model.util.FolderUtil;
@@ -36,7 +37,7 @@ import java.util.List;
 
 public abstract class AbstractTransactionSetExporter implements TransactionSetExporter, WritableSet<GetTransactionSetResponse> {
 
-    private final static Logger LOG = Logger.getLogger(AbstractTransactionSetExporter.class);
+    private final static Logger LOG = LogManager.getLogger(AbstractTransactionSetExporter.class);
 
 
     private HubFlow hubFlow;

@@ -4,7 +4,8 @@ import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.GetPatientAuditTrailResponse;
 import be.fgov.ehealth.hubservices.core.v3.Transactionaccess;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.data.PatientKey;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -17,7 +18,7 @@ import org.imec.ivlab.ehconnector.hubflow.HubFlow;
 
 public class AuditTrailLogger {
 
-    private final static Logger LOG = Logger.getLogger(UploaderRunner.class);
+    private final static Logger LOG = LogManager.getLogger(UploaderRunner.class);
     private HubFlow hubFlow;
 
     public static void main(String[] args) throws GatewaySpecificErrorException, VitalinkException, TechnicalConnectorException {

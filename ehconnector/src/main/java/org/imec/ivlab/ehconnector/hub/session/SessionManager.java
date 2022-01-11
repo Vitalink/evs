@@ -7,7 +7,8 @@ import be.ehealth.technicalconnector.service.sts.security.SAMLToken;
 import be.ehealth.technicalconnector.session.Session;
 import be.ehealth.technicalconnector.session.SessionItem;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.authentication.model.AuthenticationConfig;
 import org.imec.ivlab.core.authentication.model.Certificate;
@@ -41,7 +42,7 @@ import static org.imec.ivlab.ehconnector.hub.session.CertificateManager.getCerti
 
 public class SessionManager {
 
-    private final static Logger log = Logger.getLogger(SessionManager.class);
+    private final static Logger log = LogManager.getLogger(SessionManager.class);
 
     private static HashMap<String, CacheItem> sessionCache = new HashMap<>();
     private static CacheItem loadedSession = null;

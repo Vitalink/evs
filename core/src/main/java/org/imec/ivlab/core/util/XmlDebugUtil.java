@@ -1,6 +1,7 @@
 package org.imec.ivlab.core.util;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.w3c.dom.DocumentType;
 import org.w3c.dom.Entity;
 import org.w3c.dom.NamedNodeMap;
@@ -10,7 +11,7 @@ import org.w3c.dom.NodeList;
 
 public class XmlDebugUtil {
 
-    private final static Logger LOG = Logger.getLogger(XmlDebugUtil.class);
+    private final static Logger LOG = LogManager.getLogger(XmlDebugUtil.class);
 
     public static void logNode(Node n) {
 

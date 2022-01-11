@@ -8,7 +8,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.config.EVSConfig;
 import org.imec.ivlab.core.config.EVSProperties;
 import org.imec.ivlab.core.model.upload.TransactionType;
@@ -54,7 +55,7 @@ public class VaultExporterRunnable implements Runnable {
     private MonitorInstruction monitorInstruction;
     private ExportInstruction exportInstruction;
 
-    private final static Logger LOG = Logger.getLogger(VaultExporterRunnable.class);
+    private final static Logger LOG = LogManager.getLogger(VaultExporterRunnable.class);
 
     private static final long TIMEOUT_BETWEEN_VAULT_CHECKS = 10000;
     private static final long TIMEOUT_AFTER_EXCEPTION_IN_MILLIS = 10000;

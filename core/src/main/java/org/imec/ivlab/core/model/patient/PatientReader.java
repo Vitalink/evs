@@ -2,7 +2,8 @@ package org.imec.ivlab.core.model.patient;
 
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.data.PatientKey;
 import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.model.patient.exceptions.PatientDataConfigurationInvalidException;
@@ -26,7 +27,7 @@ import static org.imec.ivlab.core.constants.CoreConstants.PATH_TO_PATIENT_CONFIG
 
 public class PatientReader {
 
-    private final static Logger log = Logger.getLogger(PatientReader.class);
+    private final static Logger log = LogManager.getLogger(PatientReader.class);
 
     private static Set<String> scanPaths = new HashSet<>();
 

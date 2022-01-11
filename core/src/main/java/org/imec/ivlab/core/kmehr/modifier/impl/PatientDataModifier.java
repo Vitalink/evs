@@ -9,7 +9,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.PersonType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.SexType;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.modifier.KmehrModification;
 import org.imec.ivlab.core.model.patient.model.Patient;
 import org.imec.ivlab.core.kmehr.mapper.ToKmehrMapper;
@@ -21,7 +22,7 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 public class PatientDataModifier implements KmehrModification {
 
-    private final static Logger log = Logger.getLogger(PatientDataModifier.class);
+    private final static Logger log = LogManager.getLogger(PatientDataModifier.class);
 
     private Patient patient;
 

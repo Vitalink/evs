@@ -16,7 +16,7 @@ Caused by: be.ehealth.technicalconnector.exception.ConfigurationException: No Va
 
 cd "$(dirname "$0")"
 
-java -Dfile.encoding=UTF-8 -Dlog4j.configuration=file:../config/log4j/log4j-uploader.properties -cp "./datagenerator-$EVS_VERSION.jar:./core-$EVS_VERSION.jar:./ehconnector-$EVS_VERSION.jar:./validator-$EVS_VERSION.jar:./viewer-$EVS_VERSION.jar:./dependency-jars/*:../config/actors/*" org.imec.ivlab.datagenerator.uploader.UploaderRunner "$@"
+java -Dfile.encoding=UTF-8 -Dlog4j.configurationFile=file:../config/log4j/log4j2-uploader.xml -cp "./datagenerator-$EVS_VERSION.jar:./core-$EVS_VERSION.jar:./ehconnector-$EVS_VERSION.jar:./validator-$EVS_VERSION.jar:./viewer-$EVS_VERSION.jar:./dependency-jars/*:../config/actors/*" org.imec.ivlab.datagenerator.uploader.UploaderRunner "$@"
 
 
 $SHELL

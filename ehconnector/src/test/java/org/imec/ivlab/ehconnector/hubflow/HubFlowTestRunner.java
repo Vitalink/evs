@@ -4,7 +4,8 @@ import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.AcknowledgeType;
 import be.fgov.ehealth.hubservices.core.v3.GetLatestUpdateResponse;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionSetResponse;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.config.EVSConfig;
 import org.imec.ivlab.core.config.EVSProperties;
@@ -17,7 +18,7 @@ import org.imec.ivlab.ehconnector.hub.session.SessionManager;
 
 public class HubFlowTestRunner {
 
-    private final static Logger LOG = Logger.getLogger(HubFlowTestRunner.class);
+    private final static Logger LOG = LogManager.getLogger(HubFlowTestRunner.class);
 
 
     public static void main(String[] args) throws GatewaySpecificErrorException, VitalinkException, TechnicalConnectorException {

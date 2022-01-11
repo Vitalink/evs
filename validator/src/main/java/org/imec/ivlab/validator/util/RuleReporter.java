@@ -1,7 +1,8 @@
 package org.imec.ivlab.validator.util;
 
 import org.apache.commons.lang3.StringEscapeUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.util.ClassesUtil;
 import org.imec.ivlab.validator.validators.business.rules.Rule;
 
@@ -9,7 +10,7 @@ import java.util.List;
 
 public class RuleReporter {
 
-    private static Logger log = Logger.getLogger(RuleReporter.class);
+    private static Logger log = LogManager.getLogger(RuleReporter.class);
 
     StringBuilder builder;
 

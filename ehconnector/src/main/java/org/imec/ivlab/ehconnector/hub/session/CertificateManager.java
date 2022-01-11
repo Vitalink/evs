@@ -1,6 +1,7 @@
 package org.imec.ivlab.ehconnector.hub.session;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.model.Certificate;
 import org.imec.ivlab.core.authentication.model.Type;
 import org.imec.ivlab.core.exceptions.DataNotFoundException;
@@ -12,7 +13,7 @@ import java.util.List;
 
 public class CertificateManager {
 
-    private final static Logger log = Logger.getLogger(CertificateManager.class);
+    private final static Logger log = LogManager.getLogger(CertificateManager.class);
 
 
     public static Certificate getCertificate(List<Certificate> certificates, Type type) throws InvalidConfigurationException {

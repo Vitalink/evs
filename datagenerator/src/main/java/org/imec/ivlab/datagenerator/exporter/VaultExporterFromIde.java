@@ -1,16 +1,15 @@
 package org.imec.ivlab.datagenerator.exporter;
 
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
-import org.imec.ivlab.core.data.PatientKey;
-import org.imec.ivlab.core.model.upload.TransactionType;
-import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
-import org.imec.ivlab.core.model.hub.Hub;
-import org.imec.ivlab.core.model.hub.SearchType;
-
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
+import org.imec.ivlab.core.data.PatientKey;
+import org.imec.ivlab.core.model.hub.Hub;
+import org.imec.ivlab.core.model.hub.SearchType;
+import org.imec.ivlab.core.model.upload.TransactionType;
 
 public class VaultExporterFromIde {
 
@@ -21,7 +20,7 @@ public class VaultExporterFromIde {
 
         VaultExporterArguments arguments = new VaultExporterArguments();
 
-        arguments.setTransactionType(TransactionType.SUMEHR);
+        arguments.setTransactionType(TransactionType.MEDICATION_SCHEME);
 
         List<String> patientIDs = new ArrayList<>();
         patientIDs.add(PatientKey.PATIENT_EXAMPLE.getValue());
@@ -42,7 +41,7 @@ public class VaultExporterFromIde {
         arguments.setDailyMedicationSchemeDate(LocalDate.now().plusYears(4));
         arguments.setFilterOutTransactionsHavingPatientAccessNo(false);
 
-        arguments.setHub(Hub.VITALINK);
+        arguments.setHub(Hub.RSB);
         arguments.setSearchType(SearchType.LOCAL);
 
 //        arguments.setBreakTheGlassIfTRMissing(true);

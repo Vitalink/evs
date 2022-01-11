@@ -9,7 +9,8 @@ import org.apache.commons.io.monitor.FileAlterationListener;
 import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;
 import org.apache.commons.io.monitor.FileAlterationMonitor;
 import org.apache.commons.io.monitor.FileAlterationObserver;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.datagenerator.uploader.exception.ScannerException;
 
 import java.io.File;
@@ -17,7 +18,7 @@ import java.util.Collection;
 
 public class Scanner {
 
-    private final static Logger log = Logger.getLogger(Scanner.class);
+    private final static Logger log = LogManager.getLogger(Scanner.class);
 
     private static final long POLLING_INTERVAL = 2000;
 

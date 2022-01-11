@@ -46,7 +46,8 @@ import java.util.stream.Collectors;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.model.internal.parser.ParsedItem;
 import org.imec.ivlab.core.model.internal.parser.common.Header;
 import org.imec.ivlab.core.model.internal.parser.common.TransactionCommon;
@@ -63,7 +64,7 @@ import org.xml.sax.SAXException;
 
 public abstract class Writer {
 
-    private final static Logger LOG = Logger.getLogger(Writer.class);
+    private final static Logger LOG = LogManager.getLogger(Writer.class);
 
     private static final String ANNOTATION_TEXT_NOT_SUPPORTED = "Not supported";
 

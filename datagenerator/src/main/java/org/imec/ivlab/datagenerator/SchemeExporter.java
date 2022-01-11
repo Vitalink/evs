@@ -21,7 +21,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.model.internal.mapper.medication.DailyScheme;
 import org.imec.ivlab.core.model.internal.mapper.medication.GlobalScheme;
 import org.imec.ivlab.core.model.internal.mapper.medication.MedicationEntry;
@@ -59,7 +60,7 @@ import org.imec.ivlab.viewer.pdf.VaccinationWriter;
 
 public class SchemeExporter {
     //creates a schema based on the Kmehrmessage.
-    private final static Logger log = Logger.getLogger(SchemeExporter.class);
+    private final static Logger log = LogManager.getLogger(SchemeExporter.class);
 
     public static void generateMSGlobalScheme(File inputFile, Kmehrmessage kmehrmessage, Patient patient) {
 

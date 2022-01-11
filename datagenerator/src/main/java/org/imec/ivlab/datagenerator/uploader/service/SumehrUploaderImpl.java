@@ -5,7 +5,8 @@ import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHRschemes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import java.util.List;
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.authentication.model.AuthenticationConfig;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -29,7 +30,7 @@ import org.imec.ivlab.ehconnector.business.sumehr.SumehrServiceImpl;
 
 public class SumehrUploaderImpl implements SumehrUploader, Uploader {
 
-    private final static Logger LOG = Logger.getLogger(SumehrUploaderImpl.class);
+    private final static Logger LOG = LogManager.getLogger(SumehrUploaderImpl.class);
 
     private SumehrService sumehrService;
     private HubHelper hubHelper = new HubHelper();

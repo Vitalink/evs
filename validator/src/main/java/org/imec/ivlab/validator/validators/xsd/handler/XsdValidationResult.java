@@ -2,7 +2,8 @@ package org.imec.ivlab.validator.validators.xsd.handler;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.validator.validators.model.Level;
 import org.imec.ivlab.validator.validators.xsd.model.XsdFailure;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class XsdValidationResult implements ErrorHandler {
 
-    private static Logger LOG = Logger.getLogger(XsdValidationResult.class);
+    private static Logger LOG = LogManager.getLogger(XsdValidationResult.class);
 
     private List<XsdFailure> failedList = new ArrayList<>();
 

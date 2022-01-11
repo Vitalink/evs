@@ -5,7 +5,8 @@ import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHRschemes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import java.util.List;
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.authentication.model.AuthenticationConfig;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -29,7 +30,7 @@ import org.imec.ivlab.ehconnector.business.diary.DiaryNoteServiceImpl;
 
 public class DiaryNoteUploaderImpl implements DiaryNoteUploader, Uploader {
 
-    private final static Logger LOG = Logger.getLogger(DiaryNoteUploaderImpl.class);
+    private final static Logger LOG = LogManager.getLogger(DiaryNoteUploaderImpl.class);
 
     private DiaryNoteService diareNoteService;
     private HubHelper hubHelper = new HubHelper();

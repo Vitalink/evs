@@ -2,7 +2,8 @@ package org.imec.ivlab.core.model.evsref.extractor;
 
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.evsref.EVSREF;
 import org.imec.ivlab.core.model.evsref.Identifiable;
@@ -27,7 +28,7 @@ import static org.imec.ivlab.core.model.evsref.EVSREF.FIND_EVSREF_REGULAR_EXPRES
 
 public abstract class AbstractRefExtractor implements RefExtractor {
 
-    private final static Logger LOG = Logger.getLogger(AbstractRefExtractor.class);
+    private final static Logger LOG = LogManager.getLogger(AbstractRefExtractor.class);
 
     @Override
     public void validatePresenceEVSRefs(ListOfIdentifiables listOfIdentifiables) throws MissingEVSRefException {

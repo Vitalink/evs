@@ -14,7 +14,8 @@ import java.util.Set;
 import java.util.TreeMap;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.exceptions.AuthenticationConfigurationErrorException;
 import org.imec.ivlab.core.authentication.exceptions.AuthenticationConfigurationNotFoundException;
 import org.imec.ivlab.core.authentication.model.AuthenticationConfig;
@@ -26,7 +27,7 @@ import org.imec.ivlab.core.util.ResourceResolver;
 
 public class AuthenticationConfigReader {
 
-    private final static Logger log = Logger.getLogger(AuthenticationConfigReader.class);
+    private final static Logger log = LogManager.getLogger(AuthenticationConfigReader.class);
 
     public static final String GP_EXAMPLE = "gp_example";
 

@@ -3,7 +3,8 @@ package org.imec.ivlab.core;
 import com.google.common.collect.BoundType;
 import com.google.common.collect.Range;
 import com.google.common.collect.TreeRangeSet;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.model.Frequency;
 import org.imec.ivlab.core.kmehr.model.FrequencyCode;
 import org.imec.ivlab.core.model.internal.mapper.medication.Duration;
@@ -24,7 +25,7 @@ import java.util.Set;
 
 public class RangeChecker {
 
-    private final static Logger LOG = Logger.getLogger(RangeChecker.class);
+    private final static Logger LOG = LogManager.getLogger(RangeChecker.class);
 
 
     /**

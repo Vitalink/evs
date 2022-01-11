@@ -1,7 +1,8 @@
 package org.imec.ivlab.core.util;
 
 import org.apache.commons.collections.ExtendedProperties;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.apache.velocity.Template;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
@@ -18,7 +19,7 @@ import java.util.Map;
 
 public final class TemplateEngineUtils {
 
-    private final static Logger LOG = Logger.getLogger(TemplateEngineUtils.class);
+    private final static Logger LOG = LogManager.getLogger(TemplateEngineUtils.class);
     protected static final VelocityEngine VELOCITY_ENGINE;
 
     private static Map<String, Template> templateCache = new HashMap<>();

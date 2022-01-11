@@ -16,7 +16,8 @@ import be.smals.sam.ref.view.PackagingTypeType;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.util.CollectionsUtil;
 
 import java.math.BigDecimal;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class MedicinExporter {
 
-    private final static Logger LOG = Logger.getLogger(MedicinExporter.class);
+    private final static Logger LOG = LogManager.getLogger(MedicinExporter.class);
 
     SamProvider samProvider = new OfflineSamProvider();
 

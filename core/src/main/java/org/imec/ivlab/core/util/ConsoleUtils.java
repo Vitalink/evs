@@ -4,7 +4,8 @@ import com.inamik.text.tables.GridTable;
 import com.inamik.text.tables.SimpleTable;
 import com.inamik.text.tables.grid.Border;
 import com.inamik.text.tables.grid.Util;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 
 import javax.imageio.ImageIO;
@@ -19,7 +20,7 @@ import static com.inamik.text.tables.Cell.Functions.HORIZONTAL_CENTER;
 
 public class ConsoleUtils {
 
-    private final static Logger log = Logger.getLogger(AuthenticationConfigReader.class);
+    private final static Logger log = LogManager.getLogger(AuthenticationConfigReader.class);
 
 
     private static final int BOX_LENGTH = 170;

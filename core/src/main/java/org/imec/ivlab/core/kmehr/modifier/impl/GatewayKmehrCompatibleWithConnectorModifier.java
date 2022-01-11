@@ -5,7 +5,8 @@ import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHR;
 import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHRschemes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.modifier.KmehrModification;
 import org.imec.ivlab.core.kmehr.model.util.FolderUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
@@ -14,7 +15,7 @@ import java.util.List;
 
 public class GatewayKmehrCompatibleWithConnectorModifier implements KmehrModification {
 
-    private final static Logger log = Logger.getLogger(GatewayKmehrCompatibleWithConnectorModifier.class);
+    private final static Logger log = LogManager.getLogger(GatewayKmehrCompatibleWithConnectorModifier.class);
 
     @Override
     public void modify(Kmehrmessage kmehrmessage) {

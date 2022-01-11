@@ -2,7 +2,8 @@ package org.imec.ivlab.validator;
 
 import com.beust.jcommander.JCommander;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.FileUtil;
 import org.imec.ivlab.validator.exceptions.ValidatorException;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class BatchKmehrValidator {
 
-    private static Logger LOG = Logger.getLogger(FolderKmehrScanner.class);
+    private static Logger LOG = LogManager.getLogger(FolderKmehrScanner.class);
 
 
     public static void main(String[] args) throws ValidatorException {

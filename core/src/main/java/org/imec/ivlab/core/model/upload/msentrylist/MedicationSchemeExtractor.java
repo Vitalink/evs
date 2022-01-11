@@ -5,7 +5,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.kmehr.KmehrConstants;
 import org.imec.ivlab.core.kmehr.KmehrHelper;
@@ -28,7 +29,7 @@ import static org.imec.ivlab.core.model.upload.msentrylist.ReferenceDateUtil.get
 
 public class MedicationSchemeExtractor {
 
-    private final static Logger LOG = Logger.getLogger(MedicationSchemeExtractor.class);
+    private final static Logger LOG = LogManager.getLogger(MedicationSchemeExtractor.class);
 
     public static MSEntryList getMedicationSchemeEntries(KmehrEntryList kmehrEntryList) throws TransformationException {
 

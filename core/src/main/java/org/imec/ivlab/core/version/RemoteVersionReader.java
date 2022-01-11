@@ -9,7 +9,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.constants.CoreConstants;
 import org.imec.ivlab.core.exceptions.ExternalConnectionException;
 import org.imec.ivlab.core.exceptions.RemoteVersionCheckFailedException;
@@ -20,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class RemoteVersionReader {
 
-    private final static Logger LOG = Logger.getLogger(RemoteVersionReader.class);
+    private final static Logger LOG = LogManager.getLogger(RemoteVersionReader.class);
 
     private final static String EVS_VERSION_WIKI_PAGE_ID = "5407680";
     private final static String CONFLUENCE_CONTENT_API_PATH = "/rest/api/content/";

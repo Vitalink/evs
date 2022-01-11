@@ -14,7 +14,8 @@ import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.config.EVSConfig;
 import org.imec.ivlab.core.config.EVSProperties;
 import org.imec.ivlab.core.model.upload.TransactionType;
@@ -22,7 +23,7 @@ import org.imec.ivlab.ehconnector.hub.util.TransactionSummaryUtil;
 import org.joda.time.format.DateTimeFormat;
 
 public class TransactionHelper {
-  private final static Logger LOG = Logger.getLogger(TransactionHelper.class);
+  private final static Logger LOG = LogManager.getLogger(TransactionHelper.class);
 
   private static boolean mustFilterOutTransactionsWithoutAccess() {
     return Optional.ofNullable(EVSConfig.getInstance().getPropertyOrNull(EVSProperties.FILTER_OUT_TRANSACTIONS_HAVING_PATIENT_ACCESS_NO))

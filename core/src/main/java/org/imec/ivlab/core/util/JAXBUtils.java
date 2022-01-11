@@ -1,7 +1,8 @@
 package org.imec.ivlab.core.util;
 
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.TransformationException;
 
 import javax.xml.bind.JAXBContext;
@@ -18,7 +19,7 @@ import java.io.StringWriter;
 import java.lang.annotation.Annotation;
 
 public class JAXBUtils {
-    private final static Logger log = Logger.getLogger(IOUtils.class);
+    private final static Logger log = LogManager.getLogger(IOUtils.class);
     public static <T> T unmarshal(Class<T> clazz, String content) throws TransformationException {
 
         try {

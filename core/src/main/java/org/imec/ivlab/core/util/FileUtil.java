@@ -1,7 +1,8 @@
 package org.imec.ivlab.core.util;
 
 import org.apache.commons.io.FilenameUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,7 +15,7 @@ import java.nio.channels.OverlappingFileLockException;
 
 public class FileUtil {
 
-    private final static Logger log = Logger.getLogger(FileUtil.class);
+    private final static Logger log = LogManager.getLogger(FileUtil.class);
 
 
     public static void copyFile(File sourceFile, File destFile) throws IOException {

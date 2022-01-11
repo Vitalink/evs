@@ -3,7 +3,8 @@ package org.imec.ivlab.core.kmehr.model.localid.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.model.localid.URI;
 import org.imec.ivlab.core.kmehr.model.localid.URIType;
 import org.imec.ivlab.core.model.upload.TransactionType;
@@ -11,7 +12,7 @@ import org.junit.Test;
 
 public class URIBuilder {
 
-    private final static Logger log = Logger.getLogger(URIBuilder.class);
+    private final static Logger log = LogManager.getLogger(URIBuilder.class);
 
     @Test
     public void testParseString(){

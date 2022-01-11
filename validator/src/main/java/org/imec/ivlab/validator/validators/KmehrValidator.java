@@ -1,7 +1,8 @@
 package org.imec.ivlab.validator.validators;
 
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.KmehrMarshaller;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.validator.scanner.model.FileWithKmehrs;
@@ -21,7 +22,7 @@ import java.util.List;
 
 public class KmehrValidator {
 
-    private static Logger LOG = Logger.getLogger(KmehrValidator.class);
+    private static Logger LOG = LogManager.getLogger(KmehrValidator.class);
 
     private static XsdValidator xsdValidator = new XsdValidator();
     private static BusinessValidator businessValidator = new BusinessValidator();

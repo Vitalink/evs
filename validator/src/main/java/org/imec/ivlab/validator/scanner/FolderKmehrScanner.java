@@ -3,7 +3,8 @@ package org.imec.ivlab.validator.scanner;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.io.FileUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.kmehr.KmehrMarshaller;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.BusinessData;
@@ -18,7 +19,7 @@ import java.util.Collection;
 
 public class FolderKmehrScanner {
 
-    private static Logger log = Logger.getLogger(FolderKmehrScanner.class);
+    private static Logger log = LogManager.getLogger(FolderKmehrScanner.class);
 
     public static void main(String[] args) {
 

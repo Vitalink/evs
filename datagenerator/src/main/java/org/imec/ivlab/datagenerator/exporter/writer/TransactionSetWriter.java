@@ -9,7 +9,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.NullArgumentException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.model.util.FolderUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.model.patient.model.Patient;
@@ -26,7 +27,7 @@ import java.util.List;
 
 public class TransactionSetWriter extends AbstractWriter implements SetWriter<GetTransactionSetResponse> {
 
-    private final static Logger LOG = Logger.getLogger(TransactionSetWriter.class);
+    private final static Logger LOG = LogManager.getLogger(TransactionSetWriter.class);
 
     protected final static String DEFAULT_EXPORT_EXTENSION = "exp";
     protected final static String DEFAULT_PDF_EXTENSION = "pdf";

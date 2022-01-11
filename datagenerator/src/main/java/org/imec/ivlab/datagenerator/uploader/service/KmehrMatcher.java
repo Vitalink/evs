@@ -6,7 +6,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.model.util.IDKmehrUtil;
 import org.imec.ivlab.core.model.evsref.EVSREF;
 import org.imec.ivlab.core.model.evsref.Identifiable;
@@ -35,7 +36,7 @@ import java.util.Objects;
 
 public class KmehrMatcher {
 
-    private final static Logger LOG = Logger.getLogger(KmehrMatcher.class);
+    private final static Logger LOG = LogManager.getLogger(KmehrMatcher.class);
 
     public static <T extends ListOfIdentifiables> T addToList(T addList, T vaultList) throws IdenticalEVSRefsFoundException {
 

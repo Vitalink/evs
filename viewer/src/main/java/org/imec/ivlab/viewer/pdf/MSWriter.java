@@ -64,7 +64,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.TreeMap;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.RangeChecker;
 import org.imec.ivlab.core.data.PatientKey;
 import org.imec.ivlab.core.exceptions.TransformationException;
@@ -97,7 +98,7 @@ import org.imec.ivlab.viewer.converter.exceptions.SchemaConversionException;
 
 public class MSWriter extends Writer {
 
-    private final static Logger LOG = Logger.getLogger(MSWriter.class);
+    private final static Logger LOG = LogManager.getLogger(MSWriter.class);
 
     private static PdfPTable table;
     private static TakeTimeManager takeTimeManager;

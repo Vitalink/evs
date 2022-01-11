@@ -5,7 +5,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.authentication.model.AuthenticationConfig;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -38,7 +39,7 @@ import java.util.List;
 
 public class MSUploaderImpl implements Uploader, MSUploader {
 
-    private final static Logger log = Logger.getLogger(MSUploaderImpl.class);
+    private final static Logger log = LogManager.getLogger(MSUploaderImpl.class);
 
     private MSService msDao;
     private HubHelper helper = new HubHelper();

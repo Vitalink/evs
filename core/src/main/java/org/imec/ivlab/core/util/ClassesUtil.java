@@ -1,6 +1,7 @@
 package org.imec.ivlab.core.util;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.ClassPathScanningCandidateComponentProvider;
 import org.springframework.core.type.filter.AssignableTypeFilter;
@@ -12,7 +13,7 @@ import java.util.Set;
 
 public class ClassesUtil {
 
-    private final static Logger log = Logger.getLogger(ClassesUtil.class);
+    private final static Logger log = LogManager.getLogger(ClassesUtil.class);
 
     public static <T> List<Class<T>> getClasses(String packagePath, Class<T> clazzFilter) {
 

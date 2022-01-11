@@ -1,6 +1,7 @@
 package org.imec.ivlab.core.util;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.ResourceException;
 
 import java.io.File;
@@ -17,7 +18,7 @@ import static org.apache.commons.io.IOUtils.closeQuietly;
 
 public class IOUtils {
 
-    private final static Logger log = Logger.getLogger(IOUtils.class);
+    private final static Logger log = LogManager.getLogger(IOUtils.class);
 
     public static String getResourceAsString(String location) {
         return convertStreamToString(getResourceAsStream(location));

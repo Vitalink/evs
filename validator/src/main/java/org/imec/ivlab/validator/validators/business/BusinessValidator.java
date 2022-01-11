@@ -3,7 +3,8 @@ package org.imec.ivlab.validator.validators.business;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import org.apache.commons.lang.exception.ExceptionUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntryList;
 import org.imec.ivlab.core.model.upload.msentrylist.MedicationSchemeExtractor;
@@ -25,7 +26,7 @@ import java.util.List;
 
 public class BusinessValidator {
 
-    private static Logger LOG = Logger.getLogger(BusinessValidator.class);
+    private static Logger LOG = LogManager.getLogger(BusinessValidator.class);
     private boolean skipDisabledRules = false;
 
     private List<String> ruleIdIgnoreList = new ArrayList<>();

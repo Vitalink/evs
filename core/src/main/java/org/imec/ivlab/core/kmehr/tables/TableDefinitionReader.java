@@ -5,7 +5,8 @@ import org.apache.commons.csv.CSVRecord;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.tables.exception.CsvParseException;
 import org.imec.ivlab.core.kmehr.tables.exception.IncorrectTableVersionConfigurationException;
 import org.imec.ivlab.core.util.CollectionsUtil;
@@ -34,7 +35,7 @@ public class TableDefinitionReader {
 
     private static Map<String, List<TableDefinition>> definitionsPerLocation = new HashMap<>();
 
-    private final static Logger log = Logger.getLogger(TableDefinitionReader.class);
+    private final static Logger log = LogManager.getLogger(TableDefinitionReader.class);
 
     private static final String EXPRESSION_RANGE = "^(\\d+(?:\\.\\d+)?)(?::)(\\d+)(?:->)(\\d+)$";
 

@@ -11,7 +11,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.model.util.FolderUtil;
 import org.imec.ivlab.core.kmehr.model.util.HCPartyUtil;
 import org.imec.ivlab.core.kmehr.model.util.IDKmehrUtil;
@@ -33,7 +34,7 @@ import java.util.List;
 
 public class TransactionWriter extends AbstractWriter implements Writer<GetTransactionResponse> {
 
-    private final static Logger LOG = Logger.getLogger(TransactionWriter.class);
+    private final static Logger LOG = LogManager.getLogger(TransactionWriter.class);
 
     protected final static String DEFAULT_EXTENSION = "exp";
 

@@ -12,7 +12,8 @@ import org.apache.commons.io.FileExistsException;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.config.EVSConfig;
 import org.imec.ivlab.core.config.EVSProperties;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -56,7 +57,7 @@ import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_VITALINK_P
 
 public class ExportVaultCallback implements Callback {
 
-    private final static Logger LOG = Logger.getLogger(ExportVaultCallback.class);
+    private final static Logger LOG = LogManager.getLogger(ExportVaultCallback.class);
 
     private static final int MAX_NUMBER_OF_EXPORT_ATTEMPTS = 10;
 

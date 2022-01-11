@@ -12,7 +12,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.model.evsref.Identifiable;
 import org.imec.ivlab.core.model.evsref.ListOfIdentifiables;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
@@ -33,7 +34,7 @@ import java.util.ListIterator;
 
 public class KmehrHelper {
 
-    private final static Logger LOG = Logger.getLogger(KmehrHelper.class);
+    private final static Logger LOG = LogManager.getLogger(KmehrHelper.class);
 
     public KmehrHelper() {
 

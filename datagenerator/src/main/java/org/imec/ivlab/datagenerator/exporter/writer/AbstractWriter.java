@@ -5,7 +5,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.model.util.HCPartyUtil;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.DateUtils;
@@ -20,7 +21,7 @@ import java.io.IOException;
 
 public abstract class AbstractWriter {
 
-    private final static Logger LOG = Logger.getLogger(AbstractWriter.class);
+    private final static Logger LOG = LogManager.getLogger(AbstractWriter.class);
 
 
     protected String formatKmehrMessage(Kmehrmessage kmehrmessage) {

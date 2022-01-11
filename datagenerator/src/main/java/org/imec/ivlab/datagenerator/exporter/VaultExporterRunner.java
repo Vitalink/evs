@@ -1,7 +1,8 @@
 package org.imec.ivlab.datagenerator.exporter;
 
 import com.beust.jcommander.JCommander;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.config.EVSConfig;
 import org.imec.ivlab.core.config.EVSProperties;
 import org.imec.ivlab.core.model.patient.PatientReader;
@@ -18,7 +19,7 @@ import java.util.concurrent.Executors;
 
 public class VaultExporterRunner {
 
-    private final static Logger log = Logger.getLogger(VaultExporterRunner.class);
+    private final static Logger log = LogManager.getLogger(VaultExporterRunner.class);
 
 
     private static final long TIME_IN_MILLIS_BETWEEN_LAUNCHING_VAULT_EXPORTERS = 10000;

@@ -16,13 +16,14 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.version.LocalVersionReader;
 import org.imec.ivlab.viewer.converter.exceptions.SchemaConversionException;
 
 public class PdfHelper {
 
-  private final static Logger LOG = Logger.getLogger(Writer.class);
+  private final static Logger LOG = LogManager.getLogger(Writer.class);
 
 
   public static void writeToDocument(String fileLocation, PdfPTable generalInfoTable, List<PdfPTable> detailTables) throws SchemaConversionException {

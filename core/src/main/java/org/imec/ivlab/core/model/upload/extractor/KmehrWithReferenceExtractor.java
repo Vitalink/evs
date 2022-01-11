@@ -5,7 +5,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import java.util.List;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.KmehrMarshaller;
 import org.imec.ivlab.core.kmehr.model.util.FolderUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
@@ -17,7 +18,7 @@ import org.imec.ivlab.core.util.CollectionsUtil;
 
 public abstract class KmehrWithReferenceExtractor {
 
-    private final Logger LOG = Logger.getLogger(KmehrWithReferenceExtractor.class);
+    private final Logger LOG = LogManager.getLogger(KmehrWithReferenceExtractor.class);
 
     public KmehrWithReferenceList getKmehrWithReferenceList(KmehrEntryList kmehrEntryList) {
 

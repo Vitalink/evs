@@ -1,6 +1,7 @@
 package org.imec.ivlab.datagenerator.uploader.service.callback.impl;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.version.VersionCheckResult;
 import org.imec.ivlab.core.version.VersionManager;
@@ -13,7 +14,7 @@ import java.io.File;
 
 public class VersionCheckCallback implements Callback {
 
-    private final static Logger LOG = Logger.getLogger(VersionCheckCallback.class);
+    private final static Logger LOG = LogManager.getLogger(VersionCheckCallback.class);
 
     private File rootFolder;
 

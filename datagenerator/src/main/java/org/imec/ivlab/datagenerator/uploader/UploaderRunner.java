@@ -1,7 +1,8 @@
 package org.imec.ivlab.datagenerator.uploader;
 
 import com.beust.jcommander.JCommander;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.config.EVSConfig;
 import org.imec.ivlab.core.config.EVSProperties;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -18,7 +19,7 @@ import java.util.concurrent.Executors;
 
 public class UploaderRunner {
 
-    private final static Logger log = Logger.getLogger(UploaderRunner.class);
+    private final static Logger log = LogManager.getLogger(UploaderRunner.class);
 
     public static void main(String[] args ) throws ScannerException, VitalinkException {
 

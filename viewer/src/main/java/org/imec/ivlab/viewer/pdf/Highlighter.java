@@ -3,7 +3,8 @@ package org.imec.ivlab.viewer.pdf;
 import com.itextpdf.text.Chunk;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,7 @@ import static org.imec.ivlab.viewer.pdf.SumehrTableFormatter.getSyntaxRoseFont;
 
 public class Highlighter {
 
-    private final static Logger LOG = Logger.getLogger(Highlighter.class);
+    private final static Logger LOG = LogManager.getLogger(Highlighter.class);
 
 
     private static final char CHAR_ATTRIBUTE_SPLITTER = '=';

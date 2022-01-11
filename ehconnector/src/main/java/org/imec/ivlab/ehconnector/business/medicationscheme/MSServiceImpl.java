@@ -18,7 +18,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.config.EVSConfig;
 import org.imec.ivlab.core.config.EVSProperties;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -44,7 +45,7 @@ import org.imec.ivlab.ehconnector.util.TransactionHelper;
 
 public class MSServiceImpl extends AbstractService implements MSService {
 
-    private final static Logger log = Logger.getLogger(MSServiceImpl.class);
+    private final static Logger log = LogManager.getLogger(MSServiceImpl.class);
 
     private static final TransactionType TRANSACTION_TYPE = TransactionType.MEDICATION_SCHEME;
     private HubFlow hubFlow = new HubFlow();

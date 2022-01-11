@@ -1,7 +1,8 @@
 package org.imec.ivlab.core.version;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.constants.CoreConstants;
 import org.imec.ivlab.core.exceptions.LocalVersionCheckFailedException;
 import org.imec.ivlab.core.exceptions.ResourceException;
@@ -15,7 +16,7 @@ import java.util.Properties;
 
 public class LocalVersionReader {
 
-    private final static Logger log = Logger.getLogger(LocalVersionReader.class);
+    private final static Logger log = LogManager.getLogger(LocalVersionReader.class);
 
     private static String versionNumber = null;
 

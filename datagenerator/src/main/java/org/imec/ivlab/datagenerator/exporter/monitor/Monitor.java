@@ -7,7 +7,8 @@ import be.fgov.ehealth.hubservices.core.v3.Latestupdate;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONschemes;
 import java.util.function.Predicate;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.data.PatientKey;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -23,7 +24,7 @@ import org.imec.ivlab.ehconnector.hubflow.HubFlow;
 
 public class Monitor {
 
-    private final static Logger log = Logger.getLogger(Monitor.class);
+    private final static Logger log = LogManager.getLogger(Monitor.class);
 
     private HubFlow hubFlow;
 

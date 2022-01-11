@@ -2,7 +2,6 @@ package org.imec.ivlab.ehconnector.hub;
 
 import be.ehealth.business.intrahubcommons.exception.IntraHubBusinessConnectorException;
 import be.ehealth.businessconnector.hubv3.session.HubSessionServiceFactory;
-import be.ehealth.technicalconnector.config.impl.ConfigurationModuleLoggingLog4j;
 import be.ehealth.technicalconnector.exception.ConnectorException;
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.fgov.ehealth.hubservices.core.v3.AcknowledgeType;
@@ -23,11 +22,18 @@ import be.fgov.ehealth.hubservices.core.v3.TransactionWithPeriodType;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDERROR;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ErrorType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
-
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import javax.xml.bind.JAXBException;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.config.EVSConfig;
 import org.imec.ivlab.core.config.EVSProperties;
 import org.imec.ivlab.core.exceptions.VitalinkException;
@@ -50,19 +56,9 @@ import org.imec.ivlab.ehconnector.hub.exception.incurable.RemoveNotAllowedIfData
 import org.imec.ivlab.ehconnector.hub.exception.incurable.SubjectWithSSINUnknownException;
 import org.imec.ivlab.ehconnector.hub.logging.MessageWriter;
 
-import javax.xml.bind.JAXBException;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Properties;
-
 public class HubService {
 
-    private final static Logger log = Logger.getLogger(HubService.class);
+    private final static Logger log = LogManager.getLogger(HubService.class);
 
     private be.ehealth.businessconnector.hubv3.session.HubService hubService;
 
@@ -440,24 +436,6 @@ public class HubService {
     }
 
     private void initHubConfig() {
-        URL resource = this.getClass().getClassLoader().getResource("log4j.properties");
-
-        if (resource == null) {
-            log.error("No log4j.properties file found on classpath. Need this log4j configuration file prior to initializing the ehealth connector. " +
-                    "Otherwise the connector will use its own config and overwrite ours");
-        } else {
-            ConfigurationModuleLoggingLog4j configuration = new ConfigurationModuleLoggingLog4j();
-            String configfilePath = resource.getPath();
-            if (StringUtils.containsIgnoreCase(configfilePath, ".jar!")) {
-                configfilePath = "jar:" + configfilePath;
-            }
-
-            Properties properties = new Properties();
-            properties.put("connector.logger.fileconfig.location", configfilePath);
-            properties.put("connector.logger.through.config", "true");
-            properties.put("connector.logger.fileconfig.type", "org.apache.log4j.PropertyConfigurator");
-            configuration.init(properties);
-        }
 
         try {
 

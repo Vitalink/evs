@@ -1,6 +1,7 @@
 package org.imec.ivlab.core.util;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.File;
 import java.nio.file.Path;
@@ -8,7 +9,7 @@ import java.nio.file.Paths;
 
 public class PathUtils {
 
-    private final static Logger log = Logger.getLogger(PathUtils.class);
+    private final static Logger log = LogManager.getLogger(PathUtils.class);
 
 
     public static String relativizePath(String firstPath, String secondPath) {

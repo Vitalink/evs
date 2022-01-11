@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+  <Appenders>
+    <Console name="LogToConsole" target="SYSTEM_OUT">
+      <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss} %-5p [%t] %C{2} (%F:%L) - %m%n"/>
+    </Console>
+    <RollingFile name="LogToEHealthLog" fileName="../logs/ehealth_exporter.log" filePattern="../logs/ehealth_exporter-%i.log.gz">
+      <PatternLayout>
+        <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p [%t] %C{2} (%F:%L) - %m%n</Pattern>
+      </PatternLayout>
+      <DefaultRolloverStrategy max="13"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+    </RollingFile>
+    <RollingFile name="LogToEvsLog" fileName="../logs/evs_exporter.log" filePattern="../logs/evs_exporter-%i.log.gz">
+      <PatternLayout>
+        <Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p [%t] %C{2} (%F:%L) - %m%n</Pattern>
+      </PatternLayout>
+      <DefaultRolloverStrategy max="13"/>
+      <Policies>
+        <SizeBasedTriggeringPolicy size="10 MB"/>
+      </Policies>
+    </RollingFile>
+  </Appenders>
+  <Loggers>
+    <Logger name="org.imec.ivlab" level="debug" additivity="false">
+      <AppenderRef ref="LogToConsole"/>
+      <AppenderRef ref="LogToEvsLog"/>
+    </Logger>
+    <Logger name="be.ehealth" level="debug" additivity="false">
+      <AppenderRef ref="LogToEHealthLog"/>
+    </Logger>
+    <Root level="debug">
+      <AppenderRef ref="LogToEHealthLog"/>
+    </Root>
+  </Loggers>
+</Configuration>

@@ -20,6 +20,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import lombok.extern.log4j.Log4j;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.SerializationUtils;
 import org.imec.ivlab.core.kmehr.mapper.KmehrMapper;
 import org.imec.ivlab.core.kmehr.model.util.CDContentUtil;
@@ -49,7 +51,7 @@ import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.StringUtils;
 
-@Log4j
+@Log4j2
 public class SumehrMapper extends BaseMapper {
 
     public static Sumehr kmehrToSumehr(Kmehrmessage kmehrmessage) {

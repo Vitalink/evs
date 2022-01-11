@@ -29,7 +29,8 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.DataNotFoundException;
 import org.imec.ivlab.core.kmehr.mapper.KmehrMapper;
 import org.imec.ivlab.core.kmehr.model.FrequencyCode;
@@ -68,7 +69,7 @@ import org.imec.ivlab.core.util.DateUtils;
 
 public class MedicationMapper {
 
-    private final static Logger LOG = Logger.getLogger(MedicationMapper.class);
+    private final static Logger LOG = LogManager.getLogger(MedicationMapper.class);
 
 
     public static MedicationEntry transactionToMedicationEntry(TransactionType medicationTransaction) {

@@ -5,7 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrExtractor;
@@ -31,7 +32,7 @@ import org.imec.ivlab.datagenerator.uploader.service.queue.config.VaccinationQue
 
 public class UploadQueueImpl implements Runnable, UploadQueue {
 
-    private final static Logger LOG = Logger.getLogger(UploadQueueImpl.class);
+    private final static Logger LOG = LogManager.getLogger(UploadQueueImpl.class);
 
     private final static int WAIT_TIME_IN_MILLIS_AFTER_QUEUE_IS_EMPTY = 3000;
 
