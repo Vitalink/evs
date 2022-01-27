@@ -46,6 +46,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
+import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tika.Tika;
 import org.imec.ivlab.core.model.internal.parser.diarynote.DiaryNote;
@@ -67,6 +68,7 @@ public class DiaryNoteWriter extends Writer {
     private static final BigDecimal ATTACHMENT_MAX_SIZE_IN_MB = BigDecimal.valueOf(20);
     private static final List<String> PARTS_OF_VALID_MEDIA_TYPE_NAMES = Arrays.asList("dicom", "g3fax", "gif", "jpg", "jpeg", "png", "tiff");
     private static final String MESSAGE_TEXT_CONTENT_TOO_LONG = "Text content exceeds max length of " + TEXT_MESSAGE_MAX_LENGTH + " characters";
+    private static final String MESSAGE_TOO_MANY_ATTACHMENTS = "At most one attachment is allowed";
     private static final String MESSAGE_ATTACHMENT_TOO_LARGE = "Attachment size exceeds limit of " + ATTACHMENT_MAX_SIZE_IN_MB + " MB";
     private static final String MESSAGE_MEDIA_TYPE_INVALID = String.format("Mediatype is invalid. Valid mediatypes: %s", StringUtils.joinWith(", ", PARTS_OF_VALID_MEDIA_TYPE_NAMES.toArray()));
 
@@ -148,10 +150,14 @@ public class DiaryNoteWriter extends Writer {
         return textLength <= TEXT_MESSAGE_MAX_LENGTH;
     }
 
-    private PdfPTable lnkToTable(LnkType lnkType) {
+    private PdfPTable lnkToTable(LnkType lnkType, boolean tooManyAttachments) {
         PdfPTable table = initializeDetailTable();
 
-        addRow(table, createDetailHeader("Link"));
+        List<PdfPCell> lnkHeader = createDetailHeader("Link");
+        if (tooManyAttachments) {
+            annotateCellWithValidationMessage(lnkHeader.get(0), MESSAGE_TOO_MANY_ATTACHMENTS);
+        }
+        addRow(table, lnkHeader);
         addRow(table, toDetailRowIfHasValue("Type", Optional.ofNullable(lnkType.getTYPE()).map(CDLNKvalues::value).orElse(null)));
         addRow(table, toDetailRowIfHasValue("Mediatype", Optional.ofNullable(lnkType.getMEDIATYPE()).map(CDMEDIATYPEvalues::value).orElse(null)));
         addRow(table, createMediaTypeRow(lnkType.getValue()));
@@ -361,10 +367,11 @@ public class DiaryNoteWriter extends Writer {
     }
 
     private Collection<PdfPTable> createLnkTable(List<LnkType> lnkTypes) {
+        boolean tooManyLinkTypes = CollectionUtils.size(lnkTypes) > 1;
         return Optional.ofNullable(lnkTypes)
             .orElse(Collections.emptyList())
             .stream()
-            .map(this::lnkToTable)
+            .map(lnkType -> lnkToTable(lnkType, tooManyLinkTypes))
             .collect(Collectors.toList());
     }
 
