@@ -20,4 +20,8 @@ public abstract class BaseKmehrMessageRule implements KmehrMessageRule {
         return new RuleExecution(ExecutionStatus.FAIL, getMessage(), TransactionUtil.getTransactionId(transactionType));
     }
 
+    @Override
+    public boolean enabled() {
+        return true;
+    }
 }

@@ -129,4 +129,8 @@ public class KmehrValidator {
         return sb.toString();
     }
 
+    public void skipDisabledRules(boolean skipDisabledRules) {
+        businessValidator.setSkipDisabledRules(skipDisabledRules);
+    }
+
 }

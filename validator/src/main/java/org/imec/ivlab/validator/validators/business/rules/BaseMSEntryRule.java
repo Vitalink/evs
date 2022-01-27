@@ -19,4 +19,8 @@ public abstract class BaseMSEntryRule implements MSEntryRule {
         return new RuleExecution(ExecutionStatus.FAIL, getMessage(), TransactionUtil.getTransactionId(transactionType));
     }
 
+    @Override
+    public boolean enabled() {
+        return true;
+    }
 }

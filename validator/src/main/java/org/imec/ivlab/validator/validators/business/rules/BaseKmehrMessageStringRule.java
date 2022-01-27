@@ -14,4 +14,8 @@ public abstract class BaseKmehrMessageStringRule implements KmehrMessageStringRu
         return new RuleExecution(ExecutionStatus.FAIL, getMessage());
     }
 
+    @Override
+    public boolean enabled() {
+        return true;
+    }
 }

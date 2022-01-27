@@ -64,6 +64,7 @@ public class KmehrBusinessValidatorTest {
         String kmehrmessageString = TemplateReader.read(templateFileName);
         Kmehrmessage kmehrmessage = KmehrMarshaller.fromString(kmehrmessageString);
 
+        validator.skipDisabledRules(true);
         ValidationResult validationResult = validator.validate(kmehrmessage, kmehrmessageString);
         return  validationResult;
     }

@@ -26,6 +26,7 @@ import java.util.List;
 public class BusinessValidator {
 
     private static Logger LOG = Logger.getLogger(BusinessValidator.class);
+    private boolean skipDisabledRules = false;
 
     private List<String> ruleIdIgnoreList = new ArrayList<>();
 
@@ -65,6 +66,11 @@ public class BusinessValidator {
                 ruleInstance = ruleClass.newInstance();
             } catch (InstantiationException | IllegalAccessException e) {
                 throw new RuntimeException("Failed to instantiate rule " + ruleClass.getName(), e);
+            }
+
+            if (!skipDisabledRules && !ruleInstance.enabled()) {
+                LOG.info(String.format("Skipping disabled rule %s - %s", ruleInstance.getRuleId(), ruleInstance.getMessage()));
+                continue;
             }
 
             if (ruleInstance instanceof KmehrMessageRule) {
@@ -180,4 +186,7 @@ public class BusinessValidator {
         }
     }
 
+    public void setSkipDisabledRules(boolean skipDisabledRules) {
+        this.skipDisabledRules = skipDisabledRules;
+    }
 }

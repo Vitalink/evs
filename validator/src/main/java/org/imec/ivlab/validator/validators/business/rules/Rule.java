@@ -7,6 +7,7 @@ public interface Rule {
     String getMessage();
     String getRuleId();
     Level getLevel();
+    boolean enabled();
 
 
 }
