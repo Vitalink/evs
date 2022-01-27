@@ -21,6 +21,11 @@ public class R1015_AllowedValuesCdDayperiod extends BaseMSEntryRule implements M
     private static final CDDAYPERIODvalues[] ALLOWED_DAYPERIOD_VALUES = new CDDAYPERIODvalues[] {CDDAYPERIODvalues.AFTERBREAKFAST, CDDAYPERIODvalues.AFTERDINNER, CDDAYPERIODvalues.AFTERLUNCH, CDDAYPERIODvalues.BEFOREBREAKFAST, CDDAYPERIODvalues.BEFOREDINNER, CDDAYPERIODvalues.BEFORELUNCH, CDDAYPERIODvalues.BETWEENBREAKFASTANDLUNCH, CDDAYPERIODvalues.BETWEENDINNERANDSLEEP, CDDAYPERIODvalues.BETWEENLUNCHANDDINNER, CDDAYPERIODvalues.MORNING, CDDAYPERIODvalues.THEHOUROFSLEEP, CDDAYPERIODvalues.DURINGBREAKFAST, CDDAYPERIODvalues.DURINGLUNCH, CDDAYPERIODvalues.DURINGDINNER};
 
     @Override
+    public boolean enabled() {
+        return false;
+    }
+
+    @Override
     public String getMessage() {
         return "CD-DAYPERIOD values must be one of the following: " + StringUtils.joinWith(", ", ALLOWED_DAYPERIOD_VALUES);
     }
