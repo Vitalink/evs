@@ -26,6 +26,10 @@ import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.io.File;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.text.CharacterIterator;
+import java.text.StringCharacterIterator;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -57,7 +61,9 @@ public class DiaryNoteWriter extends Writer {
 
     private static final Set<String> VITALINK_SUPPORTED_CD_DIARYNOTE_VALUES = new HashSet<>(Arrays.asList("diabetes", "nutrition", "movement", "medication", "renalinsufficiency", "woundcare"));
     private static final int TEXT_MESSAGE_MAX_LENGTH = 320;
+    private static final BigDecimal ATTACHMENT_MAX_SIZE_IN_MB = BigDecimal.valueOf(20);
     private static final String ANNOTATION_TEXT_TEXT_MESSAGE_TOO_LONG = "Text content exceeds max length of " + TEXT_MESSAGE_MAX_LENGTH + " characters";
+    private static final String ANNOTATION_TEXT_TEXT_ATTACHMENT_TOO_LARGE = "Attachment size exceeds limit of " + ATTACHMENT_MAX_SIZE_IN_MB + " MB";
 
     public static void main(String[] args) {
 
@@ -144,10 +150,47 @@ public class DiaryNoteWriter extends Writer {
         addRow(table, toDetailRowIfHasValue("Type", Optional.ofNullable(lnkType.getTYPE()).map(CDLNKvalues::value).orElse(null)));
         addRow(table, toDetailRowIfHasValue("Mediatype", Optional.ofNullable(lnkType.getMEDIATYPE()).map(CDMEDIATYPEvalues::value).orElse(null)));
         addRow(table, toDetailRowIfHasValue("Size", lnkType.getSIZE()));
+        addRow(table, createContentSizeRow(lnkType.getValue()));
         addRow(table, toDetailRowIfHasValue("Url", lnkType.getURL()));
         addRow(table, toDetailRowIfHasValue("Image", lnkType.getValue()));
 
         return table;
+    }
+
+    private List<PdfPCell> createContentSizeRow(byte[] content) {
+        BigDecimal size = calculateSizeInMb(content);
+        if (size != null) {
+            List<PdfPCell> pdfPCells = toDetailRowIfHasValue("Actual size", humanReadableByteCountSI(content.length));
+            if (CollectionsUtil.size(pdfPCells) == 2 && size.compareTo(ATTACHMENT_MAX_SIZE_IN_MB) >= 0) {
+                annotateCellWithValidationMessage(pdfPCells.get(1), ANNOTATION_TEXT_TEXT_ATTACHMENT_TOO_LARGE);
+            }
+            return pdfPCells;
+        } else {
+            return Collections.emptyList();
+        }
+    }
+
+    private BigDecimal calculateSizeInMb(byte[] content) {
+        return Optional
+            .ofNullable(content)
+            .map(a -> BigDecimal
+                .valueOf(a.length)
+                .setScale(2, BigDecimal.ROUND_HALF_EVEN)
+                .divide(BigDecimal.valueOf(1024), RoundingMode.HALF_UP)
+                .divide(BigDecimal.valueOf(1024), RoundingMode.HALF_UP))
+            .orElse(null);
+    }
+
+    private String humanReadableByteCountSI(long bytes) {
+        if (-1000 < bytes && bytes < 1000) {
+            return bytes + " B";
+        }
+        CharacterIterator ci = new StringCharacterIterator("kMGTPE");
+        while (bytes <= -999_950 || bytes >= 999_950) {
+            bytes /= 1000;
+            ci.next();
+        }
+        return String.format("%.1f %cB", bytes / 1000.0, ci.current());
     }
 
     private PdfPTable textWithoutLayoutToTable(TextType textType) {
