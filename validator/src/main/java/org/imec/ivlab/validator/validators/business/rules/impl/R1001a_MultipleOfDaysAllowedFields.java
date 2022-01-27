@@ -22,6 +22,11 @@ import java.util.List;
 public class R1001a_MultipleOfDaysAllowedFields extends BaseMSEntryRule implements MSEntryRule {
 
     @Override
+    public boolean enabled() {
+        return false;
+    }
+
+    @Override
     public String getMessage() {
         return "When using a multiplier of days, only the daynumber can be used";
     }
