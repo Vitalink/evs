@@ -47,7 +47,7 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.11</version>
+            <version>4.13.2</version>
         </dependency>
 
         <dependency>
@@ -97,6 +97,12 @@
             </dependency>
 
             <dependency>
+                <groupId>org.apache.pdfbox</groupId>
+                <artifactId>pdfbox</artifactId>
+                <version>2.0.24</version>
+            </dependency>
+
+            <dependency>
                 <groupId>org.testng</groupId>
                 <artifactId>testng</artifactId>
                 <version>6.10</version>
@@ -124,7 +130,7 @@
             <dependency>
                 <groupId>commons-io</groupId>
                 <artifactId>commons-io</artifactId>
-                <version>2.5</version>
+                <version>2.10.0</version>
             </dependency>
 
             <dependency>
@@ -220,7 +226,7 @@
         <build.install.directory.installer>${build.install.directory.parent}${file.separator}EVS-installer${file.separator}</build.install.directory.installer>
         <build.install.jar.directory>${build.install.directory}${file.separator}system${file.separator}</build.install.jar.directory>
         <build.install.kmehrconfig.directory>${build.install.directory}${file.separator}system${file.separator}kmehr{file.separator}</build.install.kmehrconfig.directory>
-        <apache.poi.version>3.15</apache.poi.version>
+        <apache.poi.version>5.0.0</apache.poi.version>
     </properties>
 
     <repositories>

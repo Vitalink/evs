@@ -128,7 +128,7 @@ public class VaccinationMappingReader {
     if (cell == null) {
       return "";
     }
-    switch (cell.getCellTypeEnum()) {
+    switch (cell.getCellType()) {
       case STRING:
         return valueOf(cell.getStringCellValue());
       case NUMERIC:

@@ -47,10 +47,9 @@
         </dependency>
 
         <dependency>
-        <groupId>org.apache.pdfbox</groupId>
-        <artifactId>pdfbox</artifactId>
-        <version>2.0.6</version>
-    </dependency>
+            <groupId>org.apache.pdfbox</groupId>
+            <artifactId>pdfbox</artifactId>
+        </dependency>
 
     <dependency>
         <groupId>org.imec.ivlab.ehealth.sam</groupId>
