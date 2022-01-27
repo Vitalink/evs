@@ -7,8 +7,10 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import lombok.Data;
 import org.imec.ivlab.core.model.internal.parser.ParsedKmehrItem;
 
+@Data
 public class DiaryNote extends ParsedKmehrItem {
 
     private List<TextType> textTypes;
@@ -25,43 +27,4 @@ public class DiaryNote extends ParsedKmehrItem {
         return ignoredNames;
     }
 
-    public List<TextType> getTextTypes() {
-        return textTypes;
-    }
-
-    public void setTextTypes(List<TextType> textTypes) {
-        this.textTypes = textTypes;
-    }
-
-    public List<TextWithLayoutType> getTextWithLayoutTypes() {
-        return textWithLayoutTypes;
-    }
-
-    public void setTextWithLayoutTypes(List<TextWithLayoutType> textWithLayoutTypes) {
-        this.textWithLayoutTypes = textWithLayoutTypes;
-    }
-
-    public List<LnkType> getLinkTypes() {
-        return linkTypes;
-    }
-
-    public void setLinkTypes(List<LnkType> linkTypes) {
-        this.linkTypes = linkTypes;
-    }
-
-    public List<String> getCdDiaryValues() {
-        return cdDiaryValues;
-    }
-
-    public void setCdDiaryValues(List<String> cdDiaryValues) {
-        this.cdDiaryValues = cdDiaryValues;
-    }
-
-    public List<CDTRANSACTION> getCdLocalEntries() {
-        return cdLocalEntries;
-    }
-
-    public void setCdLocalEntries(List<CDTRANSACTION> cdLocalEntries) {
-        this.cdLocalEntries = cdLocalEntries;
-    }
 }
