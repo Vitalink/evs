@@ -19,9 +19,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.SerializationUtils;
 import org.imec.ivlab.core.kmehr.mapper.KmehrMapper;
 import org.imec.ivlab.core.kmehr.model.util.CDContentUtil;
@@ -45,8 +43,8 @@ import org.imec.ivlab.core.model.internal.parser.sumehr.Treatment;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Vaccination;
 import org.imec.ivlab.core.model.upload.KmehrWithReference;
 import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
-import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInTransactionFoundException;
 import org.imec.ivlab.core.model.upload.extractor.SumehrListExtractor;
+import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInTransactionFoundException;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.StringUtils;
@@ -235,7 +233,7 @@ public class SumehrMapper extends BaseMapper {
         return Optional.ofNullable(items).orElse(Collections.emptyList()).stream().map(SumehrMapper::toProblem).collect(Collectors.toList());
     }
 
-    public static Risk toRisk(ItemType itemType) {
+    private static Risk toRisk(ItemType itemType) {
 
         Risk risk = new Risk();
 
@@ -249,7 +247,7 @@ public class SumehrMapper extends BaseMapper {
         return risk;
     }
 
-    public static HealthCareElement toHealthCareElement(ItemType itemType) {
+    private static HealthCareElement toHealthCareElement(ItemType itemType) {
 
         HealthCareElement hce = new HealthCareElement();
 
@@ -267,11 +265,13 @@ public class SumehrMapper extends BaseMapper {
         return hce;
     }
 
-    public static Treatment toTreatment(ItemType itemType) {
+    private static Treatment toTreatment(ItemType itemType) {
 
         Treatment tm = new Treatment();
 
         toItem(itemType, tm);
+
+        tm.setNoKnownTreatment(hasNullFlavor(itemType));
 
         if (itemType.getBeginmoment() != null) {
             tm.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
@@ -285,11 +285,13 @@ public class SumehrMapper extends BaseMapper {
         return tm;
     }
 
-    public static Problem toProblem(ItemType itemType) {
+    private static Problem toProblem(ItemType itemType) {
 
         Problem pb = new Problem();
 
         toItem(itemType, pb);
+
+        pb.setNoKnownTreatment(hasNullFlavor(itemType));
 
         if (itemType.getBeginmoment() != null) {
             pb.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
@@ -309,7 +311,14 @@ public class SumehrMapper extends BaseMapper {
         return pb;
     }
 
-    public static PatientWill toPatientWill(ItemType itemType) {
+    private static boolean hasNullFlavor(ItemType itemType) {
+        return CDItemUtil
+            .getCDItems(itemType.getCds(), CDITEMschemes.CD_ITEM)
+            .stream()
+            .anyMatch(cdItem -> org.apache.commons.lang3.StringUtils.equalsIgnoreCase(cdItem.getNullFlavor(), "NA"));
+    }
+
+    private static PatientWill toPatientWill(ItemType itemType) {
         PatientWill patientWill = new PatientWill();
 
         ItemType clone = SerializationUtils.clone(itemType);
@@ -345,7 +354,7 @@ public class SumehrMapper extends BaseMapper {
         return patientWill;
     }
 
-    public static MedicationEntrySumehr toMedicationItem(ItemType itemType) {
+    private static MedicationEntrySumehr toMedicationItem(ItemType itemType) {
 
         ItemType clone = SerializationUtils.clone(itemType);
 
@@ -398,7 +407,7 @@ public class SumehrMapper extends BaseMapper {
         return medicationEntrySumehr;
     }
 
-    public static Vaccination toVaccination(ItemType itemType) {
+    private static Vaccination toVaccination(ItemType itemType) {
 
         ItemType clone = SerializationUtils.clone(itemType);
 
@@ -476,7 +485,7 @@ public class SumehrMapper extends BaseMapper {
 
     }
 
-    public static List<HealthCareElement> toHealthCareElements(List<ItemType> itemTypes) {
+    private static List<HealthCareElement> toHealthCareElements(List<ItemType> itemTypes) {
 
         List<HealthCareElement> healthCareElements = new ArrayList<>();
 
