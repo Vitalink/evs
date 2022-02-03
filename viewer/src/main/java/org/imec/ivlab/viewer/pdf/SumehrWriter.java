@@ -33,6 +33,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import java.io.File;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -75,7 +76,7 @@ import org.imec.ivlab.viewer.converter.exceptions.SchemaConversionException;
 
 public class SumehrWriter extends Writer {
 
-    private static HashMap<String, String> cdContentTranslations = new HashMap<>();
+    private static final HashMap<String, String> cdContentTranslations = new HashMap<>();
     static {
         cdContentTranslations.put("CD-CLINICAL", "IBUI");
         cdContentTranslations.put("CD-PATIENTWILL", "Patientwill");
@@ -85,7 +86,7 @@ public class SumehrWriter extends Writer {
 
     }
 
-    private static Set<String> cdContentToIgnore = new HashSet<>();
+    private static final Set<String> cdContentToIgnore = new HashSet<>();
     static {
         cdContentToIgnore.add("LOCAL");
     }
@@ -95,7 +96,7 @@ public class SumehrWriter extends Writer {
         SumehrWriter sumehrWriter = new SumehrWriter();
         Stream
             .of("1-sumehr-1dot1-all-parseable", "2-sumehr-1dot1-unparseable-content", "3-sumehr-2dot0", "4-sumehr-2dot0", "5-sumehr-2dot0-risk-text-and-medication", "5-sumehr-2dot0-posology-and"
-                + "-regimen", "6-sumehr-vaccine-textItem")
+                + "-regimen", "6-sumehr-vaccine-textItem", "7-with-nullflavor")
             .forEach(filename -> sumehrWriter.createPdf(readTestFile(filename + ".xml").get(0), filename + ".pdf"));
 
     }
@@ -385,7 +386,7 @@ public class SumehrWriter extends Writer {
         PdfPTable table = initializeDetailTable();
 
         String name = collectText(treatment.getContentTextTypes());
-
+        name = Stream.of(name, treatment.isNoKnownTreatment() ? "No known problem": null).filter(item -> item != null && !item.isEmpty()).collect(Collectors.joining(" - "));
         addRow(table, createDetailHeader(name));
 
         if (CollectionsUtil.notEmptyOrNull(treatment.getCdcontents())) {
@@ -411,7 +412,7 @@ public class SumehrWriter extends Writer {
         PdfPTable table = initializeDetailTable();
 
         String name = collectText(problem.getContentTextTypes());
-
+        name = Stream.of(name, problem.isNoKnownTreatment() ? "No known problem": null).filter(item -> item != null && !item.isEmpty()).collect(Collectors.joining(" - "));
         addRow(table, createDetailHeader(name));
 
         if (CollectionsUtil.notEmptyOrNull(problem.getCdcontents())) {
@@ -602,7 +603,7 @@ public class SumehrWriter extends Writer {
             return null;
         }
 
-        String key = null;
+        String key;
         if (cdcontent.getS() != null) {
             if (!org.apache.commons.lang3.StringUtils.startsWithIgnoreCase(cdcontent.getS().value(), "CD-")) {
                 key = StringUtils.joinFields(translateCdContent(cdcontent), cdcontent.getSV(), " ");
