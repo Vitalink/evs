@@ -2,7 +2,15 @@ package org.imec.ivlab.core.model.evsref.extractor.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import junit.framework.TestCase;
+import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
+import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.imec.ivlab.core.TestResourceReader;
 import org.imec.ivlab.core.kmehr.KmehrMarshaller;
@@ -14,19 +22,9 @@ import org.imec.ivlab.core.model.upload.KmehrWithReference;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
-import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
-import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
-import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
-import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
-import lombok.extern.log4j.Log4j2;
-
 @Test
 @Log4j2
-public class DiaryNoteEVSRefExtractorTest extends TestCase {
+public class DiaryNoteEVSRefExtractorTest { //TODO: find out why 'extends testcase' had to be deleted
 
   private EVSREF evsref = new EVSREF("TESTREF");
   private KmehrWithReference kmehr;
