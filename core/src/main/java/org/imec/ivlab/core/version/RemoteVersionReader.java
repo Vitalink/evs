@@ -3,6 +3,9 @@ package org.imec.ivlab.core.version;
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+import java.util.Optional;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -42,6 +45,9 @@ public class RemoteVersionReader {
         }
 
         Gson gson = new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
+        if (!isValidJson(apiResonseString)) {
+            throw new RemoteVersionCheckFailedException("No remote version returned: " + apiResonseString);
+        }
         ApiResponse response = gson.fromJson(apiResonseString, ApiResponse.class);
 
         if (response != null && response.getBody() != null && response.getBody().getStorage() != null) {
@@ -51,6 +57,15 @@ public class RemoteVersionReader {
 
         throw new RemoteVersionCheckFailedException("No remote version returned: " + apiResonseString);
 
+    }
+
+    private static boolean isValidJson(String apiResonseString) {
+        try {
+            JsonParser.parseString(apiResonseString);
+            return true;
+        } catch (JsonSyntaxException e) {
+            return false;
+        }
     }
 
     private static  String parseVersionFromPageBody(String pageBody) {
@@ -80,6 +95,7 @@ public class RemoteVersionReader {
             HttpGet request = new HttpGet(url);
             request.addHeader("content-type", "application/json");
             CloseableHttpResponse result = httpClient.execute(request);
+
             return EntityUtils.toString(result.getEntity(), "UTF-8");
 
         } catch (IOException e) {
