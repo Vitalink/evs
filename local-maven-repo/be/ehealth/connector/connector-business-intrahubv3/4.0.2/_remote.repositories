@@ -1,0 +1,6 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Sep 01 11:22:53 CEST 2022
+connector-business-intrahubv3-4.0.2.jar>my-local-repo=
+connector-business-intrahubv3-4.0.2.jar>=
+connector-business-intrahubv3-4.0.2.pom>=
+connector-business-intrahubv3-4.0.2.pom>my-local-repo=

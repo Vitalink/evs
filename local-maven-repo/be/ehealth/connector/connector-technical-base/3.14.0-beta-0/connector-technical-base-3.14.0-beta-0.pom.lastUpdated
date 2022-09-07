@@ -1,5 +1,5 @@
-#NOTE: This is an internal implementation file, its format can be changed without prior notice.
-#Wed Jan 31 15:30:42 CET 2018
-https\://oss.sonatype.org/content/repositories/snapshots/.lastUpdated=1517409042011
-file\:/Users/machtst/imec/automation/git/ivlab-automation-evs-gateway/validator/../local-maven-repo/.lastUpdated=1517409042018
-https\://oss.sonatype.org/content/repositories/snapshots/.error=
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Jun 24 10:34:24 CEST 2020
+https\://cde.toyota-europe.com/nexus/content/groups/tme/.error=
+https\://cde.toyota-europe.com/nexus/content/groups/tme/.lastUpdated=1592986335790
+file\:/Users/mxconsultancy/Documents/projects/imec/dev/sources/ivlab-automation-evs/viewer/../local-maven-repo/.lastUpdated=1592987664279

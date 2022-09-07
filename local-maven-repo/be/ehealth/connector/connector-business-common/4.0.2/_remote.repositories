@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Sep 01 11:22:38 CEST 2022
+connector-business-common-4.0.2.pom>=
+connector-business-common-4.0.2.jar>=
