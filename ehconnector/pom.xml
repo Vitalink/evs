@@ -187,21 +187,6 @@
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-business-mycarenetattest</artifactId>
-            <version>${ehealth.connector.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-business-mycarenetattestv2</artifactId>
-            <version>${ehealth.connector.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-business-mycarenetattestv3</artifactId>
-            <version>${ehealth.connector.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-business-mycarenetcommons</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
@@ -398,16 +383,6 @@
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-idsupport</artifactId>
-            <version>${ehealth.connector.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-utilities-kmehr</artifactId>
-            <version>${ehealth.connector.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-utilities-kmehr-mycarenet</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
