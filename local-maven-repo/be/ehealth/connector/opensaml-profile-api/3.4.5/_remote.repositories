@@ -1,0 +1,4 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Thu Sep 01 11:24:19 CEST 2022
+opensaml-profile-api-3.4.5.jar>=
+opensaml-profile-api-3.4.5.pom>=

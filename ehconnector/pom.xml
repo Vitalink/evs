@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <properties>
-        <ehealth.connector.version>3.17.1</ehealth.connector.version>
+        <ehealth.connector.version>4.0.2</ehealth.connector.version>
     </properties>
     <parent>
         <artifactId>super</artifactId>
@@ -39,7 +39,7 @@
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
-            <version>1.10</version>
+            <version>1.15</version>
         </dependency>
         <dependency>
             <groupId>commons-collections</groupId>
@@ -51,24 +51,29 @@
             <version>1.21</version>
         </dependency>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.5</version>
+        </dependency>
+        <dependency>
             <groupId>be.fedict.commons-eid</groupId>
             <artifactId>commons-eid-client</artifactId>
-            <version>0.6.6</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>be.fedict.commons-eid</groupId>
             <artifactId>commons-eid-consumer</artifactId>
-            <version>0.6.6</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>be.fedict.commons-eid</groupId>
             <artifactId>commons-eid-dialogs</artifactId>
-            <version>0.6.6</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>be.fedict.commons-eid</groupId>
             <artifactId>commons-eid-jca</artifactId>
-            <version>0.6.6</version>
+            <version>1.0.3</version>
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
@@ -97,12 +102,22 @@
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-business-consultrnv2</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-business-dicsv3</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-business-dicsv4</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-business-dicsv5</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -167,12 +182,22 @@
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-business-mediprimav2</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-business-mycarenetattest</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-business-mycarenetattestv2</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-business-mycarenetattestv3</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -188,6 +213,16 @@
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-business-mycarenetmemberdata</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-business-mycarenetmemberdata-common</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-business-mycarenetmemberdatav2</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -242,12 +277,12 @@
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-technical-signature</artifactId>
+            <artifactId>connector-technical-services</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-technical-smartcardio</artifactId>
+            <artifactId>connector-technical-signature</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -287,7 +322,17 @@
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-consultrnv2</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-core</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-daas</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -298,6 +343,11 @@
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-dicsv4</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-dicsv5</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -327,11 +377,6 @@
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-utilities-mycarenetmemberdatasync</artifactId>
-            <version>${ehealth.connector.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-gmfv1</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
@@ -357,12 +402,27 @@
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-kmehr</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-kmehr-mycarenet</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-mediprima</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-mediprimauma</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-mediprimav2</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -377,6 +437,16 @@
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-messageservices-mycarenet</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-mycarenet-businesscontent</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-mycarenetattest</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
@@ -387,12 +457,32 @@
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-mycarenetattestv3</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-mycarenetcommons</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-mycarenetcommonsv3</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-mycarenetcommonsv4</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-mycarenetgeninsasync</artifactId>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>connector-utilities-mycarenetmemberdatasync</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -415,6 +505,13 @@
             <artifactId>connector-utilities-timestamping</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
+        <dependency>
+            <groupId>be.ehealth.connector</groupId>
+            <artifactId>schematron-core</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+
+        <!-- non-ehealth dependencies -->
         <dependency>
             <groupId>net.sf.jsignature.io-tools</groupId>
             <artifactId>easystream</artifactId>
@@ -443,22 +540,22 @@
         <dependency>
             <groupId>org.jasypt</groupId>
             <artifactId>jasypt</artifactId>
-            <version>1.9.2</version>
+            <version>1.9.3</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
-            <version>1.7.24</version>
+            <version>1.7.30</version>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.9.7</version>
+            <version>2.10.10</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
-            <version>1.7.24</version>
+            <version>1.7.30</version>
         </dependency>
         <dependency>
             <groupId>fr.xebia.extras</groupId>
@@ -468,7 +565,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.24</version>
+            <version>1.7.30</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
@@ -483,7 +580,7 @@
         <dependency>
             <groupId>org.codehaus.woodstox</groupId>
             <artifactId>stax2-api</artifactId>
-            <version>3.1.4</version>
+            <version>4.2</version>
         </dependency>
         <dependency>
             <groupId>javax.xml.stream</groupId>
@@ -500,24 +597,129 @@
             <artifactId>velocity</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.codehaus.woodstox</groupId>
-            <artifactId>woodstox-core-asl</artifactId>
-            <version>4.4.1</version>
+            <groupId>com.fasterxml.woodstox</groupId>
+            <artifactId>woodstox-core</artifactId>
+            <version>5.2.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.wss4j</groupId>
             <artifactId>wss4j-ws-security-common</artifactId>
-            <version>2.0.10</version>
+            <version>2.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.wss4j</groupId>
             <artifactId>wss4j-ws-security-dom</artifactId>
-            <version>2.0.10</version>
+            <version>2.3.1</version>
         </dependency>
         <dependency>
             <groupId>org.apache.santuario</groupId>
             <artifactId>xmlsec</artifactId>
             <version>2.2.3</version>
+        </dependency>
+        <dependency>
+            <groupId>org.cryptacular</groupId>
+            <artifactId>cryptacular</artifactId>
+            <version>1.2.4</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>failureaccess</artifactId>
+            <version>1.0.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.javamail</groupId>
+            <artifactId>geronimo-javamail_1.4_mail</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.geronimo.specs</groupId>
+            <artifactId>geronimo-javamail_1.4_spec</artifactId>
+            <version>1.4</version>
+        </dependency>
+        <dependency>
+            <groupId>net.shibboleth.utilities</groupId>
+            <artifactId>java-support</artifactId>
+            <version>7.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.4.2.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.dropwizard.metrics</groupId>
+            <artifactId>metrics-core</artifactId>
+            <version>3.1.2</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-core</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-profile-api</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-saml-api</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-saml-impl</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-security-api</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-security-impl</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-soap-api</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-xacml-api</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-xacml-impl</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-xacml-saml-api</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-xacml-saml-impl</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-xmlsec-api</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>org.opensaml</groupId>
+            <artifactId>opensaml-xmlsec-impl</artifactId>
+            <version>3.4.5</version>
+        </dependency>
+        <dependency>
+            <groupId>net.sf.saxon</groupId>
+            <artifactId>Saxon-HE</artifactId>
+            <version>9.8.0-15</version>
         </dependency>
 
 
@@ -541,11 +743,6 @@
             <groupId>ognl</groupId>
             <artifactId>ognl</artifactId>
             <version>2.6.9</version>
-        </dependency>
-        <dependency>
-            <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-business-testcommons</artifactId>
-            <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
             <groupId>org.unitils</groupId>

@@ -1,4 +1,4 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Thu May 23 11:21:02 CEST 2019
-connector-business-mycarenetdomaincommons-3.17.1.jar>=
-connector-business-mycarenetdomaincommons-3.17.1.pom>=
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Jun 24 10:35:01 CEST 2020
+connector-business-mycarenetdomaincommons-3.17.1.jar>my-local-repo=
+connector-business-mycarenetdomaincommons-3.17.1.pom>my-local-repo=

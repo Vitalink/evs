@@ -1,4 +1,4 @@
 #NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
-#Thu Dec 16 10:46:39 CET 2021
-etee-crypto-lib-2.3.0.jar>=
-etee-crypto-lib-2.3.0.pom>=
+#Thu Dec 16 10:47:11 CET 2021
+etee-crypto-lib-2.3.0.jar>my-local-repo=
+etee-crypto-lib-2.3.0.pom>my-local-repo=

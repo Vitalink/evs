@@ -1,4 +1,4 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Wed Sep 20 07:17:00 CEST 2017
-connector-business-genericasync-3.14.0-beta-0.pom>=
-connector-business-genericasync-3.14.0-beta-0.jar>=
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Fri Oct 23 13:59:49 CEST 2020
+connector-business-genericasync-3.14.0-beta-0.pom>my-local-repo=
+connector-business-genericasync-3.14.0-beta-0.jar>my-local-repo=
