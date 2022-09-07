@@ -20,7 +20,6 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType.Posology.Takes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.MedicinalProductType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.RouteType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.math.BigInteger;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -65,6 +64,7 @@ import org.imec.ivlab.core.model.internal.mapper.medication.Weekday;
 import org.imec.ivlab.core.model.internal.parser.sumehr.MedicationEntrySumehr;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.DateUtils;
+import org.w3c.dom.Node;
 
 
 public class MedicationMapper {
@@ -394,8 +394,8 @@ public class MedicationMapper {
             return null;
         }
 
-        if (object instanceof ElementNSImpl) {
-            ElementNSImpl item = (ElementNSImpl) object;
+        if (object instanceof Node) {
+            Node item = (Node) object;
             if (item.getFirstChild() != null) {
                 return item.getFirstChild().getNodeValue();
             }

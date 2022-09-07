@@ -31,7 +31,6 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -60,6 +59,7 @@ import org.imec.ivlab.core.util.StringUtils;
 import org.imec.ivlab.core.util.XmlFormatterUtil;
 import org.imec.ivlab.core.util.XmlModifier;
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 public abstract class Writer {
@@ -283,8 +283,8 @@ public abstract class Writer {
     }
 
     protected String parseTextWithLayoutContent(Object content) {
-        if (content instanceof ElementNSImpl) {
-            String codeString = kmehrNodeToString((ElementNSImpl) content);
+        if (content instanceof Node) {
+            String codeString = kmehrNodeToString(((Node) content));
             return org.apache.commons.lang3.StringUtils.trim(codeString);
         } else {
             String contentString = org.apache.commons.lang3.StringUtils.trimToEmpty(content.toString());
@@ -296,9 +296,8 @@ public abstract class Writer {
         }
     }
 
-    private String kmehrNodeToString(ElementNSImpl content) {
-        ElementNSImpl item = content;
-        Document ownerDocument = item.getOwnerDocument();
+    private String kmehrNodeToString(Node content) {
+        Document ownerDocument = content.getOwnerDocument();
         try {
             String xml = XmlFormatterUtil.documentToFormattedString(ownerDocument, true);
             XmlModifier xmlModifier = new XmlModifier(xml);

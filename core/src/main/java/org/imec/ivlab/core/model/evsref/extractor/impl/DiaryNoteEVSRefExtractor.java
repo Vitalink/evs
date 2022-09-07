@@ -2,7 +2,6 @@ package org.imec.ivlab.core.model.evsref.extractor.impl;
 
 import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
-import com.sun.org.apache.xerces.internal.dom.ElementNSImpl;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -12,6 +11,7 @@ import org.imec.ivlab.core.model.evsref.EVSREF;
 import org.imec.ivlab.core.model.evsref.Identifiable;
 import org.imec.ivlab.core.model.evsref.extractor.AbstractRefExtractor;
 import org.imec.ivlab.core.util.CollectionsUtil;
+import org.w3c.dom.Node;
 import org.w3c.dom.Text;
 
 public class DiaryNoteEVSRefExtractor extends AbstractRefExtractor {
@@ -34,7 +34,7 @@ public class DiaryNoteEVSRefExtractor extends AbstractRefExtractor {
             if (hasNonStrikeContent(textWithLayoutType)) {
                 appendReferenceToContent(evsref, textWithLayoutType);
             } else {
-                Optional<ElementNSImpl> strikeTroughContent = findStrikeContent(textWithLayoutType);
+                Optional<Node> strikeTroughContent = findStrikeContent(textWithLayoutType);
                 if (strikeTroughContent.isPresent()) {
                     appendReferenceToElement(evsref, strikeTroughContent);
                 } else {
@@ -48,7 +48,7 @@ public class DiaryNoteEVSRefExtractor extends AbstractRefExtractor {
 
     }
 
-    private void appendReferenceToElement(EVSREF evsref, Optional<ElementNSImpl> strikeTroughContent) {
+    private void appendReferenceToElement(EVSREF evsref, Optional<Node> strikeTroughContent) {
         Text textNode = strikeTroughContent
             .get()
             .getOwnerDocument()
@@ -66,7 +66,7 @@ public class DiaryNoteEVSRefExtractor extends AbstractRefExtractor {
             .anyMatch(content -> !(StringUtils.trimToNull(content.toString()) == null));
     }
 
-    private Optional<ElementNSImpl> findStrikeContent(TextWithLayoutType textWithLayoutType) {
+    private Optional<Node> findStrikeContent(TextWithLayoutType textWithLayoutType) {
         return textWithLayoutType
             .getContent()
             .stream()
@@ -76,11 +76,10 @@ public class DiaryNoteEVSRefExtractor extends AbstractRefExtractor {
             .findFirst();
     }
 
-    private Optional<ElementNSImpl> parseStrikeElement(Object content) {
-        if (content instanceof ElementNSImpl) {
-            ElementNSImpl element = (ElementNSImpl) content;
-            if (StringUtils.equalsIgnoreCase(element.getLocalName(), "strike")) {
-                return Optional.of(element);
+    private Optional<Node> parseStrikeElement(Object content) {
+        if (content instanceof Node) {
+            if (StringUtils.equalsIgnoreCase(((Node) content).getLocalName(), "strike")) {
+                return Optional.of((Node) content);
             }
         }
         return Optional.empty();
