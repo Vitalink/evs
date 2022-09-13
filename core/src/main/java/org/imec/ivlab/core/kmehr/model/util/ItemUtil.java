@@ -16,6 +16,7 @@ import org.imec.ivlab.core.exceptions.MultipleEntitiesFoundException;
 import org.imec.ivlab.core.util.CollectionsUtil;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class ItemUtil {
@@ -44,7 +45,7 @@ public class ItemUtil {
         ContentUtil contentUtil = new ContentUtil();
 
         if (CollectionUtils.isEmpty(items)) {
-            throw new RuntimeException("Empty list of items provided");
+            return Collections.emptyList();
         }
 
         for (ItemType item : items) {
