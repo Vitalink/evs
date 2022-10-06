@@ -39,6 +39,7 @@ import org.imec.ivlab.ehconnector.hub.exception.GatewaySpecificErrorException;
 import org.imec.ivlab.ehconnector.hub.exception.incurable.InvalidConfigurationException;
 import org.imec.ivlab.ehconnector.hub.session.SessionManager;
 
+import java.util.stream.IntStream;
 @Log4j2
 public class HubServiceTest extends TestCase {
 
@@ -108,7 +109,21 @@ public class HubServiceTest extends TestCase {
   public void testPutTransaction() throws VitalinkException, GatewaySpecificErrorException, TechnicalConnectorException, TransformationException, JAXBException {
     HubService hubService = init(actor);
 
-    Kmehrmessage kmehrmessage = loadKmehr("/kmehrs/test-putTransaction.xml");
+    Kmehrmessage kmehrmessage = loadKmehr("/kmehrs/test-perf-putTransactionRequest.xml");
+    //Kmehrmessage kmehrmessage = loadKmehr("/kmehrs/test-putTransactionDN.xml");
+
+    IntStream.rangeClosed(1,5).forEach((Iteration) -> {
+      try {
+        sendPutTransactionRequest(hubService, kmehrmessage);
+      } catch (VitalinkException | GatewaySpecificErrorException | JAXBException e) {
+        log.error(e);
+      }
+    });
+
+  }
+
+  private void sendPutTransactionRequest(HubService hubService, Kmehrmessage kmehrmessage) throws VitalinkException, GatewaySpecificErrorException, JAXBException {
+    log.info("executing putTransactionRequest");
     PutTransactionResponse putTransactionResponse = hubService.putTransaction(kmehrmessage);
     log.info(JAXBUtils.marshal(putTransactionResponse));
   }
