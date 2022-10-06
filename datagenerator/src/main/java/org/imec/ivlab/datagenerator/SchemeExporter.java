@@ -1,5 +1,8 @@
 package org.imec.ivlab.datagenerator;
 
+import static org.apache.commons.codec.binary.Base64.decodeBase64;
+import static org.apache.commons.codec.binary.Base64.isBase64;
+import static org.apache.commons.io.FileUtils.writeByteArrayToFile;
 import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_CHILD_PREVENTION_FILE;
 import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_CHILD_PREVENTION_FILE_EMBEDDED;
 import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_DAILYSCHEME;
@@ -13,13 +16,14 @@ import static org.imec.ivlab.core.constants.CoreConstants.EXPORT_NAME_VACCINATIO
 import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
+import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -185,19 +189,18 @@ public class SchemeExporter {
                 .ofNullable(childPrevention.getChildPreventionFile())
                 .map(LnkType::getValue);
             if (maybeContent.isPresent()) {
-                writeToFile(embeddedChildPreventionVisualization.getAbsolutePath(), maybeContent.get());
+                byte[] pdfContent;
+                if (isBase64(maybeContent.get())) {
+                    pdfContent = decodeBase64(maybeContent.get());
+                } else {
+                    pdfContent = maybeContent.get();
+                }
+                writeByteArrayToFile(embeddedChildPreventionVisualization, pdfContent);
             }
         } catch (IOException e) {
             log.error("Failed to generate the embedded childPrevention visualization", e);
         }
 
-    }
-
-    private static void writeToFile(String fileName, byte[] bytes) throws IOException {
-        try (FileOutputStream fos = new FileOutputStream(fileName)) {
-            fos.write(bytes);
-            fos.flush();
-        }
     }
 
     private static File makeOutputFile(File inputFile, String exportName) {
