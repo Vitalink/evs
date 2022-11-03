@@ -15,13 +15,13 @@ public class MessageWriter {
     private static final Logger LOG = LoggerFactory.getLogger(MessageWriter.class);
 
 
-    public static void logMessage(String message, String operation) {
+    public static void logMessage(String message, String operation, Kind kind) {
 
         String rootLocation =  System.getProperty("user.dir");
         String exportDir = rootLocation + File.separator + ".." + File.separator + "logs" + File.separator + "communication";
         FileUtil.createDirectoriesRecursively(exportDir);
         LocalDateTime localDateTime = LocalDateTime.now();
-        String fileName = exportDir + File.separator + localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss-SSS")) + "_" + operation + ".xml";
+        String fileName = exportDir + File.separator + localDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd_HH-mm-ss-SSS")) + "_" + kind.name() + "_" + operation + ".xml";
 
         try {
             FileUtils.writeStringToFile(new File(fileName), message, "UTF-8");
