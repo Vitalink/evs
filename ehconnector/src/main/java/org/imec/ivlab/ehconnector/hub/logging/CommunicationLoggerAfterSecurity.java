@@ -1,15 +1,17 @@
 package org.imec.ivlab.ehconnector.hub.logging;
 
+import static org.imec.ivlab.ehconnector.hub.logging.Kind.DECRYPTED;
+import static org.imec.ivlab.ehconnector.hub.logging.Kind.ENCRYPTED;
+
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.ehealth.technicalconnector.handler.AbstractSOAPHandler;
 import be.ehealth.technicalconnector.utils.ConnectorXmlUtils;
-import org.apache.commons.lang3.exception.ExceptionUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.ws.handler.soap.SOAPMessageContext;
+import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CommunicationLoggerAfterSecurity extends AbstractSOAPHandler {
 
@@ -17,41 +19,46 @@ public class CommunicationLoggerAfterSecurity extends AbstractSOAPHandler {
 
 
     public boolean handleOutbound(SOAPMessageContext context) {
-
+        logMessage(getMessageText(context.getMessage()), getAction(context.getMessage()), ENCRYPTED);
         return true;
     }
 
     public boolean handleInbound(SOAPMessageContext context) {
+        logMessage(getMessageText(context.getMessage()), getAction(context.getMessage()), ENCRYPTED);
+        return true;
+    }
 
-        SOAPMessage msg = context.getMessage();
-        String messageText;
-        try {
-            messageText = ConnectorXmlUtils.format(ConnectorXmlUtils.toString(msg.getSOAPPart().getEnvelope()));
-        } catch (TechnicalConnectorException | SOAPException e) {
-            LOG.error("Failed to log incoming message", e);
-            messageText = ExceptionUtils.getStackTrace(e);
-        }
-
+    private static String getAction(SOAPMessage msg) {
         String action = null;
         try {
-            action = msg.getSOAPPart().getEnvelope().getBody().getFirstChild().getLocalName();
+            action = msg
+                .getSOAPPart().getEnvelope().getBody().getFirstChild().getLocalName();
         } catch (SOAPException e) {
             action = "unknown";
         }
-
-        logMessage(messageText, action);
-
-        return true;
-
+        return action;
     }
 
-    private void logMessage(String messageText, String action) {
+    private static String getMessageText(SOAPMessage msg) {
+        String messageText;
+        try {
+            messageText = ConnectorXmlUtils.format(ConnectorXmlUtils.toString(msg
+                .getSOAPPart().getEnvelope()));
+        } catch (TechnicalConnectorException | SOAPException e) {
+            LOG.error("Failed to log outgoing message", e);
+            messageText = ExceptionUtils.getStackTrace(e);
+        }
+        return messageText;
+    }
+
+    private void logMessage(String messageText, String action, Kind kind) {
         CommunicationLoggerConfiguration instance = CommunicationLoggerConfiguration.getInstance();
         if (!instance.isIgnored(action)) {
-            MessageWriter.logMessage(messageText, action);
+            MessageWriter.logMessage(messageText, action, kind);
         }
     }
 
+    @Override
     public boolean handleFault(SOAPMessageContext c) {
         this.handleMessage(c);
         return true;

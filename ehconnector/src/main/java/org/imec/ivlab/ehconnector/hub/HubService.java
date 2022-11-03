@@ -1,5 +1,7 @@
 package org.imec.ivlab.ehconnector.hub;
 
+import static org.imec.ivlab.ehconnector.hub.logging.Kind.DECRYPTED;
+
 import be.ehealth.business.intrahubcommons.exception.IntraHubBusinessConnectorException;
 import be.ehealth.businessconnector.hubv3.session.HubSessionServiceFactory;
 import be.ehealth.technicalconnector.exception.ConnectorException;
@@ -54,6 +56,7 @@ import org.imec.ivlab.ehconnector.hub.exception.incurable.NoDataIsAvailableForPr
 import org.imec.ivlab.ehconnector.hub.exception.incurable.NoNodeFoundMatchingTheURI;
 import org.imec.ivlab.ehconnector.hub.exception.incurable.RemoveNotAllowedIfDataEntryAlreadyDeleted;
 import org.imec.ivlab.ehconnector.hub.exception.incurable.SubjectWithSSINUnknownException;
+import org.imec.ivlab.ehconnector.hub.logging.Kind;
 import org.imec.ivlab.ehconnector.hub.logging.MessageWriter;
 
 public class HubService {
@@ -230,7 +233,7 @@ public class HubService {
 
     private PutTransactionSetResponse putTransactionSetOnce(Kmehrmessage kmehrmessage) throws VitalinkException, GatewaySpecificErrorException {
         try {
-            writeKmehrmessage(kmehrmessage, "PutTransactionSetRequest-kmehrmessage");
+            writeKmehrmessage(kmehrmessage, "PutTransactionSetRequest-kmehrmessage", DECRYPTED);
             PutTransactionSetResponse putTransactionSetResponse = hubService.putTransactionSet(kmehrmessage);
             verifyResponse(putTransactionSetResponse.getAcknowledge());
             return putTransactionSetResponse;
@@ -241,8 +244,8 @@ public class HubService {
 
     }
 
-    private void writeKmehrmessage(Kmehrmessage kmehrmessage, String operation) {
-        MessageWriter.logMessage(kmehrToString(kmehrmessage), operation);
+    private void writeKmehrmessage(Kmehrmessage kmehrmessage, String operation, Kind kind) {
+        MessageWriter.logMessage(kmehrToString(kmehrmessage), operation, kind);
     }
 
     private String kmehrToString(Kmehrmessage kmehrmessage) {
@@ -259,7 +262,7 @@ public class HubService {
 
     private PutTransactionResponse putTransactionOnce(Kmehrmessage kmehrmessage) throws VitalinkException, GatewaySpecificErrorException {
         try {
-            writeKmehrmessage(kmehrmessage, "PutTransactionRequest-kmehrmessage");
+            writeKmehrmessage(kmehrmessage, "PutTransactionRequest-kmehrmessage", DECRYPTED);
             PutTransactionResponse putTransactionSetResponse = hubService.putTransaction(kmehrmessage);
             verifyResponse(putTransactionSetResponse.getAcknowledge());
             return putTransactionSetResponse;
@@ -299,7 +302,7 @@ public class HubService {
 
         try {
             GetTransactionSetResponse getTransactionSetResponse = hubService.getTransactionSet(patientIdType, transactionBaseType);
-            writeKmehrmessage(getTransactionSetResponse.getKmehrmessage(), "GetTransactionSetResponse-kmehrmessage");
+            writeKmehrmessage(getTransactionSetResponse.getKmehrmessage(), "GetTransactionSetResponse-kmehrmessage", DECRYPTED);
             verifyResponse(getTransactionSetResponse.getAcknowledge());
             return getTransactionSetResponse;
         } catch (TechnicalConnectorException | IntraHubBusinessConnectorException | GatewayListOfErrorsException e) {
@@ -313,7 +316,7 @@ public class HubService {
 
         try {
             GetTransactionResponse getTransactionResponse = hubService.getTransaction(patientIdType, transactionBaseType);
-            writeKmehrmessage(getTransactionResponse.getKmehrmessage(), "GetTransactionResponse-kmehrmessage");
+            writeKmehrmessage(getTransactionResponse.getKmehrmessage(), "GetTransactionResponse-kmehrmessage", DECRYPTED);
             verifyResponse(getTransactionResponse.getAcknowledge());
             return getTransactionResponse;
         } catch (TechnicalConnectorException | IntraHubBusinessConnectorException | GatewayListOfErrorsException e) {
