@@ -41,7 +41,9 @@ public class Scanner {
 
     private void processFilesPresentAtStartup() {
 
-        Collection<File> filesExistingAtStartup = FileUtils.listFiles(rootFolder, getUploadFilesFilter(), TrueFileFilter.INSTANCE);
+        File inputFolder = new File(rootFolder, "input");
+        log.info("Looking for existing files at location {}", inputFolder.getAbsolutePath());
+        Collection<File> filesExistingAtStartup = FileUtils.listFiles(inputFolder, getUploadFilesFilter(), TrueFileFilter.INSTANCE);
 
         for (File file : filesExistingAtStartup) {
 
