@@ -7,9 +7,11 @@ import lombok.Setter;
 import lombok.ToString;
 import org.imec.ivlab.core.jcommander.HubConverter;
 import org.imec.ivlab.core.jcommander.LocalDateConverter;
+import org.imec.ivlab.core.jcommander.LogCommunicationTypeConverter;
 import org.imec.ivlab.core.jcommander.PathToFileConverter;
 import org.imec.ivlab.core.jcommander.SearchTypeConverter;
 import org.imec.ivlab.core.model.hub.Hub;
+import org.imec.ivlab.core.model.hub.LogCommunicationType;
 import org.imec.ivlab.core.model.hub.SearchType;
 import org.imec.ivlab.datagenerator.uploader.dateshift.ShiftAction;
 import org.imec.ivlab.datagenerator.uploader.dateshift.ShiftActionConverter;
@@ -79,5 +81,8 @@ public class UploaderArguments {
 
     @Parameter(names = "-filterOutTransactionsHavingPatientAccessNo", description = "Do not attempt to get hub transactions that are marked as PatientAccess=no", arity = 1)
     private boolean filterOutTransactionsHavingPatientAccessNo;
+
+    @Parameter(names = "-logCommunicationType", description = "What kind communication to log", converter = LogCommunicationTypeConverter.class)
+    private LogCommunicationType logCommunicationType = LogCommunicationType.WITHOUT_SECURITY;
 
 }

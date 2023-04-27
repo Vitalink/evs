@@ -1,5 +1,5 @@
 package org.imec.ivlab.ehconnector.hub.logging;
 
 public enum Kind {
-  ENCRYPTED, DECRYPTED
+  WITH_SECURITY, WITHOUT_SECURITY
 }

@@ -1,7 +1,6 @@
 package org.imec.ivlab.ehconnector.hub.logging;
 
-import static org.imec.ivlab.ehconnector.hub.logging.Kind.DECRYPTED;
-import static org.imec.ivlab.ehconnector.hub.logging.Kind.ENCRYPTED;
+import static org.imec.ivlab.ehconnector.hub.logging.Kind.WITH_SECURITY;
 
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import be.ehealth.technicalconnector.handler.AbstractSOAPHandler;
@@ -9,7 +8,11 @@ import be.ehealth.technicalconnector.utils.ConnectorXmlUtils;
 import javax.xml.soap.SOAPException;
 import javax.xml.soap.SOAPMessage;
 import javax.xml.ws.handler.soap.SOAPMessageContext;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
+import org.imec.ivlab.core.config.EVSConfig;
+import org.imec.ivlab.core.config.EVSProperties;
+import org.imec.ivlab.core.model.hub.LogCommunicationType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,14 +20,17 @@ public class CommunicationLoggerAfterSecurity extends AbstractSOAPHandler {
 
     private static final Logger LOG = LoggerFactory.getLogger(CommunicationLoggerAfterSecurity.class);
 
-
     public boolean handleOutbound(SOAPMessageContext context) {
-        logMessage(getMessageText(context.getMessage()), getAction(context.getMessage()), ENCRYPTED);
+        if (getLogCommunicationType().equals(LogCommunicationType.WITH_SECURITY) || getLogCommunicationType().equals(LogCommunicationType.ALL)) {
+            logMessage(getMessageText(context.getMessage()), getAction(context.getMessage()), WITH_SECURITY);
+        }
         return true;
     }
 
     public boolean handleInbound(SOAPMessageContext context) {
-        logMessage(getMessageText(context.getMessage()), getAction(context.getMessage()), ENCRYPTED);
+        if (getLogCommunicationType().equals(LogCommunicationType.WITH_SECURITY) || getLogCommunicationType().equals(LogCommunicationType.ALL)) {
+            logMessage(getMessageText(context.getMessage()), getAction(context.getMessage()), WITH_SECURITY);
+        }
         return true;
     }
 
@@ -62,5 +68,10 @@ public class CommunicationLoggerAfterSecurity extends AbstractSOAPHandler {
     public boolean handleFault(SOAPMessageContext c) {
         this.handleMessage(c);
         return true;
+    }
+
+    private LogCommunicationType getLogCommunicationType() {
+        return  LogCommunicationType.fromValue(StringUtils.lowerCase(EVSConfig
+            .getInstance().getProperty(EVSProperties.LOG_COMMUNICATION_TYPE)));
     }
 }
