@@ -5,7 +5,9 @@ import com.beust.jcommander.Parameters;
 import lombok.Getter;
 import lombok.Setter;
 import org.imec.ivlab.core.jcommander.HubConverter;
+import org.imec.ivlab.core.jcommander.LogCommunicationTypeConverter;
 import org.imec.ivlab.core.jcommander.SearchTypeConverter;
+import org.imec.ivlab.core.model.hub.LogCommunicationType;
 import org.imec.ivlab.core.model.upload.TransactionType;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.jcommander.LocalDateConverter;
@@ -77,5 +79,8 @@ public class VaultExporterArguments {
 
     @Parameter(names = "-filterOutTransactionsHavingPatientAccessNo", description = "Do not attempt to get hub transactions that are marked as PatientAccess=no", arity = 1)
     private boolean filterOutTransactionsHavingPatientAccessNo;
+
+    @Parameter(names = "-logCommunicationType", description = "What kind communication to log", converter = LogCommunicationTypeConverter.class)
+    private LogCommunicationType logCommunicationType = LogCommunicationType.WITHOUT_SECURITY;
 
 }

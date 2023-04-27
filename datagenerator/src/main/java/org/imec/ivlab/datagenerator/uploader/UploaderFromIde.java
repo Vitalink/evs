@@ -4,6 +4,7 @@ import java.io.File;
 import java.time.LocalDate;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.model.hub.Hub;
+import org.imec.ivlab.core.model.hub.LogCommunicationType;
 import org.imec.ivlab.core.model.hub.SearchType;
 import org.imec.ivlab.datagenerator.uploader.dateshift.ShiftAction;
 import org.imec.ivlab.datagenerator.uploader.exception.ScannerException;
@@ -34,6 +35,8 @@ public class UploaderFromIde {
         arguments.setDailyMedicationSchemeDate(LocalDate.now().plusYears(5));
         arguments.setAutoGenerateMSTransactionAuthor(true);
         arguments.setFilterOutTransactionsHavingPatientAccessNo(false);
+
+        arguments.setLogCommunicationType(LogCommunicationType.WITHOUT_SECURITY);
 
         arguments.setStartTransactionId("100");
 

@@ -8,6 +8,7 @@ import java.util.List;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.data.PatientKey;
 import org.imec.ivlab.core.model.hub.Hub;
+import org.imec.ivlab.core.model.hub.LogCommunicationType;
 import org.imec.ivlab.core.model.hub.SearchType;
 import org.imec.ivlab.core.model.upload.TransactionType;
 
@@ -40,6 +41,8 @@ public class VaultExporterFromIde {
         arguments.setGenerateGatewayMedicationScheme(true);
         arguments.setDailyMedicationSchemeDate(LocalDate.now().plusYears(4));
         arguments.setFilterOutTransactionsHavingPatientAccessNo(false);
+
+        arguments.setLogCommunicationType(LogCommunicationType.WITHOUT_SECURITY);
 
         arguments.setHub(Hub.RSB);
         arguments.setSearchType(SearchType.LOCAL);

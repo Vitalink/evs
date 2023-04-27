@@ -1,6 +1,6 @@
 package org.imec.ivlab.ehconnector.hub;
 
-import static org.imec.ivlab.ehconnector.hub.logging.Kind.DECRYPTED;
+import static org.imec.ivlab.ehconnector.hub.logging.Kind.WITHOUT_SECURITY;
 
 import be.ehealth.business.intrahubcommons.exception.IntraHubBusinessConnectorException;
 import be.ehealth.businessconnector.hubv3.session.HubSessionServiceFactory;
@@ -233,7 +233,7 @@ public class HubService {
 
     private PutTransactionSetResponse putTransactionSetOnce(Kmehrmessage kmehrmessage) throws VitalinkException, GatewaySpecificErrorException {
         try {
-            writeKmehrmessage(kmehrmessage, "PutTransactionSetRequest-kmehrmessage", DECRYPTED);
+            writeKmehrmessage(kmehrmessage, "PutTransactionSetRequest-kmehrmessage", WITHOUT_SECURITY);
             PutTransactionSetResponse putTransactionSetResponse = hubService.putTransactionSet(kmehrmessage);
             verifyResponse(putTransactionSetResponse.getAcknowledge());
             return putTransactionSetResponse;
@@ -262,7 +262,7 @@ public class HubService {
 
     private PutTransactionResponse putTransactionOnce(Kmehrmessage kmehrmessage) throws VitalinkException, GatewaySpecificErrorException {
         try {
-            writeKmehrmessage(kmehrmessage, "PutTransactionRequest-kmehrmessage", DECRYPTED);
+            writeKmehrmessage(kmehrmessage, "PutTransactionRequest-kmehrmessage", WITHOUT_SECURITY);
             PutTransactionResponse putTransactionSetResponse = hubService.putTransaction(kmehrmessage);
             verifyResponse(putTransactionSetResponse.getAcknowledge());
             return putTransactionSetResponse;
@@ -302,7 +302,7 @@ public class HubService {
 
         try {
             GetTransactionSetResponse getTransactionSetResponse = hubService.getTransactionSet(patientIdType, transactionBaseType);
-            writeKmehrmessage(getTransactionSetResponse.getKmehrmessage(), "GetTransactionSetResponse-kmehrmessage", DECRYPTED);
+            writeKmehrmessage(getTransactionSetResponse.getKmehrmessage(), "GetTransactionSetResponse-kmehrmessage", WITHOUT_SECURITY);
             verifyResponse(getTransactionSetResponse.getAcknowledge());
             return getTransactionSetResponse;
         } catch (TechnicalConnectorException | IntraHubBusinessConnectorException | GatewayListOfErrorsException e) {
@@ -316,7 +316,7 @@ public class HubService {
 
         try {
             GetTransactionResponse getTransactionResponse = hubService.getTransaction(patientIdType, transactionBaseType);
-            writeKmehrmessage(getTransactionResponse.getKmehrmessage(), "GetTransactionResponse-kmehrmessage", DECRYPTED);
+            writeKmehrmessage(getTransactionResponse.getKmehrmessage(), "GetTransactionResponse-kmehrmessage", WITHOUT_SECURITY);
             verifyResponse(getTransactionResponse.getAcknowledge());
             return getTransactionResponse;
         } catch (TechnicalConnectorException | IntraHubBusinessConnectorException | GatewayListOfErrorsException e) {

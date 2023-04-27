@@ -44,6 +44,7 @@ public class UploaderRunner {
 
         EVSConfig.getInstance().setProperty(EVSProperties.CHOSEN_HUB, arguments.getHub().name());
         EVSConfig.getInstance().setProperty(EVSProperties.SEARCH_TYPE, arguments.getSearchType().name());
+        EVSConfig.getInstance().setProperty(EVSProperties.LOG_COMMUNICATION_TYPE, arguments.getLogCommunicationType().name());
         EVSConfig.getInstance().setProperty(EVSProperties.AUTO_GENERATE_KMEHR_MS_TRANSACTION_AUTHOR, String.valueOf(arguments.isAutoGenerateMSTransactionAuthor()));
         EVSConfig.getInstance().setProperty(EVSProperties.FILTER_OUT_TRANSACTIONS_HAVING_PATIENT_ACCESS_NO, String.valueOf(arguments.isFilterOutTransactionsHavingPatientAccessNo()));
 
