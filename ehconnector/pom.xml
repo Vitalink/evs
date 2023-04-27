@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <properties>
-        <ehealth.connector.version>4.1.2</ehealth.connector.version>
+        <ehealth.connector.version>4.3.0-beta-3</ehealth.connector.version>
     </properties>
     <parent>
         <artifactId>super</artifactId>
@@ -93,11 +93,6 @@
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-business-common</artifactId>
-            <version>${ehealth.connector.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-business-consultrn</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -298,11 +293,6 @@
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-utilities-common</artifactId>
-            <version>${ehealth.connector.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>be.ehealth.connector</groupId>
-            <artifactId>connector-utilities-consultrn</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -604,7 +594,7 @@
         <dependency>
             <groupId>org.apache.geronimo.javamail</groupId>
             <artifactId>geronimo-javamail_1.4_mail</artifactId>
-            <version>1.4</version>
+            <version>1.8.4</version>
         </dependency>
         <dependency>
             <groupId>org.apache.geronimo.specs</groupId>
