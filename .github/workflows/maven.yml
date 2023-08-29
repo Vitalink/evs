@@ -1,7 +1,10 @@
 name: Maven CI/CD
 on:
  push:
-
+ workflow_dispatch:
+   evs_version:
+    description: "Overwrite EVS version (default to the one in release/version_input.txt)"
+    required: false
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
@@ -22,12 +25,24 @@ jobs:
       - name: ✨ Fix permissions
         run: |
           chmod u+x builder/release.sh 
+      - name: 👀 Detect wanted version
+        shell: bash
+        run: |
+          if [[ -z "${{ github.event.inputs.evs_version }}" ]]; then 
+            export EVS_VERSION=$(head -n 1 release/version_input.txt) 
+          else 
+            export EVS_VERSION=${{ github.event.inputs.evs_version }} 
+          fi 
+          echo "EVS_VERSION=${EVS_VERSION}" >> $GITHUB_ENV
+      - name: 📨 Set wanted version
+        run: |
+          echo "${{ env.EVS_VERSION }}" > release/version_input.txt
       - name: 🔨 Build project with Maven
         run: |
           cd builder && ./release.sh
       - name: 🚧 Workaround actions/upload-artifact#176
         run: |
-          echo "artifacts_path=$(realpath ../../builds)" >> $GITHUB_ENV
+          echo "artifacts_path=$(realpath ../builds/${{ env.EVS_VERSION }})" >> $GITHUB_ENV
       - name: 📁 Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
