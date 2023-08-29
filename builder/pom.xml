@@ -6,7 +6,7 @@
     <groupId>org.imec.ivlab.ehealth.automation</groupId>
     <artifactId>builder</artifactId>
     <packaging>pom</packaging>
-    <version>1.0-SNAPSHOT</version>
+    <version>4.0.0</version>
     <build>
         <defaultGoal>package</defaultGoal>
 

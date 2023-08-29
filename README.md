@@ -17,7 +17,12 @@ EVS can sync Kmehr messages to and from the regional vault which acts as a remot
 [add internal developer manual?] -> maybe later
 
 ## How to compile & run it?
-... TODO
+
+### Compile
+
+```sh
+builder\release.cmd
+```
 
 ## Who made it?
 Made by IMEC vzw for Vlaamse Agentschap Zorg & Gezondheid / Vitalink.

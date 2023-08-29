@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.imec.ivlab.ehealth.automation</groupId>
     <artifactId>super</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>4.0.0</version>
     <packaging>pom</packaging>
     <description>The parent pom holds all the necessary
         version and configuration information for submodules.</description>
