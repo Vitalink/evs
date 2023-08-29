@@ -25,9 +25,11 @@ jobs:
       - name: 🔨 Build project with Maven
         run: |
           cd builder && ./release.sh
+      - name: 🚧 Workaround actions/upload-artifact#176
+        run: |
+          echo "artifacts_path=$(realpath ../../builds)" >> $GITHUB_ENV
       - name: 📁 Archive production artifacts
         uses: actions/upload-artifact@v3
         with:
           name: EVS-build
-          path: |
-            ../../builds
+          path: ${{ env.artifacts_path }}
