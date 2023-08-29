@@ -12,9 +12,16 @@ jobs:
         with:
           java-version: '8'
           distribution: 'temurin'
+      - name: Cache the Maven packages to speed up build
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
       - name: Fix permissions
         run: |
           chmod u+x builder/release.sh 
       - name: Build project with Maven
         run: |
-          builder/release.sh  
+          cd builder && ./release.sh
