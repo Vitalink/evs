@@ -131,6 +131,7 @@
 
     <resources>
         <res id="userInputSpec.xml" src="userInputSpec.xml" parse="yes" type="xml"/>
+        <!-- TODO doesn't seem that Github CI likes that -->
         <!-- <res id="CustomLangPack.xml_eng" src="i18n/customLangPack.xml_eng"/> -->
     </resources>
 
