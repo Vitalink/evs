@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<!-- The English langpack -->
+
+<langpack>
+
+	<str id="installer.reversetitle" txt="$APP_NAME $APP_VER - IzPack Installation Wizzard"/>
+
+    <str id="PacksPanel" txt="Selection of the modules to install" />
+    <str id="PacksPanel.description" txt="Description"/>
+    <str id="base.package" txt="Base"/>
+    <str id="doc.package" txt="Documentation (Javadoc) of GRUDU"/>
+    <str id="sources.package" txt="Sources of the GRUDU" />
+
+    <str id="base.package.description" txt="These are the base components of GRUDU"/>
+    <str id="doc.package.description" txt="If you want to get the javadoc of GRUDU you should enable this pack"/>
+	<str id="sources.package.description" txt="If you want to get the sources of GRUDU you should enable this pack"/>
+
+	<str id="GruduInstallationPanel.kadeploy_partition" txt="Kadeploy partition"/>
+	<str id="GruduInstallationPanel.none" txt="None"/>
+	<str id="GruduInstallationPanel.user_configuration" txt="User configuration"/>
+	<str id="GruduInstallationPanel.misc" txt="Misc" />
+	<str id="GruduInstallationPanel.username" txt="User name"/>
+	<str id="GruduInstallationPanel.ssh_key_file" txt="SSH private key file"/>
+	<str id="GruduInstallationPanel.passphrase" txt="Passphrase"/>
+	<str id="GruduInstallationPanel.preferred_acces_point" txt="Preferred acces point"/>
+	<str id="GruduInstallationPanel.ssh_key_file_tooltip" txt="the pah should be an absolute path"/>
+	<str id="GruduInstallationPanel.browse" txt="Browse" />
+	<str id="GruduInstallationPanel.proceed_configuration" txt="Write configuration"/>
+	<str id="GruduInstallationPanel.waiting_frame_title" txt="Remote DIET directories creation"/>
+    <str id="GruduInstallationPanel.waiting_frame_description_text" txt="Installing the necessary files on the Grid5000 frontals" />
+    <str id="GruduInstallationPanel.waiting_frame_connection_text" txt="Opening the connection"/>
+    <str id="GruduInstallationPanel.working_on_site" txt="Working on site : "/>
+
+
+</langpack>
