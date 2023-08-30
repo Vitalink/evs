@@ -58,7 +58,7 @@ jobs:
           echo "artifacts_path=$(realpath ../builds/${{ env.EVS_VERSION }}" >> $GITHUB_ENV
       - name: 🧰 Create release zip
         if: github.event.inputs.create_artifacts || github.event.inputs.create_release
-        run: zip -r -q EVS-${{ env.EVS_VERSION }}).zip ${{ env.artifacts_path }}
+        run: zip -r -q EVS-${{ env.EVS_VERSION }}.zip ${{ env.artifacts_path }}
       - name: 📁 Archive artifacts
         uses: actions/upload-artifact@v3
         if: github.event.inputs.create_artifacts
@@ -69,8 +69,8 @@ jobs:
         name: 🤖 Create release on Github
         if: github.event.inputs.create_release
         with:
-          artifacts: "EVS-${{ env.EVS_VERSION }}).zip"
+          artifacts: "EVS-${{ env.EVS_VERSION }}.zip"
           allowUpdates: "true"
-          tag: "${{ env.EVS_VERSION }})"
+          tag: "${{ env.EVS_VERSION }}"
           commit: "main"
-          name: "EVS-${{ env.EVS_VERSION }})"
+          name: "EVS-${{ env.EVS_VERSION }}"
