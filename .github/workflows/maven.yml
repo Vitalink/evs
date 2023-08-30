@@ -9,17 +9,13 @@ on:
     create_artifacts:
       description: "Produce temporary artifacts"
       required: false
-      default: "false"
-      options:
-        - "true"
-        - "false"
+      default: false
+      type: boolean
     create_release:
       description: "Produce the release artifacts"
       required: false
-      default: "false"
-      options:
-        - "true"
-        - "false"
+      default: false
+      type: boolean
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
