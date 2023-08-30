@@ -27,6 +27,9 @@ dependency-reduced-pom.xml
 buildNumber.properties
 .mvn/timing.properties
 
+### Needed so I can work on local with my own version of itextpdf
+pom.xml
+
 ### Eclipse stuff
 .metadata
 bin/
