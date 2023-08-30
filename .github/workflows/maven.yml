@@ -5,9 +5,17 @@ on:
    evs_version:
     description: "Overwrite EVS version (default to the one in release/version_input.txt)"
     required: false
+   create_artifacts:
+    description: "Produce temporary artifacts"
+    required: false
+   create_release:
+    description: "Produce the release artifacts"
+    required: false
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v3
       - name: ☕ Set up JDK 8
@@ -43,8 +51,21 @@ jobs:
       - name: 🚧 Workaround actions/upload-artifact#176
         run: |
           echo "artifacts_path=$(realpath ../builds/${{ env.EVS_VERSION }})" >> $GITHUB_ENV
-      - name: 📁 Archive production artifacts
+      - name: 🧰 Create release zip
+        if: github.event.inputs.create_artifacts || github.event.inputs.create_release
+        run: zip -r -q EVS-${{ env.EVS_VERSION }}).zip ${{ env.artifacts_path }}
+      - name: 📁 Archive artifacts
         uses: actions/upload-artifact@v3
+        if: github.event.inputs.create_artifacts
         with:
           name: EVS-build
           path: ${{ env.artifacts_path }}
+      - uses: ncipollo/release-action@v1.13.0
+        name: 🤖 Create release on Github
+        if: github.event.inputs.create_release
+        with:
+          artifacts: "EVS-${{ env.EVS_VERSION }}).zip"
+          allowUpdates: "true"
+          tag: "${{ env.EVS_VERSION }})"
+          commit: "main"
+          name: "EVS-${{ env.EVS_VERSION }})"
