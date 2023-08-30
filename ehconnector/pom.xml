@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <properties>
-        <ehealth.connector.version>3.17.1</ehealth.connector.version>
+        <ehealth.connector.version>3.24.0</ehealth.connector.version>
     </properties>
     <parent>
         <artifactId>super</artifactId>

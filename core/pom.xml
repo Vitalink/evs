@@ -3,6 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <ehealth.connector.version>3.24.0</ehealth.connector.version>
+    </properties>
     <parent>
         <artifactId>super</artifactId>
         <groupId>org.imec.ivlab.ehealth.automation</groupId>
@@ -37,18 +40,18 @@
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-technical-base</artifactId>
-            <version>3.14.0-beta-0</version>
+            <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-technical-bootstrap</artifactId>
-            <version>3.14.0-beta-0</version>
+            <version>${ehealth.connector.version}</version>
         </dependency>
 
         <dependency>
             <groupId>be.ehealth.connector</groupId>
             <artifactId>connector-technical-core</artifactId>
-            <version>3.14.0-beta-0</version>
+            <version>${ehealth.connector.version}</version>
         </dependency>
 
         <dependency>
