@@ -2,15 +2,16 @@ name: Maven CI/CD
 on:
  push:
  workflow_dispatch:
-   evs_version:
-    description: "Overwrite EVS version (default to the one in release/version_input.txt)"
-    required: false
-   create_artifacts:
-    description: "Produce temporary artifacts"
-    required: false
-   create_release:
-    description: "Produce the release artifacts"
-    required: false
+  inputs:
+    evs_version:
+      description: "Overwrite EVS version (default to the one in release/version_input.txt)"
+      required: false
+    create_artifacts:
+      description: "Produce temporary artifacts"
+      required: false
+    create_release:
+      description: "Produce the release artifacts"
+      required: false
 jobs:
   build_and_test:
     runs-on: ubuntu-latest
