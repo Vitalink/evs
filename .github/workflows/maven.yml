@@ -55,7 +55,7 @@ jobs:
           cd builder && ./release.sh
       - name: 🚧 Workaround actions/upload-artifact#176
         run: |
-          echo "artifacts_path=$(realpath ../builds/${{ env.EVS_VERSION }}" >> $GITHUB_ENV
+          echo "artifacts_path=$(realpath ../builds/${{ env.EVS_VERSION }})" >> $GITHUB_ENV
       - name: 🧰 Create release zip
         if: github.event.inputs.create_artifacts || github.event.inputs.create_release
         run: zip -r -q EVS-${{ env.EVS_VERSION }}.zip ${{ env.artifacts_path }}
