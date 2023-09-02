@@ -13,6 +13,8 @@ import be.smals.sam.export.view.DmppDataType;
 import be.smals.sam.export.view.DmppFullDataType;
 import be.smals.sam.export.view.ExportActualMedicinesType;
 import be.smals.sam.ref.view.PackagingTypeType;
+
+import org.apache.commons.lang3.RegExUtils;
 import org.apache.commons.lang3.SerializationUtils;
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -103,7 +105,7 @@ public class MedicinExporter {
                             Quantity quantity = getQuantity(amppFullDataType);
                             if (quantity != null) {
                                 String unit = StringUtils.replaceIgnoreCase(quantity.getUnit(), "{unit}", "stuks");
-                                unit = StringUtils.removeAll(unit, "[\\[\\]\\{\\}]");
+                                unit = RegExUtils.removeAll(unit, "[\\[\\]\\{\\}]");
                                 quantity.setUnit(unit);
                                 medicationClone.setQuantity(quantity);
                             }
