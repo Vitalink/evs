@@ -54,22 +54,21 @@ jobs:
           echo "artifacts_path=$(realpath ../builds/${{ env.EVS_VERSION }})" >> $GITHUB_ENV
       - name: 🧰 Create release zip
         run: | 
-          find ${{ env.artifacts_path }} -type f \( -name ".gitignore" -o -name ".gitkeep" \) -exec rm -f {} \;  
-          zip -r -q EVS-${{ env.EVS_VERSION }}.zip ${{ env.artifacts_path }}
+          cd ${{ env.artifacts_path }}  
+          find . -type f \( -name ".gitignore" -o -name ".gitkeep" \) -exec rm -f {} \;  
+          zip -r -q EVS-${{ env.EVS_VERSION }}.zip .
       - name: 📁 Archive artifacts
         uses: actions/upload-artifact@v3
         with:
           name: EVS-build
-# I don't want the double-zip issue in artifact
-# https://github.com/actions/upload-artifact#zipped-artifact-downloads 
-          path: "${{ env.artifacts_path }}"
+          path: "${{ env.artifacts_path }}/EVS-${{ env.EVS_VERSION }}.zip"
           if-no-files-found: error
           retention-days: 1
       - uses: ncipollo/release-action@v1.13.0
         name: 🤖 Create release on Github
         if: github.event.inputs.create_release && contains(github.ref, 'main')
         with:
-          artifacts: "EVS-${{ env.EVS_VERSION }}.zip"
+          artifacts: "${{ env.artifacts_path }}/EVS-${{ env.EVS_VERSION }}.zip"
           allowUpdates: "true"
           tag: "${{ env.EVS_VERSION }}"
           commit: "main"
