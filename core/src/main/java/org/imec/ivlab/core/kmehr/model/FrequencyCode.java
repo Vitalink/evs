@@ -1,9 +1,8 @@
 package org.imec.ivlab.core.kmehr.model;
 
-import java.io.Serializable;
 import java.util.Objects;
 
-public enum FrequencyCode implements Serializable {
+public enum FrequencyCode {
 
         UH("UH", Frequency.HOUR, 0.5, "Om het half uur", true),
         U("U", Frequency.HOUR, 1, "Om het uur", true),

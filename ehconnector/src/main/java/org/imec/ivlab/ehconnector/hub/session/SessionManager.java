@@ -316,9 +316,10 @@ public class SessionManager {
             return holderOfKeyPassword;
         }
 
+        /*
         public void setHolderOfKeyPassword(String holderOfKeyPassword) {
             this.holderOfKeyPassword = holderOfKeyPassword;
-        }
+        }*/
 
         public SAMLToken getSamlToken() {
             return samlToken;

@@ -24,7 +24,7 @@ import org.imec.ivlab.core.model.upload.msentrylist.exception.IdenticalEVSRefsFo
 import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInTransactionFoundException;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.datagenerator.uploader.exception.UploaderException;
-import org.imec.ivlab.ehconnector.business.HubHelper;
+//import org.imec.ivlab.ehconnector.business.HubHelper;
 import org.imec.ivlab.ehconnector.business.diary.DiaryNoteService;
 import org.imec.ivlab.ehconnector.business.diary.DiaryNoteServiceImpl;
 
@@ -33,7 +33,7 @@ public class DiaryNoteUploaderImpl implements DiaryNoteUploader, Uploader {
     private final static Logger LOG = LogManager.getLogger(DiaryNoteUploaderImpl.class);
 
     private DiaryNoteService diareNoteService;
-    private HubHelper hubHelper = new HubHelper();
+    //private HubHelper hubHelper = new HubHelper();
     private DiaryNoteEVSRefExtractor refExtractor;
 
     public DiaryNoteUploaderImpl() throws VitalinkException {

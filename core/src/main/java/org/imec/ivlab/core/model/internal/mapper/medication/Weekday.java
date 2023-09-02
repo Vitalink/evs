@@ -1,8 +1,6 @@
 package org.imec.ivlab.core.model.internal.mapper.medication;
 
-import java.io.Serializable;
-
-public enum Weekday implements Serializable {
+public enum Weekday {
 
     MONDAY("monday"),
     TUESDAY("tuesday"),

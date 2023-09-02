@@ -3,8 +3,8 @@ package org.imec.ivlab.viewer.pdf;
 import com.itextpdf.text.Chunk;
 import org.apache.commons.lang3.NotImplementedException;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import static org.imec.ivlab.viewer.pdf.SumehrTableFormatter.getSyntaxRoseFont;
 
 public class Highlighter {
 
-    private final static Logger LOG = LogManager.getLogger(Highlighter.class);
+    //private final static Logger LOG = LogManager.getLogger(Highlighter.class);
 
 
     private static final char CHAR_ATTRIBUTE_SPLITTER = '=';
@@ -25,7 +25,7 @@ public class Highlighter {
     private static final char CHAR_CLOSE_TAG = '>';
     private static final char CHAR_SLASH = '/';
     private static final char CHAR_QUOTE = '\"';
-    private static final char END_ATTRIBUTE_VALUE = '\"';
+    //private static final char END_ATTRIBUTE_VALUE = '\"';
 
 
     public static void main(String[] args) {
@@ -44,7 +44,7 @@ public class Highlighter {
 
         List<Chunk> chunks = new ArrayList<>();
 
-        Context context = Context.CLOSE_TAG;
+        //Context context = Context.CLOSE_TAG;
 
         ParseResult result = new ParseResult(null, xml, Context.CLOSE_TAG);
 
@@ -218,25 +218,14 @@ public class Highlighter {
             return match;
         }
 
-        public void setMatch(String match) {
-            this.match = match;
-        }
-
         public String getRemainder() {
             return remainder;
-        }
-
-        public void setRemainder(String remainder) {
-            this.remainder = remainder;
         }
 
         public Context getContext() {
             return context;
         }
 
-        public void setContext(Context context) {
-            this.context = context;
-        }
 
         @Override
         public String toString() {

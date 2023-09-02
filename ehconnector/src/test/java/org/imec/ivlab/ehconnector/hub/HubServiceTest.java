@@ -23,7 +23,6 @@ import be.fgov.ehealth.standards.kmehr.id.v1.IDPATIENTschemes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import javax.xml.bind.JAXBException;
 import junit.framework.TestCase;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.config.EVSConfig;

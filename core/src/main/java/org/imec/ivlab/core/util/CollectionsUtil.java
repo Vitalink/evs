@@ -7,7 +7,7 @@ import java.util.List;
 
 public class CollectionsUtil {
 
-    public static int size(Collection collection) {
+    public static int size(Collection<?> collection) {
 
         if (collection == null) {
             return 0;
@@ -17,14 +17,14 @@ public class CollectionsUtil {
 
     }
 
-    public static boolean emptyOrNull(Collection collection) {
+    public static boolean emptyOrNull(Collection<?> collection) {
         if (collection == null || collection.isEmpty()) {
             return true;
         }
         return false;
     }
 
-    public static boolean notEmptyOrNull(Collection collection) {
+    public static boolean notEmptyOrNull(Collection<?> collection) {
         return !emptyOrNull(collection);
     }
 

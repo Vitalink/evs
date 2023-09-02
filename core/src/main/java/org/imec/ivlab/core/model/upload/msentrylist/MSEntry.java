@@ -4,12 +4,11 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import org.imec.ivlab.core.model.evsref.EVSREF;
 import org.imec.ivlab.core.model.evsref.Identifiable;
 
-import java.io.Serializable;
 import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MSEntry implements Serializable, Identifiable {
+public class MSEntry implements Identifiable {
 
     private TransactionType mseTransaction;
     private List<TransactionType> tsTransactions = new ArrayList<>();

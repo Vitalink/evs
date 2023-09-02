@@ -11,7 +11,6 @@ import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.JAXBUtils;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
-import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
@@ -19,7 +18,7 @@ import javax.xml.bind.JAXBException;
 import java.util.List;
 
 
-public class R1007_TreatmentsuspensionMedicationEqualsMedicationInMedicationTransaction extends BaseMSEntryRule implements MSEntryRule {
+public class R1007_TreatmentsuspensionMedicationEqualsMedicationInMedicationTransaction extends BaseMSEntryRule {
 
 
     @Override

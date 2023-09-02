@@ -3,14 +3,13 @@ package org.imec.ivlab.core.model.upload;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.model.evsref.EVSREF;
 import org.imec.ivlab.core.model.evsref.Identifiable;
 
-public class KmehrWithReference implements Serializable, Identifiable {
+public class KmehrWithReference implements Identifiable {
 
     private Kmehrmessage kmehrmessage;
     private EVSREF reference;

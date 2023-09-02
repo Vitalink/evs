@@ -10,9 +10,6 @@ import static org.imec.ivlab.viewer.pdf.TableHelper.toDetailRowIfHasValue;
 import static org.imec.ivlab.viewer.pdf.TableHelper.toUnparsedContentTables;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
-import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.io.File;
 import java.util.ArrayList;

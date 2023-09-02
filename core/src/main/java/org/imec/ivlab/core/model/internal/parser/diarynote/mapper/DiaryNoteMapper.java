@@ -14,7 +14,6 @@ import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.internal.parser.common.BaseMapper;
 import org.imec.ivlab.core.model.internal.parser.diarynote.DiaryNote;
 import org.imec.ivlab.core.util.CollectionsUtil;
-import org.imec.ivlab.core.util.DateUtils;
 
 
 public class DiaryNoteMapper extends BaseMapper {

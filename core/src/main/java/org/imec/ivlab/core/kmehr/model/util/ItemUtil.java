@@ -42,8 +42,6 @@ public class ItemUtil {
 
         List<ItemType> matchingItems = new ArrayList<>();
 
-        ContentUtil contentUtil = new ContentUtil();
-
         if (CollectionUtils.isEmpty(items)) {
             return Collections.emptyList();
         }

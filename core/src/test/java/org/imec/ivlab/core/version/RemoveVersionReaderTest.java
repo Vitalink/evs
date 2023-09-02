@@ -8,8 +8,7 @@ public class RemoveVersionReaderTest {
     // Connect to wiki.ivlab.ilabt.imec.be:80 [wiki.ivlab.ilabt.imec.be/193.191.148.162] failed
     @Test(enabled = false)
     public void testGetRemoteVersion() throws Exception {
-        RemoteVersionReader removeVersionReader = new RemoteVersionReader();
-        String remoteVersion = removeVersionReader.getRemoteVersion();
+        String remoteVersion = RemoteVersionReader.getRemoteVersion();
         System.out.print(remoteVersion);
     }
 

@@ -1,6 +1,5 @@
 package org.imec.ivlab.core.kmehr.model.util;
 
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDITEM;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDITEMvalues;
 import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
 import be.fgov.ehealth.standards.kmehr.dt.v1.TextType;

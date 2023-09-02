@@ -13,7 +13,6 @@ import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.model.internal.mapper.medication.DailyScheme;
 import org.imec.ivlab.core.model.internal.mapper.medication.GlobalScheme;
 import org.imec.ivlab.core.model.patient.model.Patient;
-import org.imec.ivlab.core.util.DateUtils;
 
 public class SchemeHelper {
 

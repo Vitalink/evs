@@ -4,7 +4,6 @@ import com.inamik.text.tables.GridTable;
 import com.inamik.text.tables.SimpleTable;
 import com.inamik.text.tables.grid.Border;
 import com.inamik.text.tables.grid.Util;
-import org.apache.commons.lang3.StringUtils;
 import org.imec.ivlab.core.version.LocalVersionReader;
 import org.imec.ivlab.validator.scanner.model.FileWithValidatedKmehrs;
 import org.imec.ivlab.validator.scanner.model.ValidatedKmehr;
@@ -18,6 +17,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.PrintStream;
 import java.util.List;
+import java.util.Objects;
 
 import static com.inamik.text.tables.Cell.Functions.HORIZONTAL_CENTER;
 
@@ -31,18 +31,6 @@ public class FileWithValidatedKmehrsFormatter {
         sb.append(System.lineSeparator());
         sb.append(createValidationDetailsTable(filesWithValidatedKmehrs));
         return sb.toString();
-    }
-
-    private static int getPassedCount(List<FileWithValidatedKmehrs> filesWithValidatedKmehrs) {
-        if (filesWithValidatedKmehrs.size() < 1) {
-            return 0;
-        }
-        ValidatedKmehr validatedKmehr = filesWithValidatedKmehrs.get(0).getValidatedKmehrs().get(0);
-        if (validatedKmehr.getValidationResult() != null) {
-            return validatedKmehr.getValidationResult().getPassedRulesCount();
-        } else {
-            return 0;
-        }
     }
 
     private static int getFailedCount(List<FileWithValidatedKmehrs> filesWithValidatedKmehrs) {
@@ -184,7 +172,7 @@ public class FileWithValidatedKmehrsFormatter {
 
             s
                     .nextCell().addLine(ensureNotNull(ruleResult.getTransactionId()))
-                    .nextCell().addLine(StringUtils.defaultString(ruleResult.getRuleId(), ""))
+                    .nextCell().addLine(Objects.toString(ruleResult.getRuleId(), ""))
                     .nextCell().addLine(ruleResult.getExecutionStatus().name())
                     .nextCell().addLine(ruleResult.getLevel().name())
                     .nextCell().addLine(ruleResult.getMessage())

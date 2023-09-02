@@ -3,8 +3,8 @@ package org.imec.ivlab.core;
 import com.google.common.collect.BoundType;
 import com.google.common.collect.Range;
 import com.google.common.collect.TreeRangeSet;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.model.Frequency;
 import org.imec.ivlab.core.kmehr.model.FrequencyCode;
 import org.imec.ivlab.core.model.internal.mapper.medication.Duration;
@@ -21,15 +21,13 @@ import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
 import org.joda.time.Days;
 import org.joda.time.Months;
-import org.joda.time.Years;
-import org.joda.time.Weeks;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
 public class RangeChecker {
 
-    private final static Logger LOG = LogManager.getLogger(RangeChecker.class);
+    //private final static Logger LOG = LogManager.getLogger(RangeChecker.class);
 
 
     /**
@@ -105,7 +103,7 @@ public class RangeChecker {
         }
 
         if (CollectionsUtil.emptyOrNull(inactivityPeriods)) {
-            ArrayList periods = new ArrayList();
+            ArrayList<Period> periods = new ArrayList<Period>();
             periods.add(activePeriod);
             return periods;
         }

@@ -3,11 +3,10 @@ package org.imec.ivlab.core.model.upload.msentrylist;
 import org.imec.ivlab.core.model.upload.SpecificEntryList;
 import org.imec.ivlab.core.model.evsref.ListOfIdentifiables;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MSEntryList implements Serializable, ListOfIdentifiables, SpecificEntryList {
+public class MSEntryList implements ListOfIdentifiables, SpecificEntryList {
 
     private List<MSEntry> msEntries = new ArrayList<>();
 

@@ -216,7 +216,7 @@ public class TableDefinitionReader {
         }
         Iterable<CSVRecord> records;
         try {
-            records = CSVFormat.EXCEL.withFirstRecordAsHeader().withDelimiter(';').parse(in);
+            records = CSVFormat.EXCEL.builder().setDelimiter(';').setHeader().setSkipHeaderRecord(true).build().parse(in);
         } catch (IOException e) {
             throw new CsvParseException("Failed to parse table file at: " + tableFile.getAbsolutePath(), e);
         }

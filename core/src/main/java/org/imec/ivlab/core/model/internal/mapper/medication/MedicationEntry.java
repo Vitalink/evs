@@ -2,7 +2,6 @@ package org.imec.ivlab.core.model.internal.mapper.medication;
 
 import be.ehealth.technicalconnector.adapter.XmlTimeNoTzAdapter;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
-import java.io.Serializable;
 
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
@@ -16,7 +15,7 @@ import org.imec.ivlab.core.kmehr.model.localid.LocalId;
 
 @Getter
 @Setter
-public class MedicationEntry extends MedicationEntryBasic implements Serializable {
+public class MedicationEntry extends MedicationEntryBasic {
 
     private String medicationUse;
     private String beginCondition;

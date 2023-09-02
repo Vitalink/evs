@@ -3,7 +3,6 @@ package org.imec.ivlab.core.kmehr.tables;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.io.File;
 import java.util.List;
 
 @Test

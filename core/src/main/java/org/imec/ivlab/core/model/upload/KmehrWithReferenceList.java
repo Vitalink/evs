@@ -1,11 +1,10 @@
 package org.imec.ivlab.core.model.upload;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import org.imec.ivlab.core.model.evsref.ListOfIdentifiables;
 
-public class KmehrWithReferenceList implements Serializable, ListOfIdentifiables, SpecificEntryList {
+public class KmehrWithReferenceList implements ListOfIdentifiables, SpecificEntryList {
 
     private List<KmehrWithReference> list = new ArrayList<>();
 

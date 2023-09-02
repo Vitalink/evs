@@ -44,7 +44,6 @@ import org.imec.ivlab.core.model.upload.KmehrWithReferenceList;
 import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInTransactionFoundException;
 import org.imec.ivlab.core.model.upload.extractor.SumehrListExtractor;
 import org.imec.ivlab.core.util.CollectionsUtil;
-import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.StringUtils;
 
 @Log4j2

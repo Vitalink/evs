@@ -32,7 +32,12 @@ public class RegimenUtil {
 
     public static List<Calendar> getDates(Regimen regimen) {
 
-        return getRegimenFields(regimen, Calendar.class);
+        return regimen
+            .getDaynumbersAndQuantitiesAndDates()
+            .stream()
+            .filter(s -> Calendar.class.isInstance(s.getValue()))
+            .map(s -> (Calendar) s.getValue())
+            .collect(Collectors.toList());
 
     }
 
@@ -60,29 +65,12 @@ public class RegimenUtil {
 
     public static List<AdministrationquantityType> getQuantities(Regimen regimen) {
 
-        return getRegimenFields(regimen, AdministrationquantityType.class);
-
-    }
-
-    private static <T> List<T> getRegimenFields(Regimen regimen, Class<T> objectType) {
-
-        List<T> regimenFields = new ArrayList<>();
-
-        if (regimen == null || CollectionUtils.isEmpty(regimen.getDaynumbersAndQuantitiesAndDates())) {
-            return null;
-        }
-
-        for (Object object : regimen.getDaynumbersAndQuantitiesAndDates()) {
-
-            JAXBElement jaxbElement = (JAXBElement) object;
-
-            if (objectType.isInstance(jaxbElement.getValue()) ) {
-                regimenFields.add((T) jaxbElement.getValue());
-            }
-
-        }
-
-        return regimenFields;
+        return regimen
+            .getDaynumbersAndQuantitiesAndDates()
+            .stream()
+            .filter(s -> AdministrationquantityType.class.isInstance(s.getValue()))
+            .map(s -> (AdministrationquantityType) s.getValue())
+            .collect(Collectors.toList());
 
     }
 
@@ -124,7 +112,7 @@ public class RegimenUtil {
 
         for (Object object : regimenEntryFields) {
 
-            JAXBElement jaxbElement = (JAXBElement) object;
+            JAXBElement<?> jaxbElement = (JAXBElement<?>) object;
 
             if (BigInteger.class.isInstance(jaxbElement.getValue()) ) {
                 regimenEntry.setDayNumber((BigInteger) jaxbElement.getValue());

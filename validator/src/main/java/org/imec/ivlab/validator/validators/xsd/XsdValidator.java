@@ -1,8 +1,8 @@
 package org.imec.ivlab.validator.validators.xsd;
 
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.util.JAXBUtils;
 import org.imec.ivlab.validator.exceptions.ValidatorXsdException;
 import org.imec.ivlab.validator.validators.xsd.handler.XsdValidationResult;
@@ -21,7 +21,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 public class XsdValidator {
-    private static final Logger LOG = LogManager.getLogger(XsdValidator.class);
+    //private static final Logger LOG = LogManager.getLogger(XsdValidator.class);
     private static final String KMEHR_XSD_LOCATION = "kmehr/1_34/ehealth-kmehr/XSD/kmehr_elements-1_34.xsd";
 
     private List<String> ignoreList;

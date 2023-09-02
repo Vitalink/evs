@@ -1,7 +1,7 @@
 package org.imec.ivlab.ehconnector.hubflow;
 
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
-import be.fgov.ehealth.hubservices.core.v3.AcknowledgeType;
+//import be.fgov.ehealth.hubservices.core.v3.AcknowledgeType;
 import be.fgov.ehealth.hubservices.core.v3.GetLatestUpdateResponse;
 import be.fgov.ehealth.hubservices.core.v3.GetTransactionSetResponse;
 import org.apache.logging.log4j.LogManager;
@@ -46,7 +46,8 @@ public class HubFlowTestRunner {
 
         SessionManager.connectWith(AuthenticationConfigReader.loadByName(AuthenticationConfigReader.GP_EXAMPLE));
         GetLatestUpdateResponse getLatestUpdateResponse = hubFlow.getLatestUpdate(PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE).getId(), TransactionType.MEDICATION_SCHEME);
-        AcknowledgeType acknowledge = getLatestUpdateResponse.getAcknowledge();
+        getLatestUpdateResponse.getAcknowledge();
+        // AcknowledgeType acknowledge = getLatestUpdateResponse.getAcknowledge();
 
     }
 

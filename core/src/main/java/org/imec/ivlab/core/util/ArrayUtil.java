@@ -40,7 +40,7 @@ public class ArrayUtil {
         for (int i = startIndex; i < array.length; i++) {
 
             if (array[i] instanceof JAXBElement) {
-                JAXBElement jaxbElement = (JAXBElement) array[i];
+                JAXBElement<?> jaxbElement = (JAXBElement<?>) array[i];
                 if (classToFind.isInstance(jaxbElement.getValue())) {
                     return i;
                 }

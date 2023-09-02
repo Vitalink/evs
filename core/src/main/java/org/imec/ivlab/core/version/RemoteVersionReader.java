@@ -9,8 +9,8 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.constants.CoreConstants;
 import org.imec.ivlab.core.exceptions.ExternalConnectionException;
 import org.imec.ivlab.core.exceptions.RemoteVersionCheckFailedException;
@@ -21,7 +21,7 @@ import java.util.regex.Pattern;
 
 public class RemoteVersionReader {
 
-    private final static Logger LOG = LogManager.getLogger(RemoteVersionReader.class);
+    //private final static Logger LOG = LogManager.getLogger(RemoteVersionReader.class);
 
     private final static String EVS_VERSION_WIKI_PAGE_ID = "5407680";
     private final static String CONFLUENCE_CONTENT_API_PATH = "/rest/api/content/";
@@ -95,10 +95,6 @@ public class RemoteVersionReader {
         public RemoteVersionReader.Body getBody() {
             return Body;
         }
-
-        public void setBody(RemoteVersionReader.Body body) {
-            Body = body;
-        }
     }
 
     private class Body {
@@ -108,32 +104,17 @@ public class RemoteVersionReader {
         public Storage getStorage() {
             return storage;
         }
-
-        public void setStorage(Storage storage) {
-            this.storage = storage;
-        }
     }
 
     private class Storage {
 
-        private String representation;
+        //private String representation;
         private String value;
-
-        public String getRepresentation() {
-            return representation;
-        }
-
-        public void setRepresentation(String representation) {
-            this.representation = representation;
-        }
 
         public String getValue() {
             return value;
         }
 
-        public void setValue(String value) {
-            this.value = value;
-        }
     }
 
 

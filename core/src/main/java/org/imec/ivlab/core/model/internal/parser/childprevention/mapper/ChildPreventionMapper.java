@@ -26,7 +26,6 @@ import org.imec.ivlab.core.model.internal.parser.childprevention.DurationItem;
 import org.imec.ivlab.core.model.internal.parser.childprevention.TextItem;
 import org.imec.ivlab.core.model.internal.parser.common.BaseMapper;
 import org.imec.ivlab.core.util.CollectionsUtil;
-import org.imec.ivlab.core.util.DateUtils;
 
 
 public class ChildPreventionMapper extends BaseMapper {

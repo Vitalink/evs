@@ -11,13 +11,12 @@ import org.imec.ivlab.core.kmehr.model.util.RegimenUtil;
 import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
-import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
 import java.util.List;
 
-public class R1015_AllowedValuesCdDayperiod extends BaseMSEntryRule implements MSEntryRule {
+public class R1015_AllowedValuesCdDayperiod extends BaseMSEntryRule {
 
     private static final CDDAYPERIODvalues[] ALLOWED_DAYPERIOD_VALUES = new CDDAYPERIODvalues[] {CDDAYPERIODvalues.AFTERBREAKFAST, CDDAYPERIODvalues.AFTERDINNER, CDDAYPERIODvalues.AFTERLUNCH, CDDAYPERIODvalues.BEFOREBREAKFAST, CDDAYPERIODvalues.BEFOREDINNER, CDDAYPERIODvalues.BEFORELUNCH, CDDAYPERIODvalues.BETWEENBREAKFASTANDLUNCH, CDDAYPERIODvalues.BETWEENDINNERANDSLEEP, CDDAYPERIODvalues.BETWEENLUNCHANDDINNER, CDDAYPERIODvalues.MORNING, CDDAYPERIODvalues.THEHOUROFSLEEP, CDDAYPERIODvalues.DURINGBREAKFAST, CDDAYPERIODvalues.DURINGLUNCH, CDDAYPERIODvalues.DURINGDINNER};
 

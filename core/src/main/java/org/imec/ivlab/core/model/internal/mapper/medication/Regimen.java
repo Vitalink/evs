@@ -1,9 +1,8 @@
 package org.imec.ivlab.core.model.internal.mapper.medication;
 
-import java.io.Serializable;
 import java.util.List;
 
-public class Regimen extends PosologyOrRegimen implements Serializable {
+public class Regimen extends PosologyOrRegimen {
 
     private String administrationUnit;
 
