@@ -6,7 +6,7 @@ import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.kmehr.modifier.impl.util.HeaderUtil;
 import org.imec.ivlab.core.kmehr.modifier.KmehrModification;
 
-import java.time.LocalDateTime;
+import org.joda.time.LocalDateTime;
 
 public class KmehrHeaderModifier implements KmehrModification {
 

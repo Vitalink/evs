@@ -17,10 +17,12 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import com.itextpdf.text.Chunk;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
+import org.joda.time.format.DateTimeFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -109,11 +111,14 @@ public class Translator {
         } else if (regimenEntry.getDaynumberOrDateOrWeekday() instanceof RegimenDate) {
             RegimenDate regimenDate = (RegimenDate) regimenEntry.getDaynumberOrDateOrWeekday();
             if (frequencyCode != null && frequencyCode.getFrequency().equals(Frequency.MONTH)) {
-                return " - " + regimenDate.getDate().format(DateTimeFormatter.ofPattern("d")) + "e";
+                String pattern = DateTimeFormat.forPattern("d").print(regimenDate.getDate());
+                return " - " + pattern + "e";
             } else if (frequencyCode != null && frequencyCode.getFrequency().equals(Frequency.YEAR)) {
-                return " - " + regimenDate.getDate().format(DateTimeFormatter.ofPattern("d MMMM", Locale.forLanguageTag("nl-BE")));
+                String pattern = DateTimeFormat.forPattern("d MMMM").print(regimenDate.getDate());
+                return " - " + pattern;
             } else {
-                return " - " + regimenDate.getDate().format(DateTimeFormatter.ofPattern("dd/MM/uuuu"));
+                String pattern = DateTimeFormat.forPattern("dd/MM/yyyy").print(regimenDate.getDate());
+                return " - " + pattern;
             }
         }
 
@@ -500,7 +505,7 @@ public class Translator {
             return "";
         }
 
-        return localDateTime.format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
+        return DateTimeFormat.forPattern("dd/MM/yyyy HH:mm:ss").print(localDateTime);
 
     }
 
@@ -509,8 +514,26 @@ public class Translator {
             return "";
         }
 
-        return localTime.format(DateTimeFormatter.ofPattern("HH:mm:ss"));
+        return DateTimeFormat.forPattern("HH:mm:ss").print(localTime);
 
+    }
+
+    protected static String formatAsTime(DateTime localTime) {
+        if (localTime == null) {
+            return "";
+        }
+
+        return DateTimeFormat.forPattern("HH:mm:ss").print(localTime);
+    }
+
+    protected static String formatAsTime(java.time.LocalTime localTime) {
+        if (localTime == null) {
+            return "";
+        }
+
+        return localTime.format(
+            java.time.format.DateTimeFormatter.ofPattern("HH:mm:ss")
+        );
     }
 
     protected static String formatAsDate(LocalDate date) {
@@ -518,7 +541,7 @@ public class Translator {
             return "";
         }
 
-        return date.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return DateTimeFormat.forPattern("dd/MM/yyyy").print(date);
     }
 
     protected static String durationToString(Duration duration, LocalDate startDate) {

@@ -1,7 +1,7 @@
 package org.imec.ivlab.core.model.internal.parser.sumehr;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
 import lombok.Getter;
 import lombok.Setter;
 import org.imec.ivlab.core.model.internal.parser.ItemParsedItem;

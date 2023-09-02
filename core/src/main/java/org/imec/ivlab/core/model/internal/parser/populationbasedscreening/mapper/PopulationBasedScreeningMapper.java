@@ -11,7 +11,7 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -72,9 +72,11 @@ public class PopulationBasedScreeningMapper extends BaseMapper {
 
         markFolderLevelFieldsAsProcessed(cloneFolder);
 
-        entry.getTransactionCommon().setDate(DateUtils.toLocalDate(firstTransaction.getDate()));
-        entry.getTransactionCommon().setTime(DateUtils.toLocalTime(firstTransaction.getTime()));
-        entry.getTransactionCommon().setRecordDateTime(DateUtils.toLocalDateTime(firstTransaction.getRecorddatetime()));
+        entry.getTransactionCommon().setDate(firstTransaction.getDate().toLocalDate());
+        entry.getTransactionCommon().setTime(firstTransaction.getTime());
+        if (firstTransaction.getRecorddatetime() != null) {
+            entry.getTransactionCommon().setRecordDateTime(firstTransaction.getRecorddatetime().toLocalDateTime());
+        }
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.getTransactionCommon().setRedactor(mapHcPartyFields(firstTransaction.getRedactor()));
         entry.getTransactionCommon().setIdkmehrs(new ArrayList<>(firstTransaction.getIds()));
@@ -203,7 +205,7 @@ public class PopulationBasedScreeningMapper extends BaseMapper {
             ContentType contentType = maybeContentType.get();
             itemType.getContents().remove(contentType);
 
-            LocalDate date = Optional.ofNullable(contentType.getDate()).map(DateUtils::toLocalDate).orElse(null);
+            LocalDate date = Optional.ofNullable(contentType.getDate()).map(s -> s.toLocalDate()).orElse(null);
 
             DateItem dateItem;
             if (date != null) {

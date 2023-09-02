@@ -1,8 +1,5 @@
 package org.imec.ivlab.core.model.internal.parser.sumehr.mapper;
 
-import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getItemsAndRemoveFromTransaction;
-import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getTextAndRemoveFromTransaction;
-
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENT;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENTschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDITEM;
@@ -19,15 +16,14 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.SerializationUtils;
 import org.imec.ivlab.core.kmehr.mapper.KmehrMapper;
 import org.imec.ivlab.core.kmehr.model.util.CDContentUtil;
 import org.imec.ivlab.core.kmehr.model.util.CDItemUtil;
 import org.imec.ivlab.core.kmehr.model.util.ItemUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
+import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.evsref.EVSREF;
 import org.imec.ivlab.core.model.evsref.extractor.impl.SumehrEVSRefExtractor;
 import org.imec.ivlab.core.model.internal.mapper.medication.mapper.MedicationMapper;
@@ -73,25 +69,25 @@ public class SumehrMapper extends BaseMapper {
         entry.getTransactionCommon().setPerson(toPatient(folderType.getPatient()));
         markFolderLevelFieldsAsProcessed(cloneFolder);
 
-        entry.getTransactionCommon().setDate(DateUtils.toLocalDate(firstTransaction.getDate()));
-        entry.getTransactionCommon().setTime(DateUtils.toLocalTime(firstTransaction.getTime()));
+        entry.getTransactionCommon().setDate(firstTransaction.getDate().toLocalDate());
+        entry.getTransactionCommon().setTime(firstTransaction.getTime());
         entry.getTransactionCommon().setCdtransactions(new ArrayList<>(firstTransaction.getCds()));
 
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
-        entry.setHealthCareElements(toHealthCareElements(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.HEALTHCAREELEMENT)));
-        entry.setSocialRisks(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.SOCIALRISK)));
-        entry.setProblems(toProblems(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.PROBLEM)));
-        entry.setTreatments(toTreatments(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.TREATMENT)));
-        entry.setRisks(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.RISK)));
-        entry.setAllergies(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.ALLERGY)));
-        entry.setAdrs(toRisks(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.ADR)));
-        entry.setPatientWills(toPatientWills(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.PATIENTWILL)));
-        entry.setContactPersons(toContactPersons(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.CONTACTPERSON)));
-        entry.setVaccinations(toVaccinations(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.VACCINE)));
-        entry.setContactHCParties(collectHCPartyTypes(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.CONTACTHCPARTY)));
-        entry.setGmdManagers(collectHCPartyTypes(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.GMDMANAGER)));
-        entry.setMedicationEntries(toMedicationItems(getItemsAndRemoveFromTransaction(firstTransaction, CDITEMvalues.MEDICATION)));
-        entry.setTextTypes(getTextAndRemoveFromTransaction(firstTransaction));
+        entry.setHealthCareElements(toHealthCareElements(TransactionUtil.getItems(firstTransaction, CDITEMvalues.HEALTHCAREELEMENT)));
+        entry.setSocialRisks(toRisks(TransactionUtil.getItems(firstTransaction, CDITEMvalues.SOCIALRISK)));
+        entry.setProblems(toProblems(TransactionUtil.getItems(firstTransaction, CDITEMvalues.PROBLEM)));
+        entry.setTreatments(toTreatments(TransactionUtil.getItems(firstTransaction, CDITEMvalues.TREATMENT)));
+        entry.setRisks(toRisks(TransactionUtil.getItems(firstTransaction, CDITEMvalues.RISK)));
+        entry.setAllergies(toRisks(TransactionUtil.getItems(firstTransaction, CDITEMvalues.ALLERGY)));
+        entry.setAdrs(toRisks(TransactionUtil.getItems(firstTransaction, CDITEMvalues.ADR)));
+        entry.setPatientWills(toPatientWills(TransactionUtil.getItems(firstTransaction, CDITEMvalues.PATIENTWILL)));
+        entry.setContactPersons(toContactPersons(TransactionUtil.getItems(firstTransaction, CDITEMvalues.CONTACTPERSON)));
+        entry.setVaccinations(toVaccinations(TransactionUtil.getItems(firstTransaction, CDITEMvalues.VACCINE)));
+        entry.setContactHCParties(collectHCPartyTypes(TransactionUtil.getItems(firstTransaction, CDITEMvalues.CONTACTHCPARTY)));
+        entry.setGmdManagers(collectHCPartyTypes(TransactionUtil.getItems(firstTransaction, CDITEMvalues.GMDMANAGER)));
+        entry.setMedicationEntries(toMedicationItems(TransactionUtil.getItems(firstTransaction, CDITEMvalues.MEDICATION)));
+        entry.setTextTypes(TransactionUtil.getText(firstTransaction));
         markTransactionAsProcessed(firstTransaction);
         entry.setEvsRef(getEvsRef(kmehrmessage));
 
@@ -242,7 +238,7 @@ public class SumehrMapper extends BaseMapper {
         toItem(itemType, risk);
 
         if (itemType.getBeginmoment() != null) {
-            risk.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            risk.setBeginmoment(itemType.getBeginmoment().getDate().toLocalDate());
             risk.getUnparsed().getBeginmoment().setDate(null);
         }
 
@@ -256,11 +252,11 @@ public class SumehrMapper extends BaseMapper {
         toItem(itemType, hce);
 
         if (itemType.getBeginmoment() != null) {
-            hce.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            hce.setBeginmoment(itemType.getBeginmoment().getDate().toLocalDate());
             hce.getUnparsed().getBeginmoment().setDate(null);
         }
         if (itemType.getEndmoment() != null) {
-            hce.setEndmoment(DateUtils.toLocalDate(itemType.getEndmoment().getDate()));
+            hce.setEndmoment(itemType.getEndmoment().getDate().toLocalDate());
             hce.getUnparsed().getEndmoment().setDate(null);
         }
 
@@ -274,11 +270,11 @@ public class SumehrMapper extends BaseMapper {
         toItem(itemType, tm);
 
         if (itemType.getBeginmoment() != null) {
-            tm.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            tm.setBeginmoment(itemType.getBeginmoment().getDate().toLocalDate());
             tm.getUnparsed().getBeginmoment().setDate(null);
         }
         if (itemType.getEndmoment() != null) {
-            tm.setEndmoment(DateUtils.toLocalDate(itemType.getEndmoment().getDate()));
+            tm.setEndmoment(itemType.getEndmoment().getDate().toLocalDate());
             tm.getUnparsed().getEndmoment().setDate(null);
         }
 
@@ -292,15 +288,17 @@ public class SumehrMapper extends BaseMapper {
         toItem(itemType, pb);
 
         if (itemType.getBeginmoment() != null) {
-            pb.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            pb.setBeginmoment(itemType.getBeginmoment().getDate().toLocalDate());
             pb.getUnparsed().getBeginmoment().setDate(null);
         }
         if (itemType.getEndmoment() != null) {
-            pb.setEndmoment(DateUtils.toLocalDate(itemType.getEndmoment().getDate()));
+            pb.setEndmoment(itemType.getEndmoment().getDate().toLocalDate());
             pb.getUnparsed().getEndmoment().setDate(null);
         }
 
-        pb.setRecordDateTime(DateUtils.toLocalDateTime(itemType.getRecorddatetime()));
+        if (itemType.getRecorddatetime() != null) {
+            pb.setRecordDateTime(itemType.getRecorddatetime().toLocalDateTime());
+        }
         pb.getUnparsed().setRecorddatetime(null);
 
         pb.setLifecycle(KmehrMapper.toLifeCycleValues(itemType.getLifecycle()));
@@ -324,7 +322,7 @@ public class SumehrMapper extends BaseMapper {
         clearContentTypeTextTypes(clone);
 
         if (itemType.getBeginmoment() != null) {
-            patientWill.setBeginmoment(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            patientWill.setBeginmoment(itemType.getBeginmoment().getDate().toLocalDate());
             clone.getBeginmoment().setDate(null);
         }
 
@@ -337,7 +335,9 @@ public class SumehrMapper extends BaseMapper {
         patientWill.setTextTypes(itemType.getTexts());
         clone.getTexts().clear();
 
-        patientWill.setRecordDateTime(DateUtils.toLocalDateTime(itemType.getRecorddatetime()));
+        if (itemType.getRecorddatetime() != null) {
+            patientWill.setRecordDateTime(itemType.getRecorddatetime().toLocalDateTime());
+        }
         clone.setRecorddatetime(null);
 
         patientWill.setUnparsed(clone);
@@ -390,7 +390,9 @@ public class SumehrMapper extends BaseMapper {
         medicationEntrySumehr.setCdcontents(ItemUtil.collectContentTypeCds(itemType));
         clearContentTypeCds(clone);
 
-        medicationEntrySumehr.setRecordDateTime(DateUtils.toLocalDateTime(itemType.getRecorddatetime()));
+        if (itemType.getRecorddatetime() != null) {
+            medicationEntrySumehr.setRecordDateTime(itemType.getRecorddatetime().toLocalDateTime());
+        }
         clone.setRecorddatetime(null);
 
         medicationEntrySumehr.setUnparsed(clone);
@@ -408,7 +410,7 @@ public class SumehrMapper extends BaseMapper {
         clearCds(clone);
 
         if (itemType.getBeginmoment() != null) {
-            vaccination.setApplicationDate(DateUtils.toLocalDate(itemType.getBeginmoment().getDate()));
+            vaccination.setApplicationDate(itemType.getBeginmoment().getDate().toLocalDate());
             clone.getBeginmoment().setDate(null);
         }
 
@@ -422,7 +424,9 @@ public class SumehrMapper extends BaseMapper {
         vaccination.setTextTypes(itemType.getTexts());
         clearTextTypes(clone);
 
-        vaccination.setRecordDateTime(DateUtils.toLocalDateTime(itemType.getRecorddatetime()));
+        if (itemType.getRecorddatetime() != null) {
+            vaccination.setRecordDateTime(itemType.getRecorddatetime().toLocalDateTime());
+        }
         clone.setRecorddatetime(null);
 
         clearContentTypeAllMedicationRelatedInfo(clone);

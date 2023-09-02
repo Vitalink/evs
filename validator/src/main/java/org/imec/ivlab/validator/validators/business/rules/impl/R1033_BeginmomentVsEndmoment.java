@@ -12,7 +12,7 @@ import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 
 public class R1033_BeginmomentVsEndmoment extends BaseMSEntryRule implements MSEntryRule {
@@ -41,11 +41,11 @@ public class R1033_BeginmomentVsEndmoment extends BaseMSEntryRule implements MSE
         if (medicationItem.getBeginmoment() == null || medicationItem.getBeginmoment().getDate() == null) {
             return passRule();
         }
-        LocalDate medicationBeginMomentLocalDate = DateUtils.toLocalDate(medicationItem.getBeginmoment().getDate());
+        LocalDate medicationBeginMomentLocalDate = medicationItem.getBeginmoment().getDate().toLocalDate();
 
         LocalDate medicationEndMomentLocalDate = null;
         if (medicationItem.getEndmoment() != null && medicationItem.getEndmoment().getDate() != null) {
-            medicationEndMomentLocalDate = DateUtils.toLocalDate(medicationItem.getEndmoment().getDate());
+            medicationEndMomentLocalDate = medicationItem.getEndmoment().getDate().toLocalDate();
         }
 
         RangeChecker rangeChecker = new RangeChecker();

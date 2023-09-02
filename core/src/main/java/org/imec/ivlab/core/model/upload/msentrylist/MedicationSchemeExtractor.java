@@ -19,7 +19,7 @@ import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntry;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntryList;
 import org.imec.ivlab.core.util.CollectionsUtil;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

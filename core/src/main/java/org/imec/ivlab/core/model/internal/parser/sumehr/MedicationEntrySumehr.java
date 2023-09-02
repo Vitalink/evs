@@ -3,7 +3,7 @@ package org.imec.ivlab.core.model.internal.parser.sumehr;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENT;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDLIFECYCLEvalues;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTEMPORALITYvalues;
-import java.time.LocalDateTime;
+import org.joda.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;

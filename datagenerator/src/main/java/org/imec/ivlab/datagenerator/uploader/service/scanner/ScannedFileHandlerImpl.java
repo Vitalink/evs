@@ -36,7 +36,7 @@ import org.imec.ivlab.datagenerator.uploader.service.queue.UploadQueueImpl;
 
 import java.io.File;
 import java.nio.file.Path;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 public class ScannedFileHandlerImpl implements ScannedFileHandler {
 

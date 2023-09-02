@@ -16,9 +16,13 @@ import org.imec.ivlab.core.util.CollectionsUtil;
 
 import java.math.BigInteger;
 import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
+
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.Days;
+import org.joda.time.Months;
+import org.joda.time.Years;
+import org.joda.time.Weeks;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -171,21 +175,6 @@ public class RangeChecker {
 
     }
 
-
-    private void applyInactivityPeriod(List<Period> activePeriods, Period inactivityPeriod) {
-
-        if (CollectionsUtil.emptyOrNull(activePeriods)) {
-            return;
-        }
-
-        if (!inactivityPeriod.isValid()) {
-            return;
-        }
-
-
-
-    }
-
     private boolean anySuspensionOnDate(LocalDate takeDate, List<Suspension> suspensions) {
 
         if (CollectionsUtil.notEmptyOrNull(suspensions)) {
@@ -202,12 +191,6 @@ public class RangeChecker {
     private boolean medicationOnDate(LocalDate takeDate, LocalDate beginDate, LocalDate endDate, Duration duration) {
 
         return inRange(takeDate, beginDate, endDate, duration);
-
-    }
-
-    private boolean medicationOnOrAfterDate(LocalDate takeDate, LocalDate beginDate, LocalDate endDate, Duration duration) {
-
-        return inOrAfterRange(takeDate, beginDate, endDate, duration);
 
     }
 
@@ -239,7 +222,8 @@ public class RangeChecker {
                 return false;
             }
 
-            long daysBetween = ChronoUnit.DAYS.between(tempSchemeDate, medicationBeginDate);
+            long daysBetween = Days.daysBetween(tempSchemeDate, medicationBeginDate).getDays();
+            
             if ((daysBetween % frequencyCode.getMultiplier().intValue()) == 0) {
                 return true;
             }
@@ -258,7 +242,7 @@ public class RangeChecker {
                 return false;
             }
 
-            long daysBetween = ChronoUnit.DAYS.between(tempSchemeDate, medicationBeginDate);
+            long daysBetween = Days.daysBetween(tempSchemeDate, medicationBeginDate).getDays();
             if ((daysBetween % (frequencyCode.getMultiplier().intValue() * 7)) == 0) {
                 return true;
             }
@@ -280,22 +264,7 @@ public class RangeChecker {
         } else if (Frequency.MONTH.equals(frequencyCode.getFrequency())) {
 
             int dayOfMonth = date.getDayOfMonth();
-            int differenceInMonths = 0;
-
-            if (schemeDate.getYear() > (medicationBeginDate.getYear()) ) {
-
-                if (schemeDate.getYear() - medicationBeginDate.getYear() > 1) {
-                    differenceInMonths += (schemeDate.getYear() - medicationBeginDate.getYear() - 1) * 12;
-                    differenceInMonths += schemeDate.getMonthValue();
-                } else {
-                    differenceInMonths += schemeDate.getMonthValue();
-                }
-
-                differenceInMonths += ( 12 - medicationBeginDate.getMonthValue());
-
-            } else {
-                differenceInMonths = schemeDate.getMonthValue() - medicationBeginDate.getMonthValue();
-            }
+            int differenceInMonths = Months.monthsBetween(schemeDate, medicationBeginDate).getMonths();
 
             if (((differenceInMonths % (frequencyCode.getMultiplier().intValue()) == 0))) {
 
@@ -308,13 +277,13 @@ public class RangeChecker {
         } else if (Frequency.YEAR.equals(frequencyCode.getFrequency())) {
 
             int dayOfMonth = date.getDayOfMonth();
-            int monthOfYear = date.getMonthValue();
+            int monthOfYear = date.getMonthOfYear();
 
             int differenceInYears = schemeDate.getYear() - medicationBeginDate.getYear();
 
             if (((differenceInYears % (frequencyCode.getMultiplier().intValue()) == 0))) {
 
-                if (schemeDate.getDayOfMonth() == dayOfMonth && schemeDate.getMonthValue() == monthOfYear) {
+                if (schemeDate.getDayOfMonth() == dayOfMonth && schemeDate.getMonthOfYear() == monthOfYear) {
                     return true;
                 }
 
@@ -333,14 +302,14 @@ public class RangeChecker {
             return false;
         } else if (Frequency.WEEK.equals(frequencyCode.getFrequency())) {
 
-            DayOfWeek weekDayOfMedicationBeginDate = medicationBeginDate.getDayOfWeek();
-            DayOfWeek weekDayOfFirstMedicationIntake = DayOfWeek.valueOf(weekday.name());
+            int weekDayOfMedicationBeginDate = medicationBeginDate.getDayOfWeek();
+            int weekDayOfFirstMedicationIntake = DayOfWeek.valueOf(weekday.name()).getValue();
             int daysUntilFirstMedicationIntake = 0;
 
-            if (weekDayOfMedicationBeginDate.getValue() < weekDayOfFirstMedicationIntake.getValue()) {
-                daysUntilFirstMedicationIntake = weekDayOfFirstMedicationIntake.getValue() - weekDayOfMedicationBeginDate.getValue();
-            } else if (weekDayOfFirstMedicationIntake.getValue() < weekDayOfMedicationBeginDate.getValue()) {
-                daysUntilFirstMedicationIntake = 7 - (weekDayOfMedicationBeginDate.getValue() - weekDayOfFirstMedicationIntake.getValue());
+            if (weekDayOfMedicationBeginDate < weekDayOfFirstMedicationIntake) {
+                daysUntilFirstMedicationIntake = weekDayOfFirstMedicationIntake - weekDayOfMedicationBeginDate;
+            } else if (weekDayOfFirstMedicationIntake < weekDayOfMedicationBeginDate) {
+                daysUntilFirstMedicationIntake = 7 - (weekDayOfMedicationBeginDate - weekDayOfFirstMedicationIntake);
             }
 
             LocalDate firstMedicationIntake = medicationBeginDate.plusDays(daysUntilFirstMedicationIntake);
@@ -349,7 +318,7 @@ public class RangeChecker {
                 return false;
             }
 
-            long daysBetween = ChronoUnit.DAYS.between(schemeDate, firstMedicationIntake);
+            long daysBetween = Days.daysBetween(schemeDate, firstMedicationIntake).getDays();
             if (((daysBetween % (frequencyCode.getMultiplier().intValue() * 7) == 0))) {
                 return true;
             }
@@ -416,7 +385,15 @@ public class RangeChecker {
             return null;
         }
 
-        LocalDateTime endDate = LocalDateTime.of(startDate.getYear(), startDate.getMonth(), startDate.getDayOfMonth(), 0, 0);
+        LocalDateTime endDate = new LocalDateTime(
+            startDate.getYear(),
+            startDate.getMonthOfYear(),
+            startDate.getDayOfMonth(),
+            0,
+            0, 
+            0, 
+            0 
+        );
 
         if (duration == null) {
             return endDate.toLocalDate();
@@ -436,26 +413,38 @@ public class RangeChecker {
 
         switch (durationUnit) {
 
-            case A: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.YEARS);
+            case A: 
+                endDate = endDate.plusYears(durationValue.intValue());
                 break;
-            case MO: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.MONTHS);
+            case MO: 
+                endDate = endDate.plusMonths(durationValue.intValue());
                 break;
             // For WEEKS, the supplied duration value was converted to days earlier in this function
-            case WK: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.DAYS);
+            case WK: 
+                endDate = endDate.plusDays(durationValue.intValue());
                 break;
-            case D: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.DAYS);
+            case D: 
+                endDate = endDate.plusDays(durationValue.intValue());
                 break;
-            case HR: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.HOURS);
+            case HR:
+                endDate = endDate.plusHours(durationValue.intValue());
                 break;
-            case MIN: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.MINUTES);
+            case MIN: 
+                endDate = endDate.plusMinutes(durationValue.intValue());
                 break;
-            case S: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.SECONDS);
+            case S: 
+                endDate = endDate.plusSeconds(durationValue.intValue());
                 break;
-            case MS: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.MILLIS);
+            case MS: 
+                endDate = endDate.plusMillis(durationValue.intValue());
                 break;
-            case US: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.MICROS);
+            case US: 
+                endDate = endDate.plusMillis(durationValue.intValue() / 1000);
+                //endDate = endDate.plus(durationValue.longValue(), ChronoUnit.MICROS);
                 break;
-            case NS: endDate = endDate.plus(durationValue.longValue(), ChronoUnit.NANOS);
+            case NS: 
+                endDate = endDate.plusMillis(durationValue.intValue() / 1000000);
+                //endDate = endDate.plus(durationValue.longValue(), ChronoUnit.NANOS);
                 break;
 
         }
@@ -466,7 +455,7 @@ public class RangeChecker {
             case MO:
             case WK:
             case D:
-                endDate = endDate.minus(1, ChronoUnit.DAYS);
+                endDate = endDate.minusDays(1);
 
         }
 

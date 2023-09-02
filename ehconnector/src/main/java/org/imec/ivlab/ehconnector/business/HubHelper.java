@@ -59,6 +59,7 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HeaderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Nationality;
 import be.fgov.ehealth.standards.kmehr.schema.v1.PersonType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.RecipientType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.SenderType;
@@ -68,19 +69,17 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.TelecomType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import org.imec.ivlab.core.kmehr.KmehrMarshaller;
 import org.imec.ivlab.core.kmehr.modifier.impl.PatientDataModifier;
-import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.JAXBUtils;
 import org.imec.ivlab.ehconnector.business.medicationscheme.hubhelper.HubConfigCommon;
 import org.joda.time.DateTime;
+import org.joda.time.LocalDateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.datatype.DatatypeConfigurationException;
-import java.time.LocalDate;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -262,9 +261,13 @@ public class HubHelper {
 
         header.setStandard(standard);
         header.getIds().add(createMessageId(SessionUtil.getNihii11() + "." + IdGeneratorFactory.getIdGenerator().generateId()));
-        LocalDate now = LocalDate.now();
-        header.setDate(DateUtils.toXmlGregorianCalendar(now));
-        header.setTime(DateUtils.toXmlGregorianCalendar(now));
+        DateTime now = DateTime.now();
+        header.setDate(now);
+        header.setTime(now);
+        // Previously in EVS : 
+        // LocalDate now = LocalDate.now();
+        // header.setDate(DateUtils.toXmlGregorianCalendar(now));
+        // header.setTime(DateUtils.toXmlGregorianCalendar(now));
         header.getRecipients().add(createHubRecipient());
         header.setSender(createSender());
         return header;
@@ -437,19 +440,24 @@ public class HubHelper {
         PersonType person = new PersonType();
         person.getFirstnames().add(testPatient.getFirstName());
         person.setFamilyname(testPatient.getLastName());
-        person.setRecorddatetime(DateUtils.getCalendar());
+        person.setRecorddatetime(DateTime.now());
+        // Previously in EVS : 
+        //person.setRecorddatetime(DateUtils.getCalendar());
         person.setUsuallanguage("fr");
 
         DateType dateType = new DateType();
-        LocalDate localDate = LocalDate.of(1991, 12, 12);
+        dateType.setDate(new DateTime(1991, 12, 12, 0, 0));
+        // Previously in EVS 
+        /*
         try {
+            LocalDate localDate = LocalDate.of(1991, 12, 12);
             dateType.setDate(DateUtils.toXmlGregorianCalendar(localDate));
         } catch (DatatypeConfigurationException e) {
             e.printStackTrace();
-        }
+        }*/
         person.setBirthdate(dateType);
 
-        PersonType.Nationality nationality = new PersonType.Nationality();
+        Nationality nationality = new Nationality();
         CDCOUNTRY cdCountry = new CDCOUNTRY();
         cdCountry.setS(CDCOUNTRYschemes.CD_FED_COUNTRY);
         cdCountry.setSV("1.0");
@@ -571,7 +579,7 @@ public class HubHelper {
         Map<String, Object> velocityContext = new HashMap<String, Object>();
 
         velocityContext.put("today", DateTimeFormat.forPattern("yyyy-MM-dd").print(new DateTime()));
-        velocityContext.put("timenow", ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_TIME)); //
+        velocityContext.put("timenow", ISODateTimeFormat.time().print(LocalDateTime.now())); //
         velocityContext.put("idToday", DateTimeFormat.forPattern("yyyyMMdd").print(new DateTime()));
         velocityContext.put("startTransactionId", startTransactionId);
 
@@ -589,7 +597,7 @@ public class HubHelper {
         Map<String, Object> velocityContext = new HashMap<String, Object>();
 
         velocityContext.put("today", DateTimeFormat.forPattern("yyyy-MM-dd").print(new DateTime()));
-        velocityContext.put("timenow", ZonedDateTime.now().format(DateTimeFormatter.ISO_OFFSET_TIME)); //
+        velocityContext.put("timenow", ISODateTimeFormat.time().print(LocalDateTime.now())); //
         velocityContext.put("idToday", DateTimeFormat.forPattern("yyyyMMdd").print(new DateTime()));
 
 

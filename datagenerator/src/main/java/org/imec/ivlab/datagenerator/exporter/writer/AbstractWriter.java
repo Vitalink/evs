@@ -12,6 +12,7 @@ import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.JAXBUtils;
 import org.imec.ivlab.core.util.XmlFormatterUtil;
+import org.joda.time.format.DateTimeFormat;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
@@ -53,7 +54,7 @@ public abstract class AbstractWriter {
             String dateString = DateUtils.toLocalDate(transactionType.getDate()).format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd"));
             sb.append(dateString);
             if (transactionType.getTime() != null) {
-                String timeString = DateUtils.toLocalTime(transactionType.getTime()).format(java.time.format.DateTimeFormatter.ofPattern("HHmmss"));
+                String timeString = DateTimeFormat.forPattern("HHmmss").print(transactionType.getTime());
                 sb.append("_");
                 sb.append(timeString);
             }

@@ -26,6 +26,7 @@ import org.imec.ivlab.core.util.FileUtil;
 import org.imec.ivlab.core.util.FilenameUtil;
 import org.imec.ivlab.core.util.RandomGenerator;
 import org.imec.ivlab.datagenerator.exporter.export.ExportResult;
+import org.joda.time.format.DateTimeFormat;
 
 import java.io.File;
 import java.io.IOException;
@@ -180,7 +181,7 @@ public class TransactionWriter extends AbstractWriter implements Writer<GetTrans
             String dateString = DateUtils.toLocalDate(transactionType.getDate()).format(java.time.format.DateTimeFormatter.ofPattern("yyyyMMdd"));
             sb.append(dateString);
             if (transactionType.getTime() != null) {
-                String timeString = DateUtils.toLocalTime(transactionType.getTime()).format(java.time.format.DateTimeFormatter.ofPattern("HHmmss"));
+                String timeString = DateTimeFormat.forPattern("HHmmss").print(transactionType.getTime());
                 sb.append("_");
                 sb.append(timeString);
             }

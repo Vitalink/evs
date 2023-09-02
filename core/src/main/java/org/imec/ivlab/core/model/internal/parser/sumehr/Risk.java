@@ -1,6 +1,6 @@
 package org.imec.ivlab.core.model.internal.parser.sumehr;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import org.imec.ivlab.core.model.internal.parser.ItemParsedItem;
 
 public class Risk extends ItemParsedItem {

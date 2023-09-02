@@ -43,7 +43,8 @@ public class DiaryNoteEVSRefExtractor extends AbstractRefExtractor {
             }
 
         } else {
-            identifiable.getIdentifiableTransaction().getHeadingsAndItemsAndTexts().add(createNewTextWithLayout(evsref));
+            identifiable.getIdentifiableTransaction().getTextWithLayout().add(createNewTextWithLayout(evsref));
+            //identifiable.getIdentifiableTransaction().getHeadingsAndItemsAndTexts().add(createNewTextWithLayout(evsref));
         }
 
     }

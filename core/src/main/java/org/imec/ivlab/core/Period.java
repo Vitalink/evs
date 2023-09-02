@@ -1,7 +1,7 @@
 package org.imec.ivlab.core;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 public class Period implements Serializable {
 

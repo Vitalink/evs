@@ -5,7 +5,7 @@ import org.imec.ivlab.core.xml.LocalDateAdapter;
 
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 @XmlRootElement(name="patient")
 public class Patient {

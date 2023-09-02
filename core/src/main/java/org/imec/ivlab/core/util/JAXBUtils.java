@@ -5,6 +5,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.TransformationException;
 
+import be.ehealth.technicalconnector.adapter.XmlDateNoTzAdapter;
+import be.ehealth.technicalconnector.adapter.XmlTimeNoTzAdapter;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.JAXBException;
@@ -62,6 +65,10 @@ public class JAXBUtils {
         jaxbMarshaller.setProperty( Marshaller.JAXB_FORMATTED_OUTPUT, true);
         jaxbMarshaller.setProperty( Marshaller.JAXB_ENCODING, "UTF-8");
 
+        // Configure the Marshaller to use the custom XmlAdapter for LocalTime
+        jaxbMarshaller.setAdapter(new XmlTimeNoTzAdapter());
+        jaxbMarshaller.setAdapter(new XmlDateNoTzAdapter());
+
         StringWriter writer = new StringWriter();
 
         String nsURI = "";
@@ -78,8 +85,17 @@ public class JAXBUtils {
 
         jaxbMarshaller.marshal(root, writer);
 
-        return writer.toString();
+        return replaceTimeTags(writer.toString());
 
     }
+
+    // Dirty trick as issue with JAXB adapter
+    private static String replaceTimeTags(String xmlString) {
+        // Define a regular expression to match <time> tags with a timezone offset
+        String regex = "<time>\\s*(\\d+:\\d+:\\d+).*\\s*</time>";
+        // Replace matched <time> tags with the content inside the tags
+        return xmlString.replaceAll(regex, "<time>$1</time>");
+    }
+
 
 }

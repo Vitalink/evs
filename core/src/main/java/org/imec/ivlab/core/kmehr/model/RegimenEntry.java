@@ -1,8 +1,8 @@
 package org.imec.ivlab.core.kmehr.model;
 
 import be.fgov.ehealth.standards.kmehr.schema.v1.AdministrationquantityType;
-import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.WeekdayType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Daytime;
 
 import java.math.BigInteger;
 import java.util.Date;
@@ -12,7 +12,7 @@ public class RegimenEntry {
     private BigInteger dayNumber;
     private Date date;
     private WeekdayType weekday;
-    private ItemType.Regimen.Daytime daytime;
+    private Daytime daytime;
     private AdministrationquantityType quantity;
 
     public BigInteger getDayNumber() {
@@ -39,11 +39,11 @@ public class RegimenEntry {
         this.weekday = weekday;
     }
 
-    public ItemType.Regimen.Daytime getDaytime() {
+    public Daytime getDaytime() {
         return daytime;
     }
 
-    public void setDaytime(ItemType.Regimen.Daytime daytime) {
+    public void setDaytime(Daytime daytime) {
         this.daytime = daytime;
     }
 

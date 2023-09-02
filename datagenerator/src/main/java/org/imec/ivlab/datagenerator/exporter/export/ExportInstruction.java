@@ -2,7 +2,7 @@ package org.imec.ivlab.datagenerator.exporter.export;
 
 
 import java.io.File;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 import org.imec.ivlab.core.model.upload.TransactionType;

@@ -50,7 +50,7 @@ public class DiaryNoteEVSRefExtractorTest extends TestCase {
   public void addEvsRefToExistingTextIfExists() {
     TextType textType = new TextType();
     textType.setValue("existing content");
-    kmehr.getIdentifiableTransaction().getHeadingsAndItemsAndTexts().add(textType);
+    kmehr.getIdentifiableTransaction().getText().add(textType);
 
     new DiaryNoteEVSRefExtractor().putEvsReference(kmehr, evsref);
 

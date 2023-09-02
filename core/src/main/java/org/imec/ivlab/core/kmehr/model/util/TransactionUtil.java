@@ -15,10 +15,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.imec.ivlab.core.exceptions.DataNotFoundException;
 import org.imec.ivlab.core.util.CollectionsUtil;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TransactionUtil {
 
@@ -36,120 +34,39 @@ public class TransactionUtil {
 
     public static List<ItemType> getItems(TransactionType transactionType) {
 
-        return getTransactionFields(transactionType, ItemType.class);
+        return transactionType.getItem();
 
     }
 
     public static List<HeadingType> getHeadings(TransactionType transactionType) {
 
-        return getTransactionFields(transactionType, HeadingType.class);
+        return transactionType.getHeading();
 
     }
 
     public static List<TextType> getText(TransactionType transactionType) {
 
-        return getTransactionFields(transactionType, TextType.class);
+        return transactionType.getText();
 
     }
 
     public static List<TextWithLayoutType> getTextWithLayout(TransactionType transactionType) {
 
-        return getTransactionFields(transactionType, TextWithLayoutType.class);
+        return transactionType.getTextWithLayout();
 
     }
 
-    public static List<LnkType> getLinksAndRemoveFromTransaction(TransactionType transactionType) {
-        return getTransactionFieldsAndRemoveFromTransaction(transactionType, LnkType.class);
-    }
-
-    public static List<TextType> getTextAndRemoveFromTransaction(TransactionType transactionType) {
-
-        return getTransactionFieldsAndRemoveFromTransaction(transactionType, TextType.class);
-
-    }
-
-    public static List<TextWithLayoutType> getTextWithLayoutAndRemoveFromTransaction(TransactionType transactionType) {
-
-        return getTransactionFieldsAndRemoveFromTransaction(transactionType, TextWithLayoutType.class);
-
-    }
-
-    public static List<LnkType> getLinks(TransactionType firstTransaction) {
-        return getTransactionFields(firstTransaction, LnkType.class);
+    public static List<LnkType> getLinks(TransactionType transactionType) {
+        return transactionType.getLnk();
     }
 
     public static List<ItemType> getItems(TransactionType transactionType, CDITEMvalues cdItemTypeFilter) {
 
-        List<ItemType> allItemTypes = getItems(transactionType);
-        List<ItemType> itemTypes = new ArrayList<>();
-
-        Iterator<ItemType> itemTypeIterator = allItemTypes.iterator();
-
-        while (itemTypeIterator.hasNext()) {
-
-            ItemType itemType = itemTypeIterator.next();
-
-            if (CollectionUtils.isEmpty(itemType.getCds())) {
-                continue;
-            }
-
-            for (CDITEM cdItem : itemType.getCds()) {
-                if (StringUtils.equalsIgnoreCase(cdItem.getValue(), cdItemTypeFilter.value())) {
-                    itemTypes.add(itemType);
-                    break;
-                }
-            }
-
-        }
-
-        if (itemTypes.size() == 0) {
-            return null;
-        }
-
-        return itemTypes;
-
-    }
-
-    public static List<ItemType> getItemsAndRemoveFromTransaction(TransactionType transactionType, CDITEMvalues cdItemTypeFilter) {
-
-        if (transactionType == null || CollectionsUtil.emptyOrNull(transactionType.getHeadingsAndItemsAndTexts())) {
-            return null;
-        }
-
-        List<ItemType> itemTypesMatchingFilter = new ArrayList<>();
-
-        Iterator<Serializable> itemTypeIterator = transactionType.getHeadingsAndItemsAndTexts().iterator();
-
-        while (itemTypeIterator.hasNext()) {
-
-            Serializable serializable = itemTypeIterator.next();
-
-            if (serializable instanceof ItemType) {
-
-                ItemType itemType = (ItemType) serializable;
-
-                if (CollectionUtils.isEmpty(itemType.getCds())) {
-                    continue;
-                }
-
-                for (CDITEM cdItem : itemType.getCds()) {
-                    if (StringUtils.equalsIgnoreCase(cdItem.getValue(), cdItemTypeFilter.value())) {
-                        itemTypesMatchingFilter.add(itemType);
-                        itemTypeIterator.remove();
-                        break;
-                    }
-                }
-
-            }
-
-        }
-
-        if (itemTypesMatchingFilter.size() == 0) {
-            return null;
-        }
-
-        return itemTypesMatchingFilter;
-
+        return transactionType
+            .getItem()
+            .stream()
+            .filter(item -> item.getCds().stream().anyMatch(cd -> StringUtils.equalsIgnoreCase(cd.getValue(), cdItemTypeFilter.value()) ) )
+            .collect(Collectors.toList());
     }
 
     public static ItemType getItem(TransactionType transactionType, CDITEMvalues cdItemTypeFilter) {
@@ -163,50 +80,5 @@ public class TransactionUtil {
         return items.get(0);
 
     }
-
-    private static <T> List<T> getTransactionFields(TransactionType transactionType, Class<T> objectType) {
-
-        List<T> transactionFields = new ArrayList<>();
-
-        if (transactionType == null || CollectionUtils.isEmpty(transactionType.getHeadingsAndItemsAndTexts())) {
-            return null;
-        }
-
-        for (Object object : transactionType.getHeadingsAndItemsAndTexts()) {
-
-            if (objectType.isInstance(object) ) {
-                transactionFields.add((T) object);
-            }
-
-        }
-
-        return transactionFields;
-
-    }
-
-    private static <T> List<T> getTransactionFieldsAndRemoveFromTransaction(TransactionType transactionType, Class<T> objectType) {
-
-        if (transactionType == null || CollectionsUtil.emptyOrNull(transactionType.getHeadingsAndItemsAndTexts())) {
-            return null;
-        }
-
-        List<T> matchingItems = new ArrayList<>();
-
-        Iterator<Serializable> itemsIterator = transactionType.getHeadingsAndItemsAndTexts().iterator();
-
-        while (itemsIterator.hasNext()) {
-
-            Serializable serializable = itemsIterator.next();
-            if (serializable.getClass().isAssignableFrom(objectType)) {
-                T foundItem = (T) serializable;
-                matchingItems.add(foundItem);
-                itemsIterator.remove();
-            }
-
-        }
-
-        return matchingItems;
-    }
-
 
 }

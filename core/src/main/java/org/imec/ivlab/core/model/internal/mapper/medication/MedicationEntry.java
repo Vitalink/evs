@@ -1,10 +1,15 @@
 package org.imec.ivlab.core.model.internal.mapper.medication;
 
+import be.ehealth.technicalconnector.adapter.XmlTimeNoTzAdapter;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import java.util.List;
+
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.imec.ivlab.core.kmehr.model.localid.LocalId;
@@ -17,7 +22,8 @@ public class MedicationEntry extends MedicationEntryBasic implements Serializabl
     private String beginCondition;
     private String endCondition;
     private LocalDate createdDate;
-    private LocalTime createdTime;
+    @XmlJavaTypeAdapter(XmlTimeNoTzAdapter.class)
+    private DateTime createdTime;
 
     private PosologyOrRegimen posologyOrRegimen;
 

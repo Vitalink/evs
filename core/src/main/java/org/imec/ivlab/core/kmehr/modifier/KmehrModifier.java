@@ -1,7 +1,6 @@
 package org.imec.ivlab.core.kmehr.modifier;
 
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
-import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.kmehr.modifier.exception.InvalidKmehrException;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.BusinessData;
 import org.imec.ivlab.core.model.upload.kmehrentrylist.KmehrEntry;

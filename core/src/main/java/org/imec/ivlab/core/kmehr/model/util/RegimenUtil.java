@@ -1,52 +1,70 @@
 package org.imec.ivlab.core.kmehr.model.util;
 
 import be.fgov.ehealth.standards.kmehr.schema.v1.AdministrationquantityType;
-import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.WeekdayType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Regimen;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Daytime;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.ArrayUtils;
 import org.imec.ivlab.core.kmehr.model.RegimenEntry;
 import org.imec.ivlab.core.util.ArrayUtil;
+import org.joda.time.DateTime;
 
 import javax.xml.bind.JAXBElement;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class RegimenUtil {
 
-    public static List<BigInteger> getDayNumbers(ItemType.Regimen regimen) {
+    public static List<BigInteger> getDayNumbers(Regimen regimen) {
 
-        return getRegimenFields(regimen, BigInteger.class);
+        return regimen
+            .getDaynumbersAndQuantitiesAndDates()
+            .stream()
+            .filter(s -> BigInteger.class.isInstance(s.getValue()))
+            .map(s -> (BigInteger) s.getValue())
+            .collect(Collectors.toList());
 
     }
 
-    public static List<Calendar> getDates(ItemType.Regimen regimen) {
+    public static List<Calendar> getDates(Regimen regimen) {
 
         return getRegimenFields(regimen, Calendar.class);
 
     }
 
-    public static List<WeekdayType> getWeekdays(ItemType.Regimen regimen) {
+    public static List<WeekdayType> getWeekdays(Regimen regimen) {
 
-        return getRegimenFields(regimen, WeekdayType.class);
+        return regimen
+            .getDaynumbersAndQuantitiesAndDates()
+            .stream()
+            .filter(s -> WeekdayType.class.isInstance(s.getValue()))
+            .map(s -> (WeekdayType) s.getValue())
+            .collect(Collectors.toList());
 
     }
 
-    public static List<ItemType.Regimen.Daytime> getDaytimes(ItemType.Regimen regimen) {
+    public static List<Daytime> getDaytimes(Regimen regimen) {
 
-        return getRegimenFields(regimen, ItemType.Regimen.Daytime.class);
+        return regimen
+            .getDaynumbersAndQuantitiesAndDates()
+            .stream()
+            .filter(s -> Daytime.class.isInstance(s.getValue()))
+            .map(s -> (Daytime) s.getValue())
+            .collect(Collectors.toList());
 
     }
 
-    public static List<AdministrationquantityType> getQuantities(ItemType.Regimen regimen) {
+    public static List<AdministrationquantityType> getQuantities(Regimen regimen) {
 
         return getRegimenFields(regimen, AdministrationquantityType.class);
 
     }
 
-    private static <T> List<T> getRegimenFields(ItemType.Regimen regimen, Class<T> objectType) {
+    private static <T> List<T> getRegimenFields(Regimen regimen, Class<T> objectType) {
 
         List<T> regimenFields = new ArrayList<>();
 
@@ -68,7 +86,7 @@ public class RegimenUtil {
 
     }
 
-    public static List<RegimenEntry> getRegimenEntries(ItemType.Regimen regimen) {
+    public static List<RegimenEntry> getRegimenEntries(Regimen regimen) {
 
         if (regimen == null || CollectionUtils.isEmpty(regimen.getDaynumbersAndQuantitiesAndDates())) {
             return null;
@@ -125,13 +143,20 @@ public class RegimenUtil {
             }
 
 
-            if (ItemType.Regimen.Daytime.class.isInstance(jaxbElement.getValue()) ) {
-                regimenEntry.setDaytime((ItemType.Regimen.Daytime) jaxbElement.getValue());
+            if (Daytime.class.isInstance(jaxbElement.getValue()) ) {
+                regimenEntry.setDaytime((Daytime) jaxbElement.getValue());
                 continue;
             }
 
             if (AdministrationquantityType.class.isInstance(jaxbElement.getValue()) ) {
                 regimenEntry.setQuantity((AdministrationquantityType) jaxbElement.getValue());
+                continue;
+            }
+
+            // TODO not quite sure why it is needed
+            if (DateTime.class.isInstance(jaxbElement.getValue())) {
+                DateTime dateTime = ( (DateTime) jaxbElement.getValue());
+                regimenEntry.setDate(dateTime.toDate());
                 continue;
             }
 

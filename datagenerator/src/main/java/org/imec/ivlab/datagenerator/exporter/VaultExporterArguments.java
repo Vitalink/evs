@@ -16,7 +16,7 @@ import org.imec.ivlab.core.model.hub.Hub;
 import org.imec.ivlab.core.model.hub.SearchType;
 
 import java.io.File;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.List;
 
 @Parameters(separators = "=")

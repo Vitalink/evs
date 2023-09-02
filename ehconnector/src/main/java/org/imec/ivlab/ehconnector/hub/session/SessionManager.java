@@ -9,18 +9,15 @@ import be.ehealth.technicalconnector.session.SessionItem;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.imec.ivlab.core.authentication.AuthenticationConfigReader;
 import org.imec.ivlab.core.authentication.model.AuthenticationConfig;
 import org.imec.ivlab.core.authentication.model.Certificate;
 import org.imec.ivlab.core.authentication.model.ConfigDetails;
 import org.imec.ivlab.core.authentication.model.Ehealth;
 import org.imec.ivlab.core.authentication.model.Type;
-import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.IOUtils;
 import org.imec.ivlab.core.util.OSUtils;
 import org.imec.ivlab.core.util.PathUtils;
-import org.imec.ivlab.ehconnector.hub.HubService;
 import org.imec.ivlab.ehconnector.hub.exception.incurable.InvalidConfigurationException;
 
 import java.io.File;

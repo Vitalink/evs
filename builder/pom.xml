@@ -15,7 +15,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.0.2</version>
+                <version>3.3.1</version>
                 <executions>
                     <execution>
                         <id>copy-delivery-output</id>
@@ -75,4 +75,22 @@
         <module>../datagenerator</module>
         <module>../distribution</module>
     </modules>
+
+    <repositories>
+
+        <repository>
+            <id>eHealth</id>
+            <name>eHealth</name>
+            <url>https://repo.ehealth.fgov.be/artifactory/maven2/</url>
+        </repository>
+
+        <repository>
+            <id>e-Contract.be</id>
+            <url>https://www.e-contract.be/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
+    </repositories>
 </project>

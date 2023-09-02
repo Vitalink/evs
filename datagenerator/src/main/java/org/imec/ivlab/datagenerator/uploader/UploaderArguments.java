@@ -15,7 +15,7 @@ import org.imec.ivlab.datagenerator.uploader.dateshift.ShiftAction;
 import org.imec.ivlab.datagenerator.uploader.dateshift.ShiftActionConverter;
 
 import java.io.File;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 @ToString
 @Parameters(separators = "=")

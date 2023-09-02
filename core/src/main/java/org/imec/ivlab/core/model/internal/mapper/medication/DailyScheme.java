@@ -1,6 +1,6 @@
 package org.imec.ivlab.core.model.internal.mapper.medication;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 public class DailyScheme extends AbstractScheme{
 

@@ -3,6 +3,9 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <properties>
+        <ehealth.connector.version>4.3.0</ehealth.connector.version>
+    </properties>
     <parent>
         <artifactId>super</artifactId>
         <groupId>org.imec.ivlab.ehealth.automation</groupId>
@@ -21,7 +24,7 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
-            <version>4.3.8.RELEASE</version>
+            <version>4.3.30.RELEASE</version>
         </dependency>
 
         <dependency>
@@ -35,32 +38,33 @@
         </dependency>
 
         <dependency>
-            <groupId>be.ehealth.connector</groupId>
+            <groupId>be.fgov.ehealth.connector</groupId>
             <artifactId>connector-technical-base</artifactId>
-            <version>3.14.0-beta-0</version>
+            <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
-            <groupId>be.ehealth.connector</groupId>
+            <groupId>be.fgov.ehealth.connector</groupId>
             <artifactId>connector-technical-bootstrap</artifactId>
-            <version>3.14.0-beta-0</version>
+            <version>${ehealth.connector.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>be.ehealth.connector</groupId>
+            <groupId>be.fgov.ehealth.connector</groupId>
             <artifactId>connector-technical-core</artifactId>
-            <version>3.14.0-beta-0</version>
+            <version>${ehealth.connector.version}</version>
+        </dependency>
+
+        <!-- Better than the old <artifactId>kmehr-model-1.34</artifactId> Vitalink used -->
+        <dependency>
+            <groupId>be.fgov.ehealth.connector</groupId>
+            <artifactId>connector-utilities-kmehr</artifactId>
+            <version>${ehealth.connector.version}</version>
         </dependency>
 
         <dependency>
             <groupId>joda-time</groupId>
             <artifactId>joda-time</artifactId>
-            <version>2.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.imec.ivlab.ehealth.kmehr</groupId>
-            <artifactId>kmehr-model-1.34</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>2.12.5</version>
         </dependency>
 
         <dependency>
@@ -83,7 +87,7 @@
         <dependency>
             <groupId>org.apache.maven</groupId>
             <artifactId>maven-artifact</artifactId>
-            <version>3.0</version>
+            <version>3.9.4</version>
         </dependency>
 
         <dependency>
@@ -115,5 +119,23 @@
         </plugins>
 
     </build>
+
+    <repositories>
+
+        <repository>
+            <id>e-Contract.be</id>
+            <url>https://www.e-contract.be/maven2/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+        </repository>
+
+        <repository>
+            <id>eHealth</id>
+            <name>eHealth</name>
+            <url>https://repo.ehealth.fgov.be/artifactory/maven2/</url>
+        </repository>
+
+    </repositories>
 
 </project>

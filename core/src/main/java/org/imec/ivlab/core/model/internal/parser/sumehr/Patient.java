@@ -1,6 +1,6 @@
 package org.imec.ivlab.core.model.internal.parser.sumehr;
 
-import java.time.LocalDateTime;
+import org.joda.time.LocalDateTime;
 
 public class Patient extends AbstractPerson {
 

@@ -5,7 +5,7 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.imec.ivlab.core.kmehr.model.util.FolderUtil;
@@ -27,10 +27,10 @@ public class SchemeHelper {
             globalScheme.setAuthors(getAuthors(kmehrmessage));
             globalScheme.setVersion(getMSTransaction(kmehrmessage).getVersion());
             if (getMSTransaction(kmehrmessage).getDate() != null) {
-                globalScheme.setLastModifiedDate(DateUtils.toLocalDate(getMSTransaction(kmehrmessage).getDate()));
+                globalScheme.setLastModifiedDate(getMSTransaction(kmehrmessage).getDate().toLocalDate());
             }
             if (getMSTransaction(kmehrmessage).getTime() != null) {
-                globalScheme.setLastModifiedTime(DateUtils.toLocalTime(getMSTransaction(kmehrmessage).getTime()));
+                globalScheme.setLastModifiedTime(getMSTransaction(kmehrmessage).getTime().toLocalTime());
             }
         }
 
@@ -67,10 +67,10 @@ public class SchemeHelper {
             dailyScheme.setAuthors(getAuthors(kmehrmessage));
             dailyScheme.setVersion(getMSTransaction(kmehrmessage).getVersion());
             if (getMSTransaction(kmehrmessage).getDate() != null) {
-                dailyScheme.setLastModifiedDate(DateUtils.toLocalDate(getMSTransaction(kmehrmessage).getDate()));
+                dailyScheme.setLastModifiedDate(getMSTransaction(kmehrmessage).getDate().toLocalDate());
             }
             if (getMSTransaction(kmehrmessage).getTime() != null) {
-                dailyScheme.setLastModifiedTime(DateUtils.toLocalTime(getMSTransaction(kmehrmessage).getTime()));
+                dailyScheme.setLastModifiedTime(getMSTransaction(kmehrmessage).getDate().toLocalTime());
             }
         }
         dailyScheme.setSchemeDate(medicationSchemeDate);

@@ -6,7 +6,7 @@ import org.imec.ivlab.core.kmehr.model.FrequencyCode;
 import org.imec.ivlab.core.model.internal.parser.AbstractParsedItem;
 
 import java.io.Serializable;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.List;
 
 public class MedicationEntryBasic extends AbstractParsedItem<ItemType> implements Serializable {

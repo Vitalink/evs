@@ -23,18 +23,15 @@ import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInT
 import org.imec.ivlab.core.model.upload.msentrylist.exception.NoMatchingEvsRefException;
 import org.imec.ivlab.core.model.patient.model.Patient;
 import org.imec.ivlab.core.util.CollectionsUtil;
-import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.datagenerator.uploader.dateshift.ShiftAction;
 import org.imec.ivlab.datagenerator.uploader.exception.UploaderException;
 import org.imec.ivlab.ehconnector.business.HubHelper;
 import org.imec.ivlab.ehconnector.business.medicationscheme.MSService;
 import org.imec.ivlab.ehconnector.business.medicationscheme.MSServiceImpl;
 
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.util.Calendar;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.Days;
 import java.util.List;
 
 public class MSUploaderImpl implements Uploader, MSUploader {
@@ -320,10 +317,9 @@ public class MSUploaderImpl implements Uploader, MSUploader {
             return;
         }
 
-        LocalDateTime oldReferenceDateTime = LocalDateTime.of(oldReferenceDate.getYear(), oldReferenceDate.getMonth(), oldReferenceDate.getDayOfMonth(), 0, 0, 0);
-        LocalDateTime newReferenceDateTime = LocalDateTime.of(newReferenceDate.getYear(), newReferenceDate.getMonth(), newReferenceDate.getDayOfMonth(), 0, 0, 0);
-        java.time.Duration between = java.time.Duration.between(oldReferenceDateTime, newReferenceDateTime);
-        Long daysDiff = between.toDays();
+        LocalDateTime oldReferenceDateTime = new LocalDateTime(oldReferenceDate.getYear(), oldReferenceDate.getMonthOfYear(), oldReferenceDate.getDayOfMonth(), 0, 0, 0);
+        LocalDateTime newReferenceDateTime = new LocalDateTime(newReferenceDate.getYear(), newReferenceDate.getMonthOfYear(), newReferenceDate.getDayOfMonth(), 0, 0, 0);
+        int daysDiff = Days.daysBetween(oldReferenceDateTime, newReferenceDateTime).getDays();
         if (daysDiff == 0) {
             log.debug("Reference date equals date of today, there's no need to shift dates");
             return;
@@ -345,42 +341,26 @@ public class MSUploaderImpl implements Uploader, MSUploader {
             for (ItemType medicationItem : medicationItems) {
 
                 if (medicationItem.getBeginmoment() != null) {
-                    medicationItem.getBeginmoment().setDate(shiftDate(medicationItem.getBeginmoment().getDate(), daysDiff));
+                    medicationItem.getBeginmoment().setDate(
+                        medicationItem.getBeginmoment().getDate().plusDays(daysDiff)
+                    );
                 }
                 if (medicationItem.getEndmoment() != null) {
-                    medicationItem.getEndmoment().setDate(shiftDate(medicationItem.getEndmoment().getDate(), daysDiff));
+                    medicationItem.getEndmoment().setDate(
+                        medicationItem.getEndmoment().getDate().plusDays(daysDiff)
+                    );
                 }
 
-                List<Calendar> dates = RegimenUtil.getDates(medicationItem.getRegimen());
-
+                List<java.util.Calendar> dates = RegimenUtil.getDates(medicationItem.getRegimen());
                 if (dates != null) {
-                    for (Calendar date : dates) {
-                        date.add(Calendar.DATE, daysDiff.intValue());
+                    for (java.util.Calendar date : dates) {
+                        date.add(java.util.Calendar.DATE, daysDiff);
                     }
                 }
 
             }
 
 
-        }
-
-    }
-
-    private XMLGregorianCalendar shiftDate(XMLGregorianCalendar date, Long shiftValue) {
-        if (date == null) {
-            return null;
-        }
-
-        LocalDate tempDate = DateUtils.toLocalDate(date);
-        tempDate = tempDate.plusDays(shiftValue);
-        try {
-            int timezone = date.getTimezone();
-            XMLGregorianCalendar xmlGregorianCalendar = DateUtils.toXmlGregorianCalendar(tempDate);
-            xmlGregorianCalendar.setTimezone(timezone);
-            return xmlGregorianCalendar;
-        } catch (DatatypeConfigurationException e) {
-            log.error("Failed to shift dates", e);
-            return date;
         }
 
     }

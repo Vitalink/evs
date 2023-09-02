@@ -7,7 +7,7 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.PersonType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TelecomType;
 import org.imec.ivlab.core.model.internal.parser.AbstractParsedItem;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.List;
 
 public abstract class AbstractPerson extends AbstractParsedItem<PersonType> {

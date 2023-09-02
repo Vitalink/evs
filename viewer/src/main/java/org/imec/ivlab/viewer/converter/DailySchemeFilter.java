@@ -17,7 +17,7 @@ import org.imec.ivlab.core.model.internal.mapper.medication.RegimenWeekday;
 import org.imec.ivlab.core.model.internal.mapper.medication.Suspension;
 import org.imec.ivlab.core.util.CollectionsUtil;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;

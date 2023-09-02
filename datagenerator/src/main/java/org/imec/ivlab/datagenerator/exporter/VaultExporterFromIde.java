@@ -2,7 +2,7 @@ package org.imec.ivlab.datagenerator.exporter;
 
 import be.ehealth.technicalconnector.exception.TechnicalConnectorException;
 import java.io.File;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import org.imec.ivlab.core.authentication.AuthenticationConfigReader;

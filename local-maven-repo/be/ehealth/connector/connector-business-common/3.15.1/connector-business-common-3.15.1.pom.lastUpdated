@@ -1,4 +1,0 @@
-#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
-#Thu May 23 11:33:32 CEST 2019
-https\://cde.toyota-europe.com/nexus/content/groups/tme/.error=Could not transfer artifact be.ehealth.connector\:connector-business-common\:pom\:3.15.1 from/to nexus (https\://cde.toyota-europe.com/nexus/content/groups/tme)\: Not authorized , ReasonPhrase\:Unauthorized.
-13ae72a349b48a8fd82b2f21106d8c0f4a1c3cdc@default-nexus-https\://cde.toyota-europe.com/nexus/content/groups/tme/.lastUpdated=1558604012406

@@ -4,8 +4,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 import org.imec.ivlab.core.model.patient.model.Patient;
 import org.imec.ivlab.core.util.CollectionsUtil;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalTime;
 import java.util.List;
 
 public abstract class AbstractScheme {

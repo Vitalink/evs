@@ -1,8 +1,6 @@
 package org.imec.ivlab.core.model.internal.parser.childprevention.mapper;
 
 import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getItems;
-import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getItemsAndRemoveFromTransaction;
-import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getLinksAndRemoveFromTransaction;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENT;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDCONTENTschemes;
@@ -64,14 +62,17 @@ public class ChildPreventionMapper extends BaseMapper {
 
         markFolderLevelFieldsAsProcessed(cloneFolder);
 
-        entry.getTransactionCommon().setDate(DateUtils.toLocalDate(firstTransaction.getDate()));
-        entry.getTransactionCommon().setTime(DateUtils.toLocalTime(firstTransaction.getTime()));
-        entry.getTransactionCommon().setRecordDateTime(DateUtils.toLocalDateTime(firstTransaction.getRecorddatetime()));
+        entry.getTransactionCommon().setDate(firstTransaction.getDate().toLocalDate());
+        entry.getTransactionCommon().setTime(firstTransaction.getTime());
+        if (firstTransaction.getRecorddatetime() != null) {
+            entry.getTransactionCommon().setRecordDateTime(firstTransaction.getRecorddatetime().toLocalDateTime());
+        }
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.getTransactionCommon().setRedactor(mapHcPartyFields(firstTransaction.getRedactor()));
         entry.getTransactionCommon().setCdtransactions(new ArrayList<>(firstTransaction.getCds()));
 
-        entry.setChildPreventionFile(getLinksAndRemoveFromTransaction(firstTransaction).stream().findFirst().orElse(null));
+        entry.setChildPreventionFile(firstTransaction.getLnk().stream().findFirst().orElse(null));
+        //entry.setChildPreventionFile(getLinksAndRemoveFromTransaction(firstTransaction).stream().findFirst().orElse(null));
 
         markTransactionAsProcessed(firstTransaction);
 

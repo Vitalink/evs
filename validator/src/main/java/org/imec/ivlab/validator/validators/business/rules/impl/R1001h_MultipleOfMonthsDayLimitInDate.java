@@ -17,7 +17,7 @@ import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
@@ -57,7 +57,7 @@ public class R1001h_MultipleOfMonthsDayLimitInDate extends BaseMSEntryRule imple
 
                 if (CollectionUtils.isNotEmpty(dates)) {
                     for (Calendar regimenDate : dates) {
-                        LocalDate localDate = DateUtils.toLocalDate(regimenDate);
+                        LocalDate localDate = LocalDate.fromCalendarFields(regimenDate);
                         if (localDate.getDayOfMonth() > 28) {
                             return failRule(msEntry.getMseTransaction());
                         }
@@ -65,7 +65,7 @@ public class R1001h_MultipleOfMonthsDayLimitInDate extends BaseMSEntryRule imple
                     }
 
                 } else {
-                    LocalDate beginmomentDate = DateUtils.toLocalDate(medicationItem.getBeginmoment().getDate());
+                    LocalDate beginmomentDate = medicationItem.getBeginmoment().getDate().toLocalDate();
                     if (beginmomentDate.getDayOfMonth() > 28) {
                         customMessage = ". Check the medication <beginmoment>";
                         return failRule(msEntry.getMseTransaction());

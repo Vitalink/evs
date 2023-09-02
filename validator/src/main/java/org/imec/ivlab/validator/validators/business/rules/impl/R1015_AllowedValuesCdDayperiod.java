@@ -4,6 +4,7 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDDAYPERIODvalues;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDITEMvalues;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Daytime;
 import org.apache.commons.lang3.ArrayUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.imec.ivlab.core.kmehr.model.util.RegimenUtil;
@@ -47,11 +48,11 @@ public class R1015_AllowedValuesCdDayperiod extends BaseMSEntryRule implements M
 
             ItemType medicationItem = TransactionUtil.getItem(transaction, CDITEMvalues.MEDICATION);
 
-            List<ItemType.Regimen.Daytime> daytimes = RegimenUtil.getDaytimes(medicationItem.getRegimen());
+            List<Daytime> daytimes = RegimenUtil.getDaytimes(medicationItem.getRegimen());
 
             if (daytimes != null) {
 
-                for (ItemType.Regimen.Daytime daytime : daytimes) {
+                for (Daytime daytime : daytimes) {
                     if (daytime.getDayperiod() != null && daytime.getDayperiod().getCd() != null) {
 
                         if (!ArrayUtils.contains(ALLOWED_DAYPERIOD_VALUES, daytime.getDayperiod().getCd().getValue())) {

@@ -1,12 +1,16 @@
 package org.imec.ivlab.core.model.internal.mapper.medication;
 
+import be.ehealth.technicalconnector.adapter.XmlTimeNoTzAdapter;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDLIFECYCLEvalues;
 import be.fgov.ehealth.standards.kmehr.schema.v1.HcpartyType;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import java.util.List;
+
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
 public class Suspension implements Serializable {
 
@@ -15,7 +19,8 @@ public class Suspension implements Serializable {
     private LocalDate endDate;
     private CDLIFECYCLEvalues lifecycle;
     private LocalDate createdDate;
-    private LocalTime createdTime;
+    @XmlJavaTypeAdapter(XmlTimeNoTzAdapter.class)
+    private DateTime createdTime;
     private List<HcpartyType> authors;
 
     private Duration duration;
@@ -76,11 +81,11 @@ public class Suspension implements Serializable {
         this.duration = duration;
     }
 
-    public LocalTime getCreatedTime() {
+    public DateTime getCreatedTime() {
         return createdTime;
     }
 
-    public void setCreatedTime(LocalTime createdTime) {
+    public void setCreatedTime(DateTime createdTime) {
         this.createdTime = createdTime;
     }
 }

@@ -2,7 +2,7 @@ package org.imec.ivlab.viewer.pdf;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDDRUGCNK;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDINNCLUSTER;
-import be.fgov.ehealth.standards.kmehr.schema.v1.ContentType.Substanceproduct;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Substanceproduct;
 import be.fgov.ehealth.standards.kmehr.schema.v1.MedicinalProductType;
 import java.util.List;
 import java.util.Objects;

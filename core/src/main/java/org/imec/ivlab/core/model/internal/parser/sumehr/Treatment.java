@@ -1,9 +1,8 @@
 package org.imec.ivlab.core.model.internal.parser.sumehr;
 
-import be.fgov.ehealth.standards.kmehr.cd.v1.CDLIFECYCLEvalues;
 import org.imec.ivlab.core.model.internal.parser.ItemParsedItem;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 public class Treatment extends ItemParsedItem {
 

@@ -1,7 +1,7 @@
 package org.imec.ivlab.datagenerator.uploader;
 
 import java.io.File;
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.model.hub.Hub;
 import org.imec.ivlab.core.model.hub.SearchType;

@@ -2,7 +2,7 @@ package org.imec.ivlab.core.model.internal.parser.sumehr;
 
 import org.imec.ivlab.core.model.internal.parser.ItemParsedItem;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 
 public class HealthCareElement extends ItemParsedItem {
 

@@ -1,9 +1,5 @@
 package org.imec.ivlab.core.model.internal.parser.diarynote.mapper;
 
-import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getLinksAndRemoveFromTransaction;
-import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getTextAndRemoveFromTransaction;
-import static org.imec.ivlab.core.kmehr.model.util.TransactionUtil.getTextWithLayoutAndRemoveFromTransaction;
-
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTIONschemes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
@@ -14,6 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.SerializationUtils;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
+import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.internal.parser.common.BaseMapper;
 import org.imec.ivlab.core.model.internal.parser.diarynote.DiaryNote;
 import org.imec.ivlab.core.util.CollectionsUtil;
@@ -43,15 +40,17 @@ public class DiaryNoteMapper extends BaseMapper {
         entry.getTransactionCommon().setPerson(toPatient(folderType.getPatient()));
         markFolderLevelFieldsAsProcessed(cloneFolder);
 
-        entry.getTransactionCommon().setDate(DateUtils.toLocalDate(firstTransaction.getDate()));
-        entry.getTransactionCommon().setTime(DateUtils.toLocalTime(firstTransaction.getTime()));
-        entry.getTransactionCommon().setRecordDateTime(DateUtils.toLocalDateTime(firstTransaction.getRecorddatetime()));
+        entry.getTransactionCommon().setDate(firstTransaction.getDate().toLocalDate());
+        entry.getTransactionCommon().setTime(firstTransaction.getTime());
+        if (firstTransaction.getRecorddatetime() != null) {
+            entry.getTransactionCommon().setRecordDateTime(firstTransaction.getRecorddatetime().toLocalDateTime());
+        }
         entry.getTransactionCommon().setAuthor(mapHcPartyFields(firstTransaction.getAuthor()));
         entry.getTransactionCommon().setRedactor(mapHcPartyFields(firstTransaction.getRedactor()));
         entry.getTransactionCommon().setCdtransactions(new ArrayList<>(firstTransaction.getCds()));
-        entry.setTextTypes(getTextAndRemoveFromTransaction(firstTransaction));
-        entry.setTextWithLayoutTypes(getTextWithLayoutAndRemoveFromTransaction(firstTransaction));
-        entry.setLinkTypes(getLinksAndRemoveFromTransaction(firstTransaction));
+        entry.setTextTypes(TransactionUtil.getText(firstTransaction));
+        entry.setTextWithLayoutTypes(TransactionUtil.getTextWithLayout(firstTransaction));
+        entry.setLinkTypes(TransactionUtil.getLinks(firstTransaction));
         markTransactionAsProcessed(firstTransaction);
 
         entry.setUnparsed(cloneKmehr);

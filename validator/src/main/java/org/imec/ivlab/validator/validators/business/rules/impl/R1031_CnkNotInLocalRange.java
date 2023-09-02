@@ -6,6 +6,7 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDITEMvalues;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ContentType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.MedicinalProductType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Substanceproduct;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import org.imec.ivlab.core.cnk.CnkValidator;
 import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
@@ -66,7 +67,7 @@ public class R1031_CnkNotInLocalRange extends BaseMSEntryRule implements MSEntry
                     if (medicinalproduct != null && medicinalproduct.getDeliveredcds() != null) {
                         cnkCodes.addAll(medicinalproduct.getDeliveredcds());
                     }
-                    ContentType.Substanceproduct substanceproduct = contentType.getSubstanceproduct();
+                    Substanceproduct substanceproduct = contentType.getSubstanceproduct();
 
                     if (substanceproduct != null && substanceproduct.getIntendedcd() != null) {
                         innClusterCodes.add(substanceproduct.getIntendedcd());

@@ -112,3 +112,6 @@ Temporary Items
 logs/
 messages/
 *.pdf
+
+# Locale maven repo
+local-maven-repo/be

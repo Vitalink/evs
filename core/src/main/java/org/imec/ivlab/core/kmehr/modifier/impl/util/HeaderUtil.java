@@ -5,8 +5,9 @@ import org.imec.ivlab.core.exceptions.TransformationException;
 import org.imec.ivlab.core.util.JAXBUtils;
 import org.imec.ivlab.core.util.TemplateEngineUtils;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import org.joda.time.LocalDateTime;
+import org.joda.time.format.ISODateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -15,8 +16,11 @@ public class HeaderUtil {
     public static HeaderType createHeader(LocalDateTime dateAndTime) throws TransformationException {
 
         Map<String, Object> velocityContext = new HashMap<String, Object>();
-        velocityContext.put("date_today", dateAndTime.format(DateTimeFormatter.ISO_DATE));
-        velocityContext.put("time_now", dateAndTime.format(DateTimeFormatter.ISO_LOCAL_TIME));
+        DateTimeFormatter time = ISODateTimeFormat.time();
+        DateTimeFormatter date = ISODateTimeFormat.date();
+
+        velocityContext.put("date_today", date.print(dateAndTime));
+        velocityContext.put("time_now", time.print(dateAndTime));
         String headerText = TemplateEngineUtils.generate(velocityContext, "templates/connector-outgoing-kmehrheader.xml");
         return JAXBUtils.unmarshal(HeaderType.class, headerText);
 

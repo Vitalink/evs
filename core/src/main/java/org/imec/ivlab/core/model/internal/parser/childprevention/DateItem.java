@@ -1,6 +1,6 @@
 package org.imec.ivlab.core.model.internal.parser.childprevention;
 
-import java.time.LocalDate;
+import org.joda.time.LocalDate;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.imec.ivlab.core.model.internal.parser.ParsedContent;

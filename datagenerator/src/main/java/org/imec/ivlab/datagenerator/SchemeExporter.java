@@ -17,13 +17,11 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.LnkType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import org.joda.time.LocalDate;
+import org.joda.time.format.DateTimeFormat;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -255,7 +253,8 @@ public class SchemeExporter {
             KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
             MSEntryList MSEntries = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
 
-            File outputFile = makeOutputFile(inputFile, EXPORT_NAME_DAILYSCHEME + "-" + medicationSchemeDate.format(DateTimeFormatter.ofPattern("yyyyMMdd")));
+            String date = DateTimeFormat.forPattern("yyyyMMdd").print(medicationSchemeDate);
+            File outputFile = makeOutputFile(inputFile, EXPORT_NAME_DAILYSCHEME + "-" + date);
 
             List<MedicationEntry> medicationEntries = TestFileConverter.convertToMedicationEntries(MSEntries);
 

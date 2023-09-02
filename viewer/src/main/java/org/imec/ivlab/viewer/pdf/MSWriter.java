@@ -47,10 +47,14 @@ import com.itextpdf.text.pdf.PdfPTable;
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+import org.joda.time.LocalTime;
+import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.DateTimeFormatter;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -150,7 +154,7 @@ public class MSWriter extends Writer {
 //        File inputFile = IOUtils.getResourceAsFile("/met-frequency-ondemand.xml");
 //        File inputFile = IOUtils.getResourceAsFile("/medication-weekly-starts-today.xml");
 
-        LocalDate schemeDate = LocalDate.of(2018, 9, 11);
+        LocalDate schemeDate = new LocalDate(2018, 9, 11);
 
         KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
         MSEntryList msEntryList = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
@@ -190,7 +194,8 @@ public class MSWriter extends Writer {
         String schemeTitle;
         if (scheme instanceof DailyScheme) {
             DailyScheme dailyScheme = (DailyScheme) scheme;
-            schemeTitle = "Medicatie dagschema voor " + (dailyScheme.getSchemeDate() != null ? dailyScheme.getSchemeDate().format(DateTimeFormatter.ofPattern("EEEE dd MMMM yyyy", Locale.forLanguageTag("nl-BE"))) : "");
+            DateTimeFormatter pt =  DateTimeFormat.forPattern("EEEE dd MMMM yyyy");
+            schemeTitle = "Medicatie dagschema voor " + (dailyScheme.getSchemeDate() != null ? pt.print(dailyScheme.getSchemeDate()) : "");
         } else if (scheme instanceof GlobalScheme) {
             schemeTitle = "Medicatie overzichtschema";
         } else {
@@ -1004,7 +1009,7 @@ public class MSWriter extends Writer {
 
     }
 
-    private static String combineDateAndTime(LocalDate date,  LocalTime time) {
+    private static String combineDateAndTime(LocalDate date,  DateTime time) {
         return joinFields(formatAsDate(date), formatAsTime(time), System.lineSeparator());
     }
 

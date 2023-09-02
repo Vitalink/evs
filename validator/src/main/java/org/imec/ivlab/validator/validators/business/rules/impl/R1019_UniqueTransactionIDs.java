@@ -12,8 +12,6 @@ import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
-import javax.xml.datatype.XMLGregorianCalendar;
-import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -60,11 +58,6 @@ public class R1019_UniqueTransactionIDs extends BaseMSEntryRule implements MSEnt
 
 
         return passRule();
-    }
-
-
-    private LocalDate calendarToLocalDate(XMLGregorianCalendar calendar) {
-        return calendar.toGregorianCalendar().toZonedDateTime().toLocalDate();
     }
 
 }

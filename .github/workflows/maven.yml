@@ -6,11 +6,6 @@ on:
     evs_version:
       description: "Overwrite EVS version (default to the one in release/version_input.txt)"
       required: false
-    create_artifacts:
-      description: "Produce temporary artifacts"
-      required: false
-      default: false
-      type: boolean
     create_release:
       description: "Produce the release artifacts"
       required: false
@@ -51,23 +46,22 @@ jobs:
         run: |
           echo "${{ env.EVS_VERSION }}" > release/version_input.txt
       - name: 🔨 Build project with Maven
+        shell: bash
         run: |
           cd builder && ./release.sh
       - name: 🚧 Workaround actions/upload-artifact#176
         run: |
           echo "artifacts_path=$(realpath ../builds/${{ env.EVS_VERSION }})" >> $GITHUB_ENV
       - name: 🧰 Create release zip
-        if: github.event.inputs.create_artifacts || github.event.inputs.create_release
         run: zip -r -q EVS-${{ env.EVS_VERSION }}.zip ${{ env.artifacts_path }}
       - name: 📁 Archive artifacts
         uses: actions/upload-artifact@v3
-        if: github.event.inputs.create_artifacts
         with:
           name: EVS-build
           path: ${{ env.artifacts_path }}
       - uses: ncipollo/release-action@v1.13.0
         name: 🤖 Create release on Github
-        if: github.event.inputs.create_release
+        if: github.event.inputs.create_release && contains(github.ref, 'main')
         with:
           artifacts: "EVS-${{ env.EVS_VERSION }}.zip"
           allowUpdates: "true"

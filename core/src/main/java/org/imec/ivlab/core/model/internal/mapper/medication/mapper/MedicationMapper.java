@@ -16,15 +16,17 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.ContentType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.DayperiodType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.DurationType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType;
-import be.fgov.ehealth.standards.kmehr.schema.v1.ItemType.Posology.Takes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.MedicinalProductType;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Substanceproduct;
+import be.fgov.ehealth.standards.kmehr.schema.v1.Takes;
 import be.fgov.ehealth.standards.kmehr.schema.v1.RouteType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 import java.math.BigInteger;
-import java.time.LocalTime;
+
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 import org.apache.commons.lang3.StringUtils;
@@ -63,7 +65,6 @@ import org.imec.ivlab.core.model.internal.mapper.medication.TimeUnit;
 import org.imec.ivlab.core.model.internal.mapper.medication.Weekday;
 import org.imec.ivlab.core.model.internal.parser.sumehr.MedicationEntrySumehr;
 import org.imec.ivlab.core.util.CollectionsUtil;
-import org.imec.ivlab.core.util.DateUtils;
 import org.w3c.dom.Node;
 
 
@@ -96,11 +97,13 @@ public class MedicationMapper {
         }
 
         if (medicationItem.getBeginmoment() != null) {
-            medicationEntry.setBeginDate(DateUtils.toLocalDate(medicationItem.getBeginmoment().getDate()));
+            medicationEntry.setBeginDate(medicationItem.getBeginmoment().getDate().toLocalDate());
+            //medicationEntry.setBeginDate(DateUtils.toLocalDate(medicationItem.getBeginmoment().getDate()));
         }
 
         if (medicationItem.getEndmoment() != null) {
-            medicationEntry.setEndDate(DateUtils.toLocalDate(medicationItem.getEndmoment().getDate()));
+            medicationEntry.setEndDate(medicationItem.getEndmoment().getDate().toLocalDate());
+            //medicationEntry.setEndDate(DateUtils.toLocalDate(medicationItem.getEndmoment().getDate()));
         }
 
         if (medicationItem.getFrequency() != null && medicationItem.getFrequency().getPeriodicity() != null && medicationItem.getFrequency().getPeriodicity().getCd() != null) {
@@ -159,8 +162,8 @@ public class MedicationMapper {
         }
 
         entry.setSuspensions(getSuspensions(suspensionTransactions));
-        entry.setCreatedDate(DateUtils.toLocalDate(medicationTransaction.getDate()));
-        entry.setCreatedTime(DateUtils.toLocalTime(medicationTransaction.getTime()));
+        entry.setCreatedDate(medicationTransaction.getDate().toLocalDate());
+        entry.setCreatedTime(medicationTransaction.getTime());
         entry.setLocalId(getLocalId(medicationTransaction));
 
         return entry;
@@ -219,7 +222,7 @@ public class MedicationMapper {
     }
 
     private static Regimen mapRegimen(ItemType medicationItem) {
-        ItemType.Regimen regimen = medicationItem.getRegimen();
+        be.fgov.ehealth.standards.kmehr.schema.v1.Regimen regimen = medicationItem.getRegimen();
 
         if (regimen == null) {
             return null;
@@ -240,7 +243,9 @@ public class MedicationMapper {
 
             if (regimenEntry.getDate() != null) {
                 RegimenDate date = new RegimenDate();
-                date.setDate(DateUtils.toLocalDate(regimenEntry.getDate()));
+                date.setDate(
+                    LocalDate.fromDateFields(regimenEntry.getDate())
+                );
                 regimenEntryOut.setDaynumberOrDateOrWeekday(date);
             } else if (regimenEntry.getDayNumber() != null) {
                 RegimenDaynumber daynumber = new RegimenDaynumber();
@@ -258,7 +263,8 @@ public class MedicationMapper {
                 regimenEntryOut.setDayperiodOrTime(regimenDayperiod);
             } else if (regimenEntry.getDaytime() != null && regimenEntry.getDaytime().getTime() != null) {
                 RegimenTime regimenTime = new RegimenTime();
-                regimenTime.setTime(LocalTime.of(regimenEntry.getDaytime().getTime().get(Calendar.HOUR_OF_DAY), regimenEntry.getDaytime().getTime().get(Calendar.MINUTE), regimenEntry.getDaytime().getTime().get(Calendar.SECOND)));
+                DateTime time = regimenEntry.getDaytime().getTime();
+                regimenTime.setTime(time);
                 regimenEntryOut.setDayperiodOrTime(regimenTime);
             }
 
@@ -279,7 +285,7 @@ public class MedicationMapper {
     private static Posology mapPosology(ItemType medicationItem) {
         Posology posologyOut = new Posology();
 
-        ItemType.Posology posologyIn = medicationItem.getPosology();
+        be.fgov.ehealth.standards.kmehr.schema.v1.Posology posologyIn = medicationItem.getPosology();
         if (posologyIn == null) {
             return null;
         }
@@ -327,17 +333,17 @@ public class MedicationMapper {
                 suspension.setAuthors(suspensionTransaction.getAuthor().getHcparties());
             }
 
-            suspension.setCreatedDate(DateUtils.toLocalDate(suspensionTransaction.getDate()));
+            suspension.setCreatedDate(suspensionTransaction.getDate().toLocalDate());
             if (suspensionTransaction.getTime() != null) {
-                suspension.setCreatedTime(DateUtils.toLocalTime(suspensionTransaction.getTime()));
+                suspension.setCreatedTime(suspensionTransaction.getTime());
             }
 
             if (medicationItem.getBeginmoment() != null) {
-                suspension.setBeginDate(DateUtils.toLocalDate(medicationItem.getBeginmoment().getDate()));
+                suspension.setBeginDate(medicationItem.getBeginmoment().getDate().toLocalDate());
             }
 
             if (medicationItem.getEndmoment() != null) {
-                suspension.setEndDate(DateUtils.toLocalDate(medicationItem.getEndmoment().getDate()));
+                suspension.setEndDate(medicationItem.getEndmoment().getDate().toLocalDate());
             }
 
             suspension.setLifecycle(KmehrMapper.toLifeCycleValues(medicationItem.getLifecycle()));
@@ -464,7 +470,7 @@ public class MedicationMapper {
             }
             return identifier;
         } else if (contentType.getSubstanceproduct() != null) {
-            ContentType.Substanceproduct substanceproduct = contentType.getSubstanceproduct();
+            Substanceproduct substanceproduct = contentType.getSubstanceproduct();
 
             identifier.setId(getCNKIdentifier(Arrays.asList(substanceproduct.getDeliveredcd())));
             if (identifier.getId() == null) {
@@ -506,7 +512,7 @@ public class MedicationMapper {
         }
 
         if (contentType.getSubstanceproduct() != null) {
-            ContentType.Substanceproduct substanceproduct = contentType.getSubstanceproduct();
+            Substanceproduct substanceproduct = contentType.getSubstanceproduct();
             String deliveredName = getName(substanceproduct.getDeliveredname());
             if (deliveredName != null) {
                 return deliveredName;

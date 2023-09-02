@@ -17,18 +17,15 @@ import org.imec.ivlab.core.model.upload.msentrylist.MSEntryList;
 import org.imec.ivlab.core.model.upload.msentrylist.exception.IdenticalEVSRefsFoundException;
 import org.imec.ivlab.core.model.upload.msentrylist.exception.NoMatchingEvsRefException;
 import org.imec.ivlab.core.util.CollectionsUtil;
-import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.core.util.JAXBUtils;
 import org.imec.ivlab.core.util.XmlFormatterUtil;
+import org.joda.time.DateTime;
 import org.xml.sax.SAXException;
 
 import javax.xml.bind.JAXBException;
-import javax.xml.datatype.DatatypeConfigurationException;
-import javax.xml.datatype.XMLGregorianCalendar;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.IOException;
-import java.time.LocalDateTime;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Objects;
@@ -397,16 +394,18 @@ public class KmehrMatcher {
             return;
         }
 
+        /*
         XMLGregorianCalendar calendarNow;
         try {
             calendarNow = DateUtils.toXmlGregorianCalendar(LocalDateTime.now());
         } catch (DatatypeConfigurationException e) {
             throw new RuntimeException(e);
-        }
+        }*/
+        DateTime now = DateTime.now();
 
         for (TransactionType transactionType : transactions) {
-            transactionType.setDate(calendarNow);
-            transactionType.setTime(calendarNow);
+            transactionType.setDate(now);
+            transactionType.setTime(now);
         }
 
     }

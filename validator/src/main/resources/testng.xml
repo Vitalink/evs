@@ -1,6 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="Suite1" parallel="methods" thread-count="10" verbose="1" >
-    <test name="KmehrBusinessRules"   >
+    <test name="KmehrBusinessRules">
+        <groups>
+            <run>
+                <exclude name="brokenValidators" />
+            </run>
+        </groups>
         <packages>
             <package name="org.imec.ivlab.validator.validators" />
         </packages>

@@ -26,7 +26,8 @@ public class SumehrEVSRefExtractor extends AbstractRefExtractor {
             textType = new TextType();
             textType.setValue(evsref.getFormatted());
             textType.setL(KMEHR_LANGUAGE_L_ATTRIBUTE);
-            identifiable.getIdentifiableTransaction().getHeadingsAndItemsAndTexts().add(textType);
+            identifiable.getIdentifiableTransaction().getText().add(textType);
+            //identifiable.getIdentifiableTransaction().getHeadingsAndItemsAndTexts().add(textType);
         }
 
     }
