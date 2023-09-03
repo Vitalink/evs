@@ -7,20 +7,15 @@ import static org.imec.ivlab.core.vaccination.VaccinationMappingReader.RequiredE
 import static org.imec.ivlab.core.vaccination.VaccinationMappingReader.RequiredExcelColumn.PROTECTS_AGAINST;
 import static org.imec.ivlab.core.vaccination.VaccinationMappingReader.RequiredExcelColumn.VACCINNET_CODE;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 import lombok.Getter;
-import lombok.extern.log4j.Log4j;
 import lombok.extern.log4j.Log4j2;
-import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Row.MissingCellPolicy;

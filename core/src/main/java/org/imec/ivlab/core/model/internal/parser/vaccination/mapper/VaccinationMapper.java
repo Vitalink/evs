@@ -22,7 +22,6 @@ import org.imec.ivlab.core.model.internal.parser.vaccination.EncounterLocation;
 import org.imec.ivlab.core.model.internal.parser.vaccination.Vaccination;
 import org.imec.ivlab.core.model.internal.parser.vaccination.VaccinationItem;
 import org.imec.ivlab.core.util.CollectionsUtil;
-import org.imec.ivlab.core.util.DateUtils;
 import org.joda.time.DateTime;
 
 

@@ -31,7 +31,7 @@ public class PopulationBasedScreening extends ParsedKmehrItem {
 
     @Override
     public Set<String> ignoredNodeNames() {
-        HashSet ignoredNames = new HashSet();
+        HashSet<String> ignoredNames = new HashSet<String>();
         ignoredNames.add("iscomplete");
         ignoredNames.add("isvalidated");
         return ignoredNames;

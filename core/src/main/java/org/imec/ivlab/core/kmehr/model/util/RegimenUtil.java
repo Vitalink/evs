@@ -21,6 +21,10 @@ public class RegimenUtil {
 
     public static List<BigInteger> getDayNumbers(Regimen regimen) {
 
+        if (regimen == null) {
+            return new ArrayList<BigInteger>();
+        }
+
         return regimen
             .getDaynumbersAndQuantitiesAndDates()
             .stream()
@@ -32,11 +36,24 @@ public class RegimenUtil {
 
     public static List<Calendar> getDates(Regimen regimen) {
 
-        return getRegimenFields(regimen, Calendar.class);
+        if (regimen == null) {
+            return new ArrayList<Calendar>();
+        }
+
+        return regimen
+            .getDaynumbersAndQuantitiesAndDates()
+            .stream()
+            .filter(s -> Calendar.class.isInstance(s.getValue()))
+            .map(s -> (Calendar) s.getValue())
+            .collect(Collectors.toList());
 
     }
 
     public static List<WeekdayType> getWeekdays(Regimen regimen) {
+
+        if (regimen == null) {
+            return new ArrayList<WeekdayType>();
+        }
 
         return regimen
             .getDaynumbersAndQuantitiesAndDates()
@@ -49,6 +66,10 @@ public class RegimenUtil {
 
     public static List<Daytime> getDaytimes(Regimen regimen) {
 
+        if (regimen == null) {
+            return new ArrayList<Daytime>();
+        }
+
         return regimen
             .getDaynumbersAndQuantitiesAndDates()
             .stream()
@@ -60,29 +81,16 @@ public class RegimenUtil {
 
     public static List<AdministrationquantityType> getQuantities(Regimen regimen) {
 
-        return getRegimenFields(regimen, AdministrationquantityType.class);
-
-    }
-
-    private static <T> List<T> getRegimenFields(Regimen regimen, Class<T> objectType) {
-
-        List<T> regimenFields = new ArrayList<>();
-
-        if (regimen == null || CollectionUtils.isEmpty(regimen.getDaynumbersAndQuantitiesAndDates())) {
-            return null;
+        if (regimen == null) {
+            return new ArrayList<AdministrationquantityType>();
         }
 
-        for (Object object : regimen.getDaynumbersAndQuantitiesAndDates()) {
-
-            JAXBElement jaxbElement = (JAXBElement) object;
-
-            if (objectType.isInstance(jaxbElement.getValue()) ) {
-                regimenFields.add((T) jaxbElement.getValue());
-            }
-
-        }
-
-        return regimenFields;
+        return regimen
+            .getDaynumbersAndQuantitiesAndDates()
+            .stream()
+            .filter(s -> AdministrationquantityType.class.isInstance(s.getValue()))
+            .map(s -> (AdministrationquantityType) s.getValue())
+            .collect(Collectors.toList());
 
     }
 
@@ -124,7 +132,7 @@ public class RegimenUtil {
 
         for (Object object : regimenEntryFields) {
 
-            JAXBElement jaxbElement = (JAXBElement) object;
+            JAXBElement<?> jaxbElement = (JAXBElement<?>) object;
 
             if (BigInteger.class.isInstance(jaxbElement.getValue()) ) {
                 regimenEntry.setDayNumber((BigInteger) jaxbElement.getValue());

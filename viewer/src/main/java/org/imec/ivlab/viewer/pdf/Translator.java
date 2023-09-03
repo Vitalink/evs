@@ -25,7 +25,6 @@ import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 import org.apache.commons.lang3.StringUtils;
 import org.imec.ivlab.core.RangeChecker;
 import org.imec.ivlab.core.kmehr.model.AdministrationUnit;

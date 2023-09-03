@@ -6,16 +6,14 @@ import org.imec.ivlab.core.RangeChecker;
 import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.internal.mapper.medication.mapper.MedicationMapper;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
-import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
-import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
 import org.joda.time.LocalDate;
 
 
-public class R1033_BeginmomentVsEndmoment extends BaseMSEntryRule implements MSEntryRule {
+public class R1033_BeginmomentVsEndmoment extends BaseMSEntryRule {
 
     @Override
     public String getMessage() {

@@ -33,7 +33,6 @@ import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import java.io.IOException;
 import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import java.util.ArrayList;
@@ -67,7 +66,7 @@ import org.xml.sax.SAXException;
 
 public abstract class Writer {
 
-    private final static Logger LOG = LogManager.getLogger(Writer.class);
+    //private final static Logger LOG = LogManager.getLogger(Writer.class);
 
     private static final String ANNOTATION_TEXT_NOT_SUPPORTED = "Not supported";
 
@@ -153,8 +152,8 @@ public abstract class Writer {
 
     }
 
-    protected List<Pair> getAddresses(List<AddressType> addressTypes) {
-        List<Pair> existingRows = new ArrayList<>();
+    protected List<Pair<String, String>> getAddresses(List<AddressType> addressTypes) {
+        List<Pair<String, String>> existingRows = new ArrayList<>();
 
 
         if (CollectionsUtil.emptyOrNull(addressTypes)) {
@@ -173,8 +172,8 @@ public abstract class Writer {
         return existingRows;
     }
 
-    private List<Pair> getPatientIdentifiers(List<IDPATIENT> idpatients) {
-        List<Pair> existingRows = new ArrayList<>();
+    private List<Pair<String, String>> getPatientIdentifiers(List<IDPATIENT> idpatients) {
+        List<Pair<String, String>> existingRows = new ArrayList<>();
 
         if (CollectionsUtil.emptyOrNull(idpatients)) {
             return null;
@@ -191,8 +190,8 @@ public abstract class Writer {
 
     }
 
-    protected List<Pair> getTelecoms(List<TelecomType> telecomTypes) {
-        List<Pair> existingRows = new ArrayList<>();
+    protected List<Pair<String, String>> getTelecoms(List<TelecomType> telecomTypes) {
+        List<Pair<String, String>> existingRows = new ArrayList<>();
 
 
         if (CollectionsUtil.emptyOrNull(telecomTypes)) {
@@ -207,8 +206,8 @@ public abstract class Writer {
 
     }
 
-    protected List<Pair> getHcPartyIdentifiers(List<IDHCPARTY> idhcparties) {
-        List<Pair> existingRows = new ArrayList<>();
+    protected List<Pair<String, String>> getHcPartyIdentifiers(List<IDHCPARTY> idhcparties) {
+        List<Pair<String, String>> existingRows = new ArrayList<>();
 
         if (CollectionsUtil.emptyOrNull(idhcparties)) {
             return null;
@@ -225,8 +224,8 @@ public abstract class Writer {
 
     }
 
-    protected List<Pair> getHcPartyCodes(List<CDHCPARTY> cdhcparties) {
-        List<Pair> existingRows = new ArrayList<>();
+    protected List<Pair<String, String>> getHcPartyCodes(List<CDHCPARTY> cdhcparties) {
+        List<Pair<String, String>> existingRows = new ArrayList<>();
 
         if (CollectionsUtil.emptyOrNull(cdhcparties)) {
             return null;

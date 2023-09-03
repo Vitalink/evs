@@ -171,8 +171,7 @@ public class MedicationMapper {
     }
 
     private static LocalId getLocalId(TransactionType medicationTransaction) {
-        IDKmehrUtil idKmehrUtil = new IDKmehrUtil();
-        List<IDKMEHR> idKmehrs = idKmehrUtil.getIDKmehrs(medicationTransaction.getIds(), IDKMEHRschemes.LOCAL);
+        List<IDKMEHR> idKmehrs = IDKmehrUtil.getIDKmehrs(medicationTransaction.getIds(), IDKMEHRschemes.LOCAL);
         List<LocalId> localIds = LocalIdParser.parseLocalIds(idKmehrs);
         if (CollectionsUtil.emptyOrNull(localIds)) {
             return null;
@@ -493,42 +492,6 @@ public class MedicationMapper {
 
     }
 
-    private static String findMedication(ContentType contentType) {
-
-        if (contentType == null) {
-            return null;
-        }
-
-        if (contentType.getMedicinalproduct() != null) {
-            MedicinalProductType medicinalproduct = contentType.getMedicinalproduct();
-            String deliveredName = getName(medicinalproduct.getDeliveredname());
-            if (deliveredName != null) {
-                return deliveredName;
-            } else {
-                if (medicinalproduct.getIntendedname() != null) {
-                    return medicinalproduct.getIntendedname();
-                }
-            }
-        }
-
-        if (contentType.getSubstanceproduct() != null) {
-            Substanceproduct substanceproduct = contentType.getSubstanceproduct();
-            String deliveredName = getName(substanceproduct.getDeliveredname());
-            if (deliveredName != null) {
-                return deliveredName;
-            } else {
-                String intendedName = getName(substanceproduct.getIntendedname());
-                if (intendedName != null) {
-                    return intendedName;
-                }
-            }
-
-        }
-
-        return null;
-
-    }
-
     private static String getCompoundPrescription(List<ContentType> contents) {
 
         if (CollectionsUtil.emptyOrNull(contents)) {
@@ -588,11 +551,9 @@ public class MedicationMapper {
             return null;
         }
 
-        ContentUtil contentUtil = new ContentUtil();
-
         StringBuilder stringBuilder = new StringBuilder();
         for (ContentType contentType : contentTypes) {
-            List<CDCONTENT> cdContents = contentUtil.getCDContents(contentType, CDCONTENTschemes.CD_EAN);
+            List<CDCONTENT> cdContents = ContentUtil.getCDContents(contentType, CDCONTENTschemes.CD_EAN);
             if (cdContents != null) {
                 for (CDCONTENT cdContent : cdContents) {
                     stringBuilder.append(cdContent.getValue() + ",");

@@ -10,13 +10,12 @@ import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
-import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
 import java.util.List;
 
-public class R1006_FreeTextMaxLength extends BaseMSEntryRule implements MSEntryRule {
+public class R1006_FreeTextMaxLength extends BaseMSEntryRule {
 
     private static final int MAX_LENGTH_FREE_TEXT = 340;
 

@@ -21,8 +21,6 @@ import be.fgov.ehealth.standards.kmehr.cd.v1.CDDRUGCNKschemes;
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTRANSACTION;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Element;
-import com.itextpdf.text.Font;
-import com.itextpdf.text.Phrase;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import org.joda.time.LocalDateTime;

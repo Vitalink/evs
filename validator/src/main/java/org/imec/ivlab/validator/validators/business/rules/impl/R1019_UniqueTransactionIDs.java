@@ -8,7 +8,6 @@ import org.imec.ivlab.core.kmehr.model.util.IDKmehrUtil;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
-import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
@@ -16,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class R1019_UniqueTransactionIDs extends BaseMSEntryRule implements MSEntryRule {
+public class R1019_UniqueTransactionIDs extends BaseMSEntryRule {
 
     @Override
     public String getMessage() {

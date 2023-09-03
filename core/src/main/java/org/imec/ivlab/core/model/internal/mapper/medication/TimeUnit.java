@@ -1,9 +1,6 @@
 package org.imec.ivlab.core.model.internal.mapper.medication;
 
-import java.io.Serializable;
-
-
-public enum TimeUnit implements Serializable {
+public enum TimeUnit {
 
     A("a", "jaar", "jaar"),
     MO("mo", "maand", "maanden"),

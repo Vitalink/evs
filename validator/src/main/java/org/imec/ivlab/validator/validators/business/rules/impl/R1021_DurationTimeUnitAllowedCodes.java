@@ -8,11 +8,10 @@ import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.internal.mapper.medication.TimeUnit;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
-import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
-public class R1021_DurationTimeUnitAllowedCodes extends BaseMSEntryRule implements MSEntryRule {
+public class R1021_DurationTimeUnitAllowedCodes extends BaseMSEntryRule {
 
     @Override
     public String getMessage() {

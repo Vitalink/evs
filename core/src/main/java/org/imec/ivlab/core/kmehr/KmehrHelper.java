@@ -194,12 +194,10 @@ public class KmehrHelper {
             return matchingTransactions;
         }
 
-        ItemUtil itemUtil = new ItemUtil();
-        TransactionUtil transactionUtil = new TransactionUtil();
         for (TransactionType transaction : transactions) {
 
-            ItemType medicationItem = transactionUtil.getItem(transaction, CDITEMvalues.MEDICATION);
-            List<LnkType> links = itemUtil.getLinks(medicationItem, CDLNKvalues.ISPLANNEDFOR);
+            ItemType medicationItem = TransactionUtil.getItem(transaction, CDITEMvalues.MEDICATION);
+            List<LnkType> links = ItemUtil.getLinks(medicationItem, CDLNKvalues.ISPLANNEDFOR);
 
             boolean linksToMedicationId = false;
             for (LnkType link : links) {
@@ -220,8 +218,7 @@ public class KmehrHelper {
 
     private static String getKmehrId(TransactionType transactionType) {
 
-        IDKmehrUtil idKmehrUtil = new IDKmehrUtil();
-        List<IDKMEHR> idKmehrs = idKmehrUtil.getIDKmehrs(transactionType.getIds(), IDKMEHRschemes.ID_KMEHR);
+        List<IDKMEHR> idKmehrs = IDKmehrUtil.getIDKmehrs(transactionType.getIds(), IDKMEHRschemes.ID_KMEHR);
 
         if (CollectionsUtil.emptyOrNull(idKmehrs)) {
             throw new RuntimeException("No kmehr id found in transaction. This should never happen!");
@@ -255,14 +252,12 @@ public class KmehrHelper {
     }
 
     public static void replaceIds(TransactionType transactionType, String id) {
-        IDKmehrUtil idKmehrUtil = new IDKmehrUtil();
-        idKmehrUtil.removeIDKmehrs(transactionType.getIds(), IDKMEHRschemes.ID_KMEHR);
+        IDKmehrUtil.removeIDKmehrs(transactionType.getIds(), IDKMEHRschemes.ID_KMEHR);
         transactionType.getIds().add(createIDKmehr(id));
     }
 
     public static void replaceLocalIds(TransactionType transactionType, String localIdValue) {
-        IDKmehrUtil idKmehrUtil = new IDKmehrUtil();
-        idKmehrUtil.removeIDKmehrs(transactionType.getIds(), IDKMEHRschemes.LOCAL);
+        IDKmehrUtil.removeIDKmehrs(transactionType.getIds(), IDKMEHRschemes.LOCAL);
         transactionType.getIds().add(createIDKmehrVitalinkURI(localIdValue));
     }
 
@@ -272,8 +267,6 @@ public class KmehrHelper {
 
         int transactionId = startingTransactionId;
         int medicationTransactionId = startingTransactionId;
-
-        TransactionUtil transactionUtil = new TransactionUtil();
 
         TransactionType medicationTransaction = SerializationUtils.clone(medicationTransactionOriginal);
 
@@ -291,7 +284,7 @@ public class KmehrHelper {
 
                 transactionId++;
 
-                ItemType medicationItem = transactionUtil.getItem(suspensionTransaction, CDITEMvalues.MEDICATION);
+                ItemType medicationItem = TransactionUtil.getItem(suspensionTransaction, CDITEMvalues.MEDICATION);
 
                 medicationItem.getLnks().clear();
                 LnkType lnkType = new LnkType();
@@ -322,8 +315,6 @@ public class KmehrHelper {
 
     private static int getHighestTransactionKmehrId(List<TransactionType> transactionTypes) {
 
-        IDKmehrUtil idKmehrUtil = new IDKmehrUtil();
-
         if (transactionTypes == null) {
             return 0;
         }
@@ -331,7 +322,7 @@ public class KmehrHelper {
         int highest = 0;
 
         for (TransactionType transactionType : transactionTypes) {
-            List<IDKMEHR> idKmehrs = idKmehrUtil.getIDKmehrs(transactionType.getIds(), IDKMEHRschemes.ID_KMEHR);
+            List<IDKMEHR> idKmehrs = IDKmehrUtil.getIDKmehrs(transactionType.getIds(), IDKMEHRschemes.ID_KMEHR);
             for (IDKMEHR idKmehr : idKmehrs) {
                 try {
                     Integer idValue = Integer.valueOf(idKmehr.getValue());

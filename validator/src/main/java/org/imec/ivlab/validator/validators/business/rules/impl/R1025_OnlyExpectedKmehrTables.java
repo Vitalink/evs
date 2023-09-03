@@ -9,7 +9,6 @@ import org.imec.ivlab.core.kmehr.tables.TableManager;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.validator.validators.business.rules.BaseKmehrMessageStringRule;
 import org.imec.ivlab.validator.validators.business.rules.CustomMessage;
-import org.imec.ivlab.validator.validators.business.rules.KmehrMessageStringRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
@@ -19,7 +18,7 @@ import java.util.List;
 import static org.imec.ivlab.core.constants.CoreConstants.LOCATION_KMEHR_TABLES;
 import static org.imec.ivlab.core.constants.CoreConstants.LOCATION_KMEHR_TABLE_VERSIONS;
 
-public class R1025_OnlyExpectedKmehrTables extends BaseKmehrMessageStringRule implements KmehrMessageStringRule, CustomMessage {
+public class R1025_OnlyExpectedKmehrTables extends BaseKmehrMessageStringRule implements CustomMessage {
 
     private String customMessage = null;
 

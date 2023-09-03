@@ -1,9 +1,6 @@
 package org.imec.ivlab.core.model.internal.mapper.medication;
 
-import java.io.Serializable;
-
-
-public enum Route implements Serializable {
+public enum Route {
 
     R00001("00001", "In het oor", true),
     R00002("00002", "Op de huid", true),

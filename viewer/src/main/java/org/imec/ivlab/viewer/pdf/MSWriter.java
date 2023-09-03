@@ -51,7 +51,6 @@ import java.math.BigDecimal;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -62,7 +61,6 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
@@ -96,7 +94,6 @@ import org.imec.ivlab.core.model.upload.msentrylist.MedicationSchemeExtractor;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.core.util.IOUtils;
 import org.imec.ivlab.core.util.compare.NumberAwareStringComparator;
-import org.imec.ivlab.viewer.converter.DailySchemeFilter;
 import org.imec.ivlab.viewer.converter.TestFileConverter;
 import org.imec.ivlab.viewer.converter.exceptions.SchemaConversionException;
 
@@ -132,41 +129,6 @@ public class MSWriter extends Writer {
 
         GlobalScheme scheme = new GlobalScheme();
         scheme.setMedicationEntries(medicationEntries);
-
-        Patient patient = PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE.getValue());
-        scheme.setPatient(patient);
-
-        scheme.setVersion("313");
-
-        List<HcpartyType> authors = new ArrayList<>();
-        HcpartyType author = new HcpartyType();
-        author.setFirstname("Jane");
-        author.setFamilyname("DOE");
-        authors.add(author);
-        scheme.setAuthors(authors);
-
-        return scheme;
-    }
-
-    private static AbstractScheme getDailyTestScheme() throws TransformationException {
-        File inputFile = IOUtils.getResourceAsFile("/oneshot-and-chronic.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/non-vitalink-and-non-kmehr-administrationunits.txt");
-//        File inputFile = IOUtils.getResourceAsFile("/met-frequency-ondemand.xml");
-//        File inputFile = IOUtils.getResourceAsFile("/medication-weekly-starts-today.xml");
-
-        LocalDate schemeDate = new LocalDate(2018, 9, 11);
-
-        KmehrEntryList kmehrEntryList = KmehrExtractor.getKmehrEntryList(inputFile);
-        MSEntryList msEntryList = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
-
-        List<MedicationEntry> medicationEntries = TestFileConverter.convertToMedicationEntries(msEntryList);
-
-        medicationEntries = DailySchemeFilter.filterMedicationForSchemeDate(schemeDate, medicationEntries);
-
-        DailyScheme scheme = new DailyScheme();
-        scheme.setMedicationEntries(medicationEntries);
-
-        scheme.setSchemeDate(schemeDate);
 
         Patient patient = PatientReader.loadPatientByKey(PatientKey.PATIENT_EXAMPLE.getValue());
         scheme.setPatient(patient);
@@ -839,7 +801,7 @@ public class MSWriter extends Writer {
             RegimenEntry regimenEntry = regimenEntries.get(currentRegimenEntry);
             similarEntries.add(regimenEntry);
 
-            ListIterator innerIterator = regimenEntries.listIterator(currentRegimenEntry + 1);
+            ListIterator<RegimenEntry> innerIterator = regimenEntries.listIterator(currentRegimenEntry + 1);
             while (innerIterator.hasNext()) {
                 RegimenEntry otherRegimenEntry = (RegimenEntry) innerIterator.next();
 

@@ -10,10 +10,8 @@ import org.imec.ivlab.core.kmehr.model.util.FrequencyUtil;
 import org.imec.ivlab.core.kmehr.model.util.RegimenUtil;
 import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
-import org.imec.ivlab.core.util.DateUtils;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.CustomMessage;
-import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
@@ -21,7 +19,7 @@ import org.joda.time.LocalDate;
 import java.util.Calendar;
 import java.util.List;
 
-public class R1001j_MultipleOfYearsDayLimitInDate extends BaseMSEntryRule implements MSEntryRule, CustomMessage {
+public class R1001j_MultipleOfYearsDayLimitInDate extends BaseMSEntryRule implements CustomMessage {
 
     private String customMessage = "";
 

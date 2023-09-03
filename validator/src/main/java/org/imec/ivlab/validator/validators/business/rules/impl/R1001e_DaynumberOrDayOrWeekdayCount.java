@@ -9,7 +9,6 @@ import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
-import org.imec.ivlab.validator.validators.business.rules.MSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
@@ -17,7 +16,7 @@ import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.List;
 
-public class R1001e_DaynumberOrDayOrWeekdayCount extends BaseMSEntryRule implements MSEntryRule {
+public class R1001e_DaynumberOrDayOrWeekdayCount extends BaseMSEntryRule {
 
     @Override
     public String getMessage() {

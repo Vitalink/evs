@@ -29,7 +29,6 @@ import org.imec.ivlab.core.model.internal.parser.childprevention.YearItem;
 import org.imec.ivlab.core.model.internal.parser.common.BaseMapper;
 import org.imec.ivlab.core.model.internal.parser.populationbasedscreening.PopulationBasedScreening;
 import org.imec.ivlab.core.util.CollectionsUtil;
-import org.imec.ivlab.core.util.DateUtils;
 
 
 public class PopulationBasedScreeningMapper extends BaseMapper {

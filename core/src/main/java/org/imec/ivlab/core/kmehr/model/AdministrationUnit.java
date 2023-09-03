@@ -1,7 +1,7 @@
 package org.imec.ivlab.core.kmehr.model;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 
 public enum AdministrationUnit {
 
@@ -50,7 +50,7 @@ public enum AdministrationUnit {
     MG("mg", "Milligram", "Milligram", true),
     MG_ML("mg/ml", "Milligram per milliliter", "Milligram per milliliter", true);
 
-    private static Logger log = LogManager.getLogger(AdministrationUnit.class);
+    //private static Logger log = LogManager.getLogger(AdministrationUnit.class);
     private String value;
     private String patientTranslation;
     private String descriptionDutch;

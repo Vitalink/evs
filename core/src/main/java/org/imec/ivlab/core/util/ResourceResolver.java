@@ -83,14 +83,15 @@ public class ResourceResolver {
         List<String> jarEntries = new ArrayList<>();
         try {
             File file = new File(ResourceResolver.class.getProtectionDomain().getCodeSource().getLocation().toURI());
-            JarFile jarFile = new JarFile(file);
-            Enumeration<JarEntry> entries = jarFile.entries();
-            while (entries.hasMoreElements()) {
-                JarEntry jarEntry = entries.nextElement();
-                log.trace("Checking if: " + jarEntry.getName() + " starts with " + startsWith);
-                if (org.apache.commons.lang3.StringUtils.startsWithIgnoreCase(jarEntry.getName(), startsWith)) {
-                    jarEntries.add(jarEntry.getName());
-                    log.trace("Found jar entry: " + jarEntry.getName());
+            try (JarFile jarFile = new JarFile(file)) {
+                Enumeration<JarEntry> entries = jarFile.entries();
+                while (entries.hasMoreElements()) {
+                    JarEntry jarEntry = entries.nextElement();
+                    log.trace("Checking if: " + jarEntry.getName() + " starts with " + startsWith);
+                    if (org.apache.commons.lang3.StringUtils.startsWithIgnoreCase(jarEntry.getName(), startsWith)) {
+                        jarEntries.add(jarEntry.getName());
+                        log.trace("Found jar entry: " + jarEntry.getName());
+                    }
                 }
             }
             return jarEntries;

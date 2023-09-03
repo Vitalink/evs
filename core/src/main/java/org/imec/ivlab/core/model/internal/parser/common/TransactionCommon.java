@@ -7,13 +7,11 @@ import be.fgov.ehealth.standards.kmehr.id.v1.IDKMEHR;
 import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
-import org.joda.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.imec.ivlab.core.model.internal.parser.sumehr.HcParty;

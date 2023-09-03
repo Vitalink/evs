@@ -6,8 +6,8 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.kmehr.KmehrConstants;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
@@ -26,7 +26,7 @@ import org.imec.ivlab.ehconnector.hubflow.HubFlow;
 
 public class DiaryNoteServiceImpl extends AbstractService implements DiaryNoteService {
 
-    private final static Logger LOG = LogManager.getLogger(DiaryNoteServiceImpl.class);
+    //private final static Logger LOG = LogManager.getLogger(DiaryNoteServiceImpl.class);
 
     private static final TransactionType TRANSACTION_TYPE = TransactionType.DIARY_NOTE;
     private HubFlow hubFlow = new HubFlow();

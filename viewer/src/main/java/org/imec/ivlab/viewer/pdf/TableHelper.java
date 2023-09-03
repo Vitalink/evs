@@ -163,14 +163,14 @@ public class TableHelper {
     return table;
   }
 
-  public static List<PdfPCell> toDetailRowsIfHasValue(List<Pair> columns) {
+  public static List<PdfPCell> toDetailRowsIfHasValue(List<Pair<String, String>> columns) {
     if (columns == null) {
       return null;
     }
 
     List<PdfPCell> cells = new ArrayList<>();
-    for (Pair column : columns) {
-      List<PdfPCell> cellsForRow = toDetailRowIfHasValue((String) column.getLeft(), column.getRight());
+    for (Pair<String, String> column : columns) {
+      List<PdfPCell> cellsForRow = toDetailRowIfHasValue(column.getLeft(), column.getRight());
       if (cellsForRow != null) {
         cells.addAll(cellsForRow);
       }

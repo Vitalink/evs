@@ -136,7 +136,7 @@ public class XmlModifier {
         NodeList nodeList = node.getChildNodes();
         for(int i=0; i < nodeList.getLength(); i++){
             Node childNode = nodeList.item(i);
-            String nodeName = childNode.getNodeName();
+            //String nodeName = childNode.getNodeName();
             if(org.apache.commons.lang3.StringUtils.isEmpty(org.apache.commons.lang3.StringUtils.trimToEmpty(childNode.getTextContent()))){
                 childNode.getParentNode().removeChild(childNode);
                 i--;

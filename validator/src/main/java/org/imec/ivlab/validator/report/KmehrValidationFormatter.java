@@ -4,7 +4,6 @@ import com.inamik.text.tables.GridTable;
 import com.inamik.text.tables.SimpleTable;
 import com.inamik.text.tables.grid.Border;
 import com.inamik.text.tables.grid.Util;
-import org.apache.commons.lang3.StringUtils;
 import org.imec.ivlab.validator.validators.model.AbstractValidationItem;
 import org.imec.ivlab.validator.validators.model.ValidationResult;
 import org.imec.ivlab.validator.validators.business.rules.model.ExecutionStatus;
@@ -13,6 +12,7 @@ import org.imec.ivlab.validator.validators.xsd.model.XsdFailure;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.Objects;
 
 import static com.inamik.text.tables.Cell.Functions.HORIZONTAL_CENTER;
 
@@ -115,7 +115,7 @@ public class KmehrValidationFormatter {
 
             s.nextRow();
 
-            s.nextCell().addLine(StringUtils.defaultString(ruleResult.getRuleId(), ""))
+            s.nextCell().addLine(Objects.toString(ruleResult.getRuleId(), ""))
                     .nextCell().addLine(ruleResult.getLevel().name())
                     .nextCell().addLine(ruleResult.getMessage())
                     .nextCell().addLine(ruleResult.getExecutionStatus().name());

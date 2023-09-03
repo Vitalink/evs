@@ -24,7 +24,6 @@ import org.imec.ivlab.core.model.internal.parser.sumehr.Patient;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Recipient;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sender;
 import org.imec.ivlab.core.util.CollectionsUtil;
-import org.imec.ivlab.core.util.DateUtils;
 
 public class BaseMapper {
 

@@ -515,8 +515,8 @@ public class SumehrWriter extends Writer {
 
 
 
-    private List<Pair> getRegimenEntries(List<RegimenEntry> regimenEntries) {
-        List<Pair> existingRows = new ArrayList<>();
+    private List<Pair<String, String>> getRegimenEntries(List<RegimenEntry> regimenEntries) {
+        List<Pair<String, String>> existingRows = new ArrayList<>();
 
         if (CollectionsUtil.emptyOrNull(regimenEntries)) {
             return null;

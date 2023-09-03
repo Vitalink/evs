@@ -10,15 +10,14 @@ import org.imec.ivlab.core.kmehr.model.util.FolderUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
 import org.imec.ivlab.core.kmehr.model.util.TransactionUtil;
 import org.imec.ivlab.validator.validators.business.rules.BaseKmehrMessageRule;
-import org.imec.ivlab.validator.validators.business.rules.KmehrMessageRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
 
 import java.util.List;
 
-public class R1014_NoPartialDates extends BaseKmehrMessageRule implements KmehrMessageRule {
+public class R1014_NoPartialDates extends BaseKmehrMessageRule {
 
-    private static final int MAX_LENGTH_FREE_TEXT = 340;
+    //private static final int MAX_LENGTH_FREE_TEXT = 340;
 
     @Override
     public String getMessage() {
