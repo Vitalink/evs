@@ -12,9 +12,9 @@ import org.imec.ivlab.core.model.upload.msentrylist.MSEntry;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
+import org.joda.time.DateTime;
 
 import java.math.BigInteger;
-import java.util.Calendar;
 import java.util.List;
 
 public class R1001f_DayIfNoFrequency extends BaseMSEntryRule {
@@ -41,7 +41,7 @@ public class R1001f_DayIfNoFrequency extends BaseMSEntryRule {
 
         List<BigInteger> dayNumbers = RegimenUtil.getDayNumbers(medicationItem.getRegimen());
         List<WeekdayType> weekdays = RegimenUtil.getWeekdays(medicationItem.getRegimen());
-        List<Calendar> dates = RegimenUtil.getDates(medicationItem.getRegimen());
+        List<DateTime> dates = RegimenUtil.getDates(medicationItem.getRegimen());
 
         CDPERIODICITY dayPeriod = FrequencyUtil.getDayPeriod(medicationItem.getFrequency());
 

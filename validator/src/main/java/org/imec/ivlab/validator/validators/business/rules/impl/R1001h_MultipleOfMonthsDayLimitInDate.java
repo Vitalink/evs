@@ -14,9 +14,8 @@ import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.CustomMessage;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
-
+import org.joda.time.DateTime;
 import org.joda.time.LocalDate;
-import java.util.Calendar;
 import java.util.List;
 
 public class R1001h_MultipleOfMonthsDayLimitInDate extends BaseMSEntryRule implements CustomMessage {
@@ -43,7 +42,7 @@ public class R1001h_MultipleOfMonthsDayLimitInDate extends BaseMSEntryRule imple
 
         ItemType medicationItem = TransactionUtil.getItem(msEntry.getMseTransaction(), CDITEMvalues.MEDICATION);
 
-        List<Calendar> dates = RegimenUtil.getDates(medicationItem.getRegimen());
+        List<DateTime> dates = RegimenUtil.getDates(medicationItem.getRegimen());
 
         CDPERIODICITY dayPeriod = FrequencyUtil.getDayPeriod(medicationItem.getFrequency());
 
@@ -54,8 +53,8 @@ public class R1001h_MultipleOfMonthsDayLimitInDate extends BaseMSEntryRule imple
             if (frequencyCode.hasFrequency(Frequency.MONTH)) {
 
                 if (CollectionUtils.isNotEmpty(dates)) {
-                    for (Calendar regimenDate : dates) {
-                        LocalDate localDate = LocalDate.fromCalendarFields(regimenDate);
+                    for (DateTime regimenDate : dates) {
+                        LocalDate localDate = regimenDate.toLocalDate();
                         if (localDate.getDayOfMonth() > 28) {
                             return failRule(msEntry.getMseTransaction());
                         }

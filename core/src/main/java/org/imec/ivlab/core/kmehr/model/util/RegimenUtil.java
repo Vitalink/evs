@@ -13,7 +13,6 @@ import org.joda.time.DateTime;
 import javax.xml.bind.JAXBElement;
 import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,17 +33,18 @@ public class RegimenUtil {
 
     }
 
-    public static List<Calendar> getDates(Regimen regimen) {
+    // used to be java.util.Calendar in the past, but eHealth mapped it to DateTime
+    public static List<DateTime> getDates(Regimen regimen) {
 
         if (regimen == null) {
-            return new ArrayList<Calendar>();
+            return new ArrayList<DateTime>();
         }
 
         return regimen
             .getDaynumbersAndQuantitiesAndDates()
             .stream()
-            .filter(s -> Calendar.class.isInstance(s.getValue()))
-            .map(s -> (Calendar) s.getValue())
+            .filter(s -> DateTime.class.isInstance(s.getValue()))
+            .map(s -> (DateTime) s.getValue())
             .collect(Collectors.toList());
 
     }
@@ -139,12 +139,6 @@ public class RegimenUtil {
                 continue;
             }
 
-            if (Calendar.class.isInstance(jaxbElement.getValue()) ) {
-                Calendar calendarDate = ((Calendar) jaxbElement.getValue());
-                regimenEntry.setDate(calendarDate.getTime());
-                continue;
-            }
-
             if (WeekdayType.class.isInstance(jaxbElement.getValue()) ) {
                 regimenEntry.setWeekday((WeekdayType) jaxbElement.getValue());
                 continue;
@@ -161,7 +155,7 @@ public class RegimenUtil {
                 continue;
             }
 
-            // TODO not quite sure why it is needed
+            // eHealth replaced java.util.Calendar by joda.DateTime
             if (DateTime.class.isInstance(jaxbElement.getValue())) {
                 DateTime dateTime = ( (DateTime) jaxbElement.getValue());
                 regimenEntry.setDate(dateTime.toDate());

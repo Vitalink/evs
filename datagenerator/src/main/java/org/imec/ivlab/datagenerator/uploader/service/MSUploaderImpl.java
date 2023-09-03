@@ -31,6 +31,7 @@ import org.imec.ivlab.ehconnector.business.medicationscheme.MSServiceImpl;
 
 import org.joda.time.LocalDate;
 import org.joda.time.LocalDateTime;
+import org.joda.time.DateTime;
 import org.joda.time.Days;
 import java.util.List;
 
@@ -351,10 +352,10 @@ public class MSUploaderImpl implements Uploader, MSUploader {
                     );
                 }
 
-                List<java.util.Calendar> dates = RegimenUtil.getDates(medicationItem.getRegimen());
+                List<DateTime> dates = RegimenUtil.getDates(medicationItem.getRegimen());
                 if (dates != null) {
-                    for (java.util.Calendar date : dates) {
-                        date.add(java.util.Calendar.DATE, daysDiff);
+                    for (DateTime date : dates) {
+                        date.plusDays(daysDiff);
                     }
                 }
 

@@ -11,9 +11,9 @@ import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.validator.validators.business.rules.BaseMSEntryRule;
 import org.imec.ivlab.validator.validators.business.rules.model.RuleExecution;
 import org.imec.ivlab.validator.validators.model.Level;
+import org.joda.time.DateTime;
 
 import java.math.BigInteger;
-import java.util.Calendar;
 import java.util.List;
 
 public class R1001e_DaynumberOrDayOrWeekdayCount extends BaseMSEntryRule {
@@ -39,7 +39,7 @@ public class R1001e_DaynumberOrDayOrWeekdayCount extends BaseMSEntryRule {
         ItemType medicationItem = TransactionUtil.getItem(msEntry.getMseTransaction(), CDITEMvalues.MEDICATION);
 
         List<BigInteger> dayNumbers = RegimenUtil.getDayNumbers(medicationItem.getRegimen());
-        List<Calendar> dates = RegimenUtil.getDates(medicationItem.getRegimen());
+        List<DateTime> dates = RegimenUtil.getDates(medicationItem.getRegimen());
         List<WeekdayType> weekdays = RegimenUtil.getWeekdays(medicationItem.getRegimen());
 
         List<AdministrationquantityType> quantities = RegimenUtil.getQuantities(medicationItem.getRegimen());
