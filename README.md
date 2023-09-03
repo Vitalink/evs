@@ -13,19 +13,15 @@ EVS can sync Kmehr messages to and from the regional vault which acts as a remot
 - Diary note
 - Population-Based screening
 
-[add manual] -> later
-[add internal developer manual?] -> maybe later
-
-## How to compile & run it?
-
-### Compile
+### How to create a release ?
 
 ```sh
 builder\release.cmd
 ```
 
 ## Who made it?
-Made by IMEC vzw for Vlaamse Agentschap Zorg & Gezondheid / Vitalink.
+Made by IMEC vzw for Vlaamse Agentschap Zorg & Gezondheid / Vitalink.  
+Updated by [Jacques Yakoub](https://github.com/jy95) to support mandatory eHealth changes in October 2023, scripts to automate the release process ,...
 
 ## Terms & Conditions
 The EVS source code is licensed as open source software under the terms of the GNU Affero General Public License v3 ([AGPLv3](https://www.gnu.org/licenses/agpl-3.0.txt)).
