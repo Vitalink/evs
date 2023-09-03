@@ -5,9 +5,57 @@
 
 version: 2
 updates:
-# Files stored in repository root
+# Files stored in repository builder
   - package-ecosystem: "maven"
     directory: "/builder"
+    commit-message:
+      prefix: chore
+      include: "scope"
+    schedule:
+      interval: "weekly"
+# Files stored in repository super
+  - package-ecosystem: "maven"
+    directory: "/super"
+    commit-message:
+      prefix: chore
+      include: "scope"
+    schedule:
+      interval: "weekly"
+# Files stored in repository core
+  - package-ecosystem: "maven"
+    directory: "/core"
+    commit-message:
+      prefix: chore
+      include: "scope"
+    schedule:
+      interval: "weekly"
+# Files stored in repository ehconnector
+  - package-ecosystem: "maven"
+    directory: "/ehconnector"
+    commit-message:
+      prefix: chore
+      include: "scope"
+    schedule:
+      interval: "weekly"
+# Files stored in repository viewer
+  - package-ecosystem: "maven"
+    directory: "/viewer"
+    commit-message:
+      prefix: chore
+      include: "scope"
+    schedule:
+      interval: "weekly"
+# Files stored in repository datagenerator
+  - package-ecosystem: "maven"
+    directory: "/datagenerator"
+    commit-message:
+      prefix: chore
+      include: "scope"
+    schedule:
+      interval: "weekly"
+# Files stored in repository distribution
+  - package-ecosystem: "maven"
+    directory: "/distribution"
     commit-message:
       prefix: chore
       include: "scope"

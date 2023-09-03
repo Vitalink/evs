@@ -612,7 +612,9 @@ public class MSWriter extends Writer {
         if (medicationEntry.getPosologyOrRegimen() instanceof Posology) {
 
             if (isGlobalScheme) {
-                cellVerticalObsolete.setRowspan(1 + suspensionTable);
+                if (cellVerticalObsolete != null) {
+                    cellVerticalObsolete.setRowspan(1 + suspensionTable);
+                }
                 medicationEntryTable.addCell(cellVerticalObsolete);
             }
 
@@ -668,7 +670,9 @@ public class MSWriter extends Writer {
             cell.setColspan(4);
 
             if (isGlobalScheme) {
-                cellVerticalObsolete.setRowspan(groupedRegimenentries.size() + suspensionTable);
+                if (cellVerticalObsolete != null) {
+                    cellVerticalObsolete.setRowspan(groupedRegimenentries.size() + suspensionTable);
+                }
                 medicationEntryTable.addCell(cellVerticalObsolete);
             }
 
@@ -714,7 +718,9 @@ public class MSWriter extends Writer {
         } else {
 
             if (isGlobalScheme) {
-                cellVerticalObsolete.setRowspan(1 + suspensionTable);
+                if (cellVerticalObsolete != null) {
+                    cellVerticalObsolete.setRowspan(1 + suspensionTable);
+                }
                 medicationEntryTable.addCell(cellVerticalObsolete);
             }
 

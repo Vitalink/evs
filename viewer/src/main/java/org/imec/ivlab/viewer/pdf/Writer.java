@@ -47,8 +47,8 @@ import java.util.stream.Collectors;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import org.apache.commons.lang3.tuple.Pair;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.model.internal.parser.ParsedItem;
 import org.imec.ivlab.core.model.internal.parser.common.Header;
 import org.imec.ivlab.core.model.internal.parser.common.TransactionCommon;
@@ -362,7 +362,7 @@ public abstract class Writer {
 
     }
 
-    protected <T extends ParsedItem> List<PdfPTable> toUnparsedContentTable(T parsedItem, String topic) {
+    protected <T extends ParsedItem<?>> List<PdfPTable> toUnparsedContentTable(T parsedItem, String topic) {
         if (parsedItem == null) {
             return Collections.emptyList();
         } else {

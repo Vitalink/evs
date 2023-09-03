@@ -32,7 +32,7 @@ import org.imec.ivlab.core.util.StringUtils;
 
 public class TableHelper {
 
-  public static List<PdfPTable> toUnparsedContentTables(List<? extends ParsedItem> parsedItems, String topic) {
+  public static List<PdfPTable> toUnparsedContentTables(List<? extends ParsedItem<?>> parsedItems, String topic) {
 
     if (CollectionsUtil.emptyOrNull(parsedItems)) {
       return Collections.emptyList();
@@ -50,7 +50,7 @@ public class TableHelper {
 
     PdfPTable contentTable = initializeUnparsedTable();
 
-    for (ParsedItem parsedItem : parsedItems) {
+    for (ParsedItem<?> parsedItem : parsedItems) {
       String unparsedAsString = parsedItem.getUnparsedAsString();
       if (unparsedAsString == null) {
         continue;

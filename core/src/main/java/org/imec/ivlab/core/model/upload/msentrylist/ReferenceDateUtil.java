@@ -26,7 +26,6 @@ public class ReferenceDateUtil {
             patient = new PersonType();
         }
         
-        // TODO To fix
         patient.setRecorddatetime(
             new DateTime(
                 referenceDate.getYear(),

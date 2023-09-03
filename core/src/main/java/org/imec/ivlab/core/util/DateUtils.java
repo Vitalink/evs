@@ -108,7 +108,6 @@ public class DateUtils {
         return LocalDateTime.ofInstant(calendar.toInstant(), ZoneId.systemDefault());
     }
 
-    // TODO issue here
     public static LocalDateTime toLocalDateTime(org.joda.time.DateTime calendar) {
         if (calendar == null) {
             return null;

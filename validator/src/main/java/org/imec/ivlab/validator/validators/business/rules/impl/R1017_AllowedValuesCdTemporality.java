@@ -18,7 +18,7 @@ public class R1017_AllowedValuesCdTemporality extends BaseMSEntryRule {
 
     @Override
     public String getMessage() {
-        return "CD-TEMPORALITY values must be one of the following: " + StringUtils.joinWith(", ", ALLOWED_TEMPORALITY_VALUES);
+        return "CD-TEMPORALITY values must be one of the following: " + StringUtils.joinWith(", ", (Object[]) ALLOWED_TEMPORALITY_VALUES);
     }
 
     @Override

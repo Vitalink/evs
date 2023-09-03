@@ -308,20 +308,22 @@ public class KmehrMatcher {
      */
     public static boolean equal(Identifiable identiableOne, Identifiable identifiableTwo) {
 
-        if ((identiableOne == null && identifiableTwo != null) || (identifiableTwo == null && identiableOne != null)) {
-            return false;
-        }
-        if (identiableOne == null) {
+        if (identiableOne == null && identifiableTwo == null) {
             return true;
         }
-        if ((identiableOne.getIdentifiableTransaction() == null && identifiableTwo.getIdentifiableTransaction() != null) || (identifiableTwo.getIdentifiableTransaction() == null && identiableOne.getIdentifiableTransaction() != null)) {
+        
+        if (identiableOne == null || identifiableTwo == null) {
             return false;
         }
-
-        if (identiableOne.getIdentifiableTransaction() == null) {
+        
+        if (identiableOne.getIdentifiableTransaction() == null && identifiableTwo.getIdentifiableTransaction() == null) {
             return true;
         }
-
+        
+        if (identiableOne.getIdentifiableTransaction() == null || identifiableTwo.getIdentifiableTransaction() == null) {
+            return false;
+        }
+    
         return IdentifiablesHaveSameContent(identiableOne, identifiableTwo);
 
     }

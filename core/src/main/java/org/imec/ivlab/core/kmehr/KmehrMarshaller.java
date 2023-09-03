@@ -2,7 +2,8 @@ package org.imec.ivlab.core.kmehr;
 
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import javax.xml.bind.JAXBException;
-import org.apache.commons.lang3.StringUtils;
+
+import org.apache.commons.lang3.RegExUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.TransformationException;
@@ -37,11 +38,11 @@ public class KmehrMarshaller {
     }
 
     private static String removeNamespaceUsage(String kmehrContent) {
-        return StringUtils.replacePattern(kmehrContent, "(<|<\\/)(ns\\d*:)", "$1");
+        return RegExUtils.replacePattern(kmehrContent, "(<|<\\/)(ns\\d*:)", "$1");
     }
 
     private static String setDefaultNamespace(String kmehrContent) {
-        return StringUtils.replacePattern(kmehrContent, "<kmehrmessage(?:[^>]*)>", KMEHRMESSAGE_TAG_WITH_DEFAULT_NAMESPACES);
+        return RegExUtils.replacePattern(kmehrContent, "<kmehrmessage(?:[^>]*)>", KMEHRMESSAGE_TAG_WITH_DEFAULT_NAMESPACES);
     }
 
 }

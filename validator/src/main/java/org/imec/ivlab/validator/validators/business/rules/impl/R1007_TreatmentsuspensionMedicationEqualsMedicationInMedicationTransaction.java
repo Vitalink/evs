@@ -75,6 +75,7 @@ public class R1007_TreatmentsuspensionMedicationEqualsMedicationInMedicationTran
         for (int i = 0; i < contentTypesA.size(); i++) {
 
             ContentType contentTypeA = contentTypesA.get(i);
+            @SuppressWarnings("null")
             ContentType contentTypeB = contentTypesB.get(i);
 
             try {

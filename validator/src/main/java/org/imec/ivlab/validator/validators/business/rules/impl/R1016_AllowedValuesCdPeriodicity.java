@@ -18,7 +18,7 @@ public class R1016_AllowedValuesCdPeriodicity extends BaseMSEntryRule {
 
     @Override
     public String getMessage() {
-        return "CD-PERIODICITY values must be one of the following: " + StringUtils.joinWith(", ", ALLOWED_PERIODICITY_VALUES);
+        return "CD-PERIODICITY values must be one of the following: " + StringUtils.joinWith(", ", (Object[]) ALLOWED_PERIODICITY_VALUES);
     }
 
     @Override

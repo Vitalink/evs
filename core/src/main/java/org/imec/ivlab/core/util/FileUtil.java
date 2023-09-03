@@ -8,10 +8,10 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.RandomAccessFile;
 import java.nio.channels.FileChannel;
 import java.nio.channels.FileLock;
 import java.nio.channels.OverlappingFileLockException;
+import java.nio.file.StandardOpenOption;
 
 public class FileUtil {
 
@@ -23,19 +23,10 @@ public class FileUtil {
             destFile.createNewFile();
         }
 
-        FileChannel source = null;
-        FileChannel destination = null;
-
-        try {
-            source = new FileInputStream(sourceFile).getChannel();
-            destination = new FileOutputStream(destFile).getChannel();
-            destination.transferFrom(source, 0, source.size());
-        } finally {
-            if (source != null) {
-                source.close();
-            }
-            if (destination != null) {
-                destination.close();
+        try(FileInputStream source = new FileInputStream(sourceFile)) {
+            try(FileOutputStream destination = new FileOutputStream(destFile)) {
+                FileChannel sourceChannel = source.getChannel();
+                destination.getChannel().transferFrom(sourceChannel, 0, sourceChannel.size());
             }
         }
     }
@@ -67,42 +58,23 @@ public class FileUtil {
 
     public static boolean isLocked(File file) {
 
-        FileLock lock = null;
-        FileChannel channel = null;
-
-        try { // Get a file channel for the file
-            channel = new RandomAccessFile(file, "rw").getChannel();
-
-            // Try acquiring the lock without blocking.
-            // lock is null or exception if the file is already locked.
-            try {
-                lock = channel.tryLock();
-            } catch (OverlappingFileLockException e){
-                return true;
+        try (FileChannel channel = FileChannel.open(file.toPath(), StandardOpenOption.READ, StandardOpenOption.WRITE)) {
+            FileLock lock = channel.tryLock();
+            if (lock != null) {
+                lock.release(); // Release the lock immediately
+                return false; // File is not locked
+            } else {
+                return true; // File is locked
             }
-
-        } catch (Exception e) {
+        } catch (OverlappingFileLockException e) {
+            return true;
+        } catch (IOException e) {
+            // Handle any exceptions
             log.error("Error when checking if file is locked: ", e);
-        } finally {
-            if (lock != null && lock.isValid()) {
-                try {
-                    lock.release();
-                } catch (IOException e1) {
-                    log.error("Error when trying to release lock", e1);
-                }
-            }
-            if (channel != null && channel.isOpen()) {
-                try {
-                    channel.close();
-                } catch (IOException e) {
-                    log.error("Error when trying to close channel", e);
-                }
-            }
         }
 
-        return false;
-
-    }
+        return false; // Unable to determine lock status, assuming not locked
+}
 
     public static File appendTextToFilename(File file, String textToAppend) {
         return new File(FilenameUtils.getFullPath(file.getAbsolutePath()) + FilenameUtils.getBaseName(file.getAbsolutePath()) + textToAppend + "." +  FilenameUtils.getExtension(file.getAbsolutePath()));

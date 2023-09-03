@@ -23,6 +23,7 @@ import org.imec.ivlab.datagenerator.exporter.export.ExportResult;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.List;
 
 public class TransactionSetWriter extends AbstractWriter implements SetWriter<GetTransactionSetResponse> {
@@ -77,7 +78,7 @@ public class TransactionSetWriter extends AbstractWriter implements SetWriter<Ge
         File outputFile = createOutputFile(outputDirectory, filename, extension);
 
         try {
-            FileUtils.writeStringToFile(outputFile, getExportContent(getTransactionSetResponse));
+            FileUtils. writeStringToFile(outputFile, getExportContent(getTransactionSetResponse), Charset.defaultCharset());
             LOG.info("Exported to: " + outputFile);
             return new ExportResult<>(getTransactionSetResponse, outputFile);
         } catch (IOException e) {

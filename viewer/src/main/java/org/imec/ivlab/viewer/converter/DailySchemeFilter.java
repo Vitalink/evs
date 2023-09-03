@@ -2,8 +2,8 @@ package org.imec.ivlab.viewer.converter;
 
 import be.fgov.ehealth.standards.kmehr.cd.v1.CDTEMPORALITYvalues;
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.RangeChecker;
 import org.imec.ivlab.core.kmehr.model.Frequency;
 import org.imec.ivlab.core.kmehr.model.FrequencyCode;
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class DailySchemeFilter {
 
-    private final static Logger log = LogManager.getLogger(DailySchemeFilter.class);
+    //private final static Logger log = LogManager.getLogger(DailySchemeFilter.class);
     private static RangeChecker rangeChecker = new RangeChecker();
 
 

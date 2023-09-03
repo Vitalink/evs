@@ -35,7 +35,7 @@ public class ResourceResolver {
         // found resource inside jar
         File fileAsInternalResource = getProjectDirectoryJarMode(relativeProjectDirectory);
         if (fileAsInternalResource != null && fileAsInternalResource.exists()) {
-            log.info("Running as jar. Found resource: " + fileAsExternalResource.getAbsolutePath());
+            log.info("Running as jar. Found resource: " + fileAsInternalResource.getAbsolutePath());
             return fileAsInternalResource;
         }
 

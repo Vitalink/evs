@@ -36,6 +36,7 @@ public class UploadQueueImpl implements Runnable, UploadQueue {
 
     private final static int WAIT_TIME_IN_MILLIS_AFTER_QUEUE_IS_EMPTY = 3000;
 
+    @SuppressWarnings({ "rawtypes"})
     private CopyOnWriteArrayList<Instruction> instructions = new CopyOnWriteArrayList<>();
 
     private static UploadQueueImpl instance = null;
@@ -53,11 +54,13 @@ public class UploadQueueImpl implements Runnable, UploadQueue {
     }
 
     @Override
+    @SuppressWarnings({ "rawtypes"})
     public void queue(Instruction instruction) {
             instructions.add(instruction);
             LOG.info("Added instruction to queue: " + instruction.toString());
     }
 
+    @SuppressWarnings({ "rawtypes"})
     private QueueConfig getUploadQueueConfig(Instruction instruction) throws VitalinkException {
 
         if (instruction instanceof MSInstruction) {
@@ -79,6 +82,7 @@ public class UploadQueueImpl implements Runnable, UploadQueue {
     }
 
     @Override
+    @SuppressWarnings({ "rawtypes", "unchecked"})
     public void run() {
 
         while (true) {

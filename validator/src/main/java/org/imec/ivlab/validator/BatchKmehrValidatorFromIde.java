@@ -24,7 +24,7 @@ public class BatchKmehrValidatorFromIde {
         arguments.setXsdErrorMessagesToIgnore(xsdErrorsToIgnore);
 
 
-        File report = validator.validate(arguments);
+        validator.validate(arguments);
 
 
     }

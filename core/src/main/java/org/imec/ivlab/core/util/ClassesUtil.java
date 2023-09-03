@@ -15,6 +15,7 @@ public class ClassesUtil {
 
     private final static Logger log = LogManager.getLogger(ClassesUtil.class);
 
+    @SuppressWarnings({ "unchecked"})
     public static <T> List<Class<T>> getClasses(String packagePath, Class<T> clazzFilter) {
 
         List<Class<T>> testClasses = new ArrayList<>();

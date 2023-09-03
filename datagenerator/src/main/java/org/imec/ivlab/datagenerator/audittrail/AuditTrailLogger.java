@@ -38,21 +38,20 @@ public class AuditTrailLogger {
 
         if (patientAuditTrail == null || patientAuditTrail.getTransactionaccesslist() == null || patientAuditTrail.getTransactionaccesslist().getTransactionaccesses() == null) {
             LOG.info("No audit trail found for patient: " + patient.inReadableFormat());
-        }
-
-        for (Transactionaccess transactionaccess : patientAuditTrail.getTransactionaccesslist().getTransactionaccesses()) {
-            LOG.info("------------- Audit trail entry -------------");
-            LOG.info("accessed at: " + transactionaccess.getAccessdatetime());
-            if (transactionaccess.getHcparties() != null) {
-                for (HcpartyType hcpartyType : transactionaccess.getHcparties()) {
-                    LOG.info("Accessed by: " + org.imec.ivlab.core.util.StringUtils.joinWith(" ", hcpartyType.getFirstname(), hcpartyType.getFamilyname(), hcpartyType.getName()));
+        } else {
+            for (Transactionaccess transactionaccess : patientAuditTrail.getTransactionaccesslist().getTransactionaccesses()) {
+                LOG.info("------------- Audit trail entry -------------");
+                LOG.info("accessed at: " + transactionaccess.getAccessdatetime());
+                if (transactionaccess.getHcparties() != null) {
+                    for (HcpartyType hcpartyType : transactionaccess.getHcparties()) {
+                        LOG.info("Accessed by: " + org.imec.ivlab.core.util.StringUtils.joinWith(" ", hcpartyType.getFirstname(), hcpartyType.getFamilyname(), hcpartyType.getName()));
+                    }
                 }
+                LOG.info("break the glass info: " + transactionaccess.getBreaktheglass());
+                LOG.info("patient: " + transactionaccess.getPatient().getIds().get(0).getValue());
+                LOG.info("transaction: " + transactionaccess.getTransaction().getIds().get(0).getValue());
             }
-            LOG.info("break the glass info: " + transactionaccess.getBreaktheglass());
-            LOG.info("patient: " + transactionaccess.getPatient().getIds().get(0).getValue());
-            LOG.info("transaction: " + transactionaccess.getTransaction().getIds().get(0).getValue());
         }
-
 
     }
 

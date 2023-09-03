@@ -22,10 +22,10 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.FolderType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.Kmehrmessage;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TextWithLayoutType;
 import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
-import lombok.extern.log4j.Log4j2;
+//import lombok.extern.log4j.Log4j2;
 
 @Test
-@Log4j2
+//@Log4j2
 public class DiaryNoteEVSRefExtractorTest extends TestCase {
 
   private EVSREF evsref = new EVSREF("TESTREF");

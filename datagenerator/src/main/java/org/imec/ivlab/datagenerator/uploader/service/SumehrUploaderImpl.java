@@ -24,7 +24,7 @@ import org.imec.ivlab.core.model.upload.msentrylist.exception.IdenticalEVSRefsFo
 import org.imec.ivlab.core.model.upload.msentrylist.exception.MultipleEVSRefsInTransactionFoundException;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.imec.ivlab.datagenerator.uploader.exception.UploaderException;
-import org.imec.ivlab.ehconnector.business.HubHelper;
+//import org.imec.ivlab.ehconnector.business.HubHelper;
 import org.imec.ivlab.ehconnector.business.sumehr.SumehrService;
 import org.imec.ivlab.ehconnector.business.sumehr.SumehrServiceImpl;
 
@@ -33,7 +33,7 @@ public class SumehrUploaderImpl implements SumehrUploader, Uploader {
     private final static Logger LOG = LogManager.getLogger(SumehrUploaderImpl.class);
 
     private SumehrService sumehrService;
-    private HubHelper hubHelper = new HubHelper();
+    //private HubHelper hubHelper = new HubHelper();
     private SumehrEVSRefExtractor refExtractor;
 
     public SumehrUploaderImpl() throws VitalinkException {

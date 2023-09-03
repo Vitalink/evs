@@ -22,6 +22,7 @@ import org.joda.time.LocalDateTime;
 import org.joda.time.Days;
 import org.joda.time.Months;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -447,14 +448,10 @@ public class RangeChecker {
 
         }
 
-        switch (durationUnit) {
-
-            case A:
-            case MO:
-            case WK:
-            case D:
-                endDate = endDate.minusDays(1);
-
+        // Vitalink/EVS in the past substract one day for authorized units, to compute the endDate properly
+        List<TimeUnit> unitsToSubtractOneDay = Arrays.asList(TimeUnit.A, TimeUnit.MO, TimeUnit.WK, TimeUnit.D);
+        if (unitsToSubtractOneDay.contains(durationUnit)) {
+            endDate = endDate.minusDays(1);
         }
 
         return endDate.toLocalDate();

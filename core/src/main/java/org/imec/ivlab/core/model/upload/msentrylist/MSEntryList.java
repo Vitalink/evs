@@ -20,6 +20,7 @@ public class MSEntryList implements ListOfIdentifiables, SpecificEntryList {
 
 
     @Override
+    @SuppressWarnings({"unchecked" })
     public List<MSEntry> getIdentifiables() {
         return msEntries;
     }

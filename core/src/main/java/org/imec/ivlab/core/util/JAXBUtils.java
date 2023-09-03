@@ -81,7 +81,8 @@ public class JAXBUtils {
 
         QName qName = new QName(nsURI, rootName);
 
-        JAXBElement root = new JAXBElement(qName, o.getClass(), o);
+        @SuppressWarnings({ "rawtypes", "unchecked" })
+        JAXBElement<?> root = new JAXBElement(qName, o.getClass(), o);
 
         jaxbMarshaller.marshal(root, writer);
 

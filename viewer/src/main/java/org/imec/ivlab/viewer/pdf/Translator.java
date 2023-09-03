@@ -461,9 +461,15 @@ public class Translator {
     }
 
     protected static String translateQuantity(BigDecimal x){
-        if (x != null && x.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) >= 0) {
+        
+        if (x == null) {
+            return "";
+        }
+
+        if (x.compareTo(BigDecimal.valueOf(Integer.MAX_VALUE)) >= 0) {
             return TOO_LARGE_TEXT;
         }
+
         return translateQuantity(x.doubleValue());
     }
 

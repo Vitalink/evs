@@ -628,13 +628,14 @@ public class HubHelper {
     /**
      * Create a transaction type needed for transaction operations, with a LOCAL id
      */
+    /*
     private TransactionType createTransactionTypeWithLocalId(String transactionId, String xml) throws Exception {
         TransactionType transaction = createTransactionType(transactionId, xml);
         transaction.getIds().add(createIdKmehr("EHBASICSOFT", "1.0", IdGeneratorFactory.getIdGenerator(
                 IdGeneratorFactory.UUID).generateId(), IDKMEHRschemes.LOCAL));
 
         return transaction;
-    }
+    }*/
 
 
     /**

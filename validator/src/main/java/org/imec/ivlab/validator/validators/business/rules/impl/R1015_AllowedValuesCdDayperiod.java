@@ -27,7 +27,7 @@ public class R1015_AllowedValuesCdDayperiod extends BaseMSEntryRule {
 
     @Override
     public String getMessage() {
-        return "CD-DAYPERIOD values must be one of the following: " + StringUtils.joinWith(", ", ALLOWED_DAYPERIOD_VALUES);
+        return "CD-DAYPERIOD values must be one of the following: " + StringUtils.joinWith(", ", (Object[]) ALLOWED_DAYPERIOD_VALUES);
     }
 
     @Override

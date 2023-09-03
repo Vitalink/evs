@@ -62,7 +62,6 @@ public class PathUtils {
         outerloop:
         while (charPosition < shortestPathLength) {
             Character charPosFirstPath = paths[0].charAt(charPosition);
-            innerloop:
             for (int i = 0; i < paths.length; i++) {
                 char charAtPosition = paths[i].charAt(charPosition);
                 if (charAtPosition != charPosFirstPath) {

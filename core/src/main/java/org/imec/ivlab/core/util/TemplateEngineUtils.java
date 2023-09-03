@@ -30,11 +30,11 @@ public final class TemplateEngineUtils {
 
     public static String generate(Map<String, Object> ctx, String templateLocation) {
         VelocityContext context = new VelocityContext();
-        Iterator template = ctx.entrySet().iterator();
+        Iterator<Map.Entry<String, Object>> template = ctx.entrySet().iterator();
 
         while(template.hasNext()) {
-            Map.Entry writer = (Map.Entry)template.next();
-            context.put((String)writer.getKey(), writer.getValue());
+            Map.Entry<String, Object> writer = template.next();
+            context.put(writer.getKey(), writer.getValue());
         }
 
         if (!templateCache.containsKey(templateLocation)) {

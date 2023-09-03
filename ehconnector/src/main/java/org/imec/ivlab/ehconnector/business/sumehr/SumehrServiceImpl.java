@@ -15,8 +15,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.exceptions.VitalinkException;
 import org.imec.ivlab.core.kmehr.model.util.HCPartyUtil;
 import org.imec.ivlab.core.kmehr.model.util.KmehrMessageUtil;
@@ -34,7 +34,7 @@ import org.imec.ivlab.ehconnector.hubflow.HubFlow;
 
 public class SumehrServiceImpl extends AbstractService implements SumehrService {
 
-    private final static Logger LOG = LogManager.getLogger(SumehrServiceImpl.class);
+    //private final static Logger LOG = LogManager.getLogger(SumehrServiceImpl.class);
 
     private static final TransactionType TRANSACTION_TYPE = TransactionType.SUMEHR;
     private HubFlow hubFlow = new HubFlow();

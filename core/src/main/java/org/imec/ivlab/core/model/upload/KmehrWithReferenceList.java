@@ -17,6 +17,7 @@ public class KmehrWithReferenceList implements ListOfIdentifiables, SpecificEntr
     }
 
     @Override
+    @SuppressWarnings({"unchecked" })
     public List<KmehrWithReference> getIdentifiables() {
         return list;
     }

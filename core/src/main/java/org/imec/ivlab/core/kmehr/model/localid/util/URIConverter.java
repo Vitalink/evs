@@ -1,13 +1,13 @@
 package org.imec.ivlab.core.kmehr.model.localid.util;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+//import org.apache.logging.log4j.LogManager;
+//import org.apache.logging.log4j.Logger;
 import org.imec.ivlab.core.kmehr.model.localid.URI;
 import org.imec.ivlab.core.kmehr.model.localid.URIType;
 
 public class URIConverter {
 
-    private final static Logger log = LogManager.getLogger(URIConverter.class);
+    //private final static Logger log = LogManager.getLogger(URIConverter.class);
 
 
     public static URI convertToUpdate(URI uri) {

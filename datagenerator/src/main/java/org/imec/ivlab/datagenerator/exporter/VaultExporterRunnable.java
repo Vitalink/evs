@@ -77,7 +77,7 @@ public class VaultExporterRunnable implements Runnable {
 
         boolean incurableErrorOccurred = false;
         Throwable incurableError = null;
-        boolean breakTheGlass = false;
+        //boolean breakTheGlass = false;
 
         File outputDirectory = new File(exportInstruction.getExportDir().getAbsolutePath() + File.separator + monitorInstruction.getPatient().getKey());
 
