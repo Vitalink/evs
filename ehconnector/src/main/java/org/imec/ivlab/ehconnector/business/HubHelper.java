@@ -263,10 +263,6 @@ public class HubHelper {
         DateTime now = DateTime.now();
         header.setDate(now);
         header.setTime(now);
-        // Previously in EVS : 
-        // LocalDate now = LocalDate.now();
-        // header.setDate(DateUtils.toXmlGregorianCalendar(now));
-        // header.setTime(DateUtils.toXmlGregorianCalendar(now));
         header.getRecipients().add(createHubRecipient());
         header.setSender(createSender());
         return header;
@@ -440,20 +436,10 @@ public class HubHelper {
         person.getFirstnames().add(testPatient.getFirstName());
         person.setFamilyname(testPatient.getLastName());
         person.setRecorddatetime(DateTime.now());
-        // Previously in EVS : 
-        //person.setRecorddatetime(DateUtils.getCalendar());
         person.setUsuallanguage("fr");
 
         DateType dateType = new DateType();
         dateType.setDate(new DateTime(1991, 12, 12, 0, 0));
-        // Previously in EVS 
-        /*
-        try {
-            LocalDate localDate = LocalDate.of(1991, 12, 12);
-            dateType.setDate(DateUtils.toXmlGregorianCalendar(localDate));
-        } catch (DatatypeConfigurationException e) {
-            e.printStackTrace();
-        }*/
         person.setBirthdate(dateType);
 
         Nationality nationality = new Nationality();

@@ -93,7 +93,7 @@
         </dependency>
         <dependency>
             <groupId>be.fgov.ehealth.connector</groupId>
-            <artifactId>connector-business-dicsv4</artifactId>
+            <artifactId>connector-business-dicsv5</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -273,7 +273,7 @@
         </dependency>
         <dependency>
             <groupId>be.fgov.ehealth.connector</groupId>
-            <artifactId>connector-utilities-dicsv4</artifactId>
+            <artifactId>connector-utilities-dicsv5</artifactId>
             <version>${ehealth.connector.version}</version>
         </dependency>
         <dependency>
@@ -402,24 +402,24 @@
             <version>2.0.7</version>
         </dependency>
         <dependency>
-            <groupId>joda-time</groupId>
-            <artifactId>joda-time</artifactId>
-            <version>2.12.5</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jul-to-slf4j</artifactId>
             <version>2.0.7</version>
         </dependency>
         <dependency>
-            <groupId>fr.xebia.extras</groupId>
-            <artifactId>selma</artifactId>
-            <version>1.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>2.0.7</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.12.5</version>
+        </dependency>
+        <dependency>
+            <groupId>fr.xebia.extras</groupId>
+            <artifactId>selma</artifactId>
+            <version>1.0</version>
         </dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>

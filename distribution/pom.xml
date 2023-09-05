@@ -71,10 +71,11 @@
 
         <plugins>
 
-            <!-- copy izpack resources into izpack staging area, expected by izpack.xml -->
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
+                <version>3.3.1</version>
                 <executions>
+                    <!-- copy izpack resources into izpack staging area, expected by izpack.xml -->
                     <execution>
                         <id>copy-resources</id>
                         <phase>install</phase>
@@ -99,6 +100,24 @@
                                     <filtering>false</filtering>
                                 </resource>
                             </resources>
+                        </configuration>
+                    </execution>
+                    <!-- Copy example config files : actors/patients/... -->
+                    <execution>
+                        <id>copy-delivery-output</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${build.install.directory.installer}</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>${basedir}/src/main/resources-filtered/delivery_output</directory>
+                                    <filtering>true</filtering>
+                                </resource>
+                            </resources>
+                            <includeEmptyDirs>true</includeEmptyDirs>
                         </configuration>
                     </execution>
                 </executions>
@@ -176,37 +195,8 @@
                 </executions>
             </plugin>
 
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.3.1</version>
-                <executions>
-                    <execution>
-                        <id>copy-delivery-output</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${build.install.directory.installer}</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>${basedir}/src/main/resources-filtered/delivery_output</directory>
-                                    <filtering>true</filtering>
-                                </resource>
-                            </resources>
-                            <includeEmptyDirs>true</includeEmptyDirs>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
         </plugins>
 
-
     </build>
-
-
-
 
 </project>
