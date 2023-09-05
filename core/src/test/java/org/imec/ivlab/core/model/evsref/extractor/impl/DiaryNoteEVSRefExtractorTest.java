@@ -2,7 +2,6 @@ package org.imec.ivlab.core.model.evsref.extractor.impl;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import junit.framework.TestCase;
 import org.apache.commons.lang3.StringUtils;
 import org.imec.ivlab.core.TestResourceReader;
 import org.imec.ivlab.core.kmehr.KmehrMarshaller;
@@ -24,7 +23,7 @@ import be.fgov.ehealth.standards.kmehr.schema.v1.TransactionType;
 //import lombok.extern.log4j.Log4j2;
 
 //@Log4j2
-public class DiaryNoteEVSRefExtractorTest extends TestCase {
+public class DiaryNoteEVSRefExtractorTest {
 
   private EVSREF evsref = new EVSREF("TESTREF");
 

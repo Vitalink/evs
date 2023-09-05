@@ -1,13 +1,15 @@
 package org.imec.ivlab.core.vaccination;
 
 import java.util.List;
-import junit.framework.TestCase;
 import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 
-@Log4j2
-public class VaccinationMappingReaderTest extends TestCase {
+import org.testng.annotations.Test;
 
+@Log4j2
+public class VaccinationMappingReaderTest {
+
+  @Test
   public void testReadMappings() {
 
     List<VaccinationMapping> vaccinationMappings = VaccinationMappingReader.getInstance().getVaccinationMappings();
