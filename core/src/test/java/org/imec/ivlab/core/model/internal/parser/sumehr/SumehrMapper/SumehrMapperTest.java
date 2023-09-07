@@ -1,7 +1,6 @@
 package org.imec.ivlab.core.model.internal.parser.sumehr.SumehrMapper;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import org.imec.ivlab.core.TestUtil;
 import org.imec.ivlab.core.model.internal.parser.sumehr.Sumehr;
@@ -21,8 +20,8 @@ public class SumehrMapperTest {
 
         Sumehr sumehr = SumehrMapper.kmehrToSumehr(sumehrList.getList().get(0).getKmehrMessage());
 
-        assertThat(sumehr.getMedicationEntries(), hasSize(4));
-        assertThat(sumehr.getHealthCareElements(), hasSize(6));
+        assertThat(sumehr.getMedicationEntries()).hasSize(4);
+        assertThat(sumehr.getHealthCareElements()).hasSize(6);
 
     }
 

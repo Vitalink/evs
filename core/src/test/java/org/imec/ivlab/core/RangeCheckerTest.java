@@ -7,23 +7,21 @@ import org.imec.ivlab.core.model.internal.mapper.medication.MedicationEntry;
 import org.imec.ivlab.core.model.internal.mapper.medication.Suspension;
 import org.imec.ivlab.core.model.internal.mapper.medication.TimeUnit;
 import org.imec.ivlab.core.model.internal.mapper.medication.Weekday;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 import org.joda.time.LocalDate;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.collection.IsCollectionWithSize.hasSize;
-import static org.hamcrest.collection.IsIterableContainingInOrder.contains;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
-@org.testng.annotations.Test
+@Test
 public class RangeCheckerTest {
 
-    @org.testng.annotations.Test
+    @Test
     public void calculateActivePeriodsMedicationWithEndmomentAndStopped() {
         MedicationEntry medicationEntry = createMedicationEntry(new LocalDate(2017, 5, 15), new LocalDate(2020, 10, 20));
         medicationEntry.setSuspensions(createSuspensionsWithLastOneStopped());
@@ -31,14 +29,14 @@ public class RangeCheckerTest {
         RangeChecker rangeChecker = new RangeChecker();
         List<Period> periods = rangeChecker.calculateActivePeriods(medicationEntry);
 
-        assertThat(periods, hasSize(3));
-        assertThat(periods, contains(   new Period(new LocalDate(2017, 5, 15), new LocalDate(2017, 7, 12)),
+        assertThat(periods).hasSize(3);
+        assertThat(periods).containsExactly(   new Period(new LocalDate(2017, 5, 15), new LocalDate(2017, 7, 12)),
                 new Period(new LocalDate(2017, 9, 14), new LocalDate(2017, 9, 14)),
-                new Period(new LocalDate(2017, 9, 20), new LocalDate(2020, 10, 17))));
+                new Period(new LocalDate(2017, 9, 20), new LocalDate(2020, 10, 17)));
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void calculateActivePeriodsMedicationWithoutEndmomentAndStopped() {
         MedicationEntry medicationEntry = createMedicationEntry(new LocalDate(2017, 5, 15), null);
         medicationEntry.setSuspensions(createSuspensionsWithLastOneStopped());
@@ -46,10 +44,10 @@ public class RangeCheckerTest {
         RangeChecker rangeChecker = new RangeChecker();
         List<Period> periods = rangeChecker.calculateActivePeriods(medicationEntry);
 
-        assertThat(periods, hasSize(3));
-        assertThat(periods, contains(   new Period(new LocalDate(2017, 5, 15), new LocalDate(2017, 7, 12)),
+        assertThat(periods).hasSize(3);
+        assertThat(periods).containsExactly(   new Period(new LocalDate(2017, 5, 15), new LocalDate(2017, 7, 12)),
                 new Period(new LocalDate(2017, 9, 14), new LocalDate(2017, 9, 14)),
-                new Period(new LocalDate(2017, 9, 20), new LocalDate(2020, 10, 17))));
+                new Period(new LocalDate(2017, 9, 20), new LocalDate(2020, 10, 17)));
 
     }
 
@@ -63,7 +61,7 @@ public class RangeCheckerTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void calculateActivePeriodsMedicationWithEndmomentAndSuspended() {
         MedicationEntry medicationEntry = createMedicationEntry(new LocalDate(2017, 5, 15), new LocalDate(2020, 10, 20));
         medicationEntry.setSuspensions(createSuspensionsWithLastSuspended());
@@ -71,15 +69,15 @@ public class RangeCheckerTest {
         RangeChecker rangeChecker = new RangeChecker();
         List<Period> periods = rangeChecker.calculateActivePeriods(medicationEntry);
 
-        assertThat(periods, hasSize(4));
-        assertThat(periods, contains(   new Period(new LocalDate(2017, 5, 15), new LocalDate(2017, 7, 12)),
+        assertThat(periods).hasSize(4);
+        assertThat(periods).containsExactly(   new Period(new LocalDate(2017, 5, 15), new LocalDate(2017, 7, 12)),
                 new Period(new LocalDate(2017, 9, 14), new LocalDate(2017, 9, 14)),
                 new Period(new LocalDate(2017, 9, 20), new LocalDate(2020, 10, 17)),
-                new Period(new LocalDate(2020, 10, 20), new LocalDate(2020, 10, 20))));
+                new Period(new LocalDate(2020, 10, 20), new LocalDate(2020, 10, 20)));
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void calculateActivePeriodsMedicationWithoutEndmomentAndSuspended() {
         MedicationEntry medicationEntry = createMedicationEntry(new LocalDate(2017, 5, 15), null);
         medicationEntry.setSuspensions(createSuspensionsWithLastSuspended());
@@ -87,11 +85,11 @@ public class RangeCheckerTest {
         RangeChecker rangeChecker = new RangeChecker();
         List<Period> periods = rangeChecker.calculateActivePeriods(medicationEntry);
 
-        assertThat(periods, hasSize(4));
-        assertThat(periods, contains(   new Period(new LocalDate(2017, 5, 15), new LocalDate(2017, 7, 12)),
+        assertThat(periods).hasSize(4);
+        assertThat(periods).containsExactly(   new Period(new LocalDate(2017, 5, 15), new LocalDate(2017, 7, 12)),
                 new Period(new LocalDate(2017, 9, 14), new LocalDate(2017, 9, 14)),
                 new Period(new LocalDate(2017, 9, 20), new LocalDate(2020, 10, 17)),
-                new Period(new LocalDate(2020, 10, 20), null)));
+                new Period(new LocalDate(2020, 10, 20), null));
 
     }
 
@@ -181,7 +179,7 @@ public class RangeCheckerTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testIsActiveByDayNumberAndDailyFrequency() throws Exception {
 
         LocalDate medicationBeginDate = new LocalDate(2017, 3, 2);
@@ -200,7 +198,7 @@ public class RangeCheckerTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testIsActiveByDayNumberAndWeeklyFrequency() throws Exception {
 
         LocalDate medicationBeginDate = new LocalDate(2017, 3, 2);
@@ -235,7 +233,7 @@ public class RangeCheckerTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testIsActiveByWeekday() throws Exception {
 
         LocalDate medicationBeginDate = new LocalDate(2017, 3, 2); // = THURSDAY
@@ -262,7 +260,7 @@ public class RangeCheckerTest {
     }
 
 
-    @org.testng.annotations.Test
+    @Test
     public void testIsActiveByDateForMonthlyFrequencies() throws Exception {
 
         LocalDate medicationBeginDate = new LocalDate(2017, 3, 2);
@@ -300,7 +298,7 @@ public class RangeCheckerTest {
 
     }
 
-    @org.testng.annotations.Test
+    @Test
     public void testIsActiveByDateForYearlyFrequencies() throws Exception {
 
         LocalDate medicationBeginDate = new LocalDate(2017, 3, 2);

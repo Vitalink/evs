@@ -52,18 +52,6 @@
         </dependency>
 
         <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-core</artifactId>
-            <version>1.3</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.hamcrest</groupId>
-            <artifactId>hamcrest-library</artifactId>
-            <version>1.3</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.google.code.gson</groupId>
             <artifactId>gson</artifactId>
         </dependency>
@@ -95,12 +83,6 @@
                 <groupId>com.beust</groupId>
                 <artifactId>jcommander</artifactId>
                 <version>1.82</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.apache.pdfbox</groupId>
-                <artifactId>pdfbox</artifactId>
-                <version>2.0.29</version>
             </dependency>
 
             <dependency>
@@ -221,13 +203,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <commons.cli.version>1.0</commons.cli.version>
+        <commons.cli.version>1.5.0</commons.cli.version>
         <build.install.directory.parent>${project.basedir}${file.separator}..${file.separator}..${file.separator}builds${file.separator}${project.version}${file.separator}</build.install.directory.parent>
         <build.install.directory>${build.install.directory.parent}${file.separator}EVS${file.separator}</build.install.directory>
         <build.install.directory.installer>${build.install.directory.parent}${file.separator}EVS-installer${file.separator}</build.install.directory.installer>
         <build.install.jar.directory>${build.install.directory}${file.separator}system${file.separator}</build.install.jar.directory>
         <build.install.kmehrconfig.directory>${build.install.directory}${file.separator}system${file.separator}kmehr{file.separator}</build.install.kmehrconfig.directory>
-        <apache.poi.version>5.0.0</apache.poi.version>
+        <apache.poi.version>5.2.3</apache.poi.version>
     </properties>
 
     <repositories>

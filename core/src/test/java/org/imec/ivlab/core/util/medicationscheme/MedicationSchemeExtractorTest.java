@@ -12,8 +12,8 @@ import org.imec.ivlab.core.model.upload.msentrylist.MedicationSchemeExtractor;
 import org.imec.ivlab.core.util.CollectionsUtil;
 import org.testng.annotations.Test;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.core.IsEqual.equalTo;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import static org.testng.Assert.assertTrue;
 
 public class MedicationSchemeExtractorTest {
@@ -23,9 +23,9 @@ public class MedicationSchemeExtractorTest {
 
         KmehrEntryList kmehrEntryList = TestUtil.getKmehrEntryList("10-kmehrs-10-uris.txt");
         MSEntryList medicationSchemeEntries = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries()), equalTo(10));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries())).isEqualTo(10);
         for (MSEntry msEntry : medicationSchemeEntries.getMsEntries()) {
-            assertThat(CollectionUtils.size(msEntry.getTsTransactions()), equalTo(0));
+            assertThat(CollectionUtils.size(msEntry.getTsTransactions())).isEqualTo(0);
         }
 
         ensureRegimenOrPosologyCorrectlyUnMarshalled(medicationSchemeEntries);
@@ -37,9 +37,9 @@ public class MedicationSchemeExtractorTest {
 
         KmehrEntryList kmehrEntryList = TestUtil.getKmehrEntryList("10-kmehrs-no-uris.txt");
         MSEntryList medicationSchemeEntries = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries()), equalTo(10));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries())).isEqualTo(10);
         for (MSEntry msEntry : medicationSchemeEntries.getMsEntries()) {
-            assertThat(CollectionUtils.size(msEntry.getTsTransactions()), equalTo(0));
+            assertThat(CollectionUtils.size(msEntry.getTsTransactions())).isEqualTo(0);
 
         }
 
@@ -52,15 +52,15 @@ public class MedicationSchemeExtractorTest {
 
         KmehrEntryList kmehrEntryList = TestUtil.getKmehrEntryList("3-kmehrs-gateway-format.txt");
         MSEntryList medicationSchemeEntries = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries()), equalTo(5));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries())).isEqualTo(5);
 
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(0).getTsTransactions()), equalTo(0));
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(1).getTsTransactions()), equalTo(0));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(0).getTsTransactions())).isEqualTo(0);
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(1).getTsTransactions())).isEqualTo(0);
 
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(2).getTsTransactions()), equalTo(1));
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(3).getTsTransactions()), equalTo(0));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(2).getTsTransactions())).isEqualTo(1);
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(3).getTsTransactions())).isEqualTo(0);
 
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(4).getTsTransactions()), equalTo(2));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(4).getTsTransactions())).isEqualTo(2);
 
         ensureRegimenOrPosologyCorrectlyUnMarshalled(medicationSchemeEntries);
 
@@ -87,19 +87,19 @@ public class MedicationSchemeExtractorTest {
 
         KmehrEntryList kmehrEntryList = TestUtil.getKmehrEntryList("3-kmehrs-gateway-format-and-2-kmehrs-connector-format.txt");
         MSEntryList medicationSchemeEntries = MedicationSchemeExtractor.getMedicationSchemeEntries(kmehrEntryList);
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries()), equalTo(7));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries())).isEqualTo(7);
 
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(0).getTsTransactions()), equalTo(0));
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(1).getTsTransactions()), equalTo(0));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(0).getTsTransactions())).isEqualTo(0);
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(1).getTsTransactions())).isEqualTo(0);
 
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(2).getTsTransactions()), equalTo(1));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(2).getTsTransactions())).isEqualTo(1);
 
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(3).getTsTransactions()), equalTo(1));
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(4).getTsTransactions()), equalTo(0));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(3).getTsTransactions())).isEqualTo(1);
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(4).getTsTransactions())).isEqualTo(0);
 
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(5).getTsTransactions()), equalTo(0));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(5).getTsTransactions())).isEqualTo(0);
 
-        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(6).getTsTransactions()), equalTo(2));
+        assertThat(CollectionUtils.size(medicationSchemeEntries.getMsEntries().get(6).getTsTransactions())).isEqualTo(2);
 
     }
 

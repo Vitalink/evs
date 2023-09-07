@@ -18,8 +18,8 @@
         <!-- SETTING PROPERTY TEMPORARILY for testing-->
 
         <!-- fix to be able to run the result files under java 9 -->
-        <jaxb.version>2.3.0</jaxb.version>
-        <jaxws.version>2.3.0</jaxws.version>
+        <jaxb.version>2.3.1</jaxb.version>
+        <jaxws.version>2.3.1</jaxws.version>
         <javax-annotation.version>1.3.2</javax-annotation.version>
         <evs.executable.filename>EVS-${project.version}.jar</evs.executable.filename>
     </properties>
@@ -39,32 +39,6 @@
             <version>${izpack.version}</version>
         </dependency>
 
-        <!--&lt;!&ndash; fix to be able to run the result files under java 9 &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>javax.annotation</groupId>-->
-            <!--<artifactId>javax.annotation-api</artifactId>-->
-            <!--<version>${javax-annotation.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>javax.xml.bind</groupId>-->
-            <!--<artifactId>jaxb-api</artifactId>-->
-            <!--<version>${jaxb.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.sun.xml.bind</groupId>-->
-            <!--<artifactId>jaxb-impl</artifactId>-->
-            <!--<version>${jaxb.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>javax.xml.ws</groupId>-->
-            <!--<artifactId>jaxws-api</artifactId>-->
-            <!--<version>${jaxws.version}</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>com.sun.xml.ws</groupId>-->
-            <!--<artifactId>jaxws-rt</artifactId>-->
-            <!--<version>${jaxws.version}</version>-->
-        <!--</dependency>-->
     </dependencies>
 
     <build>
@@ -126,6 +100,7 @@
             <!-- copy EVS files into izpack staging area -->
             <plugin>
                 <artifactId>maven-antrun-plugin</artifactId>
+                <version>3.1.0</version>
                 <executions>
                    <execution>
                       <id>create-staging-area</id>
@@ -134,11 +109,11 @@
                          <goal>run</goal>
                       </goals>
                       <configuration>
-                         <tasks>
+                        <target>
                             <copy todir="${izpack.staging}/EVS">
                                <fileset dir="${build.install.directory}"/>
                             </copy>
-                         </tasks>
+                        </target>
                       </configuration>
                    </execution>
                 </executions>
