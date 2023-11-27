@@ -209,7 +209,7 @@
         <build.install.directory.installer>${build.install.directory.parent}${file.separator}EVS-installer${file.separator}</build.install.directory.installer>
         <build.install.jar.directory>${build.install.directory}${file.separator}system${file.separator}</build.install.jar.directory>
         <build.install.kmehrconfig.directory>${build.install.directory}${file.separator}system${file.separator}kmehr{file.separator}</build.install.kmehrconfig.directory>
-        <apache.poi.version>5.2.4</apache.poi.version>
+        <apache.poi.version>5.2.5</apache.poi.version>
     </properties>
 
     <repositories>
