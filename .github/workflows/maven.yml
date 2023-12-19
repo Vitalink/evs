@@ -58,7 +58,7 @@ jobs:
           find . -type f \( -name ".gitignore" -o -name ".gitkeep" \) -exec rm -f {} \;  
           zip -r -q EVS-${{ env.EVS_VERSION }}.zip .
       - name: 📁 Archive artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: EVS-build
           path: "${{ env.artifacts_path }}/EVS-${{ env.EVS_VERSION }}.zip"
