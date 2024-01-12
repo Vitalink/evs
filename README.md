@@ -19,6 +19,10 @@ EVS can sync Kmehr messages to and from the regional vault which acts as a remot
 builder\release.cmd
 ```
 
+### Documentation
+
+https://github.com/smals-jy/evs/wiki 
+
 ## Who made it?
 Made by IMEC vzw for Vlaamse Agentschap Zorg & Gezondheid / Vitalink.  
 Updated by [Jacques Yakoub](https://github.com/jy95) to support mandatory eHealth changes in October 2023, scripts to automate the release process ,...
