@@ -13,7 +13,7 @@
     <version>4.0.0</version>
 
     <properties>
-        <izpack.version>5.1.2</izpack.version>
+        <izpack.version>5.2.1</izpack.version>
         <izpack.staging>${project.build.directory}/staging</izpack.staging>
         <!-- SETTING PROPERTY TEMPORARILY for testing-->
 
