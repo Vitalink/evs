@@ -64,7 +64,7 @@ jobs:
           path: "${{ env.artifacts_path }}/EVS-${{ env.EVS_VERSION }}.zip"
           if-no-files-found: error
           retention-days: 1
-      - uses: ncipollo/release-action@v1.13.0
+      - uses: ncipollo/release-action@v1.14.0
         name: 🤖 Create release on Github
         if: github.event.inputs.create_release && contains(github.ref, 'main')
         with:
