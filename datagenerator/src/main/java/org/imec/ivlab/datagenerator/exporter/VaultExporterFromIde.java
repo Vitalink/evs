@@ -44,7 +44,7 @@ public class VaultExporterFromIde {
 
         arguments.setLogCommunicationType(LogCommunicationType.WITHOUT_SECURITY);
 
-        arguments.setHub(Hub.RSB);
+        arguments.setHub(Hub.VITALINK);
         arguments.setSearchType(SearchType.LOCAL);
 
 //        arguments.setBreakTheGlassIfTRMissing(true);
